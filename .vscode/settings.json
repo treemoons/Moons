@@ -1,0 +1,9 @@
+{
+    "sqltools.connections": [
+        {
+            "connectString": "server=SURFACE-PRO-7\\MSSQLSERVER2017;database=DMPF_JP_TEST;uid=sa;pwd=LINPENG;",
+            "dialect": "MSSQL",
+            "name": "123"
+        }
+    ]
+}

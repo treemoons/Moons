@@ -1,0 +1,131 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>@ViewData["Title"] - MyPersonalWeb</title>
+        <link rel="stylesheet" href="./css/site.css" />
+        <link rel="stylesheet" href="./css/large-screen.css" media="screen and (min-width: 769px)" />
+        <link rel="stylesheet" href="./css/small-screen.css" media="screen and (max-width: 768px)" />
+    </head>
+
+    <body>
+        <header>
+            <div class="header-logo"><img src="./src/beauty.jpg" alt="LOGO"></div>
+            <nav class="convenience-option">
+                <a href=""> 动态编译</a>
+            </nav>
+            <div role="navigation" class="user-search-icon">
+                <div>
+                    <div class="search-option">
+                        <form action="http://www.baidu.com" method="GET" name="search">
+                            <input type="text" placeholder="search" name="searchtext">
+                        </form>
+                    </div>
+                    <div class="search-icon">
+                        <img onclick="search.submit()" width="35" src="./src/search.png" alt="search"></div>
+                    <div class="menu-icon" onclick="showAndCloseMenu()">
+                        <!-- <b>&#60;</b> -->
+                    </div>
+                    <div class="user-icon"><img onclick="showLogin()" width="35"
+                            src="./src/72f455db0e454c968e81395053cf2fbc.jpg" alt="user">
+                    </div>
+                </div>
+        </header>
+                <nav class="user-options">
+                    <ul><li class="user-option"><a href="#">options-</a> </li>
+                        <li class="user-option"><a href="#">options-</a> </li>
+                        <li class="user-option"><a href="#">options-</a> </li>
+                        <li class="user-option"><a href="#">options-</a> </li>
+                        <li class="user-option"><a href="#">options-</a> </li>
+                    </ul>
+                </nav>
+
+            </div>
+        <nav class="menu-options">
+
+            <div class="menu-option">
+                <div>
+                    <h5>友情链接</h5>
+                    <a href="#">好玩的</a>
+                    <a href="#">好看的</a>
+                    <a href="#">好听的</a>
+                </div>
+                <div>
+                    <h5>我的技术</h5>
+                    <a href="#">.net core</a>
+                    <a href="#">WPF</a>
+                    <a href="#">WinForm</a>
+                </div>
+                <div>
+                    <img src="./src/f735d716058d40ca8aa29f06d404768f.jpg" width="120" alt="QRcode">
+                    <a href="./login.html" onclick="showLogin()">我的账号</a>
+                </div>
+            </div>
+        </nav>
+        <div class="wait">
+            <div class="move">
+                <div class="bar">
+                    <div class="dot1"></div>
+                    <div class="dot2"></div>
+                    <div class="dot3"></div>
+                    <div class="dot4"></div>
+                    <div class="dot5"></div>
+                </div>
+            </div>
+        </div>
+        <div class="login">
+            <div class="login-close" onclick="closeLogin()">✕</div>
+            <h3 class="login-title">Sign In to Moons</h3>
+            <form action="./src/f735d716058d40ca8aa29f06d404768f.jpg" method="GET" name="formlogin">
+                <div>
+                    <p>UersName or Your E-Mial</p>
+                    <input autofocus tabindex="1" type="text" name="username" id="">
+                    <p>Password <a href=""> forgot Password?</a></p>
+                    <input tabindex="2" type="password" name="password" id="">
+                    <input type="hidden" name="datetime" value="cc">
+                    <input tabindex="3" type="submit" value="Sign In" onclick="waitlogin()" id="">
+
+                </div>
+            </form>
+            <div>
+                <p>NEW TO MOONS,<a href="">CREATE AN ACCOUNT?</a></p>
+            </div>
+        </div>
+        <div class="margin-top">
+             @RenderBody() 
+        </div>
+        <p>
+            &nbsp;
+        </p>
+        <footer>
+            <div class="footer-table">
+                <div>
+                    <h5>友情链接</h5>
+                    <a href="">好玩的</a>
+                    <a href="">好看的</a>
+                    <a href="">好听的</a>
+                </div>
+                <div>
+                    <h5>我的技术</h5>
+                    <a href="">.net core</a>
+                    <a href="">WPF</a>
+                    <a href="">WinForm</a>
+                </div>
+                <div>
+                    <img src="./src/f735d716058d40ca8aa29f06d404768f.jpg" width="120" alt="QRcode">
+                    <a href="">联系我</a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>©2020 Moons 来自未来的我</p>
+                <p></p>
+            </div>
+        </footer>
+        <script src="./js/operation-function.js" asp-append-version="true"></script>
+        <script src="~/js/site.js"></script>
+        <!-- @RenderSection("Scripts", required: false) -->
+    </body>
+
+</html>
