@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "9VRpAIoj9AvT35+MIYT682MnHRdkcmq7vrD1zukPooc1siigGqC5Nw5A3qZXDIKpMOZRpu+ZEpurA30u0OIchw==",
+  "success": true,
+  "projectFilePath": "E:\\Html\\MyWork\\test\\test.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\hands\\.nuget\\packages\\system.data.sqlite\\1.0.112\\system.data.sqlite.1.0.112.nupkg.sha512",
+    "C:\\Users\\hands\\.nuget\\packages\\system.data.sqlite.core\\1.0.112\\system.data.sqlite.core.1.0.112.nupkg.sha512"
+  ],
+  "logs": []
+}

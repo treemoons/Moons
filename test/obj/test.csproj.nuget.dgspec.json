@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "e:\\Html\\MyWork\\MyPersonalWeb\\MyPersonalWeb.csproj": {}
+    "E:\\Html\\MyWork\\test\\test.csproj": {}
   },
   "projects": {
-    "e:\\Html\\MyWork\\MyPersonalWeb\\MyPersonalWeb.csproj": {
+    "E:\\Html\\MyWork\\test\\test.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "e:\\Html\\MyWork\\MyPersonalWeb\\MyPersonalWeb.csproj",
-        "projectName": "MyPersonalWeb",
-        "projectPath": "e:\\Html\\MyWork\\MyPersonalWeb\\MyPersonalWeb.csproj",
+        "projectUniqueName": "E:\\Html\\MyWork\\test\\test.csproj",
+        "projectName": "test",
+        "projectPath": "E:\\Html\\MyWork\\test\\test.csproj",
         "packagesPath": "C:\\Users\\hands\\.nuget\\packages\\",
-        "outputPath": "e:\\Html\\MyWork\\MyPersonalWeb\\obj\\",
+        "outputPath": "E:\\Html\\MyWork\\test\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "D:\\Microsoft\\Xamarin\\NuGet\\"
@@ -41,6 +41,12 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "dependencies": {
+            "System.Data.SQLite": {
+              "target": "Package",
+              "version": "[1.0.112, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -52,9 +58,6 @@
           "assetTargetFallback": true,
           "warn": true,
           "frameworkReferences": {
-            "Microsoft.AspNetCore.App": {
-              "privateAssets": "none"
-            },
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
