@@ -127,10 +127,10 @@ body{
 }
 /* menu options */
 .menu-options{
-    
 }
 .menu-option{
     flex-wrap: nowrap;
+    padding-top: 2vh;
 }
 .menu-option a {
     width: 100px;

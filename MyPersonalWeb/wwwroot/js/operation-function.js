@@ -24,8 +24,10 @@ window.onresize = function () {
         this.login.style.left = '0';
 }
 window.onload = function () {
-    this.closeLogin();
-    this.showAndCloseMenu();
+     //默认关闭
+    this.closeLogin(); 
+    this.showAndCloseMenu();  
+    this.showUserOptions();
 }
 
 function showLogin() {
@@ -36,7 +38,7 @@ function showLogin() {
     login.style = 'display:block;' + this.getLoginLeft(this.login);
     setTimeout(function () {
         login.style = 'opacity:100;top: 5vh;' + this.getLoginLeft(this.login);
-    }, 400);
+    }, 40);
 }
 
 function closeLogin() {
@@ -63,8 +65,8 @@ function showAndCloseMenu() {
     if (isMenuShow) {
         menuButton.style = 'display:block;';
         setTimeout(function () {
-            menuButton.style = 'opacity:100;top:6vh;'
-        }, 400);
+            menuButton.style = 'opacity:100;top:7vh;'
+        }, 40);
         isMenuShow = false;
     } else {
         menuButton.style = 'opacity:0;top:-20%;'
@@ -73,13 +75,27 @@ function showAndCloseMenu() {
         }, 400);
         isMenuShow = true;
     }
-/**
- * 
- */
-    function showMyProfile() {
-
-    }
 }
+/**
+ * 展示个人选项
+ */
+var userOptions = document.getElementsByClassName('user-options')[0];
+var isUserOptionsShow = false;
+    function showUserOptions() {
+        if (isUserOptionsShow) {
+            userOptions.style = 'display:block';
+            setTimeout(function () {
+                userOptions.style = 'opacity:100;right:0;'
+            }, 40);
+            isUserOptionsShow = false;
+        } else {
+            userOptions.style = 'opacity:0;right:-20vw;'
+            setTimeout(function () {
+                userOptions.style.display = 'none';
+            }, 400);
+            isUserOptionsShow = true;
+        }
+    }
 /**
  * 返回首页
  */
