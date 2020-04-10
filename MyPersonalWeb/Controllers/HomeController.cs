@@ -23,9 +23,9 @@ namespace MyPersonalWeb.Controllers
         public IActionResult Index()
         {
             if (HttpContext.Session.GetString("username") == null)
-                TempData["userprofile"] = "showUserOptions();";
-            else
                 TempData["userprofile"] = "showLogin();";
+            else
+                TempData["userprofile"] = "showUserOptions();";
             return View();
         }
 
