@@ -3,7 +3,7 @@
  * 登录用途的div元素（最外父元素）
  * 用于调整位置
  */
-var login = document.getElementsByClassName('login')[0];
+var login = document.getElementById('login');
 /**
  * 获取登录login元素的div
  * @param {login} l login登录元素
@@ -24,10 +24,9 @@ window.onresize = function () {
         this.login.style.left = '0';
 }
 window.onload = function () {
-     //默认关闭
-    this.closeLogin(); 
-    this.showAndCloseMenu();  
-    this.showUserOptions();
+    //默认关闭
+    this.closeLogin();
+    this.showAndCloseMenu();
 }
 
 function showLogin() {
@@ -52,16 +51,23 @@ function closeLogin() {
  * 显示等待动画，配合等待div元素
  */
 function waitLogin() {
-    var wait = document.getElementsByClassName('wait')[0];
+    var wait = document.getElementById('wait');
     wait.style = 'display:block';
 }
 /**
  * 展示menu列表
  */
-var menuButton = document.getElementsByClassName('menu-options')[0];
+var menuButton = document.getElementById('menu-options');
 var isMenuShow = false;
 
 function showAndCloseMenu() {
+    if (window.getComputedStyle(userOptions).display == 'block') {
+        userOptions.style = 'opacity:0;right:-20vw;'
+        setTimeout(function () {
+            userOptions.style.display = 'none';
+        }, 400);
+        isUserOptionsShow = true;
+    }
     if (isMenuShow) {
         menuButton.style = 'display:block;';
         setTimeout(function () {
@@ -79,23 +85,31 @@ function showAndCloseMenu() {
 /**
  * 展示个人选项
  */
-var userOptions = document.getElementsByClassName('user-options')[0];
+var userOptions = document.getElementById('user-options');
 var isUserOptionsShow = false;
-    function showUserOptions() {
-        if (isUserOptionsShow) {
-            userOptions.style = 'display:block';
-            setTimeout(function () {
-                userOptions.style = 'opacity:100;right:0;'
-            }, 40);
-            isUserOptionsShow = false;
-        } else {
-            userOptions.style = 'opacity:0;right:-20vw;'
-            setTimeout(function () {
-                userOptions.style.display = 'none';
-            }, 400);
-            isUserOptionsShow = true;
-        }
+function showUserOptions() {
+    debugger;
+    if (window.getComputedStyle(menuButton).display == 'block') {
+        menuButton.style = 'opacity:0;top:-20%;'
+        setTimeout(function () {
+            menuButton.style.display = 'none';
+        }, 400);
+        isMenuShow = true;
     }
+    if (isUserOptionsShow) {
+        userOptions.style = 'display:block';
+        setTimeout(function () {
+            userOptions.style = 'opacity:100;right:0;'
+        }, 40);
+        isUserOptionsShow = false;
+    } else {
+        userOptions.style = 'opacity:0;right:-20vw;'
+        setTimeout(function () {
+            userOptions.style.display = 'none';
+        }, 400);
+        isUserOptionsShow = true;
+    }
+}
 /**
  * 返回首页
  */

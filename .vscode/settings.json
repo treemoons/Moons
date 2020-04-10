@@ -5,5 +5,8 @@
             "dialect": "MSSQL",
             "name": "123"
         }
-    ]
+    ],
+    "workbench.colorCustomizations": {
+    
+    }
 }
