@@ -2,7 +2,7 @@
 /* #region 母版页内容 */
 :root{
   --theme-color-opaque: rgb(185, 185, 255);
-  --theme-color-transparent:rgb(185, 185, 255,0.89)
+  --theme-color-transparent-90:rgb(185, 185, 255,0.89)
 }
 * {
   margin: 0;
@@ -104,10 +104,41 @@ header::after{
   font-weight: bolder;
 }
 .search-icon {
-  margin-left: 0;
+  width: 40px;
+}
+
+.search-icon i {
+  display: block;
+  width: 20px;
+  height: 20px;
+  position: relative;
+  top: -7px;
+  left: 14px;
+  background-color: transparent;
+  border: 3px solid var(--theme-color-opaque);
+  border-radius: 100%;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  -ms-border-radius: 100%;
+  -o-border-radius: 100%;
+}
+
+.search-icon i::before {
+  content: '';
+  position: absolute;
+  top: 15px;
+  left: -5px;
+  width: 4px;
+  height: 15px;
+  background-color: var(--theme-color-opaque);
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
 }
 .user-icon{
-  border: solid 1px rgb(206, 206, 255);
+  border: solid 1px var(--theme-color-transparent-90);
   width: 35px;
   background-color: antiquewhite;
   height: 35px;
@@ -304,7 +335,7 @@ header::after{
   -moz-transition: all 0.4s ease;
   -ms-transition: all 0.4s ease;
   -o-transition: all 0.4s ease;
-  background-color: var(--theme-color-transparent);
+  background-color: var(--theme-color-transparent-90);
   padding: 10px;
 }
 
@@ -340,8 +371,9 @@ header::after{
   -moz-border-radius: 0 0 10px 10px;
   -ms-border-radius: 0 0 10px 10px;
   -o-border-radius: 0 0 10px 10px;
-  *//*background-color: rgb(185, 185, 255);
-  */background-color: hsla(0, 0%, 100%, 0.9);
+  background-color: rgb(185, 185, 255);
+  */
+  background-color: hsla(0, 0%, 100%, 0.9);
   -webkit-transition: all 0.5s ease;
   -moz-transition: all 0.5s ease;
   -ms-transition: all 0.5s ease;
@@ -368,9 +400,7 @@ header::after{
 }
 .user-option a:hover
 {
-  /* color: #ffffff; */
   border-bottom-color: rgb(139, 139, 255);
-  /* background-color: plum; */
 }
 
 .login h3{
