@@ -1,18 +1,22 @@
 ﻿@charset "utf-8";
 /* #region 母版页内容 */
+:root{
+  --theme-color-opaque: rgb(185, 185, 255);
+  --theme-color-transparent:rgb(185, 185, 255,0.89)
+}
 * {
   margin: 0;
   padding: 0;
   font-size: 16px;
   font-family: '幼圆';
-  outline-color: rgb(185, 185, 255);
+  outline-color: var(--theme-color-opaque);
 }
 a{
   color: black;
   text-decoration: none;
 }
 a:hover{
-  color: rgb(186, 186, 255);
+  color: var(--theme-color-opaque);
 }
 
 /* header */
@@ -29,7 +33,7 @@ header {
 header::after{
   content: ' ';
   position: absolute;
-  background-color: rgb(185, 185, 255);
+  background-color: var(--theme-color-opaque);
   width: 100%;
   height: 5px;
   bottom: -5px;
@@ -92,7 +96,7 @@ header::after{
 .menu-icon{
   position: relative;
   bottom: 5px;
-  color: rgb(185, 185, 255);
+  color: var(--theme-color-opaque);
 }
 .menu-icon::after{
   content: '\2630';
@@ -143,9 +147,9 @@ header::after{
   position: absolute;
   width:100%;
   height: 100vh;
-  top: -5px;
+  top: 5px;
   padding-bottom: 5px;
-  background-color: rgba(231, 231, 255, 0.746);
+  background-color: rgba(255, 255, 255, 0.9);
 }
   @keyframes waiting {
     0% {
@@ -161,13 +165,15 @@ header::after{
 
     40% {
       left: 50%;
-      background-color: rgb(108, 108, 255);
+      /* background-color: rgb(108, 108, 255); */
+      background-color: var(--dot-color);
     }
 
 
     60% {
 
-      background-color: rgb(108, 108, 255);
+      /* background-color: rgb(108, 108, 255); */
+      background-color: var(--dot-color);
       left: 50%;
     }
 
@@ -191,7 +197,7 @@ header::after{
   }
 
   .bar>div {
-
+    --dot-color:rgb(122, 98, 255);
     border-radius: 50%;
     width: 4px;
     height: 4px;
@@ -250,7 +256,7 @@ header::after{
     /* background-color: antiquewhite; */
     display: inline-block;
     width: 78%;
-    margin-top: 50%;
+    margin-top: 10%;
     animation: move 3s 0s infinite;
     -webkit-animation: move 3s 0.3s infinite;
 }
@@ -263,7 +269,7 @@ header::after{
   /* background-color: antiquewhite; */
 }
 .search-option input{
-  border: solid 1px rgb(185, 185, 255);
+  border: solid 1px var(--theme-color-opaque);
   height: 35px;
   width: 99%;
   padding-left:10px ;
@@ -298,7 +304,7 @@ header::after{
   -moz-transition: all 0.4s ease;
   -ms-transition: all 0.4s ease;
   -o-transition: all 0.4s ease;
-  background-color: rgba(185, 185, 255, 0.89);
+  background-color: var(--theme-color-transparent);
   padding: 10px;
 }
 

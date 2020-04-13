@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyPersonalWeb", "MyPersonalWeb\MyPersonalWeb.csproj", "{96F23C6D-5828-438F-87C9-BFC67DA129D5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelsLibrary", "ModelsLibrary\ModelsLibrary.csproj", "{52BCEF1F-48CB-4B2E-879E-91B11F4D1FC9}"
+EndProject
 Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -30,5 +32,17 @@ Global
 		{96F23C6D-5828-438F-87C9-BFC67DA129D5}.Release|x64.Build.0 = Release|Any CPU
 		{96F23C6D-5828-438F-87C9-BFC67DA129D5}.Release|x86.ActiveCfg = Release|Any CPU
 		{96F23C6D-5828-438F-87C9-BFC67DA129D5}.Release|x86.Build.0 = Release|Any CPU
+		{52BCEF1F-48CB-4B2E-879E-91B11F4D1FC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52BCEF1F-48CB-4B2E-879E-91B11F4D1FC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52BCEF1F-48CB-4B2E-879E-91B11F4D1FC9}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{52BCEF1F-48CB-4B2E-879E-91B11F4D1FC9}.Debug|x64.Build.0 = Debug|Any CPU
+		{52BCEF1F-48CB-4B2E-879E-91B11F4D1FC9}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{52BCEF1F-48CB-4B2E-879E-91B11F4D1FC9}.Debug|x86.Build.0 = Debug|Any CPU
+		{52BCEF1F-48CB-4B2E-879E-91B11F4D1FC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52BCEF1F-48CB-4B2E-879E-91B11F4D1FC9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52BCEF1F-48CB-4B2E-879E-91B11F4D1FC9}.Release|x64.ActiveCfg = Release|Any CPU
+		{52BCEF1F-48CB-4B2E-879E-91B11F4D1FC9}.Release|x64.Build.0 = Release|Any CPU
+		{52BCEF1F-48CB-4B2E-879E-91B11F4D1FC9}.Release|x86.ActiveCfg = Release|Any CPU
+		{52BCEF1F-48CB-4B2E-879E-91B11F4D1FC9}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
