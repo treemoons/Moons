@@ -1,3 +1,7 @@
+/**
+ * 用于附加在windowResize事件上的函数数组
+ */
+var windowResize = [];
 //#region  用于调整设置登录弹窗的位置
 /**
  * 登录用途的div元素（最外父元素）
@@ -22,6 +26,12 @@ window.onresize = function () {
         login.style.left = (document.body.clientWidth - this.parseInt(window.getComputedStyle(this.login).width)) / 2 + 'px';
     else
         this.login.style.left = '0';
+    if (this.windowResize != null) {
+        this.windowResize.forEach(item => {
+            item();
+        });
+    }
+    // this.windowResize.a=function(){alert('msg');}
 }
 window.onload = function () {
     //默认关闭
