@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyPersonalWeb", "MyPersonalWeb\MyPersonalWeb.csproj", "{96F23C6D-5828-438F-87C9-BFC67DA129D5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQLModels", "SQLModels\SQLModels.csproj", "{6C83BD9D-5B4C-4101-9FDF-D372B1F02E1C}"
+EndProject
 Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -30,5 +32,17 @@ Global
 		{96F23C6D-5828-438F-87C9-BFC67DA129D5}.Release|x64.Build.0 = Release|Any CPU
 		{96F23C6D-5828-438F-87C9-BFC67DA129D5}.Release|x86.ActiveCfg = Release|Any CPU
 		{96F23C6D-5828-438F-87C9-BFC67DA129D5}.Release|x86.Build.0 = Release|Any CPU
+		{6C83BD9D-5B4C-4101-9FDF-D372B1F02E1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C83BD9D-5B4C-4101-9FDF-D372B1F02E1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C83BD9D-5B4C-4101-9FDF-D372B1F02E1C}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{6C83BD9D-5B4C-4101-9FDF-D372B1F02E1C}.Debug|x64.Build.0 = Debug|Any CPU
+		{6C83BD9D-5B4C-4101-9FDF-D372B1F02E1C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{6C83BD9D-5B4C-4101-9FDF-D372B1F02E1C}.Debug|x86.Build.0 = Debug|Any CPU
+		{6C83BD9D-5B4C-4101-9FDF-D372B1F02E1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C83BD9D-5B4C-4101-9FDF-D372B1F02E1C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C83BD9D-5B4C-4101-9FDF-D372B1F02E1C}.Release|x64.ActiveCfg = Release|Any CPU
+		{6C83BD9D-5B4C-4101-9FDF-D372B1F02E1C}.Release|x64.Build.0 = Release|Any CPU
+		{6C83BD9D-5B4C-4101-9FDF-D372B1F02E1C}.Release|x86.ActiveCfg = Release|Any CPU
+		{6C83BD9D-5B4C-4101-9FDF-D372B1F02E1C}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
