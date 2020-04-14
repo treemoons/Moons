@@ -19,8 +19,6 @@ E:\Html\MyWork\MyPersonalWeb\obj\Debug\netcoreapp3.1\MyPersonalWeb.AssemblyInfo.
 E:\Html\MyWork\MyPersonalWeb\obj\Debug\netcoreapp3.1\MyPersonalWeb.TagHelpers.input.cache
 E:\Html\MyWork\MyPersonalWeb\obj\Debug\netcoreapp3.1\MyPersonalWeb.TagHelpers.output.cache
 E:\Html\MyWork\MyPersonalWeb\obj\Debug\netcoreapp3.1\MyPersonalWeb.RazorCoreGenerate.cache
-E:\Html\MyWork\MyPersonalWeb\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
-E:\Html\MyWork\MyPersonalWeb\obj\Debug\netcoreapp3.1\Razor\Views\Home\Privacy.cshtml.g.cs
 E:\Html\MyWork\MyPersonalWeb\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Error.cshtml.g.cs
 E:\Html\MyWork\MyPersonalWeb\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout.cshtml.g.cs
 E:\Html\MyWork\MyPersonalWeb\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
@@ -35,3 +33,7 @@ E:\Html\MyWork\MyPersonalWeb\obj\Debug\netcoreapp3.1\MyPersonalWeb.dll
 E:\Html\MyWork\MyPersonalWeb\obj\Debug\netcoreapp3.1\MyPersonalWeb.pdb
 e:\Html\MyWork\MyPersonalWeb\obj\Debug\netcoreapp3.1\MyPersonalWeb.genruntimeconfig.cache
 e:\Html\MyWork\MyPersonalWeb\obj\Debug\netcoreapp3.1\MyPersonalWeb.csproj.CopyComplete
+E:\Html\MyWork\MyPersonalWeb\bin\Debug\netcoreapp3.1\ModelsLibrary.dll
+E:\Html\MyWork\MyPersonalWeb\bin\Debug\netcoreapp3.1\ModelsLibrary.pdb
+E:\Html\MyWork\MyPersonalWeb\obj\Debug\netcoreapp3.1\Razor\Views\English\Home\Index.cshtml.g.cs
+E:\Html\MyWork\MyPersonalWeb\obj\Debug\netcoreapp3.1\Razor\Views\English\Home\Privacy.cshtml.g.cs
