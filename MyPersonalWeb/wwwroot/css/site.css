@@ -232,8 +232,8 @@ header::after{
   .bar>div {
     --dot-color:rgb(122, 98, 255);
     border-radius: 50%;
-    width: 4px;
-    height: 4px;
+    width: 6px;
+    height: 6px;
     background-color: rgba(0, 0, 0, 0);
     position: relative;
     display: inline-block;

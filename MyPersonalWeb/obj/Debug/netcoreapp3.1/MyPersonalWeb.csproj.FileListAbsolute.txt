@@ -35,5 +35,5 @@ e:\Html\MyWork\MyPersonalWeb\obj\Debug\netcoreapp3.1\MyPersonalWeb.genruntimecon
 e:\Html\MyWork\MyPersonalWeb\obj\Debug\netcoreapp3.1\MyPersonalWeb.csproj.CopyComplete
 E:\Html\MyWork\MyPersonalWeb\bin\Debug\netcoreapp3.1\ModelsLibrary.dll
 E:\Html\MyWork\MyPersonalWeb\bin\Debug\netcoreapp3.1\ModelsLibrary.pdb
-E:\Html\MyWork\MyPersonalWeb\obj\Debug\netcoreapp3.1\Razor\Views\English\Home\Index.cshtml.g.cs
-E:\Html\MyWork\MyPersonalWeb\obj\Debug\netcoreapp3.1\Razor\Views\English\Home\Privacy.cshtml.g.cs
+E:\Html\MyWork\MyPersonalWeb\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
+E:\Html\MyWork\MyPersonalWeb\obj\Debug\netcoreapp3.1\Razor\Views\Home\Privacy.cshtml.g.cs
