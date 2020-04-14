@@ -13,7 +13,7 @@ body{
 .login {
     /*display: none;
     */
-    z-index: 99;
+    z-index: 89;
     position: fixed;
     background-color: rgba(255, 255, 255, 0.9);
     border-radius: 7%;

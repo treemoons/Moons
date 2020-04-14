@@ -4,6 +4,7 @@
   --theme-color-opaque: rgb(185, 185, 255);
   --theme-color-transparent-90:rgb(185, 185, 255,0.89);
   --box-shadow:-3px 5px 10px rgba(0, 0, 0, 0.16);
+  --wait-animotion:999;
 }
 * {
   margin: 0;
@@ -176,7 +177,7 @@ header::after{
 /*  wait css */
 .wait{
   display: none;
-  z-index: 30;
+  z-index: var(--wait-animotion);
   position: absolute;
   width:100%;
   height: 100vh;
@@ -284,7 +285,7 @@ header::after{
   }
 
   .move {
-    z-index: 20;
+    z-index: var(--wait-animotion);
     position: relative;
     /* background-color: antiquewhite; */
     display: inline-block;
