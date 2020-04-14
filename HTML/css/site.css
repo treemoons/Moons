@@ -47,6 +47,8 @@ header::after {
 
 .margin-top {
   margin-top: 55px;
+  height:1000px;
+  background-color: #0000000a;
 }
 
 
