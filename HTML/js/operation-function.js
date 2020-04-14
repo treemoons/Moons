@@ -64,7 +64,7 @@ function showAndCloseMenu() {
     if (isMenuShow) {
         menuButton.style = 'display:block;';
         setTimeout(function () {
-            menuButton.style = 'opacity:100;top:6vh;'
+            menuButton.style = 'opacity:100;top:55px;'
         }, 400);
         isMenuShow = false;
     } else {

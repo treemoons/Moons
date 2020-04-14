@@ -11,6 +11,8 @@
     </head>
 
     <body>
+        <div onclick="whiteBack();" id="login-background" >
+        </div>
         <header>
             <div class="header-logo"><img src="~/src/logo1.png" alt="LOGO"></div>
             <nav class="convenience-option">
@@ -75,16 +77,16 @@
             </div>
         </div>
         <div class="login" id="login">
-            <div class="login-close" onclick="closeLogin();">✕</div>
+            <div><span class="login-close" onclick="closeLogin();">✕</span></div>
             <h3 class="login-title">登录到木月之深</h3>
             <form action="http://www.google.com.hk/webhp?hl=zh-CN&sourceid=cnhp" method="GET" name="formlogin">
                 <div>
                     <p>用户名或邮箱</p>
-                    <input autofocus tabindex="1" type="text"  name="username" id="">
+                    <input autofocus tabindex="1" type="text"  name="username" >
                     <p>密码 <a href=""> 忘记密码?</a></p>
-                    <input tabindex="2" type="password" name="password" id="">
+                    <input tabindex="2" type="password" name="password" >
                     <input type="hidden" name="datetime" value="cc">
-                    <input tabindex="3" type="submit" value="登录" onclick="waitLogin()" id="">
+                    <input tabindex="3" type="submit" value="登录" onclick="waitLogin()" >
                 </div>
             </form>
             <div>

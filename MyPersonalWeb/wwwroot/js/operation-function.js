@@ -1,7 +1,9 @@
+//#region  master context
 /**
  * 用于附加在windowResize事件上的函数数组
  */
 var windowResize = [];
+var windowOnload = [];
 //#region  用于调整设置登录弹窗的位置
 /**
  * 登录用途的div元素（最外父元素）
@@ -15,9 +17,8 @@ var login = document.getElementById('login');
 function getLoginLeft(l) {
     return 'left:' + (document.body.clientWidth - this.parseInt(window.getComputedStyle(l).width)) / 2 + 'px'
 }
-window.onresize = function () {
     /**刷新login宽度 */
-    debugger;
+function resizeLogin() {
     let block = getComputedStyle(this.login, null).getPropertyValue('display') == 'block';
     let largesreen = document.body.clientWidth > 766;
     let bool = block && largesreen;
@@ -26,6 +27,10 @@ window.onresize = function () {
         login.style.left = (document.body.clientWidth - this.parseInt(window.getComputedStyle(this.login).width)) / 2 + 'px';
     else
         this.login.style.left = '0';
+}
+/**push login window */
+windowResize.push(resizeLogin);
+window.onresize = function () {
     if (this.windowResize != null) {
         this.windowResize.forEach(item => {
             item();
@@ -33,12 +38,25 @@ window.onresize = function () {
     }
     // this.windowResize.a=function(){alert('msg');}
 }
-window.onload = function () {
-    //默认关闭
-    this.closeLogin();
-    this.showAndCloseMenu();
-}
 
+/** 点击空白，关闭login弹窗 */
+function whiteBack() {
+    closeLogin();
+    menuButton.style = 'opacity:0;top:-20%;'
+    setTimeout(function () {
+        menuButton.style.display = 'none';
+    }, 400);
+    document.getElementById('login-background').style.display = 'none';
+    isMenuShow = true;
+}
+windowOnload.push(closeLogin,showAndCloseMenu)
+window.onload = function () {
+    if (this.windowOnload != null) {
+        this.windowOnload.forEach(item => {
+            item();
+        });
+    }
+}
 function showLogin() {
     debugger
     if (window.getComputedStyle(menuButton).display == 'block') {
@@ -48,6 +66,7 @@ function showLogin() {
     setTimeout(function () {
         login.style = 'opacity:100;top: 5vh;' + this.getLoginLeft(this.login);
     }, 40);
+    document.getElementById('login-background').style.display = 'block';
 }
 
 function closeLogin() {
@@ -55,6 +74,7 @@ function closeLogin() {
     setTimeout(function () {
         login.style = 'display:none'
     }, 400);
+    document.getElementById('login-background').style.display = 'none';
 }
 //#endregion
 /**
@@ -83,12 +103,15 @@ function showAndCloseMenu() {
         setTimeout(function () {
             menuButton.style = 'opacity:100;top:55px;'
         }, 40);
+    debugger;
+        document.getElementById('login-background').style.display = 'block';
         isMenuShow = false;
     } else {
         menuButton.style = 'opacity:0;top:-20%;'
         setTimeout(function () {
             menuButton.style.display = 'none';
         }, 400);
+        document.getElementById('login-background').style.display = 'none';
         isMenuShow = true;
     }
 }
@@ -126,3 +149,4 @@ function showUserOptions() {
 function backIndex() {
     open("/HOME/INDEX", "_self");
 }
+//#endregion

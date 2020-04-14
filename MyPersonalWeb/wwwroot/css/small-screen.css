@@ -36,15 +36,7 @@ body{
     top: -100%;
     margin-top: -50px;
     padding-bottom: 50px;
-    /*top: 5vw;
-    *//*JavaScriptleft:(this.width-.login.width)/2;
-    top:;
-    ((this.height-.login.height)/2)*//*-webkit-border-radius: 10%;
-    -moz-border-radius: 7%;
-    -ms-border-radius: 7%;
-    -o-border-radius: 7%;
-    -webkit-border-radius: 7%;
-    */text-align: center;
+    text-align: center;
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
     -ms-transition: all 0.5s ease;
@@ -53,18 +45,6 @@ body{
 .newlogin {
     top: 15%;
     opacity: 100;
-}
-.login-close {
-    font-size: 200%;
-    color: rgb(184, 184, 252);
-    text-align: right;
-    margin: 30px 50px 0 0;
-    cursor: pointer;
-}
-
-.login-close:hover {
-    color: rgb(93, 93, 255);
-
 }
 
 .login-title {

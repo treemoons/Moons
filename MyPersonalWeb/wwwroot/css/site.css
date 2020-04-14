@@ -2,7 +2,8 @@
 /* #region 母版页内容 */
 :root{
   --theme-color-opaque: rgb(185, 185, 255);
-  --theme-color-transparent-90:rgb(185, 185, 255,0.89)
+  --theme-color-transparent-90:rgb(185, 185, 255,0.89);
+  --box-shadow:-3px 5px 10px rgba(0, 0, 0, 0.16);
 }
 * {
   margin: 0;
@@ -150,6 +151,7 @@ header::after{
   overflow: hidden;
   padding-top: 0;
 }
+
 .user-icon img{
   /* position: relative;
   top: 0px; */
@@ -337,6 +339,13 @@ header::after{
   -o-transition: all 0.4s ease;
   background-color: var(--theme-color-transparent-90);
   padding: 10px;
+  box-shadow: var(--box-shadow);
+  box-sizing: border-box;
+  border-radius:0px 0px 5px 5px;
+  -webkit-border-radius:0px 0px 5px 5px;
+  -moz-border-radius:0px 0px 5px 5px;
+  -ms-border-radius:0px 0px 5px 5px;
+  -o-border-radius:0px 0px 5px 5px;
 }
 
 .menu-option {
@@ -364,7 +373,7 @@ header::after{
   opacity: 0;
   height: 100vh;
   overflow: hidden;
-  box-shadow: -3px 5px 10px rgba(0, 0, 0, 0.16);
+  box-shadow: var(--box-shadow);
   transition: all 0.5s ease;
   /*border-radius: 0 0 10px 10px;
   -webkit-border-radius: 0 0 10px 10px;
@@ -373,7 +382,7 @@ header::after{
   -o-border-radius: 0 0 10px 10px;
   background-color: rgb(185, 185, 255);
   */
-  background-color: hsla(0, 0%, 100%, 0.9);
+  background-color: rgba(255, 255, 255, 0.9);
   -webkit-transition: all 0.5s ease;
   -moz-transition: all 0.5s ease;
   -ms-transition: all 0.5s ease;
@@ -406,5 +415,19 @@ header::after{
 .login h3{
   font-family: '幼圆';
 }
+.login>div:first-child {
+  color: rgb(184, 184, 252);
+  text-align: right;
+  padding: 30px 50px 0 0;
+}
 
+.login-close {
+  cursor: pointer;
+  font-size: 200%;
+}
+
+.login-close:hover {
+  color: rgb(93, 93, 255);
+
+}
 /*#endregion*/
