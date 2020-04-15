@@ -1,9 +1,5 @@
 //#region  master context
-/**
- * 用于附加在windowResize事件上的函数数组
- */
-var windowResize = [];
-var windowOnload = [];
+
 //#region  用于调整设置登录弹窗的位置
 /**
  * 登录用途的div元素（最外父元素）
@@ -28,17 +24,6 @@ function resizeLogin() {
     else
         this.login.style.left = '0';
 }
-/**push login window */
-windowResize.push(resizeLogin);
-window.onresize = function () {
-    if (this.windowResize != null) {
-        this.windowResize.forEach(item => {
-            item();
-        });
-    }
-    // this.windowResize.a=function(){alert('msg');}
-}
-
 /** 点击空白，关闭login弹窗 */
 function whiteBack() {
     closeLogin();
@@ -48,14 +33,6 @@ function whiteBack() {
     }, 400);
     document.getElementById('login-background').style.display = 'none';
     isMenuShow = true;
-}
-windowOnload.push(closeLogin,showAndCloseMenu)
-window.onload = function () {
-    if (this.windowOnload != null) {
-        this.windowOnload.forEach(item => {
-            item();
-        });
-    }
 }
 function showLogin() {
     debugger

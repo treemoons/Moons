@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Html\\MyWork\\ModelsLibrary\\ModelsLibrary.csproj": {}
+    "e:\\Html\\MyWork\\ModelsLibrary\\ModelsLibrary.csproj": {}
   },
   "projects": {
-    "E:\\Html\\MyWork\\ModelsLibrary\\ModelsLibrary.csproj": {
+    "e:\\Html\\MyWork\\ModelsLibrary\\ModelsLibrary.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Html\\MyWork\\ModelsLibrary\\ModelsLibrary.csproj",
+        "projectUniqueName": "e:\\Html\\MyWork\\ModelsLibrary\\ModelsLibrary.csproj",
         "projectName": "ModelsLibrary",
-        "projectPath": "E:\\Html\\MyWork\\ModelsLibrary\\ModelsLibrary.csproj",
+        "projectPath": "e:\\Html\\MyWork\\ModelsLibrary\\ModelsLibrary.csproj",
         "packagesPath": "C:\\Users\\hands\\.nuget\\packages\\",
-        "outputPath": "E:\\Html\\MyWork\\ModelsLibrary\\obj\\",
+        "outputPath": "e:\\Html\\MyWork\\ModelsLibrary\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "D:\\Microsoft\\Xamarin\\NuGet\\"

@@ -1,0 +1,9 @@
+E:\Html\MyWork\Implementation\bin\Debug\netstandard2.0\Implementation.deps.json
+E:\Html\MyWork\Implementation\bin\Debug\netstandard2.0\Implementation.dll
+E:\Html\MyWork\Implementation\bin\Debug\netstandard2.0\Implementation.pdb
+E:\Html\MyWork\Implementation\obj\Debug\netstandard2.0\Implementation.csprojAssemblyReference.cache
+E:\Html\MyWork\Implementation\obj\Debug\netstandard2.0\Implementation.csproj.CoreCompileInputs.cache
+E:\Html\MyWork\Implementation\obj\Debug\netstandard2.0\Implementation.AssemblyInfoInputs.cache
+E:\Html\MyWork\Implementation\obj\Debug\netstandard2.0\Implementation.AssemblyInfo.cs
+E:\Html\MyWork\Implementation\obj\Debug\netstandard2.0\Implementation.dll
+E:\Html\MyWork\Implementation\obj\Debug\netstandard2.0\Implementation.pdb
