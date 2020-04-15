@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "KqmnihWoDCTC/wkJ3/htlSqYfQSN/zhifL0LpXywdTpjfkLPmL55ob/5Y3OXpLQM8XDPqs9i3zr2rq6rl1IHCw==",
+  "dgSpecHash": "cozSIeyKrxszzc1Z1OsWS+7h02HZrGuJ+RM25UtQy/KN+ChWid/s8rg8lhVdPey0NBqd8nA9u0jrW1Tnqkgibw==",
   "success": true,
-  "projectFilePath": "e:\\Html\\MyWork\\ModelsLibrary\\ModelsLibrary.csproj",
+  "projectFilePath": "E:\\Html\\MyWork\\ModelsLibrary\\ModelsLibrary.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\hands\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Users\\hands\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"

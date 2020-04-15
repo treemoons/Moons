@@ -6,6 +6,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>@ViewData["Title"]</title>
         <script src="~/js/header-load.js"></script>
+        <script>
+(function isIE() { //ie?
+    if (!!window.ActiveXObject || "ActiveXObject" in window) {
+       alert('不支持IE浏览器，请更换其他浏览器。');
+       window.open("about:blank","_self").close()  
+    }
+})()
+</script>
+        <script src="~/js/operation-function.js"></script>
         <link rel="shortcut icon" href="~/src/favicon.ico" type="image/x-icon">
         <link rel="stylesheet" href="~/css/site.css" />
         <link rel="stylesheet" href="~/css/large-screen.css" media="screen and (min-width: 769px)" />
@@ -83,6 +92,7 @@
             <div><span class="login-close" onclick="closeLogin();">✕</span></div>
             <h3 class="login-title">登录到木月之深</h3>
             <form action="http://www.google.com.hk/webhp?hl=zh-CN&sourceid=cnhp" method="GET" name="formlogin">
+            @Html.AntiForgeryToken()
                 <div>
                     <p>用户名或邮箱</p>
                     <input autofocus tabindex="1" type="text" name="username">
@@ -126,7 +136,6 @@
                 <p></p>
             </div>
         </footer>
-        <script src="~/js/operation-function.js"></script>
         <script src="~/js/footer-load.js"></script>
         @* @RenderSection("Advertisement", required: false) *@
     </body>

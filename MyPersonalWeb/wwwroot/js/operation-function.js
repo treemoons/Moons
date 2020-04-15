@@ -1,11 +1,7 @@
 //#region  master context
 
 //#region  用于调整设置登录弹窗的位置
-/**
- * 登录用途的div元素（最外父元素）
- * 用于调整位置
- */
-var login = document.getElementById('login');
+
 /**
  * 获取登录login元素的div
  * @param {login} l login登录元素
@@ -61,12 +57,6 @@ function waitLogin() {
     var wait = document.getElementById('wait');
     wait.style = 'display:block';
 }
-/**
- * 展示menu列表
- */
-var menuButton = document.getElementById('menu-options');
-var isMenuShow = false;
-
 function showAndCloseMenu() {
     if (window.getComputedStyle(userOptions).display == 'block') {
         userOptions.style = 'opacity:0;right:-20vw;'
@@ -92,11 +82,6 @@ function showAndCloseMenu() {
         isMenuShow = true;
     }
 }
-/**
- * 展示个人选项
- */
-var userOptions = document.getElementById('user-options');
-var isUserOptionsShow = false;
 function showUserOptions() {
     debugger;
     if (window.getComputedStyle(menuButton).display == 'block') {
