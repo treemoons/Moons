@@ -5,7 +5,6 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>@ViewData["Title"]</title>
-        <script src="~/js/header-load.js"></script>
         <script>
 (function isIE() { //ie?
     if (!!window.ActiveXObject || "ActiveXObject" in window) {
@@ -14,11 +13,12 @@
     }
 })()
 </script>
-        <script src="~/js/operation-function.js"></script>
-        <link rel="shortcut icon" href="~/src/favicon.ico" type="image/x-icon">
         <link rel="stylesheet" href="~/css/site.css" />
+        <link rel="shortcut icon" href="~/src/favicon.ico" type="image/x-icon">
         <link rel="stylesheet" href="~/css/large-screen.css" media="screen and (min-width: 769px)" />
         <link rel="stylesheet" href="~/css/small-screen.css" media="screen and (max-width: 768px)" />
+        <script src="~/js/header-load.js"></script>
+        <script src="~/js/operation-function.js"></script>
     </head>
 
     <body>
