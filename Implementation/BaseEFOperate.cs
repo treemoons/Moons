@@ -20,13 +20,10 @@ namespace Implementation
     }
     public class DBServiceProvider<TService, TContext> where TService : class where TContext : DbContext
     {
-        private static IServiceCollection Service { get; set; } = new ServiceCollection();
-        private static IServiceCollection GetTransientService() =>
-            Service.AddTransient<TService>();
-        private static IServiceCollection GetSingletonService() =>
-            Service.AddSingleton<TService>();
-        private static IServiceCollection GetScopedService() =>
-            Service.AddScoped<TService>();
+        private  IServiceCollection Service { get; set; } = new ServiceCollection();
+        private static IServiceCollection GetTransientService() =>new DBServiceProvider<TService, TContext>().Service.AddTransient<TService>();
+        private static IServiceCollection GetSingletonService() => new DBServiceProvider<TService, TContext>().Service.AddSingleton<TService>();
+        private static IServiceCollection GetScopedService() => new DBServiceProvider<TService, TContext>().Service.AddScoped<TService>();
 
         public static IServiceProvider GetDbService(EService serviceType) =>
         (serviceType switch
@@ -42,13 +39,17 @@ namespace Implementation
     }
     public  static class ServiceContainer
     {
-       public static DBService<DBContext<TTable, TModel>> GetDbService<TTable, TModel>(EService service) where TTable:class where TModel:IEntityTypeConfiguration<TTable>,new()
-        => DBServiceProvider<DBService<DBContext<TTable,TModel>>, DBContext<TTable,TModel>>.GetDbService(service).GetService<DBService<DBContext<TTable, TModel>>>();
-    }
+       public static TService GetDbService<TService,TTable, TModelBuilder>(EService service)where TService :DBService<DBContext<TTable, TModelBuilder>> where TTable:class where TModelBuilder:IEntityTypeConfiguration<TTable>,new()
+        => DBServiceProvider<TService, DBContext<TTable,TModelBuilder>>.GetDbService(service).GetService<TService>();
+   
+   }
     /// <summary>
     /// 模型表
     /// </summary>
     public class c {
+        void s(){
+            ServiceContainer.GetDbService<DBS, c,b>(EService.AddScoped);
+        }
     }
     /// <summary>
     /// 模型biulder，添加字段等
@@ -75,9 +76,9 @@ namespace Implementation
         public async Task<bool> DeleteDataBase() =>
             await context.Database.EnsureDeletedAsync();
     }
-    public class DBContext<TDbTable, TModels> : DbContext where TDbTable : class where TModels : IEntityTypeConfiguration<TDbTable>, new()
+    public class DBContext<TDbTable, TModelsBuilder> : DbContext where TDbTable : class where TModelsBuilder : IEntityTypeConfiguration<TDbTable>, new()
     {
-        public DBContext(DbContextOptions<DBContext<TDbTable, TModels>> options) : base(options) { }
+        public DBContext(DbContextOptions<DBContext<TDbTable, TModelsBuilder>> options) : base(options) { }
         public DbSet<TDbTable> Table { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -86,7 +87,7 @@ namespace Implementation
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-            builder.ApplyConfiguration(new TModels());
+            builder.ApplyConfiguration(new TModelsBuilder());
         }
     }
 }

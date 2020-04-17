@@ -4,6 +4,6 @@
     <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
   </PropertyGroup>
   <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
-    <Import Project="$(NuGetPackageRoot)netstandard.library\2.0.3\build\netstandard2.0\NETStandard.Library.targets" Condition="Exists('$(NuGetPackageRoot)netstandard.library\2.0.3\build\netstandard2.0\NETStandard.Library.targets')" />
+    <Import Project="$(NuGetPackageRoot)microsoft.teamfoundationserver.extendedclient\16.153.0\build\Microsoft.TeamFoundationServer.ExtendedClient.targets" Condition="Exists('$(NuGetPackageRoot)microsoft.teamfoundationserver.extendedclient\16.153.0\build\Microsoft.TeamFoundationServer.ExtendedClient.targets')" />
   </ImportGroup>
 </Project>
