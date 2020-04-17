@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "e:\\Html\\MyWork\\MyPersonalWeb\\MyPersonalWeb.csproj": {}
+    "E:\\Html\\MyWork\\MyPersonalWeb\\MyPersonalWeb.csproj": {}
   },
   "projects": {
-    "e:\\Html\\MyWork\\Implementation\\Implementation.csproj": {
+    "E:\\Html\\MyWork\\Implementation\\Implementation.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "e:\\Html\\MyWork\\Implementation\\Implementation.csproj",
+        "projectUniqueName": "E:\\Html\\MyWork\\Implementation\\Implementation.csproj",
         "projectName": "Implementation",
-        "projectPath": "e:\\Html\\MyWork\\Implementation\\Implementation.csproj",
+        "projectPath": "E:\\Html\\MyWork\\Implementation\\Implementation.csproj",
         "packagesPath": "C:\\Users\\hands\\.nuget\\packages\\",
-        "outputPath": "e:\\Html\\MyWork\\Implementation\\obj\\",
+        "outputPath": "E:\\Html\\MyWork\\Implementation\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "D:\\Microsoft\\Xamarin\\NuGet\\"
@@ -80,14 +80,14 @@
         }
       }
     },
-    "e:\\Html\\MyWork\\ModelsLibrary\\ModelsLibrary.csproj": {
+    "E:\\Html\\MyWork\\ModelsLibrary\\ModelsLibrary.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "e:\\Html\\MyWork\\ModelsLibrary\\ModelsLibrary.csproj",
+        "projectUniqueName": "E:\\Html\\MyWork\\ModelsLibrary\\ModelsLibrary.csproj",
         "projectName": "ModelsLibrary",
-        "projectPath": "e:\\Html\\MyWork\\ModelsLibrary\\ModelsLibrary.csproj",
+        "projectPath": "E:\\Html\\MyWork\\ModelsLibrary\\ModelsLibrary.csproj",
         "packagesPath": "C:\\Users\\hands\\.nuget\\packages\\",
-        "outputPath": "e:\\Html\\MyWork\\ModelsLibrary\\obj\\",
+        "outputPath": "E:\\Html\\MyWork\\ModelsLibrary\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "D:\\Microsoft\\Xamarin\\NuGet\\"
@@ -98,14 +98,14 @@
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "netstandard2.0"
+          "netstandard2.1"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "netstandard2.0": {
+          "netstandard2.1": {
             "projectReferences": {}
           }
         },
@@ -116,13 +116,11 @@
         }
       },
       "frameworks": {
-        "netstandard2.0": {
+        "netstandard2.1": {
           "dependencies": {
-            "NETStandard.Library": {
-              "suppressParent": "All",
+            "System.ComponentModel.Annotations": {
               "target": "Package",
-              "version": "[2.0.3, )",
-              "autoReferenced": true
+              "version": "[4.7.0, )"
             }
           },
           "imports": [
@@ -135,18 +133,23 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "frameworkReferences": {
+            "NETStandard.Library": {
+              "privateAssets": "all"
+            }
+          },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "e:\\Html\\MyWork\\MyPersonalWeb\\MyPersonalWeb.csproj": {
+    "E:\\Html\\MyWork\\MyPersonalWeb\\MyPersonalWeb.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "e:\\Html\\MyWork\\MyPersonalWeb\\MyPersonalWeb.csproj",
+        "projectUniqueName": "E:\\Html\\MyWork\\MyPersonalWeb\\MyPersonalWeb.csproj",
         "projectName": "MyPersonalWeb",
-        "projectPath": "e:\\Html\\MyWork\\MyPersonalWeb\\MyPersonalWeb.csproj",
+        "projectPath": "E:\\Html\\MyWork\\MyPersonalWeb\\MyPersonalWeb.csproj",
         "packagesPath": "C:\\Users\\hands\\.nuget\\packages\\",
-        "outputPath": "e:\\Html\\MyWork\\MyPersonalWeb\\obj\\",
+        "outputPath": "E:\\Html\\MyWork\\MyPersonalWeb\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "D:\\Microsoft\\Xamarin\\NuGet\\"
@@ -166,14 +169,14 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "e:\\Html\\MyWork\\Implementation\\Implementation.csproj": {
-                "projectPath": "e:\\Html\\MyWork\\Implementation\\Implementation.csproj"
+              "E:\\Html\\MyWork\\Implementation\\Implementation.csproj": {
+                "projectPath": "E:\\Html\\MyWork\\Implementation\\Implementation.csproj"
               },
-              "e:\\Html\\MyWork\\ModelsLibrary\\ModelsLibrary.csproj": {
-                "projectPath": "e:\\Html\\MyWork\\ModelsLibrary\\ModelsLibrary.csproj"
+              "E:\\Html\\MyWork\\ModelsLibrary\\ModelsLibrary.csproj": {
+                "projectPath": "E:\\Html\\MyWork\\ModelsLibrary\\ModelsLibrary.csproj"
               },
-              "e:\\Html\\MyWork\\Utils\\Utils.csproj": {
-                "projectPath": "e:\\Html\\MyWork\\Utils\\Utils.csproj"
+              "E:\\Html\\MyWork\\Utils\\Utils.csproj": {
+                "projectPath": "E:\\Html\\MyWork\\Utils\\Utils.csproj"
               }
             }
           }
@@ -208,14 +211,14 @@
         }
       }
     },
-    "e:\\Html\\MyWork\\Utils\\Utils.csproj": {
+    "E:\\Html\\MyWork\\Utils\\Utils.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "e:\\Html\\MyWork\\Utils\\Utils.csproj",
+        "projectUniqueName": "E:\\Html\\MyWork\\Utils\\Utils.csproj",
         "projectName": "Utils",
-        "projectPath": "e:\\Html\\MyWork\\Utils\\Utils.csproj",
+        "projectPath": "E:\\Html\\MyWork\\Utils\\Utils.csproj",
         "packagesPath": "C:\\Users\\hands\\.nuget\\packages\\",
-        "outputPath": "e:\\Html\\MyWork\\Utils\\obj\\",
+        "outputPath": "E:\\Html\\MyWork\\Utils\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "D:\\Microsoft\\Xamarin\\NuGet\\"
