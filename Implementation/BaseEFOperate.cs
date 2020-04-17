@@ -83,7 +83,8 @@ namespace Implementation
     {
         void s()
         {
-            ServiceContainer.GetDbService<DBS, c, b>(EService.AddScoped, "");
+            var service= ServiceContainer.GetDbService<DBS, c, b>(EService.AddScoped, "");
+            
         }
     }
     /// <summary>
@@ -101,25 +102,55 @@ namespace Implementation
     public class DBS : DBService<DBContext<c, b>>
     {
         public DBS(DBContext<c, b> putContext) : base(putContext) { }
+       
     }
+    /// <summary>
+    /// 用户服务基类，在使用服务容器时必须继承此类
+    /// </summary>
+    /// <typeparam name="TContext">上下文</typeparam>
     public class DBService<TContext> where TContext : DbContext
     {
-        private readonly TContext context;
+        /// <summary>
+        /// 服务上下文context
+        /// </summary>
+        protected readonly TContext context;
         public DBService(TContext putContext) => context = putContext;
 
-        public async Task<bool> CreateDataBase() =>
+        public async Task<bool> CreateDataBaseAsync() =>
             await context.Database.EnsureCreatedAsync();
-        public async Task<bool> DeleteDataBase() =>
+        public async Task<bool> DeleteDataBaseAsync() =>
             await context.Database.EnsureDeletedAsync();
     }
+    /// <summary>
+    /// 上下文基类，用于加载配置数据表和数据表字段属性
+    /// <br/>DBContext&#60;TDbTable, TModelsBuilder&#62;
+    /// <br/>DBContext：继承自DbContext预定义类型
+    /// <br/>TModelsBuilder：继承自接口IEntityTypeConfiguration&#60;T&#62;
+    /// </summary>
+    /// <typeparam name="TDbTable">数据表模型类</typeparam>
+    /// <typeparam name="TModelsBuilder">配置加载数据模型属性 
+    /// <br/><i>继承自接口IEntityTypeConfiguration&#60;TDbTable&#62;</i>
+    /// </typeparam>
     public class DBContext<TDbTable, TModelsBuilder> : DbContext where TDbTable : class where TModelsBuilder : IEntityTypeConfiguration<TDbTable>, new()
     {
         public DBContext(DbContextOptions<DBContext<TDbTable, TModelsBuilder>> options) : base(options) { }
+        /// <summary>
+        /// 控制的表
+        /// </summary>
+        /// <value>所有表的属性值及方法</value>
         public DbSet<TDbTable> Table { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="optionsBuilder"></param>
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
         }
+        /// <summary>
+        /// 流利api可以配置加载属性，通过ModelBuilder添加属性
+        /// </summary>
+        /// <param name="builder">添加模型属性配置</param>
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);

@@ -1,11 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "vKMhyRNQPZHV2vGsAwaJ+UE78Bptu5RGmNEuw8dDEaYdubjffZS6Qwllx9UB/4XCi4L61tKyC82SwozxzG4PdQ==",
+  "dgSpecHash": "eYwAomBpekIRvQc1Ar4vE9Z3/TCH05QYZeR8xfShmbP3LfdSg+ZNX8yTnkh+SahRE4Zx9SMj44OOZ6akJi+EYA==",
   "success": true,
   "projectFilePath": "E:\\Html\\MyWork\\Utils\\Utils.csproj",
-  "expectedPackageFiles": [
-    "C:\\Users\\hands\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
-    "C:\\Users\\hands\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
-  ],
+  "expectedPackageFiles": [],
   "logs": []
 }

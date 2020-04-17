@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using MyPersonalWeb.Models;
+using ModelsLibrary.User;
 
 namespace MyPersonalWeb.Controllers
 {
@@ -20,7 +21,6 @@ namespace MyPersonalWeb.Controllers
         {
             _logger = logger;
         }
-
         public IActionResult Index()
         {
             if (HttpContext.Session.GetString("username") == null)
@@ -29,13 +29,21 @@ namespace MyPersonalWeb.Controllers
                 TempData["userprofile"] = "showUserOptions();";
             return View();
         }
-
+        [HttpPost]
+        // [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Login([Bind("UserName")]UserSignIn users) =>
+            await Task.Run(() =>
+            {
+                TempData["username"] = users.UserName;
+                TempData["password"] = users.Password;
+                return View("Privacy");
+            });
         public IActionResult Privacy()
         {
             return View();
         }
-     
-        string ShowLogin()=>
+
+        string ShowLogin() =>
                 ViewBag.ShowLogin = "<script>showLogin()</script>";
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
