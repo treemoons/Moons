@@ -8,4 +8,9 @@
     <h1 class="display-4">@ViewBag.user</h1>
     
     <p>Learn about <a href="/Home/aa">building Web apps with ASP.NET Core</a>.</p>
+    <h1 id="aj"></h1>
+    <button onclick=" getAjaxPostData('/home/login',x=>{if(x=='ok'){
+        document.getElementById('aj').innerText='okokokoko'
+    }})">获取</button>
+    <button onclick=" getAjaxPostData('./src/t.txt')">获取</button>
 </div>

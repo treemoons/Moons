@@ -108,7 +108,7 @@ body{
 .login form input[type="submit"]{
     width: 250px;
     height: 80px;
-    margin-top: 80px;
+    margin-top: 20px;
     font-size: 150%;
     border: solid 1px rgb(139, 139, 255);
     background-color: rgb(184, 184, 252);

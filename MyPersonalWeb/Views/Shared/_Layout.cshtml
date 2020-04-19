@@ -27,7 +27,7 @@
         <header>
             <div class="header-logo"><img src="~/src/logo1.png" alt="LOGO"></div>
             <nav class="convenience-option">
-                <a href=""> 动态编译</a>
+                <a href=""> 动态编译 </a>
             </nav>
             <div role="navigation" class="user-search-icon">
                 <div>
@@ -88,21 +88,22 @@
                 </div>
             </div>
         </div>
-        <div class="login" id="login">
-            <div><span class="login-close" onclick="closeLogin();">✕</span></div>
+       <div class="login" id="login">
+            <div><span class="login-close" onclick="loginClose();">✕</span></div>
             <h3 class="login-title">登录到木月之深</h3>
-            <form action="/home/login" method="post" name="formlogin">
+            <form action="" method="post" name="loginform">
             @* @Html.AntiForgeryToken() *@
                 <div>
                     <p>用户名或邮箱</p>
                     <input autofocus tabindex="1" type="text" name="username">
                     <p>密码 <a href=""> 忘记密码?</a></p>
                     <input tabindex="2" type="password" name="password">
-                    @* <input type="hidden" name="datetime" value="cc"> *@
+                    <input type="hidden" name="lastlogintime" value="@DateTime.Now.ToString()">
                     @* <input type="hidden" name="" value=""> *@
-                    <input tabindex="3" type="submit" value="登录" onclick="waitLogin()">
+                    <div id="error" style="color: red;">&#160;</div>
+                    <input tabindex="3" type="submit" value="登录" onclick="return signin()">
                 </div>
-            </form>
+           </form>
             <div>
                 <p>新用户,<a href="">创建账号?</a></p>
             </div>
@@ -138,7 +139,9 @@
             </div>
         </footer>
         <script src="~/js/footer-load.js"></script>
+        
         @* @RenderSection("Advertisement", required: false) *@
+        @* <iframe src="" frameborder="0" name="loginiframe" style="display: none;"></iframe> *@
     </body>
 
 </html>

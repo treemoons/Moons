@@ -1,12 +1,17 @@
 ﻿@{
     ViewData["Title"] = "Privacy Policy";
+    @* ModelsLibrary.User.UserSignIn Models=( ModelsLibrary.User.UserSignIn)ViewBag.model; *@
 }
 <h1>@ViewData["Title"]</h1>
 
 <p>Use this page to detail your site's privacy policy.</p>
 <h1>
-   用户名： @TempData["username"]
+   用户名： @Model.UserName
 </h1>
 <h1>
-    密码：@TempData["password"]
+    密码：@Model.Password
+</h1>
+
+<h1>
+    时间：@Model.LastLoginTime
 </h1>

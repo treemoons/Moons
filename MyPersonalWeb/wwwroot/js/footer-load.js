@@ -1,6 +1,5 @@
 
 windowResize.push(resizeLogin);
-windowOnload.push(closeLogin, showAndCloseMenu);
 
 /**
  * 展示menu列表
@@ -15,3 +14,7 @@ var login = document.getElementById('login');
  * 展示个人选项
  */
 var userOptions = document.getElementById('user-options');
+
+loginClose();
+showAndCloseMenu();
+

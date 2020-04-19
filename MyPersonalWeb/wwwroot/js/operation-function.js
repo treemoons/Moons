@@ -9,12 +9,12 @@
 function getLoginLeft(l) {
     return 'left:' + (document.body.clientWidth - this.parseInt(window.getComputedStyle(l).width)) / 2 + 'px'
 }
-    /**刷新login宽度 */
+/**刷新login宽度 */
 function resizeLogin() {
     let block = getComputedStyle(this.login, null).getPropertyValue('display') == 'block';
     let largesreen = document.body.clientWidth > 766;
     let bool = block && largesreen;
-    formlogin.username.value = bool;
+    loginform.username.value = bool;
     if (bool)
         login.style.left = (document.body.clientWidth - this.parseInt(window.getComputedStyle(this.login).width)) / 2 + 'px';
     else
@@ -22,7 +22,7 @@ function resizeLogin() {
 }
 /** 点击空白，关闭login弹窗 */
 function whiteBack() {
-    closeLogin();
+    loginClose();
     menuButton.style = 'opacity:0;top:-20%;'
     setTimeout(function () {
         menuButton.style.display = 'none';
@@ -42,8 +42,10 @@ function showLogin() {
     document.getElementById('login-background').style.display = 'block';
 }
 
-function closeLogin() {
+function loginClose() {
     login.style = 'opacity:0;top:-100%;' + this.getLoginLeft(this.login);
+    let loginerror = document.getElementById('error');
+    loginerror.innerText = '';
     setTimeout(function () {
         login.style = 'display:none'
     }, 400);
@@ -56,6 +58,12 @@ function closeLogin() {
 function waitLogin() {
     var wait = document.getElementById('wait');
     wait.style = 'display:block';
+}
+function waitLoginClose() {
+    setTimeout(() => {
+        var wait = document.getElementById('wait');
+        wait.style = 'display:none';
+    }, 400);
 }
 function showAndCloseMenu() {
     if (window.getComputedStyle(userOptions).display == 'block') {
@@ -70,7 +78,7 @@ function showAndCloseMenu() {
         setTimeout(function () {
             menuButton.style = 'opacity:100;top:55px;'
         }, 40);
-    debugger;
+        debugger;
         document.getElementById('login-background').style.display = 'block';
         isMenuShow = false;
     } else {
@@ -112,3 +120,67 @@ function backIndex() {
     open("/HOME/INDEX", "_self");
 }
 //#endregion
+
+function getAjaxData(url, action, querystring = '', httptype = 'POST', datatype = 'application/x-www-form-urlencoded') {
+    debugger;
+    // open(url,'_blank')
+    var ajax = new XMLHttpRequest();
+    ajax.open(httptype, url);
+    ajax.setRequestHeader('Content-Type', datatype);
+    ajax.send(querystring);
+    ajax.onreadystatechange = function () {
+        if (ajax.readyState == 4) {
+            if (ajax.status == 200) {
+                action(ajax.responseText);
+            }
+        }
+    }
+}
+function signin() {
+    waitLogin();
+    getAjaxData('/home/login', data => {
+        debugger;
+        if (data == 'F') {
+            let loginerror = document.getElementById('error');
+            loginerror.innerText = "账号或密码错误，请重新输入。"
+            waitLoginClose();
+        } else if(data=='T') {
+            open(window.location.href,'_self')
+        }
+    }, `username=${loginform.username.value}&password=${loginform.password.value}&lastlogintime=${(new Date()).formatDate('yyyy-MM-dd HH:mm:ss')}`
+    );
+    return false;
+}
+Date.prototype.formatDate = function (fmt) {
+    var o = {
+        "M+": this.getMonth() + 1, //月份           
+        "d+": this.getDate(), //日           
+        "h+": this.getHours() % 12 == 0 ? 12 : this.getHours() % 12, //小时           
+        "H+": this.getHours(), //小时           
+        "m+": this.getMinutes(), //分           
+        "s+": this.getSeconds(), //秒           
+        "q+": Math.floor((this.getMonth() + 3) / 3), //季度           
+        "f": this.getMilliseconds() //毫秒           
+    };
+    var week = {
+        "0": "\u65e5",
+        "1": "\u4e00",
+        "2": "\u4e8c",
+        "3": "\u4e09",
+        "4": "\u56db",
+        "5": "\u4e94",
+        "6": "\u516d"
+    };
+    if (/(y+)/.test(fmt)) {
+        fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+    }
+    if (/(E+)/.test(fmt)) {
+        fmt = fmt.replace(RegExp.$1, ((RegExp.$1.length > 1) ? (RegExp.$1.length > 2 ? "\u661f\u671f" : "\u5468") : "") + week[this.getDay() + ""]);
+    }
+    for (var k in o) {
+        if (new RegExp("(" + k + ")").test(fmt)) {
+            fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+        }
+    }
+    return fmt;
+}
