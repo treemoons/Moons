@@ -6,14 +6,42 @@ using System.Threading.Tasks;
 using System.Text;
 using System.IO;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Logging;
 using MyPersonalWeb.Models;
 using ModelsLibrary.User;
 
 namespace MyPersonalWeb.Controllers
 {
-    public class HomeController : Controller
+    public class PromissAttribute : ActionFilterAttribute
+    {
+    }
+    public class NoPromissionAttribute : ActionFilterAttribute
+    {
+        public override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            base.OnActionExecuting(filterContext);
+        }
+    }
+
+   public class PermissionController:Controller
+   {
+        public override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            filterContext.HttpContext.Session.TryGetValue("CurrentUser", out byte[] result);
+            if (result == null)
+            {
+                TempData["userprofile"] = "showLogin()";
+                return;
+            }else{
+                TempData["userprofile"] = "showUserOptions()";
+            }
+            base.OnActionExecuting(filterContext);
+        }
+   }
+    public class HomeController : PermissionController
     {
         private readonly ILogger<HomeController> _logger;
 
@@ -21,12 +49,9 @@ namespace MyPersonalWeb.Controllers
         {
             _logger = logger;
         }
+        
         public IActionResult Index()
         {
-            if (HttpContext.Session.GetString("username") == null)
-                TempData["userprofile"] = "showLogin();";
-            else
-                TempData["userprofile"] = "showUserOptions();";
             return View();
         }
         [HttpPost]
@@ -34,18 +59,21 @@ namespace MyPersonalWeb.Controllers
         public async Task<string> Login(UserSignIn users) =>
             await Task.Run(() =>
             {
-                if(ModelState.IsValid&& users.UserName=="default"){
+                if (!ModelState.IsValid || users.UserName == "default")
+                {
                     string[] user = { users.UserName, users.Password, users.LastLoginTime };
                     // ShowLogin();
                     return "F";
-                    
+
                 }
-                else{
+                else
+                {
                     string[] user = { users.UserName, users.Password, users.LastLoginTime };
-                    // HttpContext.Session.SetString("username", user[0]);
+                    HttpContext.Session.SetString("CurrentUser", user[0]);
                     // ViewBag.tip = "pass";
+                    byte[] session = HttpContext.Session.Get("CurrentUser");
                     return "T";
-                    }
+                }
                 // return View("Privacy",users);
             });
         public IActionResult Privacy()

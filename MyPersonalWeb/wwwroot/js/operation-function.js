@@ -140,12 +140,24 @@ function signin() {
     waitLogin();
     getAjaxData('/home/login', data => {
         debugger;
-        if (data == 'F') {
-            let loginerror = document.getElementById('error');
-            loginerror.innerText = "账号或密码错误，请重新输入。"
-            waitLoginClose();
-        } else if(data=='T') {
+        if (data == 'T') {
             open(window.location.href,'_self')
+        } else {
+            let loginerror = document.getElementById('error');
+            switch (data) {
+                case 'F':
+            loginerror.innerText = "账号或密码错误，请重新输入。"
+                    break;
+                case 'U':
+                    loginerror.innerText = "账号超过，请重新输入。"
+                    break;
+                case 'P':
+                    loginerror.innerText = "账号或密码错误，请重新输入。"
+                    break;
+                default:
+                    break;
+            }
+            waitLoginClose();
         }
     }, `username=${loginform.username.value}&password=${loginform.password.value}&lastlogintime=${(new Date()).formatDate('yyyy-MM-dd HH:mm:ss')}`
     );
