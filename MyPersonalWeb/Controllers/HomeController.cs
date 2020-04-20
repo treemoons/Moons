@@ -30,11 +30,9 @@ namespace MyPersonalWeb.Controllers
    {
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            filterContext.HttpContext.Session.TryGetValue("CurrentUser", out byte[] result);
-            if (result == null)
+            if (!filterContext.HttpContext.Session.TryGetValue("CurrentUser", out byte[] result))
             {
                 TempData["userprofile"] = "showLogin()";
-                return;
             }else{
                 TempData["userprofile"] = "showUserOptions()";
             }

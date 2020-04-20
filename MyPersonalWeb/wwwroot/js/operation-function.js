@@ -44,8 +44,8 @@ function showLogin() {
 
 function loginClose() {
     login.style = 'opacity:0;top:-100%;' + this.getLoginLeft(this.login);
-    let loginerror = document.getElementById('error');
-    loginerror.innerText = '';
+    let loginerror = document.getElementById('loginerror');
+    loginerror.innerHTML = '&#160;';
     setTimeout(function () {
         login.style = 'display:none'
     }, 400);
@@ -136,17 +136,50 @@ function getAjaxData(url, action, querystring = '', httptype = 'POST', datatype 
         }
     }
 }
+/**
+ * 
+ * @param {HTMLElement} input input where type is text
+ * @param {Function} action when press enter key , do this function
+ */
+function pressEnter(input,action) {
+    input.onkeypress = e => {
+        debugger;
+        if (e.keyCode == 13) {
+            action(form);
+        }
+    };
+}
+/**
+ * 
+ * @param {HTMLElement} input  input where type is text and whose attributes have 'tip'
+ */
+function IsInputEmpty(input) {
+    let error = document.getElementById('loginerror')
+    if (input.value == '') {
+        error.innerText = input.getAttribute('tip') + '不能为空';
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+ /**
+  * login to Moons
+  */
 function signin() {
+    if (IsInputEmpty(loginform.username) || IsInputEmpty(loginform.password)) {
+        return false;
+    }
     waitLogin();
     getAjaxData('/home/login', data => {
         debugger;
         if (data == 'T') {
-            open(window.location.href,'_self')
+            open(window.location.href, '_self')
         } else {
-            let loginerror = document.getElementById('error');
+            let loginerror = document.getElementById('loginerror');
             switch (data) {
                 case 'F':
-            loginerror.innerText = "账号或密码错误，请重新输入。"
+                    loginerror.innerText = "账号或密码错误，请重新输入。"
                     break;
                 case 'U':
                     loginerror.innerText = "账号超过，请重新输入。"
@@ -163,6 +196,9 @@ function signin() {
     );
     return false;
 }
+/**
+ * formating datetime
+ */
 Date.prototype.formatDate = function (fmt) {
     var o = {
         "M+": this.getMonth() + 1, //月份           

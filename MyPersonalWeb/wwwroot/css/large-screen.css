@@ -54,7 +54,7 @@ body{
     text-align: center;
     font-family: '';
     font-size: 300%;
-    margin:  0 5vw;
+    margin:  0 6vw;
     font-weight: bold;
     color: rgb(155, 155, 255);
     font-family: '微软雅黑';
@@ -93,6 +93,7 @@ body{
 }
 .login form input[type="password"]{
     font-size: 100%;
+    margin-bottom: 8%;
 }
 .login form input[type="text"]:focus,
 .login form input[type="password"]:focus{

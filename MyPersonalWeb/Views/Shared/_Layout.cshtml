@@ -95,13 +95,13 @@
             @* @Html.AntiForgeryToken() *@
                 <div>
                     <p>用户名或邮箱</p>
-                    <input autofocus tabindex="1" type="text" name="username">
+                    <input autofocus tabindex="1" type="text" tip="用户名或邮箱" name="username">
                     <p>密码 <a href=""> 忘记密码?</a></p>
-                    <input tabindex="2" type="password" name="password">
+                    <input tabindex="2" type="password" tip="密码" name="password" >
                     <input type="hidden" name="lastlogintime" value="@DateTime.Now.ToString()">
                     @* <input type="hidden" name="" value=""> *@
-                    <div id="error" style="color: red;">&#160;</div>
-                    <input tabindex="3" type="submit" value="登录" onclick="return signin()">
+                    <div id="loginerror" style="color: red;">&#160;</div>
+                    <input tabindex="3" name="submit" type="submit" value="登录" onclick="return signin()">
                 </div>
            </form>
             <div>

@@ -415,10 +415,11 @@ header::after{
 .login h3{
   font-family: '幼圆';
 }
+/* loginclose上的div */
 .login>div:first-child {
   color: rgb(184, 184, 252);
   text-align: right;
-  padding: 30px 50px 0 0;
+  padding: 50px 50px 0 0;
 }
 
 .login-close {
