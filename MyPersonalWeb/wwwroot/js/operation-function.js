@@ -40,6 +40,7 @@ function showLogin() {
         login.style = 'opacity:100;top: 5vh;' + this.getLoginLeft(this.login);
     }, 40);
     document.getElementById('login-background').style.display = 'block';
+    loginform.username.focus();
 }
 
 function loginClose() {
@@ -121,7 +122,16 @@ function backIndex() {
 }
 //#endregion
 
-function getAjaxData(url, action, querystring = '', httptype = 'POST', datatype = 'application/x-www-form-urlencoded') {
+/**
+ * 获取并操作Ajax数据
+ * @param {string} url 要提交到的地址
+ * @param {Function} success 获取data成功之后要执行的函数
+ * @param {Function} failed 获取data失败之后要执行的函数
+ * @param {string} querystring 传递的参数 默认为空
+ * @param {string} httptype 方法类型'post','get'等，默认'POST'
+ * @param {string} datatype mime类型，默认为表单类型
+ */
+function getAjaxData({ url, success, failed = null, querystring = '', httptype = 'POST', datatype = 'application/x-www-form-urlencoded' }) {
     debugger;
     // open(url,'_blank')
     var ajax = new XMLHttpRequest();
@@ -129,19 +139,26 @@ function getAjaxData(url, action, querystring = '', httptype = 'POST', datatype 
     ajax.setRequestHeader('Content-Type', datatype);
     ajax.send(querystring);
     ajax.onreadystatechange = function () {
-        if (ajax.readyState == 4) {
-            if (ajax.status == 200) {
-                action(ajax.responseText);
+        if (ajax.readyState == 4 && ajax.status == 200) {
+            success(ajax.responseText);
+        }
+        else {
+            try {
+                failed(ajax.responseText);
+            } catch (error) {
+                console.log(error);
             }
         }
     }
 }
+
+
 /**
  * 
  * @param {HTMLElement} input input where type is text
  * @param {Function} action when press enter key , do this function
  */
-function pressEnter(input,action) {
+function pressEnter(input, action) {
     input.onkeypress = e => {
         debugger;
         if (e.keyCode == 13) {
@@ -149,6 +166,7 @@ function pressEnter(input,action) {
         }
     };
 }
+
 /**
  * 
  * @param {HTMLElement} input  input where type is text and whose attributes have 'tip'
@@ -163,72 +181,47 @@ function IsInputEmpty(input) {
         return false;
     }
 }
- /**
-  * login to Moons
-  */
+/**
+ * login to Moons
+ */
 function signin() {
-    if (IsInputEmpty(loginform.username) || IsInputEmpty(loginform.password)) {
+    if (IsInputEmpty(loginform.username)) {
+        loginform.username.focus();
+        return false;
+    } else if (IsInputEmpty(loginform.password)) {
+        loginform.password.focus();
         return false;
     }
     waitLogin();
-    getAjaxData('/home/login', data => {
-        debugger;
-        if (data == 'T') {
-            open(window.location.href, '_self')
-        } else {
-            let loginerror = document.getElementById('loginerror');
-            switch (data) {
-                case 'F':
-                    loginerror.innerText = "账号或密码错误，请重新输入。"
-                    break;
-                case 'U':
-                    loginerror.innerText = "账号超过，请重新输入。"
-                    break;
-                case 'P':
-                    loginerror.innerText = "账号或密码错误，请重新输入。"
-                    break;
-                default:
-                    break;
+    getAjaxData({
+        url: '/home/login',
+        querystring:
+            `username=${loginform.username.value}&` +
+            `password=${loginform.password.value}&` +
+            `lastlogintime=${(new Date()).formatDate('yyyy-MM-dd HH:mm:ss')}`,
+        success: data => {
+            debugger;
+            if (data == 'T') {
+                open(window.location.href, '_self')
+            } else {
+                let loginerror = document.getElementById('loginerror');
+                switch (data) {
+                    case 'F':
+                        loginerror.innerText = "账号或密码错误，请重新输入。"
+                        break;
+                    // case 'U':
+                    //     loginerror.innerText = "账号超过，请重新输入。"
+                    //     break;
+                    // case 'P':
+                    //     loginerror.innerText = "账号或密码错误，请重新输入。"
+                    //     break;
+                    default:
+                        loginerror.innerText = "未知错误。"
+                        break;
+                }
+                waitLoginClose();
             }
-            waitLoginClose();
         }
-    }, `username=${loginform.username.value}&password=${loginform.password.value}&lastlogintime=${(new Date()).formatDate('yyyy-MM-dd HH:mm:ss')}`
-    );
+    });
     return false;
-}
-/**
- * formating datetime
- */
-Date.prototype.formatDate = function (fmt) {
-    var o = {
-        "M+": this.getMonth() + 1, //月份           
-        "d+": this.getDate(), //日           
-        "h+": this.getHours() % 12 == 0 ? 12 : this.getHours() % 12, //小时           
-        "H+": this.getHours(), //小时           
-        "m+": this.getMinutes(), //分           
-        "s+": this.getSeconds(), //秒           
-        "q+": Math.floor((this.getMonth() + 3) / 3), //季度           
-        "f": this.getMilliseconds() //毫秒           
-    };
-    var week = {
-        "0": "\u65e5",
-        "1": "\u4e00",
-        "2": "\u4e8c",
-        "3": "\u4e09",
-        "4": "\u56db",
-        "5": "\u4e94",
-        "6": "\u516d"
-    };
-    if (/(y+)/.test(fmt)) {
-        fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
-    }
-    if (/(E+)/.test(fmt)) {
-        fmt = fmt.replace(RegExp.$1, ((RegExp.$1.length > 1) ? (RegExp.$1.length > 2 ? "\u661f\u671f" : "\u5468") : "") + week[this.getDay() + ""]);
-    }
-    for (var k in o) {
-        if (new RegExp("(" + k + ")").test(fmt)) {
-            fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
-        }
-    }
-    return fmt;
 }

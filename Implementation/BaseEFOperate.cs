@@ -23,7 +23,7 @@ namespace Implementation
         /// <summary>
         /// 临时服务
         /// </summary>
-        [Description("暂时服务")]
+        [Description("临时服务")]
         AddTransient,
         /// <summary>
         /// 分区服务
