@@ -63,7 +63,7 @@ body{
 .login form {}
 .login form>div{
     width: 70%;
-    margin: 70px auto 0 auto;
+    margin: 50px auto 20px auto;
 }
 .login form input {
     display: block;
@@ -110,6 +110,7 @@ body{
     width: 250px;
     height: 80px;
     margin-top: 20px;
+    margin-bottom: 20px;
     font-size: 150%;
     border: solid 1px rgb(139, 139, 255);
     background-color: rgb(184, 184, 252);
@@ -121,10 +122,12 @@ body{
     color: #ffffff;
     font-family: '微软雅黑';
     cursor: pointer;
+    outline: none;
 }
 .login form input[type="submit"]:hover{
     background-color: rgb(154, 154, 255);
 }
+
 /* menu options */
 .menu-options {
     z-index: 20;

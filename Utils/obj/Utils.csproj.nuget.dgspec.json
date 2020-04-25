@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "e:\\Html\\MyWork\\Utils\\Utils.csproj": {}
+    "E:\\Html\\MyWork\\Utils\\Utils.csproj": {}
   },
   "projects": {
-    "e:\\Html\\MyWork\\Utils\\Utils.csproj": {
+    "E:\\Html\\MyWork\\Utils\\Utils.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "e:\\Html\\MyWork\\Utils\\Utils.csproj",
+        "projectUniqueName": "E:\\Html\\MyWork\\Utils\\Utils.csproj",
         "projectName": "Utils",
-        "projectPath": "e:\\Html\\MyWork\\Utils\\Utils.csproj",
+        "projectPath": "E:\\Html\\MyWork\\Utils\\Utils.csproj",
         "packagesPath": "C:\\Users\\hands\\.nuget\\packages\\",
-        "outputPath": "e:\\Html\\MyWork\\Utils\\obj\\",
+        "outputPath": "E:\\Html\\MyWork\\Utils\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "D:\\Microsoft\\Xamarin\\NuGet\\"
@@ -41,6 +41,12 @@
       },
       "frameworks": {
         "netstandard2.1": {
+          "dependencies": {
+            "System.Security.Cryptography.Cng": {
+              "target": "Package",
+              "version": "[4.7.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

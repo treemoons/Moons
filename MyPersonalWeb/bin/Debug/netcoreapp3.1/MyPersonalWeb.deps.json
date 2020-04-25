@@ -252,7 +252,7 @@
           "System.Security.AccessControl.Reference": "4.1.1.0",
           "System.Security.Claims": "4.1.2.0",
           "System.Security.Cryptography.Algorithms": "4.3.2.0",
-          "System.Security.Cryptography.Cng": "4.3.3.0",
+          "System.Security.Cryptography.Cng.Reference": "4.3.3.0",
           "System.Security.Cryptography.Csp": "4.1.2.0",
           "System.Security.Cryptography.Encoding": "4.1.2.0",
           "System.Security.Cryptography.Primitives.Reference": "4.1.2.0",
@@ -1021,6 +1021,7 @@
           "System.Security.Principal.Windows": "4.5.0"
         }
       },
+      "System.Security.Cryptography.Cng/4.7.0": {},
       "System.Security.Cryptography.Primitives/4.3.0": {
         "dependencies": {
           "System.Diagnostics.Debug": "4.3.0",
@@ -1211,6 +1212,9 @@
         }
       },
       "Utils/1.0.0": {
+        "dependencies": {
+          "System.Security.Cryptography.Cng": "4.7.0"
+        },
         "runtime": {
           "Utils.dll": {}
         },
@@ -2568,7 +2572,7 @@
         },
         "compileOnly": true
       },
-      "System.Security.Cryptography.Cng/4.3.3.0": {
+      "System.Security.Cryptography.Cng.Reference/4.3.3.0": {
         "compile": {
           "System.Security.Cryptography.Cng.dll": {}
         },
@@ -3341,6 +3345,13 @@
       "sha512": "sha512-vW8Eoq0TMyz5vAG/6ce483x/CP83fgm4SJe5P8Tb1tZaobcvPrbMEL7rhH1DRdrYbbb6F0vq3OlzmK0Pkwks5A==",
       "path": "system.security.accesscontrol/4.5.0",
       "hashPath": "system.security.accesscontrol.4.5.0.nupkg.sha512"
+    },
+    "System.Security.Cryptography.Cng/4.7.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-4WQjFuypWtxb/bl/YwEE7LYGn4fgpsikFfBU6xwEm4YBYiRAhXAEJ62lILBu2JJSFbClIAntFTGfDZafn8yZTg==",
+      "path": "system.security.cryptography.cng/4.7.0",
+      "hashPath": "system.security.cryptography.cng.4.7.0.nupkg.sha512"
     },
     "System.Security.Cryptography.Primitives/4.3.0": {
       "type": "package",
@@ -4594,7 +4605,7 @@
       "serviceable": false,
       "sha512": ""
     },
-    "System.Security.Cryptography.Cng/4.3.3.0": {
+    "System.Security.Cryptography.Cng.Reference/4.3.3.0": {
       "type": "referenceassembly",
       "serviceable": false,
       "sha512": ""

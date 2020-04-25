@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Wz8AbIPytgj2TXzd69aPkK5SaTu78nd4OjRJY7ay71ME1UJCYTN4xSXO4UMDBEceo2Pz8ZGPaA/VQcuXPV5XYw==",
+  "dgSpecHash": "wjfljRRF06HoIUmGqoVNzZKlYMS9xl25OPpWOqT2SOFBSzXimqPuUKR8N53D9tYi5/e2tVLhgLVXH9JPyVTCkA==",
   "success": true,
-  "projectFilePath": "e:\\Html\\MyWork\\ModelsLibrary\\ModelsLibrary.csproj",
+  "projectFilePath": "E:\\Html\\MyWork\\ModelsLibrary\\ModelsLibrary.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\hands\\.nuget\\packages\\system.componentmodel.annotations\\4.7.0\\system.componentmodel.annotations.4.7.0.nupkg.sha512"
   ],

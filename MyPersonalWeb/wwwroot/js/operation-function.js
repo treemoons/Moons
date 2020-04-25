@@ -198,11 +198,13 @@ function signin() {
         querystring:
             `username=${loginform.username.value}&` +
             `password=${loginform.password.value}&` +
-            `lastlogintime=${(new Date()).formatDate('yyyy-MM-dd HH:mm:ss')}`,
+            `isremembered=${loginform.isremembered.checked}`,
         success: data => {
             debugger;
             if (data == 'T') {
-                open(window.location.href, '_self')
+                // open(window.location.href, '_self')
+                loginform.setAttribute('action',location.href);
+                loginform.submit();
             } else {
                 let loginerror = document.getElementById('loginerror');
                 switch (data) {
@@ -219,9 +221,35 @@ function signin() {
                         loginerror.innerText = "未知错误。"
                         break;
                 }
-                waitLoginClose();
             }
+                waitLoginClose();
         }
     });
     return false;
 }
+
+/**
+ * 
+ * @param {string} name key
+ * @param {string} value value
+ * @param {Int32Array} day date
+ */
+function setCookie(name, value, day) {
+    var date = new Date();
+    date.setDate(date.getDate() + day);
+    document.cookie = `${name}=${value};expires=${date}`;
+};
+/**  获取cookie*/
+function getCookie(name) {
+    var reg = RegExp(`${name}=([^;]+)`);
+    var arr = document.cookie.match(reg);
+    if (arr) {
+        return arr[0];
+    } else {
+        return '';
+    }
+};
+/**  删除cookie*/ 
+function delCookie(name) {
+    setCookie(name, null, -1);
+};

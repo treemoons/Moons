@@ -8,8 +8,19 @@
     ".NETStandard,Version=v2.1": {},
     ".NETStandard,Version=v2.1/": {
       "Utils/1.0.0": {
+        "dependencies": {
+          "System.Security.Cryptography.Cng": "4.7.0"
+        },
         "runtime": {
           "Utils.dll": {}
+        }
+      },
+      "System.Security.Cryptography.Cng/4.7.0": {
+        "runtime": {
+          "lib/netstandard2.1/System.Security.Cryptography.Cng.dll": {
+            "assemblyVersion": "4.3.3.0",
+            "fileVersion": "4.700.19.56404"
+          }
         }
       }
     }
@@ -19,6 +30,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "System.Security.Cryptography.Cng/4.7.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-4WQjFuypWtxb/bl/YwEE7LYGn4fgpsikFfBU6xwEm4YBYiRAhXAEJ62lILBu2JJSFbClIAntFTGfDZafn8yZTg==",
+      "path": "system.security.cryptography.cng/4.7.0",
+      "hashPath": "system.security.cryptography.cng.4.7.0.nupkg.sha512"
     }
   }
 }

@@ -419,7 +419,8 @@ header::after{
 .login>div:first-child {
   color: rgb(184, 184, 252);
   text-align: right;
-  padding: 50px 50px 0 0;
+  padding: 30px 50px 0 0;
+  margin-bottom: 20px;
 }
 
 .login-close {
@@ -429,6 +430,32 @@ header::after{
 
 .login-close:hover {
   color: rgb(93, 93, 255);
+
+}
+
+.login form input[type="checkbox"] {
+  display: none;
+}
+
+.login form label {
+  position: relative;
+}
+
+.login form label::before {
+  font-size: 20px;
+  content: '\2610';
+  position: absolute;
+  top: -5px;
+  left: -10px;
+
+}
+
+.login form input[type="checkbox"]:checked+label::before {
+  font-size: 20px;
+  content: '\2611';
+  position: absolute;
+  top: -5px;
+  left: -10px;
 
 }
 /*#endregion*/

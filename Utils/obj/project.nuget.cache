@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "27K3dhJhp5v98UOB7vRoGo2L5rnRUTSfvrtX/I3vYF73eAadM3bpkpq2lWEPgf/VV4+Wf/efJma878hcSdiyQw==",
+  "dgSpecHash": "OIOihPNzIdrA1iVsi/ZlvBBcZ4ku9lK2S1zkd6kpBPO/aZg01pzXnJjDaN3dv5vPnKoUc49B111TXkPvnoDfSw==",
   "success": true,
-  "projectFilePath": "e:\\Html\\MyWork\\Utils\\Utils.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "E:\\Html\\MyWork\\Utils\\Utils.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\hands\\.nuget\\packages\\system.security.cryptography.cng\\4.7.0\\system.security.cryptography.cng.4.7.0.nupkg.sha512"
+  ],
   "logs": []
 }

@@ -32,5 +32,6 @@ namespace ModelsLibrary.User
         public string Password { get; set; }
         public string LastLoginTime { get; set; }
         public string IPAddress { get; set; }
+        public string IsRemembered { get; set; }
     }
 }
