@@ -26,11 +26,15 @@ namespace MyPersonalWeb
         {
             services.AddControllersWithViews();
             services.AddDistributedMemoryCache();
-            services.AddSession(option=>{
+            services.AddSession(option =>
+            {
                 option.IdleTimeout = TimeSpan.FromMinutes(10d);
                 option.Cookie.IsEssential = true;
                 option.Cookie.HttpOnly = true;
             });
+            services.AddRazorPages();
+            services.AddControllers();
+            // services.AddServerSideBlazor();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,12 +55,18 @@ namespace MyPersonalWeb
             app.UseSession();
             app.UseRouting();
             app.UseAuthorization();
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapAreaControllerRoute(
+                   name: "enlish", "english",
+                   pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+               );
+                // endpoints.MapBlazorHub();
+
+                endpoints.MapRazorPages();
             });
         }
     }

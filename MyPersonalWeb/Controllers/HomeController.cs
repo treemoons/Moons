@@ -23,6 +23,9 @@ namespace MyPersonalWeb.Controllers
             base.OnActionExecuting(filterContext);
         }
     }
+    /// <summary>
+    /// filter logged on
+    /// </summary>
     public class PermissionController : Controller
     {
         public override void OnActionExecuting(ActionExecutingContext filterContext)
@@ -30,12 +33,12 @@ namespace MyPersonalWeb.Controllers
             if (!filterContext.HttpContext.Session.TryGetValue("CurrentUser", out byte[] result))
             {
                 TempData["userprofile"] = "showLogin()";
-                var isremembered = filterContext.HttpContext.Request.Cookies.TryGetValue(CookieBase64.GetCookieRememberBase64, out string IsRemembered);
+                var isremembered = filterContext.HttpContext.Request.Cookies.TryGetValue(LoginCookieBase64.GetCookieRememberBase64, out string IsRemembered);
                 if (isremembered)
                 {
                     ViewBag.isremembered = "checked";
-                    filterContext.HttpContext.Request.Cookies.TryGetValue(CookieBase64.GetCookieUserNameBase64, out string username);
-                    filterContext.HttpContext.Request.Cookies.TryGetValue(CookieBase64.GetCookiePasswordBase64, out string password);
+                    filterContext.HttpContext.Request.Cookies.TryGetValue(LoginCookieBase64.GetCookieUserNameBase64, out string username);
+                    filterContext.HttpContext.Request.Cookies.TryGetValue(LoginCookieBase64.GetCookiePasswordBase64, out string password);
                     ViewBag.username = Utils.RSAData.RSADecrypt(username, "username");
                     ViewBag.password = Utils.RSAData.RSADecrypt(password, "password");
                 }
@@ -47,7 +50,10 @@ namespace MyPersonalWeb.Controllers
             base.OnActionExecuting(filterContext);
         }
     }
-    public struct CookieBase64
+    /// <summary>
+    /// encrypt cookie with Base64
+    /// </summary>
+    public struct LoginCookieBase64
     {
         static public string GetCookieUserNameBase64 => Convert.ToBase64String(Encoding.ASCII.GetBytes("username"));
         static public string GetCookiePasswordBase64 => Convert.ToBase64String(Encoding.ASCII.GetBytes("password"));
@@ -63,6 +69,8 @@ namespace MyPersonalWeb.Controllers
         }
         [HttpPost]
         public IActionResult Post(UserSignIn users) => Redirect(HttpContext.Request.GetDisplayUrl());
+        // [Area("en")]
+        // [Route("en/[Controller]/[Action]")]
         public IActionResult Index()
         {
             return View();
@@ -83,21 +91,21 @@ namespace MyPersonalWeb.Controllers
                 {
                     string[] user = { users.UserName, users.Password, users.LastLoginTime };
                     HttpContext.Session.SetString("CurrentUser", user[0]);
-                    HttpContext.Response.Cookies.Append(CookieBase64.GetCookieUserNameBase64,
+                    HttpContext.Response.Cookies.Append(LoginCookieBase64.GetCookieUserNameBase64,
                         Utils.RSAData.RSAEncryption(users.UserName, "username"),
                         new CookieOptions { Expires = DateTimeOffset.Now.AddDays(7d) });
-                    HttpContext.Response.Cookies.Append(CookieBase64.GetCookiePasswordBase64,
+                    HttpContext.Response.Cookies.Append(LoginCookieBase64.GetCookiePasswordBase64,
                         Utils.RSAData.RSAEncryption(users.Password, "password"),
                         new CookieOptions { Expires = DateTimeOffset.Now.AddDays(7d) });
                     var IsRemembered = users.IsRemembered;
                     if (IsRemembered == "true")
                     {
-                        HttpContext.Response.Cookies.Append(CookieBase64.GetCookieRememberBase64, "1",
+                        HttpContext.Response.Cookies.Append(LoginCookieBase64.GetCookieRememberBase64, "1",
                             new CookieOptions { Expires = DateTimeOffset.Now.AddYears(1) });
                     }
                     else
                     {
-                        HttpContext.Response.Cookies.Delete(CookieBase64.GetCookieRememberBase64);
+                        HttpContext.Response.Cookies.Delete(LoginCookieBase64.GetCookieRememberBase64);
                     }
                     byte[] session = HttpContext.Session.Get("CurrentUser");
                     return "T";

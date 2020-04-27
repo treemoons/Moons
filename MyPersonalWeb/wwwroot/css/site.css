@@ -166,7 +166,7 @@ header::after{
 }
 .footer-table a{
   display: block;
-  padding-top: 20px;
+  padding: 20px;
 }
 .copyright{
   margin-top: 1vh;
@@ -358,7 +358,7 @@ header::after{
 
 .menu-option a {
   display: block;
-  padding-top: 20px;
+  padding: 20px;
 }
 
 /* user-profile option */
