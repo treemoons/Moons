@@ -134,7 +134,7 @@ body{
 }
 .menu-option{
     flex-wrap: nowrap;
-    padding: 1vh auto;
+    padding-top: 2vh;
 }
 .menu-option a {
     width: 100px;

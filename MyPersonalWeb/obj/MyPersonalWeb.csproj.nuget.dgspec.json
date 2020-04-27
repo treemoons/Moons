@@ -1,7 +1,7 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Html\\MyWork\\MyPersonalWeb\\MyPersonalWeb.csproj": {}
+    "e:\\Html\\MyWork\\MyPersonalWeb\\MyPersonalWeb.csproj": {}
   },
   "projects": {
     "E:\\Html\\MyWork\\Implementation\\Implementation.csproj": {
@@ -142,14 +142,14 @@
         }
       }
     },
-    "E:\\Html\\MyWork\\MyPersonalWeb\\MyPersonalWeb.csproj": {
+    "e:\\Html\\MyWork\\MyPersonalWeb\\MyPersonalWeb.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Html\\MyWork\\MyPersonalWeb\\MyPersonalWeb.csproj",
+        "projectUniqueName": "e:\\Html\\MyWork\\MyPersonalWeb\\MyPersonalWeb.csproj",
         "projectName": "MyPersonalWeb",
-        "projectPath": "E:\\Html\\MyWork\\MyPersonalWeb\\MyPersonalWeb.csproj",
+        "projectPath": "e:\\Html\\MyWork\\MyPersonalWeb\\MyPersonalWeb.csproj",
         "packagesPath": "C:\\Users\\hands\\.nuget\\packages\\",
-        "outputPath": "E:\\Html\\MyWork\\MyPersonalWeb\\obj\\",
+        "outputPath": "e:\\Html\\MyWork\\MyPersonalWeb\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "D:\\Microsoft\\Xamarin\\NuGet\\"
