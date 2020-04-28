@@ -19,3 +19,4 @@ loginClose();
 showAndCloseMenu();
 pressEnter(loginform.username, form => form.submit.click());
 pressEnter(loginform.password, form => form.submit.click());
+ changeLanguage('en');

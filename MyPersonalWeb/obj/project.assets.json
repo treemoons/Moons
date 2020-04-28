@@ -5108,14 +5108,14 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "E:\\Html\\MyWork\\Implementation\\Implementation.csproj": {
-              "projectPath": "E:\\Html\\MyWork\\Implementation\\Implementation.csproj"
+            "e:\\Html\\MyWork\\Implementation\\Implementation.csproj": {
+              "projectPath": "e:\\Html\\MyWork\\Implementation\\Implementation.csproj"
             },
-            "E:\\Html\\MyWork\\ModelsLibrary\\ModelsLibrary.csproj": {
-              "projectPath": "E:\\Html\\MyWork\\ModelsLibrary\\ModelsLibrary.csproj"
+            "e:\\Html\\MyWork\\ModelsLibrary\\ModelsLibrary.csproj": {
+              "projectPath": "e:\\Html\\MyWork\\ModelsLibrary\\ModelsLibrary.csproj"
             },
-            "E:\\Html\\MyWork\\Utils\\Utils.csproj": {
-              "projectPath": "E:\\Html\\MyWork\\Utils\\Utils.csproj"
+            "e:\\Html\\MyWork\\Utils\\Utils.csproj": {
+              "projectPath": "e:\\Html\\MyWork\\Utils\\Utils.csproj"
             }
           }
         }

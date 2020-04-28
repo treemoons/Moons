@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Html\\MyWork\\Implementation\\Implementation.csproj": {}
+    "e:\\Html\\MyWork\\Implementation\\Implementation.csproj": {}
   },
   "projects": {
-    "E:\\Html\\MyWork\\Implementation\\Implementation.csproj": {
+    "e:\\Html\\MyWork\\Implementation\\Implementation.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Html\\MyWork\\Implementation\\Implementation.csproj",
+        "projectUniqueName": "e:\\Html\\MyWork\\Implementation\\Implementation.csproj",
         "projectName": "Implementation",
-        "projectPath": "E:\\Html\\MyWork\\Implementation\\Implementation.csproj",
+        "projectPath": "e:\\Html\\MyWork\\Implementation\\Implementation.csproj",
         "packagesPath": "C:\\Users\\hands\\.nuget\\packages\\",
-        "outputPath": "E:\\Html\\MyWork\\Implementation\\obj\\",
+        "outputPath": "e:\\Html\\MyWork\\Implementation\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "D:\\Microsoft\\Xamarin\\NuGet\\"

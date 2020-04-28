@@ -5,6 +5,7 @@
   --theme-color-transparent-90:rgb(185, 185, 255,0.89);
   --box-shadow:-3px 5px 10px rgba(0, 0, 0, 0.16);
   --wait-animotion:999;
+  --header-bar-bcgcolor:rgba(255,255,255,0.9)
 }
 * {
   margin: 0;
@@ -30,7 +31,7 @@ header {
   justify-content: space-between;
   height: 50px;
   width: 100%;
-  background-color: rgb(255, 255, 255);
+  background-color: var(--header-bar-bcgcolor);
 }
 header::after{
   content: ' ';
@@ -71,6 +72,7 @@ header::after{
   /* background-color: purple; */
   text-align: right;
   height: 100%;
+  min-width: 340px;
   width: 220%;
   overflow: hidden;
 }
@@ -312,6 +314,17 @@ header::after{
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
   outline: none;
+}
+
+input[type="text"]:-webkit-autofill {
+  background-color: var(--header-bar-bcgcolor);
+  background: none;
+  box-shadow: 0 0 0px 10000px var(--header-bar-bcgcolor) inset;
+}
+input[type="text"]{
+  background-color: var(--header-bar-bcgcolor);
+  background:none;
+  
 }
 .search-option input:focus{
   border-color: rgb(127, 127, 243);

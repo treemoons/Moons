@@ -253,3 +253,11 @@ function getCookie(name) {
 function delCookie(name) {
     setCookie(name, null, -1);
 };
+
+/**
+ * Specify the national language of HTML
+ * @param {string} lang Abbreviation of language between all of world
+ */
+function changeLanguage(lang) {
+    document.getElementsByTagName("html")[0].setAttribute("lang", lang);
+}

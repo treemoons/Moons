@@ -116,7 +116,7 @@ namespace MyPersonalWeb.Controllers
 
         public IActionResult Privacy()
         {
-            var isremember = HttpContext.Request.Form["isremembered"];
+            //var isremember = HttpContext.Request.Form["isremembered"];
             return View();
         }
 

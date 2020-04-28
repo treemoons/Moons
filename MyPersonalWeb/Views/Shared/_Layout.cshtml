@@ -1,24 +1,23 @@
 ﻿<!DOCTYPE html>
 <html lang="zh-cn">
-
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>@ViewData["Title"]</title>
         <script>
-(function isIE() { //ie?
-    if (!!window.ActiveXObject || "ActiveXObject" in window) {
-       alert('不支持IE浏览器，请更换其他浏览器。');
-       window.open("about:blank","_self").close()  
-    }
-})()
-</script>
+            (function isIE() { //ie?
+                if (!!window.ActiveXObject || "ActiveXObject" in window) {
+                    alert('不支持IE浏览器，请更换其他浏览器。\n NOT SUPPORT IE !  PLEASE USE OTHER BROWSER.');
+                    window.open("about:blank", "_self").close()
+                }
+            })()
+        </script>
         <link rel="stylesheet" href="~/css/site.css" />
         <link rel="shortcut icon" href="~/src/favicon.ico" type="image/x-icon">
         <link rel="stylesheet" href="~/css/large-screen.css" media="screen and (min-width: 769px)" />
         <link rel="stylesheet" href="~/css/small-screen.css" media="screen and (max-width: 768px)" />
-        <script src="~/js/header-load.js"></script>
-        <script src="~/js/operation-function.js"></script>
+        <script charset="utf-8" src="~/js/header-load.js"></script>
+        <script charset="utf-8" src="~/js/operation-function.js"></script>
     </head>
 
     <body>
@@ -27,7 +26,7 @@
         <header>
             <div class="header-logo" onclick="backIndex()"><img src="~/src/logo1.png" alt="LOGO"></div>
             <nav class="convenience-option">
-                <a href=""> 动态编译 </a>
+                <a href="" title="ENGLISH:MECHINES,THIS IS MY TEST WHICH IS ALTTRITUTION HTML TITLE &#10;中文：这是一个关于HTML 的 TITLE 属性的测试"> 动态编译 </a>
             </nav>
             <div role="navigation" class="user-search-icon">
                 <div>
@@ -49,11 +48,9 @@
         </header>
         <nav class="user-options" id="user-options">
             <ul>
-                <li class="user-option"><a href="#">options-</a> </li>
-                <li class="user-option"><a href="#">options-</a> </li>
-                <li class="user-option"><a href="#">options-</a> </li>
-                <li class="user-option"><a href="#">options-</a> </li>
-                <li class="user-option"><a href="#">options-</a> </li>
+                @for (int i = 0; i <8; i++) { 
+                    <li class="user-option"><a href="#">options-</a> </li>
+                    }
             </ul>
         </nav>
         <nav class="menu-options" id="menu-options">
@@ -88,21 +85,22 @@
                 </div>
             </div>
         </div>
-       <div class="login" id="login">
+        <div class="login" id="login">
             <div><span class="login-close" onclick="loginClose();">✕</span></div>
             <h3 class="login-title">登录到木月之深</h3>
             <form action="#" method="post" name="loginform" id="loginform">
-            @* @Html.AntiForgeryToken() *@
+                @* @Html.AntiForgeryToken() *@
                 <div>
                     <p>用户名或邮箱</p>
                     <input tabindex="1" type="text" tip="用户名或邮箱" value="@ViewBag.username" name="username">
                     <p>密码 <a href=""> 忘记密码?</a></p>
-                    <input tabindex="2" type="password" tip="密码" value="@ViewBag.password" name="password" >
+                    <input tabindex="2" type="password" tip="密码" value="@ViewBag.password" name="password">
                     <div id="loginerror" style="color: red;">&#160;</div>
                     <input tabindex="3" name="commit" type="submit" value="登录" onclick="return signin()">
-                    <input type="checkbox" name="isremembered" @ViewBag.isremembered id="isremembered"><label for="isremembered">&#160;&nbsp;记住密码</label>
+                    <input type="checkbox" name="isremembered" @ViewBag.isremembered id="isremembered"><label
+                        for="isremembered">&#160;&nbsp;记住密码</label>
                 </div>
-           </form>
+            </form>
             <div>
                 <p>新用户,<a href="">创建账号?</a></p>
             </div>
@@ -138,7 +136,7 @@
             </div>
         </footer>
         <script src="~/js/footer-load.js"></script>
-        
+
         @* @RenderSection("Advertisement", required: false) *@
         @* <iframe src="" frameborder="0" name="loginiframe" style="display: none;"></iframe> *@
     </body>
