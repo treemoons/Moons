@@ -6,13 +6,16 @@ body{
     color: white;
     display: none;
 }
+.header{
+    justify-content: start;
+}
 .header-logo{
     /* background-color: aliceblue; */
     text-align: left;
-    /* min-width: 50vw; */
+    width: 20vw;
 }
 .user-search-icon{
-    min-width: 50vw;
+    min-width: 340px;
     text-align: right;
 }
 .footer-table div {
@@ -146,7 +149,7 @@ body{
     /* background-color: #ffffff; */
     padding-left: 3vh;
     margin: 1px;
-    height:3.7vh;
+    height:2.5vh;
     border-radius: 5px;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;

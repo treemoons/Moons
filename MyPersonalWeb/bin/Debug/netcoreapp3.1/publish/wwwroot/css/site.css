@@ -5,8 +5,10 @@
   --theme-color-transparent-90:rgb(185, 185, 255,0.89);
   --box-shadow:-3px 5px 10px rgba(0, 0, 0, 0.16);
   --wait-animotion:999;
-  --header-bar-bcgcolor:rgba(255,255,255,0.9)
+  --header-bar-bcgcolor:rgba(255, 255, 255, 0.9);
+  --dot-color:rgb(122, 98, 255);
 }
+
 * {
   margin: 0;
   padding: 0;
@@ -14,6 +16,7 @@
   font-family: '幼圆';
   outline-color: var(--theme-color-opaque);
 }
+
 a{
   color: black;
   text-decoration: none;
@@ -232,7 +235,6 @@ header::after{
   }
 
   .bar>div {
-    --dot-color:rgb(122, 98, 255);
     border-radius: 50%;
     width: 6px;
     height: 6px;

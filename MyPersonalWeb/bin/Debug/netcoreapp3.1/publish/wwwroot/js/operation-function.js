@@ -244,7 +244,7 @@ function getCookie(name) {
     var reg = RegExp(`${name}=([^;]+)`);
     var arr = document.cookie.match(reg);
     if (arr) {
-        return arr[0];
+        return arr[1];
     } else {
         return '';
     }
@@ -260,4 +260,14 @@ function delCookie(name) {
  */
 function changeLanguage(lang) {
     document.getElementsByTagName("html")[0].setAttribute("lang", lang);
+    setCookie('lang',lang)
+}
+function loadlang() {
+    let lang = getCookie('lang');
+    if (lang == undefined || lang == '') {
+        lang = 'en';
+        setCookie('lang', lang)
+    }
+    document.getElementsByTagName("html")[0].setAttribute("lang", lang);
+    console.log(lang);
 }

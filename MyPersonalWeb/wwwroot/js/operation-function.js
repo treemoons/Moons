@@ -14,7 +14,6 @@ function resizeLogin() {
     let block = getComputedStyle(this.login, null).getPropertyValue('display') == 'block';
     let largesreen = document.body.clientWidth > 766;
     let bool = block && largesreen;
-    loginform.username.value = bool;
     if (bool)
         login.style.left = (document.body.clientWidth - this.parseInt(window.getComputedStyle(this.login).width)) / 2 + 'px';
     else
@@ -42,7 +41,9 @@ function showLogin() {
     document.getElementById('login-background').style.display = 'block';
     loginform.username.focus();
 }
-
+/**
+ * 关闭登录窗口
+ */
 function loginClose() {
     login.style = 'opacity:0;top:-100%;' + this.getLoginLeft(this.login);
     let loginerror = document.getElementById('loginerror');
@@ -66,6 +67,10 @@ function waitLoginClose() {
         wait.style = 'display:none';
     }, 400);
 }
+
+/**
+ * 显示或这关闭menu
+ */
 function showAndCloseMenu() {
     if (window.getComputedStyle(userOptions).display == 'block') {
         userOptions.style = 'opacity:0;right:-20vw;'
@@ -160,7 +165,6 @@ function getAjaxData({ url, success, failed = null, querystring = '', httptype =
  */
 function pressEnter(input, action) {
     input.onkeypress = e => {
-        debugger;
         if (e.keyCode == 13) {
             action(form);
         }
@@ -244,7 +248,7 @@ function getCookie(name) {
     var reg = RegExp(`${name}=([^;]+)`);
     var arr = document.cookie.match(reg);
     if (arr) {
-        return arr[0];
+        return arr[1];
     } else {
         return '';
     }
@@ -254,10 +258,51 @@ function delCookie(name) {
     setCookie(name, null, -1);
 };
 
+//#region national lanuage
+//#region  load and change display
 /**
  * Specify the national language of HTML
  * @param {string} lang Abbreviation of language between all of world
  */
 function changeLanguage(lang) {
-    document.getElementsByTagName("html")[0].setAttribute("lang", lang);
+    setCookie('lang', lang)
 }
+/**
+ * 加载上一次
+ */
+function loadlang() {
+    let lang = getCookie('lang');
+    if (lang == undefined || lang == '') {
+        lang = 'en';
+    }
+     setCookie('lang', lang)
+}
+//#endregion
+//#region  select language options
+function showlang() {
+    let option = document.getElementById('lang');
+    document.getElementById('selected').style.fontWeight = 'bolder'
+    option.style.opacity = '0';
+    option.style.display = 'block';
+    setInterval(() => {
+        option.style.opacity = '100';
+    }, 00);
+}
+/**
+ * 添加language选中一个显示之后的click事件
+ */
+function selectedlang() {
+    let langselects = document.querySelectorAll('#lang option');
+    langselects.forEach(item => {
+        item.onclick = function () {
+            let selected = document.getElementById('selected');
+            selected.innerText = this.innerText;
+            document.getElementById('lang').style = display = 'none';
+            selected.style.fontWeight = 'normal';
+            changeLanguage(item.value);
+            // open(`/home/langchanged/${item.value}`, '_self');
+        }
+    });
+}
+//#endregion
+//#endregion

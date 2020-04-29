@@ -1,4 +1,5 @@
-﻿using System;
+﻿using System.Threading;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -71,10 +72,7 @@ namespace MyPersonalWeb.Controllers
         public IActionResult Post(UserSignIn users) => Redirect(HttpContext.Request.GetDisplayUrl());
         // [Area("en")]
         // [Route("en/[Controller]/[Action]")]
-        public IActionResult Index()
-        {
-            return View();
-        }
+        public async Task<IActionResult> Index() =>await Task.Run(() => View());
         [HttpPost]
         // [ValidateAntiForgeryToken]
         public async Task<string> Login(UserSignIn users) =>
@@ -119,7 +117,11 @@ namespace MyPersonalWeb.Controllers
             //var isremember = HttpContext.Request.Form["isremembered"];
             return View();
         }
+        public IActionResult LangChanged(string Id){
+            string id = Id;
 
+            return Redirect(HttpContext.Request.GetDisplayUrl());
+        }
         string ShowLogin() =>
                 ViewBag.ShowLogin = "<script>setTimeout(showLogin,401);</script>";
 

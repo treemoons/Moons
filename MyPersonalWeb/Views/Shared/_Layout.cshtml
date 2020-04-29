@@ -1,5 +1,6 @@
 ﻿<!DOCTYPE html>
 <html lang="zh-cn">
+
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -24,9 +25,11 @@
         <div onclick="whiteBack();" id="login-background">
         </div>
         <header>
-            <div class="header-logo" onclick="backIndex()"><img src="~/src/logo1.png" alt="LOGO"></div>
+            <div class="header-logo" onclick="backIndex()"><img src="~/src/logo.png" alt="LOGO"></div>
             <nav class="convenience-option">
-                <a href="" title="ENGLISH:MECHINES,THIS IS MY TEST WHICH IS ALTTRITUTION HTML TITLE &#10;中文：这是一个关于HTML 的 TITLE 属性的测试"> 动态编译 </a>
+                <a href=""
+                    title="ENGLISH:MECHINES,THIS IS MY TEST WHICH IS ALTTRITUTION HTML TITLE &#10;中文：这是一个关于HTML 的 TITLE 属性的测试">
+                    动态编译 </a>
             </nav>
             <div role="navigation" class="user-search-icon">
                 <div>
@@ -46,10 +49,12 @@
                 </div>
             </div>
         </header>
+        <div class="header-after">
+            <div id="processbar"></div>
+        </div>
         <nav class="user-options" id="user-options">
             <ul>
-                @for (int i = 0; i <8; i++) { 
-                    <li class="user-option"><a href="#">options-</a> </li>
+                @for (int i = 0; i <8; i++) { <li class="user-option"><a href="#">options-</a> </li>
                     }
             </ul>
         </nav>
@@ -105,12 +110,13 @@
                 <p>新用户,<a href="">创建账号?</a></p>
             </div>
         </div>
-        <div class="margin-top">
+        <div class="conponent">
             @RenderBody()
         </div>
         <p>
             &nbsp;
         </p>
+
         <footer>
             <div class="footer-table">
                 <div>
@@ -132,9 +138,17 @@
             </div>
             <div class="copyright">
                 <p>©2020 Moons 来自未来的我</p>
+                <div class="langselect">
+                    语言：<span id="selected" onclick="showlang()">english</span><br>
+                    <div name="lang" id="lang">
+                        <option value="zh-cn">中文简体</option>
+                        <option value="en">英语</option>
+                    </div>
+                </div>
                 <p></p>
             </div>
         </footer>
+
         <script src="~/js/footer-load.js"></script>
 
         @* @RenderSection("Advertisement", required: false) *@

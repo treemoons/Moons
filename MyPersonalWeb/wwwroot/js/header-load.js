@@ -8,16 +8,15 @@ var windowOnload = [];
 var isMenuShow = false;
 var isUserOptionsShow = false;
 /**push login window */
-window.onresize = function () {
+window.onresize = e=> {
     if (this.windowResize != null) {
         this.windowResize.forEach(item => {
             item();
         });
     }
-    // this.windowResize.a=function(){alert('msg');}
 }
 
-window.onload = function () {
+window.onload = e=> {
     if (this.windowOnload != null) {
         this.windowOnload.forEach(item => {
             item();
@@ -25,6 +24,33 @@ window.onload = function () {
     }
 }
 
+document.onreadystatechange = e => {
+    let process;
+    try {
+        process = document.getElementById('processbar');
+    } catch (error) {
+        return;
+    }
+    switch (document.readyState) {
+        case "uninitialized":
+            process.style.left='-75%'
+            break;
+        case "loading":
+            process.style.left = '-50%'
+            break;
+        case "interactive":
+            process.style.left = '-25%'
+            break;
+        case "complete":
+            process.style.left = '0%'
+            setTimeout(() => {
+                process.style.opacity = '0';
+            }, 10);
+            break;
+        default:
+            break;
+    }
+}
 /**
  * formating datetime
  */

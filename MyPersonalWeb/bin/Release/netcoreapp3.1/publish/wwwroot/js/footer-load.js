@@ -1,6 +1,6 @@
 
 windowResize.push(resizeLogin);
-
+windowOnload.push(waitLoginClose);
 /**
  * 展示menu列表
  */
@@ -19,3 +19,4 @@ loginClose();
 showAndCloseMenu();
 pressEnter(loginform.username, form => form.submit.click());
 pressEnter(loginform.password, form => form.submit.click());
+loadlang();
