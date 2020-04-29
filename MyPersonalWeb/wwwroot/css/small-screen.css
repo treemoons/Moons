@@ -134,9 +134,9 @@ body{
 
 .menu-options {
     height: 100vh;
-    width: 104vw;
+    width: 100vw;
     position: fixed;
-    left: -4vw;
+    left: 0;
     overflow-y: scroll;
 }
 .menu-option div {
@@ -147,8 +147,8 @@ body{
 }
 .menu-option a{
     /* background-color: #ffffff; */
-    padding-left: 3vh;
-    margin: 1px;
+    padding-left: 3vw;
+    margin: 5px;
     height:2.5vh;
     border-radius: 5px;
     -webkit-border-radius: 5px;
