@@ -34,7 +34,7 @@
             <div role="navigation" class="user-search-icon">
                 <div>
                     <div class="search-option">
-                        <form action="/home/privacy" method="GET" name="search">
+                        <form action="/@ViewBag.lang/home/privacy" method="GET" name="search">
                             <input type="text" placeholder="search" name="searchtext">
                         </form>
                     </div>
@@ -43,7 +43,7 @@
                     <div class="menu-icon" onclick="showAndCloseMenu();">
                         <!-- <b>&#60;</b> -->
                     </div>
-                    <div class="user-icon"><img onclick='@TempData["userprofile"]' width="35" src="~/src/logo1.png"
+                    <div class="user-icon" onclick='@TempData["userprofile"]'><img width="35" src="~/src/logo1.png"
                             alt="user">
                     </div>
                 </div>
@@ -139,7 +139,7 @@
             <div class="copyright">
                 <p>©2020 Moons 来自未来的我</p>
                 <div class="langselect">
-                    语言：<span id="selected" onclick="showlang()">english</span><br>
+                    语言：<span id="selected" onclick="showlang()">@ViewBag.langTranslation</span><br>
                     <div name="lang" id="lang">
                         <option value="zh-cn">中文简体</option>
                         <option value="en">英语</option>
@@ -148,7 +148,10 @@
                 <p></p>
             </div>
         </footer>
-
+        <script>
+            var lang='@ViewBag.lang';
+            var route= '@ViewBag.route';
+        </script>
         <script src="~/js/footer-load.js"></script>
 
         @* @RenderSection("Advertisement", required: false) *@

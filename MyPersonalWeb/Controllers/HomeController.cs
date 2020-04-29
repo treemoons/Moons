@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System.ComponentModel;
+using System.Threading;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -29,8 +30,48 @@ namespace MyPersonalWeb.Controllers
     /// </summary>
     public class PermissionController : Controller
     {
+        [NonAction]
+        void LoadSelectedLanguageInfomation()
+        {
+
+            if (HttpContext.Request.Cookies.TryGetValue("lang", out string lang))
+            {
+                //执行变量值变更
+                switch (lang)
+                {
+                    case "en":
+                        //write enlish value
+                        break;
+                    case "zh-cn":
+                        // 填写中文
+                        break;
+                    default:
+
+                        break;
+                }
+            }
+        }
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
+            string parameterValue = default, action = default, controller = default, route = default;
+                action = filterContext.RouteData.Values["Action"].ToString();
+                controller = filterContext.RouteData.Values["controller"].ToString();
+                route = $"{controller}/{action}";
+            try
+            {
+                parameterValue = filterContext.ActionArguments["id"].ToString();
+            }
+            catch { 
+               if(filterContext.HttpContext.Request.Cookies.TryGetValue("lang",out string lang)){
+                    parameterValue = lang;
+                    // do language translation
+                }else{
+                    parameterValue = "English";
+                }
+            }
+            ViewBag.route = route;
+            ViewBag.lang = parameterValue;
+            ViewBag.langTranslation = parameterValue;// 暂时测试使用 parameterValue
             if (!filterContext.HttpContext.Session.TryGetValue("CurrentUser", out byte[] result))
             {
                 TempData["userprofile"] = "showLogin()";
@@ -72,7 +113,7 @@ namespace MyPersonalWeb.Controllers
         public IActionResult Post(UserSignIn users) => Redirect(HttpContext.Request.GetDisplayUrl());
         // [Area("en")]
         // [Route("en/[Controller]/[Action]")]
-        public async Task<IActionResult> Index() =>await Task.Run(() => View());
+        public async Task<IActionResult> Index(string id) => await Task.Run(() => View("Index",id));
         [HttpPost]
         // [ValidateAntiForgeryToken]
         public async Task<string> Login(UserSignIn users) =>
@@ -117,11 +158,10 @@ namespace MyPersonalWeb.Controllers
             //var isremember = HttpContext.Request.Form["isremembered"];
             return View();
         }
-        public IActionResult LangChanged(string Id){
-            string id = Id;
+        // [HttpPost]
+        // public IActionResult LangChanged(string Id)
+        //     => Redirect($"/{Id}{RouteData.Values["controller"]}/{RouteData.Values["action"]}");
 
-            return Redirect(HttpContext.Request.GetDisplayUrl());
-        }
         string ShowLogin() =>
                 ViewBag.ShowLogin = "<script>setTimeout(showLogin,401);</script>";
 
