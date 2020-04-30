@@ -14,7 +14,6 @@ function resizeLogin() {
     let block = getComputedStyle(this.login, null).getPropertyValue('display') == 'block';
     let largesreen = document.body.clientWidth > 766;
     let bool = block && largesreen;
-    loginform.username.value = bool;
     if (bool)
         login.style.left = (document.body.clientWidth - this.parseInt(window.getComputedStyle(this.login).width)) / 2 + 'px';
     else
@@ -28,11 +27,11 @@ function whiteBack() {
         menuButton.style.display = 'none';
     }, 400);
     document.getElementById('login-background').style.display = 'none';
-    isMenuShow = true;
+    isMenuShow = false;
 }
 function showLogin() {
     debugger
-    if (window.getComputedStyle(menuButton).display == 'block') {
+    if (isMenuShow) {
         showAndCloseMenu();
     }
     login.style = 'display:block;' + this.getLoginLeft(this.login);
@@ -42,7 +41,9 @@ function showLogin() {
     document.getElementById('login-background').style.display = 'block';
     loginform.username.focus();
 }
-
+/**
+ * 关闭登录窗口
+ */
 function loginClose() {
     login.style = 'opacity:0;top:-100%;' + this.getLoginLeft(this.login);
     let loginerror = document.getElementById('loginerror');
@@ -66,6 +67,10 @@ function waitLoginClose() {
         wait.style = 'display:none';
     }, 400);
 }
+
+/**
+ * 显示或这关闭menu
+ */
 function showAndCloseMenu() {
     if (window.getComputedStyle(userOptions).display == 'block') {
         userOptions.style = 'opacity:0;right:-20vw;'
@@ -74,23 +79,30 @@ function showAndCloseMenu() {
         }, 400);
         isUserOptionsShow = true;
     }
-    if (isMenuShow) {
+    if (!isMenuShow) {
         menuButton.style = 'display:block;';
         setTimeout(function () {
             menuButton.style = 'opacity:100;top:55px;'
         }, 40);
-        debugger;
-        document.getElementById('login-background').style.display = 'block';
-        isMenuShow = false;
+        isMenuShow = true;
     } else {
         menuButton.style = 'opacity:0;top:-20%;'
         setTimeout(function () {
             menuButton.style.display = 'none';
         }, 400);
-        document.getElementById('login-background').style.display = 'none';
-        isMenuShow = true;
+        isMenuShow = false;
     }
 }
+function closemenu() {
+    let conponent = document.querySelector('.conponent');
+    conponent.onclick = function () {
+        if (isMenuShow) {
+            showAndCloseMenu();
+        }
+    }
+}
+
+
 function showUserOptions() {
     debugger;
     if (window.getComputedStyle(menuButton).display == 'block') {
@@ -100,25 +112,25 @@ function showUserOptions() {
         }, 400);
         isMenuShow = true;
     }
-    if (isUserOptionsShow) {
+    if (!isUserOptionsShow) {
         userOptions.style = 'display:block';
         setTimeout(function () {
             userOptions.style = 'opacity:100;right:0;'
         }, 40);
-        isUserOptionsShow = false;
+        isUserOptionsShow = true;
     } else {
         userOptions.style = 'opacity:0;right:-20vw;'
         setTimeout(function () {
             userOptions.style.display = 'none';
         }, 400);
-        isUserOptionsShow = true;
+        isUserOptionsShow = false;
     }
 }
 /**
  * 返回首页
  */
 function backIndex() {
-    open("/HOME/INDEX", "_self");
+    open(`/${lang}/home/index`, "_self");
 }
 //#endregion
 
@@ -140,7 +152,9 @@ function getAjaxData({ url, success, failed = null, querystring = '', httptype =
     ajax.send(querystring);
     ajax.onreadystatechange = function () {
         if (ajax.readyState == 4 && ajax.status == 200) {
-            success(ajax.responseText);
+            try {
+                success(ajax.responseText);
+            } catch (error) {}
         }
         else {
             try {
@@ -160,7 +174,6 @@ function getAjaxData({ url, success, failed = null, querystring = '', httptype =
  */
 function pressEnter(input, action) {
     input.onkeypress = e => {
-        debugger;
         if (e.keyCode == 13) {
             action(form);
         }
@@ -194,7 +207,7 @@ function signin() {
     }
     waitLogin();
     getAjaxData({
-        url: '/home/login',
+        url: `/${lang}/home/login`,
         querystring:
             `username=${loginform.username.value}&` +
             `password=${loginform.password.value}&` +
@@ -203,7 +216,7 @@ function signin() {
             debugger;
             if (data == 'T') {
                 // open(window.location.href, '_self')
-                loginform.setAttribute('action',location.href);
+                loginform.setAttribute('action', location.href);
                 loginform.submit();
             } else {
                 let loginerror = document.getElementById('loginerror');
@@ -222,7 +235,7 @@ function signin() {
                         break;
                 }
             }
-                waitLoginClose();
+            waitLoginClose();
         }
     });
     return false;
@@ -249,25 +262,63 @@ function getCookie(name) {
         return '';
     }
 };
-/**  删除cookie*/ 
+/**  删除cookie*/
 function delCookie(name) {
     setCookie(name, null, -1);
 };
 
+//#region national lanuage
+//#region  load and change display
 /**
  * Specify the national language of HTML
- * @param {string} lang Abbreviation of language between all of world
+ * @param {string} elelang Abbreviation of language between all of world
  */
-function changeLanguage(lang) {
-    document.getElementsByTagName("html")[0].setAttribute("lang", lang);
-    setCookie('lang',lang)
+function changeLanguage(elelang) {
+    setCookie('lang', elelang)
 }
+/**
+ * 加载上一次
+ */
 function loadlang() {
-    let lang = getCookie('lang');
-    if (lang == undefined || lang == '') {
-        lang = 'en';
-        setCookie('lang', lang)
+    let elelang = getCookie('lang');
+    if (elelang == undefined || elelang == '') {
+        elelang = 'en';
     }
-    document.getElementsByTagName("html")[0].setAttribute("lang", lang);
-    console.log(lang);
+    setCookie('lang', elelang)
 }
+//#endregion
+//#region  select language options
+function showlang() {
+    let option = document.getElementById('lang');
+    document.getElementById('selected').style.fontWeight = 'bolder'
+    option.style.opacity = '0';
+    option.style.display = 'block';
+    setInterval(() => {
+        option.style.opacity = '100';
+    }, 00);
+}
+/**
+ * 添加language选中一个显示之后的click事件
+ */
+function selectedlang() {
+    let langselects = document.querySelectorAll('#lang option');
+    langselects.forEach(item => {
+        item.onclick = function () {
+            let selected = document.getElementById('selected');
+            selected.innerText = this.innerText;
+            document.getElementById('lang').style.display = 'none';
+            selected.style.fontWeight = 'normal';
+            changeLanguage(item.value);
+            debugger;
+            let querystring = location.href.substr(location.href.indexOf('?'));
+            if (!querystring.startsWith('?')) {
+                querystring = '';
+            }
+            open(`/${item.value}/${route}${querystring}`, '_self');
+            // getAjaxData({ url: `/${item.value}/home/langchanged`})
+        }
+    });
+}
+
+//#endregion
+//#endregion

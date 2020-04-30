@@ -7,7 +7,7 @@
         <title>@ViewData["Title"]</title>
         <script>
             (function isIE() { //ie?
-                if (!!window.ActiveXObject || "ActiveXObject" in window) {
+                if (window.ActiveXObject || "ActiveXObject" in window) {
                     alert('不支持IE浏览器，请更换其他浏览器。\n NOT SUPPORT IE !  PLEASE USE OTHER BROWSER.');
                     window.open("about:blank", "_self").close()
                 }

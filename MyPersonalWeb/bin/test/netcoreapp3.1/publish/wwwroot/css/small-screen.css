@@ -1,0 +1,171 @@
+@charset "utf-8";
+body{
+    /* background-color: rgb(248, 253, 178); */
+}
+.convenience-option{
+    color: white;
+    display: none;
+}
+
+/* header */
+.header{
+    justify-content: start;
+}
+.header-logo{
+    /* background-color: aliceblue; */
+    text-align: left;
+    width: 20vw;
+}
+.user-search-icon{
+    min-width: 340px;
+    text-align: right;
+}
+.footer-table div {
+    margin-top: 30px;
+    min-width: 54vw;
+}
+/* login partial */
+.login {
+    /*JavaScriptleftvalue:this.width;
+    topvalue:this.height;
+    *//*display: none;
+    */z-index: 19;
+    position: fixed;
+    left: 0;
+    background-color: rgba(255, 255, 255, 0.9);
+    /*border-radius: 7%;
+    */width: 100vw;
+    height: 100vh;
+    opacity: 0;
+    transition: all 0.5s ease;
+    top: -100%;
+    margin-top: -50px;
+    padding-bottom: 50px;
+    text-align: center;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+}
+.newlogin {
+    top: 15%;
+    opacity: 100;
+}
+
+.login-title {
+    text-align: center;
+    font-family: '';
+    font-size: 300%;
+    margin: 0 5vw;
+    font-weight: bold;
+    color: rgb(155, 155, 255);
+    font-family: '微软雅黑';
+}
+
+.login form {}
+
+.login form>div {
+    width: 70%;
+    margin: 80px auto 3vw auto;
+}
+
+.login form input {
+    display: block;
+    margin: 0 auto 10% auto;
+}
+
+.login form p {
+    font-family: '幼圆';
+    text-align: left;
+    font-size: 150%;
+    margin-top: 30px;
+    margin-bottom: 5px;
+}
+
+.login form input[type="text"],
+.login form input[type="password"] {
+    height: 50px;
+    width: 100%;
+    border: solid 1px rgba(95, 95, 95, 0.671);
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    /* font-size: 150%; */
+    text-indent: 20px;
+    outline: none;
+    font-size: 180%;
+}
+.login form input[type="password"] {
+    font-size: 100%;
+}
+.login form input[type="text"]:focus,
+.login form input[type="password"]:focus {
+    border-color: rgb(184, 184, 252);
+}
+
+.login form p a {
+    display: block;
+    color: rgb(0, 153, 255);
+    float: right;
+    margin-top: 10px;
+}
+
+.login form input[type="submit"] {
+    width: 50%;
+    height: 80px;
+    margin: 3vw auto;
+    font-size: 200%;
+    border: solid 1px rgb(139, 139, 255);
+    background-color: rgb(184, 184, 252);
+    border-radius: 35px;
+    -webkit-border-radius: 35px;
+    -moz-border-radius: 35px;
+    -ms-border-radius: 35px;
+    -o-border-radius: 35px;
+    color: #ffffff;
+    font-family: '微软雅黑';
+    cursor: pointer;
+    outline: none;
+}
+
+.login form input[type="submit"]:hover {
+    background-color: rgb(154, 154, 255);
+}
+
+.menu-options {
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    left: 0;
+    overflow-y: scroll;
+}
+.menu-option div {
+    padding: 30px 0;
+    min-width: 95vw;
+    text-align: left;
+    /* background-color: aliceblue; */
+}
+.menu-option a{
+    /* background-color: #ffffff; */
+    padding-left: 3vw;
+    margin: 5px;
+    height:2.5vh;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}
+.menu-option h5{
+    margin-bottom: 10px;
+    padding-left: 2vw;
+}
+.menu-option a:hover{
+    color: #ffffff;
+    background-color: rgba(154, 154, 255, 0.842);
+}
+.menu-option a:active{
+    font-size: large;
+}

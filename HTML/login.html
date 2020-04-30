@@ -95,6 +95,15 @@
                 }
             })}
             selectedlang();
+
+
+           (function test(...args){
+                function a(){
+                    return test.arguments;
+                }
+                console.log(a());
+            })(2,"44")
+           
         </script>
         <div class="login newlogin">
             <!-- <div class="login-close" onclick="closeLogin()">✕</div> -->

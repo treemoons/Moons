@@ -6,3 +6,4 @@ E:\Html\MyWork\Utils\obj\Release\netstandard2.1\Utils.AssemblyInfoInputs.cache
 E:\Html\MyWork\Utils\obj\Release\netstandard2.1\Utils.AssemblyInfo.cs
 E:\Html\MyWork\Utils\obj\Release\netstandard2.1\Utils.dll
 E:\Html\MyWork\Utils\obj\Release\netstandard2.1\Utils.pdb
+E:\Html\MyWork\Utils\obj\release\netstandard2.1\Utils.csprojAssemblyReference.cache

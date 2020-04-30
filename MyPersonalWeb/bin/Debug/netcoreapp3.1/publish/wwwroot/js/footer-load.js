@@ -1,6 +1,7 @@
 
 windowResize.push(resizeLogin);
-windowOnload.push(waitLoginClose);
+windowOnload.push(loadlang, selectedlang);
+
 /**
  * 展示menu列表
  */
@@ -16,7 +17,6 @@ var login = document.getElementById('login');
 var userOptions = document.getElementById('user-options');
 
 loginClose();
-showAndCloseMenu();
 pressEnter(loginform.username, form => form.submit.click());
 pressEnter(loginform.password, form => form.submit.click());
-loadlang();
+closemenu();
