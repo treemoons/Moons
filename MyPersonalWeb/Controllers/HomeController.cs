@@ -9,6 +9,8 @@ using System.Text;
 using System.IO;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Extensions;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Logging;
@@ -31,7 +33,7 @@ namespace MyPersonalWeb.Controllers
     public class PermissionController : Controller
     {
         [NonAction]
-        void LoadSelectedLanguageInfomation()
+        void LoadSelectedLanguageInfomation(string id)
         {
 
             if (HttpContext.Request.Cookies.TryGetValue("lang", out string lang))
@@ -153,14 +155,23 @@ namespace MyPersonalWeb.Controllers
             });
 
 
-        public IActionResult Privacy()
+[HttpGet]
+        public IActionResult Privacy(string id)
         {
+            ModelsLibrary.Language a = new ModelsLibrary.Language();
+            var b = new ModelsLibrary.Language.Master();
+
+            foreach (var item in a)
+            {
+                
+            }
+            a["s"] = ;
             //var isremember = HttpContext.Request.Form["isremembered"];
             return View();
         }
-        // [HttpPost]
-        // public IActionResult LangChanged(string Id)
-        //     => Redirect($"/{Id}{RouteData.Values["controller"]}/{RouteData.Values["action"]}");
+        [HttpPost]
+        public string LangChanged(string Id)
+            =>"";
 
         string ShowLogin() =>
                 ViewBag.ShowLogin = "<script>setTimeout(showLogin,401);</script>";

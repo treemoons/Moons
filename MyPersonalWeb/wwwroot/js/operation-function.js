@@ -154,7 +154,7 @@ function getAjaxData({ url, success, failed = null, querystring = '', httptype =
         if (ajax.readyState == 4 && ajax.status == 200) {
             try {
                 success(ajax.responseText);
-            } catch (error) {}
+            } catch (error) { }
         }
         else {
             try {
@@ -272,9 +272,10 @@ function delCookie(name) {
 /**
  * Specify the national language of HTML
  * @param {string} elelang Abbreviation of language between all of world
+ * @param {Number} date date of expires
  */
-function changeLanguage(elelang) {
-    setCookie('lang', elelang)
+function changeLanguage(elelang, date = 100) {
+    setCookie('lang', elelang, date)
 }
 /**
  * 加载上一次
@@ -314,8 +315,13 @@ function selectedlang() {
             if (!querystring.startsWith('?')) {
                 querystring = '';
             }
-            open(`/${item.value}/${route}${querystring}`, '_self');
-            // getAjaxData({ url: `/${item.value}/home/langchanged`})
+            getAjaxData({
+                url: `/${item.value}/home/langchanged`, success: data => {
+                    debugger;
+                    open(`/${item.value}/${route}${querystring}`, '_self');
+
+                }
+            })
         }
     });
 }
