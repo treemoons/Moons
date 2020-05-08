@@ -1,10 +1,41 @@
 {
     "master":{
-        "user":[
-            "/home/index","INDEX"
+        "HeaderConvenienceOptionsArray":[
+            "HeaderOptionsArray","---"]
+        ,
+        "UserOptionsleftArray": [
+            "oname", "oname2", "oname2", "oname2", "oname2"
         ],
-        "option":[
-            "/home/index","index"
-        ]
+        "MenuArray": [
+            {
+                "title": "link",
+                "option1": "option1",
+                "option2": "option2",
+                "option3": "option4"
+            }, {
+                "title": "techenology",
+                "option2": "option2",
+                "option3": "option4",
+                "option4": "option5"
+            }
+        ],
+        "FooterArray": [{
+            "title": "link",
+            "option1": "footer1",
+            "option2": "footer2",
+            "option3": "footer4"
+        }, {
+            "title": "techenology",
+            "option2": "footer2",
+            "option3": "footer4",
+            "option4": "footer5"
+        }],
+        "contact":"contact me",
+        "language":"language",
+        "en":"English",
+        "zh":"Chinese",
+        "login":{
+
+        }
     }
 }

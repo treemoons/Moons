@@ -27,6 +27,13 @@ namespace MyPersonalWeb.Controllers
             base.OnActionExecuting(filterContext);
         }
     }
+    public class CheckAttribute : ActionFilterAttribute
+    {
+        public override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            base.OnActionExecuting(filterContext);
+        }
+    }
     /// <summary>
     /// filter logged on
     /// </summary>
@@ -34,23 +41,26 @@ namespace MyPersonalWeb.Controllers
     {
         public static JsonElement LanguageJson { get; set; }
         [NonAction]
-        protected async Task<JsonElement> LoadSelectedLanguageInfomationAsync(string lang)
-        {
-            FileStream langJsonStream;
-            try
+        protected async Task<JsonElement> LoadSelectedLanguageInfomationAsync(string lang) =>
+            await Task<JsonElement>.Run(() =>
             {
+                 FileStream langJsonStream;
+                 try
+                 {
 
-                langJsonStream = new FileStream($"./wwwroot/src/language/{lang}.json", FileMode.Open, FileAccess.Read);
-            }
-            catch (System.Exception)
-            {
-                langJsonStream = new FileStream($"./wwwroot/src/language/en.json", FileMode.Open, FileAccess.Read);
-            }
-            var language = await JsonDocument.ParseAsync(langJsonStream);
-            return language.RootElement;
-        }
+                     langJsonStream = new FileStream($"./wwwroot/src/language/{lang}.json", FileMode.Open, FileAccess.Read);
+                 }
+                 catch (System.Exception)
+                 {
+                     langJsonStream = new FileStream($"./wwwroot/src/language/en.json", FileMode.Open, FileAccess.Read);
+                 }
+                 var language = JsonDocument.Parse(langJsonStream);
+                 return language.RootElement;
+            });
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
+            var s = LoadSelectedLanguageInfomationAsync("").GetAwaiter().GetResult().GetProperty("master").GetProperty("user").ToString();
+
             #region about route
             string parameterValue = default, action = default, controller = default, route = default;
             action = filterContext.RouteData.Values["Action"].ToString();

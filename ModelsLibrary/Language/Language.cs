@@ -5,6 +5,18 @@ using System.Collections.Generic;
 using System.Collections;
 namespace ModelsLibrary
 {
+
+    static class GetPropertys
+    {
+
+        public static JsonElement? GetProperty(this JsonElement? language, string element)
+        {
+            if (language.Value.TryGetProperty(element, out JsonElement value))
+                return value;
+            else
+                return null;
+        }
+    }
     /// <summary>    
     ///  | Author：TreeMoons <br/>
     ///  | Date：May,6th,2020 <br/>
@@ -12,10 +24,11 @@ namespace ModelsLibrary
     ///  | instructon：store struct by action name,which reflect keywords in the views <br/>
     /// </summary>
     [Serializable]
-    public class Language:IEnumerable
+    public class Language : IEnumerable
     {
-        private static JsonElement LanguageJson{ get; set; }
-        public Language(JsonElement _json){
+        private static JsonElement LanguageJson { get; set; }
+        public Language(JsonElement _json)
+        {
             LanguageJson = _json;
         }
         private static Dictionary<string, object> LanguageInfo = new Dictionary<string, object>();
@@ -31,37 +44,62 @@ namespace ModelsLibrary
                 yield return i;
             }
         }
-       
         /// <summary>
         /// keywords of Master views
         /// </summary>
         [Serializable]
-        public class Master
+        public struct Master
         {
-            private static JsonElement LanguageJson { get; set; }
-            public Master(JsonElement _json){
-                    LanguageJson = _json;
+            private static JsonElement? LanguageJson { get; set; }
+            public Master(JsonElement? _json)
+            {
+                LanguageJson = _json;
+            }
+
+            public JsonElement? HeaderConvenienceOptionsArray => LanguageJson.GetProperty(nameof(HeaderConvenienceOptionsArray));
+            public string contact => LanguageJson.GetProperty(nameof(contact))?.ToString();
+            public string language => LanguageJson.GetProperty(nameof(language))?.ToString();
+            public string en => LanguageJson.GetProperty(nameof(en))?.ToString();
+            public string zh => LanguageJson.GetProperty(nameof(zh))?.ToString();
+
+            public JsonElement? UserOptionsTheme => LanguageJson.GetProperty(nameof(UserOptionsTheme));
+            public JsonElement? UserOptionsleftArray => LanguageJson.GetProperty(nameof(UserOptionsleftArray));
+            public LinkTable[] FooterArray => new LinkTable[2] { new LinkTable(LanguageJson.GetProperty(nameof(FooterArray)).Value[0]), new LinkTable(LanguageJson.GetProperty(nameof(FooterArray)).Value[1]) };
+            public LinkTable[] MenuArray => new LinkTable[2] { new LinkTable(LanguageJson.GetProperty(nameof(MenuArray)).Value[0]), new LinkTable(LanguageJson.GetProperty(nameof(MenuArray)).Value[1]) };
+            public Login? LoginArray => new Login(LanguageJson.GetProperty(nameof(LoginArray)));
+            public struct Login
+            {
+                private static JsonElement? LoginJson { get; set; }
+                public Login(JsonElement? _json)
+                {
+                    LoginJson = _json;
                 }
-            public JsonElement HeaderConvenienceOptionOne { get; set; } = LanguageJson.GetProperty(nameof(HeaderConvenienceOptionOne));
-            // public HrefAndIntroduction HeaderConvenienceOptionTwo { get; set; }
-            // public HrefAndIntroduction HeaderConvenienceOptionTHree { get; set; }
-            // public HrefAndIntroduction UserOptionsMyProfile { get; set; }
-            // public HrefAndIntroduction UserOptionsSettings { get; set; }
-            // public HrefAndIntroduction UserOptionsArticle { get; set; }
-            // public HrefAndIntroduction UserOptionsContent { get; set; }
-            // public HrefAndIntroduction UserOptionsTheme { get; set; }
-            // public HrefAndIntroduction UserOptionsleft1 { get; set; }
-            // public HrefAndIntroduction UserOptionsleft2 { get; set; }
-            // public HrefAndIntroduction UserOptionsleft3 { get; set; }
-
-
+                public string Title => LoginJson.GetProperty(nameof(Title))?.ToString();
+                public string UserName => LoginJson.GetProperty(nameof(UserName))?.ToString();
+                public string Password => LoginJson.GetProperty(nameof(Password))?.ToString();
+                public string Signin => LoginJson.GetProperty(nameof(Signin))?.ToString();
+                public string Forget => LoginJson.GetProperty(nameof(Forget))?.ToString();
+                public string IsRemember => LoginJson.GetProperty(nameof(IsRemember))?.ToString();
+                public string NewUser => LoginJson.GetProperty(nameof(NewUser))?.ToString();
+                public string Create => LoginJson.GetProperty(nameof(Create))?.ToString();
+            }
+            /// <summary>
+            ///  Array contains two options,put using into menu or footer
+            /// </summary>
+            public struct LinkTable
+            {
+                private static JsonElement? LoginJson { get; set; }
+                public LinkTable(JsonElement? _json)
+                {
+                    LoginJson = _json;
+                }
+                public string Title => LoginJson.GetProperty(nameof(Title)).ToString();
+                public string Option1 => LoginJson.GetProperty(nameof(Option1)).ToString();
+                public string Option2 => LoginJson.GetProperty(nameof(Option2)).ToString();
+                public string Option3 => LoginJson.GetProperty(nameof(Option3)).ToString();
+            }
         }
-        [Serializable]
-        public struct HrefAndIntroduction
-        {
-            public string Href { get;set; }
-            public string Introduction { get;set; }
-        }
+
         /// <summary>
         ///  the name of one of the Views: Index
         /// </summary>
