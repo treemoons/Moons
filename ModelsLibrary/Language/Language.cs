@@ -1,4 +1,6 @@
 using System;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Collections.Generic;
 using System.Collections;
 namespace ModelsLibrary
@@ -12,6 +14,10 @@ namespace ModelsLibrary
     [Serializable]
     public class Language:IEnumerable
     {
+        private static JsonElement LanguageJson{ get; set; }
+        public Language(JsonElement _json){
+            LanguageJson = _json;
+        }
         private static Dictionary<string, object> LanguageInfo = new Dictionary<string, object>();
         public object this[string index]
         {
@@ -30,39 +36,38 @@ namespace ModelsLibrary
         /// keywords of Master views
         /// </summary>
         [Serializable]
-        public struct Master
+        public class Master
         {
-            public HrefAndIntroduction HeaderConvenienceOptionOne { get; set; }
-            public HrefAndIntroduction HeaderConvenienceOptionTwo { get; set; }
-            public HrefAndIntroduction HeaderConvenienceOptionTHree { get; set; }
-            public HrefAndIntroduction UserOptionsMyProfile { get; set; }
-            public HrefAndIntroduction UserOptionsSettings { get; set; }
-            public HrefAndIntroduction UserOptionsArticle { get; set; }
-            public HrefAndIntroduction UserOptionsContent { get; set; }
-            public HrefAndIntroduction UserOptionsTheme { get; set; }
-            public HrefAndIntroduction UserOptionsleft1 { get; set; }
-            public HrefAndIntroduction UserOptionsleft2 { get; set; }
-            public HrefAndIntroduction UserOptionsleft3 { get; set; }
-            string FooterOption { get; set; }
+            private static JsonElement LanguageJson { get; set; }
+            public Master(JsonElement _json){
+                    LanguageJson = _json;
+                }
+            public JsonElement HeaderConvenienceOptionOne { get; set; } = LanguageJson.GetProperty(nameof(HeaderConvenienceOptionOne));
+            // public HrefAndIntroduction HeaderConvenienceOptionTwo { get; set; }
+            // public HrefAndIntroduction HeaderConvenienceOptionTHree { get; set; }
+            // public HrefAndIntroduction UserOptionsMyProfile { get; set; }
+            // public HrefAndIntroduction UserOptionsSettings { get; set; }
+            // public HrefAndIntroduction UserOptionsArticle { get; set; }
+            // public HrefAndIntroduction UserOptionsContent { get; set; }
+            // public HrefAndIntroduction UserOptionsTheme { get; set; }
+            // public HrefAndIntroduction UserOptionsleft1 { get; set; }
+            // public HrefAndIntroduction UserOptionsleft2 { get; set; }
+            // public HrefAndIntroduction UserOptionsleft3 { get; set; }
 
 
         }
         [Serializable]
         public struct HrefAndIntroduction
         {
-            HrefAndIntroduction(string _h, string _i)
-            {
-                Href = _h;
-                Introduction = _i;
-            }
-            public readonly string Href { get; }
-            public readonly string Introduction { get; }
+            public string Href { get;set; }
+            public string Introduction { get;set; }
         }
         /// <summary>
         ///  the name of one of the Views: Index
         /// </summary>
         public struct Index
         {
+
         }
 
     }

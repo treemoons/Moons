@@ -207,7 +207,7 @@ function signin() {
     }
     waitLogin();
     getAjaxData({
-        url: `/${lang}/home/login`,
+        url: `/${lang}/home/loginasync`,
         querystring:
             `username=${loginform.username.value}&` +
             `password=${loginform.password.value}&` +
@@ -316,7 +316,8 @@ function selectedlang() {
                 querystring = '';
             }
             getAjaxData({
-                url: `/${item.value}/home/langchanged`, success: data => {
+                    url: `/${item.value}/home/langchanged`,
+                success: data => {
                     debugger;
                     open(`/${item.value}/${route}${querystring}`, '_self');
 

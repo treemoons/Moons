@@ -32,48 +32,52 @@ namespace MyPersonalWeb.Controllers
     /// </summary>
     public class PermissionController : Controller
     {
+        public static JsonElement LanguageJson { get; set; }
         [NonAction]
-        void LoadSelectedLanguageInfomation(string id)
+        protected async Task<JsonElement> LoadSelectedLanguageInfomationAsync(string lang)
         {
-
-            if (HttpContext.Request.Cookies.TryGetValue("lang", out string lang))
+            FileStream langJsonStream;
+            try
             {
-                //执行变量值变更
-                switch (lang)
-                {
-                    case "en":
-                        //write enlish value
-                        break;
-                    case "zh-cn":
-                        // 填写中文
-                        break;
-                    default:
 
-                        break;
-                }
+                langJsonStream = new FileStream($"./wwwroot/src/language/{lang}.json", FileMode.Open, FileAccess.Read);
             }
+            catch (System.Exception)
+            {
+                langJsonStream = new FileStream($"./wwwroot/src/language/en.json", FileMode.Open, FileAccess.Read);
+            }
+            var language = await JsonDocument.ParseAsync(langJsonStream);
+            return language.RootElement;
         }
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
+            #region about route
             string parameterValue = default, action = default, controller = default, route = default;
-                action = filterContext.RouteData.Values["Action"].ToString();
-                controller = filterContext.RouteData.Values["controller"].ToString();
-                route = $"{controller}/{action}";
+            action = filterContext.RouteData.Values["Action"].ToString();
+            controller = filterContext.RouteData.Values["controller"].ToString();
+            route = $"{controller}/{action}";
             try
             {
                 parameterValue = filterContext.ActionArguments["id"].ToString();
             }
-            catch { 
-               if(filterContext.HttpContext.Request.Cookies.TryGetValue("lang",out string lang)){
+            catch
+            {
+                if (filterContext.HttpContext.Request.Cookies.TryGetValue("lang", out string lang))
+                {
                     parameterValue = lang;
                     // do language translation
-                }else{
+                }
+                else
+                {
                     parameterValue = "English";
                 }
             }
             ViewBag.route = route;
             ViewBag.lang = parameterValue;
             ViewBag.langTranslation = parameterValue;// 暂时测试使用 parameterValue
+            #endregion
+
+            #region about login
             if (!filterContext.HttpContext.Session.TryGetValue("CurrentUser", out byte[] result))
             {
                 TempData["userprofile"] = "showLogin()";
@@ -91,6 +95,7 @@ namespace MyPersonalWeb.Controllers
             {
                 TempData["userprofile"] = "showUserOptions()";
             }
+            #endregion
             base.OnActionExecuting(filterContext);
         }
     }
@@ -115,10 +120,10 @@ namespace MyPersonalWeb.Controllers
         public IActionResult Post(UserSignIn users) => Redirect(HttpContext.Request.GetDisplayUrl());
         // [Area("en")]
         // [Route("en/[Controller]/[Action]")]
-        public async Task<IActionResult> Index(string id) => await Task.Run(() => View("Index",id));
+        public async Task<IActionResult> Index(string id) => await Task.Run(() => View("Index", id));
         [HttpPost]
         // [ValidateAntiForgeryToken]
-        public async Task<string> Login(UserSignIn users) =>
+        public async Task<string> LoginAsync(UserSignIn users) =>
             await Task.Run(() =>
             {
                 if (!ModelState.IsValid || users.UserName == "default")
@@ -155,23 +160,16 @@ namespace MyPersonalWeb.Controllers
             });
 
 
-[HttpGet]
+        [HttpGet]
         public IActionResult Privacy(string id)
         {
-            ModelsLibrary.Language a = new ModelsLibrary.Language();
-            var b = new ModelsLibrary.Language.Master();
 
-            foreach (var item in a)
-            {
-                
-            }
-            a["s"] = ;
             //var isremember = HttpContext.Request.Form["isremembered"];
             return View();
         }
         [HttpPost]
         public string LangChanged(string Id)
-            =>"";
+            => "";
 
         string ShowLogin() =>
                 ViewBag.ShowLogin = "<script>setTimeout(showLogin,401);</script>";
