@@ -17,7 +17,7 @@ body{
     width: 20vw;
 }
 .user-search-icon{
-    min-width: 340px;
+    min-width: 240px;
     text-align: right;
 }
 .footer-table div {
@@ -159,7 +159,6 @@ body{
     -o-border-radius: 5px;
 }
 .menu-option h5{
-    margin-bottom: 10px;
     padding-left: 2vw;
 }
 .menu-option a:hover{
@@ -168,4 +167,7 @@ body{
 }
 .menu-option a:active{
     font-size: large;
+}
+.search-option input{
+    width: 60%;
 }

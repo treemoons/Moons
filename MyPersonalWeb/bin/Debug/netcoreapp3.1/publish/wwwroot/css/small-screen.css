@@ -17,7 +17,7 @@ body{
     width: 20vw;
 }
 .user-search-icon{
-    min-width: 340px;
+    min-width: 240px;
     text-align: right;
 }
 .footer-table div {
@@ -168,4 +168,7 @@ body{
 }
 .menu-option a:active{
     font-size: large;
+}
+.search-option input{
+    width: 60%;
 }

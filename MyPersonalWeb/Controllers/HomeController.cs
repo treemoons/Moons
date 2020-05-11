@@ -16,108 +16,11 @@ using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Logging;
 using MyPersonalWeb.Models;
 using ModelsLibrary.User;
+using ModelsLibrary;
 using CommonUtils;
 
 namespace MyPersonalWeb.Controllers
 {
-    public class NoPromissionAttribute : ActionFilterAttribute
-    {
-        public override void OnActionExecuting(ActionExecutingContext filterContext)
-        {
-            base.OnActionExecuting(filterContext);
-        }
-    }
-    public class CheckAttribute : ActionFilterAttribute
-    {
-        public override void OnActionExecuting(ActionExecutingContext filterContext)
-        {
-            base.OnActionExecuting(filterContext);
-        }
-    }
-    /// <summary>
-    /// filter logged on
-    /// </summary>
-    public class PermissionController : Controller
-    {
-        public static JsonElement LanguageJson { get; set; }
-        [NonAction]
-        protected async Task<JsonElement> LoadSelectedLanguageInfomationAsync(string lang) =>
-            await Task<JsonElement>.Run(() =>
-            {
-                 FileStream langJsonStream;
-                 try
-                 {
-
-                     langJsonStream = new FileStream($"./wwwroot/src/language/{lang}.json", FileMode.Open, FileAccess.Read);
-                 }
-                 catch (System.Exception)
-                 {
-                     langJsonStream = new FileStream($"./wwwroot/src/language/en.json", FileMode.Open, FileAccess.Read);
-                 }
-                 var language = JsonDocument.Parse(langJsonStream);
-                 return language.RootElement;
-            });
-        public override void OnActionExecuting(ActionExecutingContext filterContext)
-        {
-            var s = LoadSelectedLanguageInfomationAsync("").GetAwaiter().GetResult().GetProperty("master").GetProperty("user").ToString();
-
-            #region about route
-            string parameterValue = default, action = default, controller = default, route = default;
-            action = filterContext.RouteData.Values["Action"].ToString();
-            controller = filterContext.RouteData.Values["controller"].ToString();
-            route = $"{controller}/{action}";
-            try
-            {
-                parameterValue = filterContext.ActionArguments["id"].ToString();
-            }
-            catch
-            {
-                if (filterContext.HttpContext.Request.Cookies.TryGetValue("lang", out string lang))
-                {
-                    parameterValue = lang;
-                    // do language translation
-                }
-                else
-                {
-                    parameterValue = "English";
-                }
-            }
-            ViewBag.route = route;
-            ViewBag.lang = parameterValue;
-            ViewBag.langTranslation = parameterValue;// 暂时测试使用 parameterValue
-            #endregion
-
-            #region about login
-            if (!filterContext.HttpContext.Session.TryGetValue("CurrentUser", out byte[] result))
-            {
-                TempData["userprofile"] = "showLogin()";
-                var isremembered = filterContext.HttpContext.Request.Cookies.TryGetValue(LoginCookieBase64.GetCookieRememberBase64, out string IsRemembered);
-                if (isremembered)
-                {
-                    ViewBag.isremembered = "checked";
-                    filterContext.HttpContext.Request.Cookies.TryGetValue(LoginCookieBase64.GetCookieUserNameBase64, out string username);
-                    filterContext.HttpContext.Request.Cookies.TryGetValue(LoginCookieBase64.GetCookiePasswordBase64, out string password);
-                    ViewBag.username = Utils.RSAData.RSADecrypt(username, "username");
-                    ViewBag.password = Utils.RSAData.RSADecrypt(password, "password");
-                }
-            }
-            else
-            {
-                TempData["userprofile"] = "showUserOptions()";
-            }
-            #endregion
-            base.OnActionExecuting(filterContext);
-        }
-    }
-    /// <summary>
-    /// encrypt cookie with Base64
-    /// </summary>
-    public struct LoginCookieBase64
-    {
-        static public string GetCookieUserNameBase64 => Convert.ToBase64String(Encoding.ASCII.GetBytes("username"));
-        static public string GetCookiePasswordBase64 => Convert.ToBase64String(Encoding.ASCII.GetBytes("password"));
-        static public string GetCookieRememberBase64 => Convert.ToBase64String(Encoding.ASCII.GetBytes("isremembered"));
-    }
     public class HomeController : PermissionController
     {
         private readonly ILogger<HomeController> _logger;
@@ -130,23 +33,20 @@ namespace MyPersonalWeb.Controllers
         public IActionResult Post(UserSignIn users) => Redirect(HttpContext.Request.GetDisplayUrl());
         // [Area("en")]
         // [Route("en/[Controller]/[Action]")]
-        public async Task<IActionResult> Index(string id) => await Task.Run(() => View("Index", id));
+        public IActionResult Index() => View(1);
+
         [HttpPost]
-        // [ValidateAntiForgeryToken]
-        public async Task<string> LoginAsync(UserSignIn users) =>
+        public async Task<string> Login(UserSignIn users) =>
             await Task.Run(() =>
             {
                 if (!ModelState.IsValid || users.UserName == "default")
                 {
-                    string[] user = { users.UserName, users.Password, users.LastLoginTime };
-                    // ShowLogin();
                     return "F";
 
                 }
                 else
                 {
-                    string[] user = { users.UserName, users.Password, users.LastLoginTime };
-                    HttpContext.Session.SetString("CurrentUser", user[0]);
+                    HttpContext.Session.SetString("CurrentUser", users.UserName);
                     HttpContext.Response.Cookies.Append(LoginCookieBase64.GetCookieUserNameBase64,
                         Utils.RSAData.RSAEncryption(users.UserName, "username"),
                         new CookieOptions { Expires = DateTimeOffset.Now.AddDays(7d) });
@@ -169,17 +69,18 @@ namespace MyPersonalWeb.Controllers
                 // return View("Privacy",users);
             });
 
-
         [HttpGet]
         public IActionResult Privacy(string id)
         {
-
             //var isremember = HttpContext.Request.Form["isremembered"];
-            return View();
+            return View(1);
         }
         [HttpPost]
-        public string LangChanged(string Id)
-            => "";
+        public void LangChanged(string Id)
+        {
+            // LanguageJson = LoadSelectedLanguageInfomation(Id);
+            // LanguageClass = new Language(LanguageJson);
+        }
 
         string ShowLogin() =>
                 ViewBag.ShowLogin = "<script>setTimeout(showLogin,401);</script>";

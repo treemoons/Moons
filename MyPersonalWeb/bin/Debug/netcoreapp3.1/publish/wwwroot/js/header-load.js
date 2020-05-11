@@ -11,7 +11,7 @@ var isUserOptionsShow = false;
 window.onresize = e=> {
     if (this.windowResize != null) {
         this.windowResize.forEach(item => {
-            item();
+            try { item(); } catch (error) { console.log(error); }
         });
     }
 }
@@ -19,7 +19,7 @@ window.onresize = e=> {
 window.onload = e=> {
     if (this.windowOnload != null) {
         this.windowOnload.forEach(item => {
-            item();
+            try { item(); } catch(error){console.log(error); }
         });
     }
 }
@@ -29,6 +29,7 @@ document.onreadystatechange = e => {
     try {
         process = document.getElementById('processbar');
     } catch (error) {
+        console.log(error); 
         return;
     }
     switch (document.readyState) {

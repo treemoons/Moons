@@ -207,7 +207,7 @@ function signin() {
     }
     waitLogin();
     getAjaxData({
-        url: `/${lang}/home/loginasync`,
+        url: `/${lang}/home/login`,
         querystring:
             `username=${loginform.username.value}&` +
             `password=${loginform.password.value}&` +
@@ -315,14 +315,8 @@ function selectedlang() {
             if (!querystring.startsWith('?')) {
                 querystring = '';
             }
-            getAjaxData({
-                    url: `/${item.value}/home/langchanged`,
-                success: data => {
-                    debugger;
-                    open(`/${item.value}/${route}${querystring}`, '_self');
+            open(`/${item.value}/${route}${querystring}`, '_self');
 
-                }
-            })
         }
     });
 }

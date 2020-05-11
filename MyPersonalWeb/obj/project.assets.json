@@ -5116,11 +5116,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "e:\\Html\\MyWork\\MyPersonalWeb\\MyPersonalWeb.csproj",
+      "projectUniqueName": "E:\\Html\\MyWork\\MyPersonalWeb\\MyPersonalWeb.csproj",
       "projectName": "MyPersonalWeb",
-      "projectPath": "e:\\Html\\MyWork\\MyPersonalWeb\\MyPersonalWeb.csproj",
+      "projectPath": "E:\\Html\\MyWork\\MyPersonalWeb\\MyPersonalWeb.csproj",
       "packagesPath": "C:\\Users\\hands\\.nuget\\packages\\",
-      "outputPath": "e:\\Html\\MyWork\\MyPersonalWeb\\obj\\",
+      "outputPath": "E:\\Html\\MyWork\\MyPersonalWeb\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "D:\\Microsoft\\Xamarin\\NuGet\\"
@@ -5140,14 +5140,14 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "e:\\Html\\MyWork\\Implementation\\Implementation.csproj": {
-              "projectPath": "e:\\Html\\MyWork\\Implementation\\Implementation.csproj"
+            "E:\\Html\\MyWork\\Implementation\\Implementation.csproj": {
+              "projectPath": "E:\\Html\\MyWork\\Implementation\\Implementation.csproj"
             },
-            "e:\\Html\\MyWork\\ModelsLibrary\\ModelsLibrary.csproj": {
-              "projectPath": "e:\\Html\\MyWork\\ModelsLibrary\\ModelsLibrary.csproj"
+            "E:\\Html\\MyWork\\ModelsLibrary\\ModelsLibrary.csproj": {
+              "projectPath": "E:\\Html\\MyWork\\ModelsLibrary\\ModelsLibrary.csproj"
             },
-            "e:\\Html\\MyWork\\Utils\\Utils.csproj": {
-              "projectPath": "e:\\Html\\MyWork\\Utils\\Utils.csproj"
+            "E:\\Html\\MyWork\\Utils\\Utils.csproj": {
+              "projectPath": "E:\\Html\\MyWork\\Utils\\Utils.csproj"
             }
           }
         }

@@ -134,7 +134,7 @@ body{
 }
 .menu-option{
     flex-wrap: nowrap;
-    padding-top: 2vh;
+    padding-top: 1vh;
 }
 .menu-option a {
     width: 100px;
@@ -150,4 +150,8 @@ body{
 .menu-option a:active{
     border-bottom-color: rgb(139, 139, 255);
     font-size: large;
+}
+/* footer */
+    .footer-table h5 {
+        /* margin-bottom: 15px; */
 }

@@ -105,6 +105,8 @@ header {
 
 .user-search-icon>div>div {
   margin-top: 5px;
+  margin-right: 4px;
+  display: inline-block;
 }
 
 .search-icon,
@@ -113,11 +115,6 @@ header {
   display: inline-block;
   cursor: pointer;
   padding-top: 4px;
-}
-.user-search-icon>div>div {
-  margin-right: 10px;
-  display: inline-block;
-
 }
 .menu-icon{
   position: relative;

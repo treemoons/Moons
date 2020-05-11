@@ -13,6 +13,7 @@ namespace MyPersonalWeb
     {
         public static void Main(string[] args)
         {
+            
             CreateHostBuilder(args).Build().Run();
         }
 
@@ -20,6 +21,7 @@ namespace MyPersonalWeb
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
+                    MyPersonalWeb.Controllers.PermissionController.ReadAllLanguageJson();
                     webBuilder.UseStartup<Startup>();
                 });
     }

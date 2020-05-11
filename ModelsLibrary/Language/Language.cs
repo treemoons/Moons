@@ -6,7 +6,7 @@ using System.Collections;
 namespace ModelsLibrary
 {
 
-    static class GetPropertys
+    static class GetJsonProperties
     {
 
         public static JsonElement? GetProperty(this JsonElement? language, string element)
@@ -24,18 +24,20 @@ namespace ModelsLibrary
     ///  | instructon：store struct by action name,which reflect keywords in the views <br/>
     /// </summary>
     [Serializable]
-    public class Language : IEnumerable
+    public partial class Language : IEnumerable
     {
-        private static JsonElement LanguageJson { get; set; }
+        private  JsonElement LanguageJson { get; set; }
         public Language(JsonElement _json)
         {
             LanguageJson = _json;
+            if (!LanguageInfo.TryAdd(nameof(Master), new Master(LanguageJson.GetProperty(nameof(Master)))))
+                LanguageInfo[nameof(Master)] = new Master(LanguageJson.GetProperty(nameof(Master)));
         }
-        private static Dictionary<string, object> LanguageInfo = new Dictionary<string, object>();
+        private  Dictionary<string, object> LanguageInfo = new Dictionary<string, object>();
         public object this[string index]
         {
             get => LanguageInfo[index];
-            set => LanguageInfo.Add(index, value);
+            set => LanguageInfo[index] = value;
         }
         public IEnumerator GetEnumerator()
         {
@@ -57,10 +59,12 @@ namespace ModelsLibrary
             }
 
             public JsonElement? HeaderConvenienceOptionsArray => LanguageJson.GetProperty(nameof(HeaderConvenienceOptionsArray));
-            public string contact => LanguageJson.GetProperty(nameof(contact))?.ToString();
+            public string Contact => LanguageJson.GetProperty(nameof(Contact))?.ToString();
             public string language => LanguageJson.GetProperty(nameof(language))?.ToString();
             public string en => LanguageJson.GetProperty(nameof(en))?.ToString();
             public string zh => LanguageJson.GetProperty(nameof(zh))?.ToString();
+            public string CurrentLanguageCode => LanguageJson.GetProperty(nameof(CurrentLanguageCode))?.ToString();
+            public string CurrentLanguage => LanguageJson.GetProperty(nameof(CurrentLanguage))?.ToString();
 
             public JsonElement? UserOptionsTheme => LanguageJson.GetProperty(nameof(UserOptionsTheme));
             public JsonElement? UserOptionsleftArray => LanguageJson.GetProperty(nameof(UserOptionsleftArray));
