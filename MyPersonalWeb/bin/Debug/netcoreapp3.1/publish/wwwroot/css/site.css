@@ -36,6 +36,16 @@ header {
   width: 100%;
   background-color: var(--header-bar-bcgcolor);
 }
+@keyframes progressBar {
+  0% {
+    left: 0;
+  }
+
+  100% {
+    left: 100%;
+  }
+}
+
 .header-after{
   position: fixed;
   background-color: var(--theme-color-transparent-90);
@@ -60,6 +70,21 @@ header {
   -moz-border-radius: 3px;
   -ms-border-radius: 3px;
   -o-border-radius: 3px;
+}
+
+.processbar::before {
+  content: ' ';
+  width: 20%;
+  height: 5px;
+  left: 10px;
+  top: 0;
+  position: absolute;
+  z-index: 90;
+  background-color: var(--theme-color-transparent-90);
+  animation: progressBar 1.8s infinite;
+  animation-direction: alternate;
+  -webkit-animation: progressBar 1.8s infinite;
+  -webkit-animation-direction: normal;
 }
 .conponent {
   margin-top: 55px;

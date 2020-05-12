@@ -36,14 +36,14 @@ header {
   background-color: rgb(255, 255, 255);
 }
 
-header::after {
+/* header::after {
   content: ' ';
   position: absolute;
   background-color: var(--theme-color-opaque);
   width: 100%;
   height: 5px;
   bottom: -5px;
-}
+} */
 
 .margin-top {
   margin-top: 55px;
@@ -435,3 +435,55 @@ header::after {
 }
 
 /*#endregion*/
+.header-after {
+  position: fixed;
+  background-color: var(--theme-color-transparent-90);
+  top: 50px;
+  width: 100%;
+  height: 5px;
+  overflow: hidden;
+}
+.processbar {
+  overflow: hidden;
+  position: relative;
+  left: -10%;
+  width: inherit;
+  height: inherit;
+  background-color:rgb(139, 139, 255);
+  transition: all 0.5s ease;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -ms-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+}
+
+
+@keyframes progressBar {
+  0% {
+    left: 0;
+  }
+
+  100% {
+    left: 100%;
+  }
+}
+
+.processbar::before {
+  content: ' ';
+  width: 20%;
+  height: 5px;
+  left: 10px;
+  top: 0;
+  position: absolute;
+  z-index: 90;
+  background-color: var(--theme-color-transparent-90);
+  animation: progressBar 1s infinite;
+  animation-direction: alternate;
+  -webkit-animation: progressBar 1s infinite;
+  -webkit-animation-direction: normal;
+}

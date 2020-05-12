@@ -25,7 +25,7 @@ namespace MyPersonalWeb.Controllers
     /// </summary>
     public class PermissionController : Controller
     {
-
+        [NonAction]
         public override ViewResult View(object Models) => base.View((new Language(LanguageJsonElementDictionary[ViewBag.lang]), Models));
         public static Dictionary<string, JsonElement> LanguageJsonElementDictionary { get; set; } = new Dictionary<string, JsonElement>();
         [NonAction]
@@ -42,7 +42,7 @@ namespace MyPersonalWeb.Controllers
                 }
             }
         }
-
+        [NonAction]
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             #region get route
@@ -95,6 +95,7 @@ namespace MyPersonalWeb.Controllers
 
         public class NoPromissionAttribute : ActionFilterAttribute
         {
+            [NonAction]
             public override void OnActionExecuting(ActionExecutingContext filterContext)
             {
                 base.OnActionExecuting(filterContext);
@@ -103,6 +104,7 @@ namespace MyPersonalWeb.Controllers
 
         public class CheckAttribute : ActionFilterAttribute
         {
+            [NonAction]
             public override void OnActionExecuting(ActionExecutingContext filterContext)
             {
                 base.OnActionExecuting(filterContext);

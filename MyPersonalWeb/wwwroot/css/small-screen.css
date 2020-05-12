@@ -139,6 +139,7 @@ body{
     width: 100vw;
     position: fixed;
     left: 0;
+    top: -100vh;
     overflow-y: scroll;
 }
 .menu-option div {

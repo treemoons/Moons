@@ -71,7 +71,7 @@ function waitLoginClose() {
 /**
  * 显示或这关闭menu
  */
-function showAndCloseMenu() {
+function showAndCloseMenu() {debugger;
     if (window.getComputedStyle(userOptions).display == 'block') {
         userOptions.style = 'opacity:0;right:-20vw;'
         setTimeout(function () {
@@ -291,12 +291,16 @@ function loadlang() {
 //#region  select language options
 function showlang() {
     let option = document.getElementById('lang');
-    document.getElementById('selected').style.fontWeight = 'bolder'
-    option.style.opacity = '0';
-    option.style.display = 'block';
-    setInterval(() => {
-        option.style.opacity = '100';
-    }, 00);
+    document.getElementById('selected').style.fontWeight = 'bolder';
+    if (option.style.display == 'block') {
+        option.style.display = 'none';
+    } else {
+        option.style.opacity = '0';
+        option.style.display = 'block';
+        setInterval(() => {
+            option.style.opacity = '100';
+        }, 00);
+    }
 }
 /**
  * 添加language选中一个显示之后的click事件
