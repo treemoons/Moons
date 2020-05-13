@@ -1,39 +1,50 @@
 {
     "Master": {
-        "HeaderConvenienceOptionsArray": [
-            "HeaderOptionsArray", "---"
-        ],
-        "UserOptionsleftArray": [
-            "oname", "oname2", "oname2", "oname2", "oname2"
-        ],
+        "HeaderConvenienceOptionsArray": {
+            "Option1": ["HeaderConvenienceOptionsArray1", "/home/privacy"],
+            "Option2": ["HeaderConvenienceOptionsArray2", "/home/privacy"],
+            "Option3": ["HeaderConvenienceOptionsArray4", "/home/privacy"],
+            "Option4": ["HeaderConvenienceOptionsArray1", "/home/privacy"],
+            "Option5": ["HeaderConvenienceOptionsArray2", "/home/privacy"]
+        },
+        "UserOptionsleftArray": {
+            "Option1": ["Oprion1", "/home/privacy"],
+            "Option2": ["Oprion2", "/home/privacy"],
+            "Option3": ["Oprion4", "/home/privacy"],
+            "Option4": ["Oprion1", "/home/privacy"],
+            "Option5": ["Oprion2", "/home/privacy"],
+            "Option6": ["Oprion4", "/home/privacy"],
+            "Option7": ["Oprion2", "/home/privacy"],
+            "Option8": ["Oprion4", "/home/privacy"]
+        },
         "MenuArray": [{
             "Title": "link",
-            "Option1": "Option1",
-            "Option2": "Option2",
-            "Option3": "Option4"
+            "Option1": ["Option1", "/home/privacy"],
+            "Option2": ["Option2", "/home/privacy"],
+            "Option3": ["Option4", "/home/privacy"]
         }, {
             "Title": "techenology",
-            "Option1": "Option2",
-            "Option2": "Option4",
-            "Option3": "Option5"
+            "Option1": ["Option2", "/home/privacy"],
+            "Option2": ["Option4", "/home/privacy"],
+            "Option3": ["Option5", "/home/privacy"]
         }],
         "FooterArray": [{
             "Title": "link",
-            "Option1": "footer1",
-            "Option2": "footer2",
-            "Option3": "footer4"
+            "Option1": ["footer1", "/home/privacy"],
+            "Option2": ["footer2", "/home/privacy"],
+            "Option3": ["footer4", "/home/privacy"]
         }, {
             "Title": "techenology",
-            "Option2": "footer2",
-            "Option3": "footer4",
-            "Option4": "footer5"
+            "Option2": ["footer2", "/home/privacy"],
+            "Option3": ["footer4", "/home/privacy"],
+            "Option4": ["footer5", "/home/privacy"]
         }],
         "Contact": "contact me",
         "language": "language",
         "en": "English",
         "zh": "Chinese",
         "LoginArray": {
-            "Title":"WELCOME TO TREEMOONS",
+            "Title": "WELCOME TO TREEMOONS",
             "UserName": "UserName",
             "Password": "Password",
             "Signin": "Sign In",

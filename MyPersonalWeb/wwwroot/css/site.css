@@ -20,6 +20,7 @@
 
 a {
   color: black;
+  white-space: nowrap;
   text-decoration: none;
 }
 
@@ -38,7 +39,6 @@ header {
   width: 100%;
   background-color: var(--header-bar-bcgcolor);
 }
-
 .header-after {
   position: fixed;
   background-color: var(--theme-color-transparent-90);
@@ -49,11 +49,12 @@ header {
 }
 
 #processbar {
+  overflow: hidden;
   position: relative;
-  left: -100%;
+  left: -10%;
   width: inherit;
   height: inherit;
-  background-color: var(--dot-color);
+  background-color: rgb(139, 139, 255);
   transition: all 0.5s ease;
   -webkit-transition: all 0.5s ease;
   -moz-transition: all 0.5s ease;
@@ -66,36 +67,36 @@ header {
   -o-border-radius: 3px;
 }
 
+
 @keyframes progressBar {
-  from {
+  0% {
     left: 0;
   }
 
-  to {
-    right: 0;
+  100% {
+    left: 100%;
   }
 }
 
-#processbar ::after {
-  content: '';
+#processbar::before {
+  content: ' ';
   width: 20%;
   height: 5px;
+  left: 10px;
+  top: 0;
   position: absolute;
-  z-index: 40;
-  transition: all 0.5s ease;
-  background-color: var(--theme-color-opaque);
-  -webkit-transition: all 0.5s ease;
-  -moz-transition: all 0.5s ease;
-  -ms-transition: all 0.5s ease;
-  -o-transition: all 0.5s ease;
+  z-index: 90;
+  background-color: var(--theme-color-transparent-90);
+  animation: progressBar 1s infinite;
+  animation-direction: alternate;
+  -webkit-animation: progressBar 1s infinite;
+  -webkit-animation-direction: normal;
 }
 
 .conponent {
   margin-top: 55px;
   padding-top: 5px;
-
 }
-
 
 .header-logo,
 .user-search-icon,
@@ -103,7 +104,15 @@ header {
   width: 100%;
   height: 100%;
 }
-
+.convenience-option{
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  overflow: hidden;
+}
+.convenience-option a{
+  margin: 0 2px;
+}
 .header-logo {
   /* background-color: aliceblue; */
   text-align: left;
@@ -115,16 +124,12 @@ header {
   height: 100%;
 }
 
-.convenience-option {
-  margin-top: 15px;
-}
 
 .user-search-icon {
   /* background-color: purple; */
   text-align: right;
   height: 100%;
   min-width: 340px;
-  width: 220%;
   overflow: hidden;
 }
 
@@ -420,7 +425,6 @@ select:focus {
 .search-option {
   position: relative;
   bottom: 13px;
-  text-align: center;
   width: 50%;
   /* background-color: antiquewhite; */
 }

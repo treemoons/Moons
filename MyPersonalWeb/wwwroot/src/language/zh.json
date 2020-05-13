@@ -1,32 +1,44 @@
 {
     "Master": {
-        "HeaderConvenienceOptionsArray": [
-            "HeaderOptionsArray", "---"
-        ],
-        "UserOptionsleftArray": [
-            "oname", "oname2", "oname2", "oname2", "oname2"
-        ],
+        "HeaderConvenienceOptionsArray": {
+            "Option1": ["选项1", "/home/privacy"],
+            "Option2": ["选项2", "/home/privacy"],
+            "Option3": ["选项4", "/home/privacy"],
+            "Option4": ["选项1", "/home/privacy"],
+            "Option5": ["选项2", "/home/privacy"],
+            "Option6": ["选项4", "/home/privacy"],
+            "Option7": ["Oprion2", "/home/privacy"],
+            "Option8": ["Oprion4", "/home/privacy"]
+        },
+        "UserOptionsleftArray": {
+            "Option1": ["选项1", "/home/privacy"],
+            "Option2": ["选项2", "/home/privacy"],
+            "Option3": ["选项4", "/home/privacy"],
+            "Option4": ["选项1", "/home/privacy"],
+            "Option5": ["选项2", "/home/privacy"],
+            "Option6": ["选项4", "/home/privacy"]
+        },
         "MenuArray": [{
             "Title": "link",
-            "Option1": "选项1",
-            "Option2": "选项2",
-            "Option3": "选项4"
+            "Option1": ["选项1","/home/privacy"],
+            "Option2": ["选项2","/home/privacy"],
+            "Option3": ["选项4","/home/privacy"]
         }, {
             "Title": "技术",
-            "Option1": "选项2",
-            "Option2": "选项4",
-            "Option3": "选项5"
+            "Option1": ["选项2","/home/privacy"],
+            "Option2": ["选项4","/home/privacy"],
+            "Option3": ["选项5","/home/privacy"]
         }],
         "FooterArray": [{
             "Title": "link",
-            "Option1": "脚部1",
-            "Option2": "脚部2",
-            "Option3": "脚部4"
+            "Option1": ["脚部1","/home/privacy"],
+            "Option2": ["脚部2","/home/privacy"],
+            "Option3": ["脚部4","/home/privacy"]
         }, {
             "Title": "技术",
-            "Option1": "脚部啊2",
-            "Option2": "脚部啊4",
-            "Option3": "脚部啊5"
+            "Option1": ["脚部啊2","/home/privacy"],
+            "Option2": ["脚部啊4","/home/privacy"],
+            "Option3": ["脚部啊5","/home/privacy"]
         }],
         "Contact": "联系我",
         "language": "语言",

@@ -2,6 +2,8 @@
     (ModelsLibrary.Language language,object Models)=(ValueTuple<ModelsLibrary.Language,object>)Model;
     var languageMaster=(ModelsLibrary.Language.Master)language[nameof(ModelsLibrary.Language.Master)];
     var login=languageMaster.LoginArray;
+    var headerConvenienceOptions=languageMaster.HeaderConvenienceOptionsArray.Value.EnumerateObject();
+    var userProfileOptions=languageMaster.UserOptionsleftArray.Value.EnumerateObject();
 }
 <!DOCTYPE html>
 <html lang="@languageMaster.CurrentLanguageCode">
@@ -31,11 +33,11 @@
         <header>
             <div class="header-logo" onclick="backIndex()"><img src="~/src/img/logo.png" alt="LOGO"></div>
             <nav class="convenience-option">
-                @for (int i = 0; i < languageMaster.HeaderConvenienceOptionsArray.Value.GetArrayLength(); i++)
+                @foreach (var item in headerConvenienceOptions)
                 {
-                    <a href=""
+                    <a href="/@ViewBag.lang@item.Value[1]"
                     title="ENGLISH:MECHINES,THIS IS MY TEST WHICH IS ALTTRITUTION HTML TITLE &#10;中文：这是一个关于HTML 的 TITLE 属性的测试">
-                     @languageMaster.HeaderConvenienceOptionsArray.Value[i]
+                     @item.Value[0]
                      </a>
                 }
             </nav>
@@ -60,18 +62,21 @@
         <div class="header-after">
             <div id="processbar"></div>
         </div>
+        @if(ViewBag.logged)
+        {
         <nav class="user-options" id="user-options">
             <ul>
-                @for (int i = 0; i <8; i++)
-                 {
+                @foreach (var item in userProfileOptions)
+                {
                     <li class="user-option">
-                        <a href="#"> 
-                            options 
+                        <a href="/@ViewBag.lang@item.Value[1]"> 
+                           @item.Value[0]
                         </a> 
                     </li>
                  }
             </ul>
         </nav>
+        }
         <nav class="menu-options" id="menu-options">
 
             <div class="menu-option">
@@ -79,9 +84,9 @@
                 {
                 <div>
                     <h5>@languageMaster.MenuArray[i].Title</h5>
-                    <a href="#">@languageMaster.MenuArray[i].Option1</a>
-                    <a href="#">@languageMaster.MenuArray[i].Option2</a>
-                    <a href="#">@languageMaster.MenuArray[i].Option3</a>
+                    <a href="/@ViewBag.lang@languageMaster.MenuArray[i].Option1[1]">@languageMaster.MenuArray[i].Option1[0]</a>
+                    <a href="/@ViewBag.lang@languageMaster.MenuArray[i].Option2[1]">@languageMaster.MenuArray[i].Option2[0]</a>
+                    <a href="/@ViewBag.lang@languageMaster.MenuArray[i].Option3[1]">@languageMaster.MenuArray[i].Option3[0]</a>
                 </div>
                 }
                 <div>
@@ -134,9 +139,9 @@
                 {
                 <div>
                     <h5>@languageMaster.FooterArray[i].Title</h5>
-                    <a href="#">@languageMaster.FooterArray[i].Option1</a>
-                    <a href="#">@languageMaster.FooterArray[i].Option2</a>
-                    <a href="#">@languageMaster.FooterArray[i].Option3</a>
+                    <a href="/@ViewBag.lang@languageMaster.FooterArray[i].Option1[1]">@languageMaster.FooterArray[i].Option1[0]</a>
+                    <a href="/@ViewBag.lang@languageMaster.FooterArray[i].Option2[1]">@languageMaster.FooterArray[i].Option2[0]</a>
+                    <a href="/@ViewBag.lang@languageMaster.FooterArray[i].Option3[1]">@languageMaster.FooterArray[i].Option3[0]</a>
                 </div>
                 }
                 <div>

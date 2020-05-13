@@ -71,18 +71,19 @@ function waitLoginClose() {
 /**
  * 显示或这关闭menu
  */
-function showAndCloseMenu() {debugger;
+function showAndCloseMenu() {
+    try{
     if (window.getComputedStyle(userOptions).display == 'block') {
         userOptions.style = 'opacity:0;right:-20vw;'
         setTimeout(function () {
             userOptions.style.display = 'none';
         }, 400);
-        isUserOptionsShow = true;
-    }
+        isUserOptionsShow = false;
+    }}catch(error){console.log(error);}
     if (!isMenuShow) {
         menuButton.style = 'display:block;';
         setTimeout(function () {
-            menuButton.style = 'opacity:100;top:55px;'
+            menuButton.style = 'opacity:100;top:54px;'
         }, 40);
         isMenuShow = true;
     } else {
@@ -110,7 +111,7 @@ function showUserOptions() {
         setTimeout(function () {
             menuButton.style.display = 'none';
         }, 400);
-        isMenuShow = true;
+        isMenuShow = false;
     }
     if (!isUserOptionsShow) {
         userOptions.style = 'display:block';
@@ -214,6 +215,7 @@ function signin() {
             `isremembered=${loginform.isremembered.checked}`,
         success: data => {
             debugger;
+            loginClose();
             if (data == 'T') {
                 // open(window.location.href, '_self')
                 loginform.setAttribute('action', location.href);
@@ -308,13 +310,13 @@ function showlang() {
 function selectedlang() {
     let langselects = document.querySelectorAll('#lang option');
     langselects.forEach(item => {
-        item.onclick = function () {
+        item.onclick =async function () {
             let selected = document.getElementById('selected');
             selected.innerText = this.innerText;
             document.getElementById('lang').style.display = 'none';
             selected.style.fontWeight = 'normal';
-            changeLanguage(item.value);
             debugger;
+            changeLanguage(item.value);
             let querystring = location.href.substr(location.href.indexOf('?'));
             if (!querystring.startsWith('?')) {
                 querystring = '';
@@ -327,3 +329,5 @@ function selectedlang() {
 
 //#endregion
 //#endregion
+
+

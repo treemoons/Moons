@@ -53,10 +53,18 @@ namespace MyPersonalWeb.Controllers
             try
             {
                 parameterValue = filterContext.RouteData.Values["id"].ToString();
+                var allLanguage =
+                    from lang in LanguageJsonElementDictionary.Keys
+                    where lang.Contains(parameterValue)
+                    select lang;
+                if (allLanguage.Count()==0)
+                {
+                    throw new Exception();
+                }
             }
             catch
             {
-                if (filterContext.HttpContext.Request.Cookies.TryGetValue("lang", out string lang))
+                if (HttpContext.Request.Cookies.TryGetValue("lang", out string lang))
                 {
                     parameterValue = lang;
                     // do language translation
@@ -66,9 +74,9 @@ namespace MyPersonalWeb.Controllers
                     parameterValue = "en";
                 }
             }
-            ViewBag.route = route;
-            ViewBag.lang = parameterValue;
-            ViewBag.langTranslation = parameterValue;// 暂时测试使用 parameterValue
+            ViewBag.route = route.ToLowerInvariant();
+            ViewBag.lang = parameterValue.ToLowerInvariant();
+            ViewBag.langTranslation = parameterValue.ToLowerInvariant();// 暂时测试使用 parameterValue
             #endregion
 
             #region about login
@@ -84,10 +92,12 @@ namespace MyPersonalWeb.Controllers
                     ViewBag.username = Utils.RSAData.RSADecrypt(username, "username");
                     ViewBag.password = Utils.RSAData.RSADecrypt(password, "password");
                 }
+                ViewBag.logged=false;
             }
             else
             {
                 TempData["userprofile"] = "showUserOptions()";
+                ViewBag.logged = true;
             }
             #endregion
             base.OnActionExecuting(filterContext);

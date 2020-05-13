@@ -98,9 +98,9 @@ namespace ModelsLibrary
                     LoginJson = _json;
                 }
                 public string Title => LoginJson.GetProperty(nameof(Title)).ToString();
-                public string Option1 => LoginJson.GetProperty(nameof(Option1)).ToString();
-                public string Option2 => LoginJson.GetProperty(nameof(Option2)).ToString();
-                public string Option3 => LoginJson.GetProperty(nameof(Option3)).ToString();
+                public string[] Option1 => new string[] { LoginJson.GetProperty(nameof(Option1))?[0].ToString(),LoginJson.GetProperty(nameof(Option1))?[1].ToString() };
+                public string[] Option2 => new string[] { LoginJson.GetProperty(nameof(Option2))?[0].ToString(),LoginJson.GetProperty(nameof(Option2))?[1].ToString() };
+                public string[] Option3 => new string[] { LoginJson.GetProperty(nameof(Option3))?[0].ToString(),LoginJson.GetProperty(nameof(Option3))?[1].ToString() };
             }
         }
 

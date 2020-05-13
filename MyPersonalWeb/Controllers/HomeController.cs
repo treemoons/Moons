@@ -42,7 +42,6 @@ namespace MyPersonalWeb.Controllers
                 if (!ModelState.IsValid || users.UserName == "default")
                 {
                     return "F";
-
                 }
                 else
                 {
@@ -63,7 +62,6 @@ namespace MyPersonalWeb.Controllers
                     {
                         HttpContext.Response.Cookies.Delete(LoginCookieBase64.GetCookieRememberBase64);
                     }
-                    byte[] session = HttpContext.Session.Get("CurrentUser");
                     return "T";
                 }
                 // return View("Privacy",users);
