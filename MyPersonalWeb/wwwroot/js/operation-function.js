@@ -85,6 +85,7 @@ function showAndCloseMenu() {
         setTimeout(function () {
             menuButton.style = 'opacity:100;top:54px;'
         }, 40);
+        // document.getElementById('login-background').style.display='block'
         isMenuShow = true;
     } else {
         menuButton.style = 'opacity:0;top:-20%;'

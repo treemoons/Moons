@@ -2,10 +2,10 @@
     "Master": {
         "HeaderConvenienceOptionsArray": {
             "Option1": ["HeaderConvenienceOptionsArray1", "/home/privacy"],
-            "Option2": ["HeaderConvenienceOptionsArray2", "/home/privacy"],
-            "Option3": ["HeaderConvenienceOptionsArray4", "/home/privacy"],
-            "Option4": ["HeaderConvenienceOptionsArray1", "/home/privacy"],
-            "Option5": ["HeaderConvenienceOptionsArray2", "/home/privacy"]
+            "Option2": ["HeaderOptionsArray2", "/home/privacy"],
+            "Option3": ["HeaderConvenienceArray4", "/home/privacy"],
+            "Option4": ["ConvenienceOptionsArray1", "/home/privacy"],
+            "Option5": ["HeaderConvenienceOption2", "/home/privacy"]
         },
         "UserOptionsleftArray": {
             "Option1": ["Oprion1", "/home/privacy"],
