@@ -27,22 +27,8 @@ namespace MyPersonalWeb.Controllers
     public class PermissionController : Controller
     {
         [NonAction]
-        public override ViewResult View(object Models) => base.View((new Language(LanguageJsonElementDictionary[ViewBag.lang]), Models));
-        public static Dictionary<string, JsonElement> LanguageJsonElementDictionary { get; set; } = new Dictionary<string, JsonElement>();
-        [NonAction]
-        public static void ReadAllLanguageJson()
-        {
-            var langDictionary = new DirectoryInfo("./wwwroot/src/language");
-            var fileInfos = langDictionary.GetFileSystemInfos();
-            foreach (var file in fileInfos)
-            {
-                if (file.Extension == ".json")
-                {
-                    using var stream = new FileStream(file.FullName, FileMode.Open, FileAccess.Read);
-                    LanguageJsonElementDictionary.TryAdd(file.Name.Replace(file.Extension, ""), JsonDocument.Parse(stream).RootElement);
-                }
-            }
-        }
+         public override ViewResult View(object Models) => base.View((new Language(Utils.LanguageJsonElementDictionary[ViewBag.lang]), Models));
+
         [NonAction]
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
@@ -55,7 +41,7 @@ namespace MyPersonalWeb.Controllers
             {
                 parameterValue = filterContext.RouteData.Values["id"].ToString();
                 var allLanguage =
-                    from lang in LanguageJsonElementDictionary.Keys
+                    from lang in Utils.LanguageJsonElementDictionary.Keys
                     where lang.Contains(parameterValue)
                     select lang;
                 if (allLanguage.Count()==0)

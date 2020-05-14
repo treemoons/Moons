@@ -1,11 +1,31 @@
-﻿using System;
+﻿using System.Collections.Generic;
+using System.IO;
+using System;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using System.Security.Cryptography;
 namespace CommonUtils
 {
     static public class Utils
     {
+        public static Dictionary<string, JsonElement> LanguageJsonElementDictionary { get; set; } = new Dictionary<string, JsonElement>();
+        public static Dictionary<string, Stream> LanguageByteArrayDictionary { get; set; } = new Dictionary<string, Stream>();
+      
+        public static void ReadAllLanguageJson()
+        {
+            var langDictionary = new DirectoryInfo("./wwwroot/src/language");
+            var fileInfos = langDictionary.GetFileSystemInfos();
+            foreach (var file in fileInfos)
+            {
+                if (file.Extension == ".json")
+                {
+                    using var stream = new FileStream(file.FullName, FileMode.Open, FileAccess.Read);
+                    LanguageJsonElementDictionary.TryAdd(file.Name.Replace(file.Extension, ""), JsonDocument.Parse(stream).RootElement);
+                    LanguageByteArrayDictionary.TryAdd(file.Name.Replace(file.Extension, ""), stream);
+                }
+            }
+        }
        public class RSAData
         {
             /// <summary> 

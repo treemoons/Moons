@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using CommonUtils;
 
 namespace MyPersonalWeb
 {
@@ -21,7 +22,7 @@ namespace MyPersonalWeb
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    MyPersonalWeb.Controllers.PermissionController.ReadAllLanguageJson();
+                    Utils.ReadAllLanguageJson();
                     webBuilder.UseStartup<Startup>();
                 });
     }

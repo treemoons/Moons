@@ -7,3 +7,6 @@ E:\Html\MyWork\Implementation\obj\Debug\netstandard2.1\Implementation.AssemblyIn
 E:\Html\MyWork\Implementation\obj\Debug\netstandard2.1\Implementation.AssemblyInfo.cs
 E:\Html\MyWork\Implementation\obj\Debug\netstandard2.1\Implementation.dll
 E:\Html\MyWork\Implementation\obj\Debug\netstandard2.1\Implementation.pdb
+E:\Html\MyWork\Implementation\bin\Debug\netstandard2.1\Utils.dll
+E:\Html\MyWork\Implementation\bin\Debug\netstandard2.1\Utils.pdb
+E:\Html\MyWork\Implementation\obj\Debug\netstandard2.1\Implementation.csproj.CopyComplete
