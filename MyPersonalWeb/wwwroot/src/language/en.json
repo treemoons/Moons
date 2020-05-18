@@ -55,6 +55,8 @@
 
         },
         "CurrentLanguageCode": "en",
-        "CurrentLanguage": "English"
+        "CurrentLanguage": "English",
+        "FooterCopyright": "©2020 by  TreeMoons in the future",
+        "MenuMyProfile":"My Profile"
     }
 }

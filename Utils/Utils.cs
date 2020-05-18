@@ -21,8 +21,9 @@ namespace CommonUtils
                 if (file.Extension == ".json")
                 {
                     using var stream = new FileStream(file.FullName, FileMode.Open, FileAccess.Read);
-                    LanguageJsonElementDictionary.TryAdd(file.Name.Replace(file.Extension, ""), JsonDocument.Parse(stream).RootElement);
-                    LanguageByteArrayDictionary.TryAdd(file.Name.Replace(file.Extension, ""), stream);
+                    var fileName = file.Name.Replace(file.Extension, "");
+                    LanguageJsonElementDictionary.TryAdd(fileName, JsonDocument.Parse(stream).RootElement);
+                    LanguageByteArrayDictionary.TryAdd(fileName, stream);
                 }
             }
         }
