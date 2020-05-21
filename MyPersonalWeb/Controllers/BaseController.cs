@@ -41,8 +41,8 @@ namespace MyPersonalWeb.Controllers
             {
                 parameterValue = filterContext.RouteData.Values["id"].ToString();
                 var allLanguage =
-                    from lang in Utils.LanguageJsonElementDictionary.Keys
-                    where lang.Contains(parameterValue)
+                    from lang in Utils.LanguageJsonElementDictionary.Keys.Cast<string>()
+                    where lang.Contains(parameterValue) //judging id which is contained by all languages
                     select lang;
                 if (allLanguage.Count()==0)
                 {

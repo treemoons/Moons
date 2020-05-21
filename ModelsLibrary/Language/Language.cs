@@ -117,6 +117,9 @@ namespace ModelsLibrary
         {
 
         }
+        public struct Profile{
+            
+        }
 
     }
 }

@@ -1,11 +1,11 @@
 ﻿@{
-ViewData["Title"] = "Home Page";
+ViewData["Title"] = ViewBag.UserName??"Home Page";
 (ModelsLibrary.Language language,object Models)=(ValueTuple<ModelsLibrary.Language,object>)Model;
     try{ 
         var languageIndex=(ModelsLibrary.Language.Index)language[nameof(ModelsLibrary.Language.Index)];
-    }catch{
+    }catch(Exception ex){
     <script>
-        @* alert("_self"); *@
+        console.log('@ex.Message')
     </script>
     }
 }
@@ -14,19 +14,4 @@ ViewData["Title"] = "Home Page";
 
 
 
-        <h1 class="display-4">@ViewBag.user</h1>
-
-        <p>Learn about <a href="/Home/aa">building Web apps with ASP.NET Core</a>.</p>
-        <h1 id="aj"></h1>
-        <button onclick=" getAjaxPostData('en/home/login',x=>{if(x=='ok'){
-        document.getElementById('aj').innerText='okokokoko'}})">获取</button>
-        <button onclick=" getAjaxPostData('./src/t.txt')">获取</button>
-
-        <img src="~/src/img/big.jpg" alt="">
-        <img src="~/src/img/logo1.png" alt="">
-        <style>
-            button~img {
-                width: 100%;
-            }
-        </style>
     </div>

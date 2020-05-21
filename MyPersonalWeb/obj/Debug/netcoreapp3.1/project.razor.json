@@ -20526,8 +20526,23 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "e:\\Html\\MyWork\\MyPersonalWeb\\Views\\Section\\Article.cshtml",
+      "TargetPath": "Views\\Section\\Article.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "e:\\Html\\MyWork\\MyPersonalWeb\\Views\\Profile\\EditArticle.cshtml",
+      "TargetPath": "Views\\Profile\\EditArticle.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "e:\\Html\\MyWork\\MyPersonalWeb\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
       "TargetPath": "Views\\Shared\\_ValidationScriptsPartial.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "e:\\Html\\MyWork\\MyPersonalWeb\\Views\\Profile\\EditProfile.cshtml",
+      "TargetPath": "Views\\Profile\\EditProfile.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -20536,18 +20551,28 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "e:\\Html\\MyWork\\MyPersonalWeb\\Views\\Home\\Privacy.cshtml",
-      "TargetPath": "Views\\Home\\Privacy.cshtml",
-      "FileKind": "mvc"
-    },
-    {
       "FilePath": "e:\\Html\\MyWork\\MyPersonalWeb\\Views\\Home\\Index.cshtml",
       "TargetPath": "Views\\Home\\Index.cshtml",
       "FileKind": "mvc"
     },
     {
+      "FilePath": "e:\\Html\\MyWork\\MyPersonalWeb\\Views\\Profile\\Profile.cshtml",
+      "TargetPath": "Views\\Profile\\Profile.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "e:\\Html\\MyWork\\MyPersonalWeb\\Views\\Section\\Searched.cshtml",
+      "TargetPath": "Views\\Section\\Searched.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "e:\\Html\\MyWork\\MyPersonalWeb\\Views\\Shared\\_Layout.cshtml",
       "TargetPath": "Views\\Shared\\_Layout.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "e:\\Html\\MyWork\\MyPersonalWeb\\Views\\Profile\\EditArticleList.cshtml",
+      "TargetPath": "Views\\Profile\\EditArticleList.cshtml",
       "FileKind": "mvc"
     },
     {

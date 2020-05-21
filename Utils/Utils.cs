@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using System;
 using System.Text;
@@ -9,9 +10,8 @@ namespace CommonUtils
 {
     static public class Utils
     {
-        public static Dictionary<string, JsonElement> LanguageJsonElementDictionary { get; set; } = new Dictionary<string, JsonElement>();
-        public static Dictionary<string, Stream> LanguageByteArrayDictionary { get; set; } = new Dictionary<string, Stream>();
-      
+        public static Hashtable LanguageJsonElementDictionary { get; set; } = Hashtable.Synchronized(new Hashtable());
+        public static Hashtable LanguageByteArrayDictionary { get; set; } = Hashtable.Synchronized(new Hashtable());
         public static void ReadAllLanguageJson()
         {
             var langDictionary = new DirectoryInfo("./wwwroot/src/language");
@@ -22,12 +22,24 @@ namespace CommonUtils
                 {
                     using var stream = new FileStream(file.FullName, FileMode.Open, FileAccess.Read);
                     var fileName = file.Name.Replace(file.Extension, "");
-                    LanguageJsonElementDictionary.TryAdd(fileName, JsonDocument.Parse(stream).RootElement);
-                    LanguageByteArrayDictionary.TryAdd(fileName, stream);
+                    LanguageJsonElementDictionary[fileName] = JsonDocument.Parse(stream).RootElement;
+                    LanguageByteArrayDictionary[fileName] = stream;
                 }
             }
         }
-       public class RSAData
+        public static bool TryAdd(this Hashtable hashtable, object key, object value)
+        {
+            try
+            {
+                hashtable.Add(key, value);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        public class RSAData
         {
             /// <summary> 
             /// RSA加密数据 

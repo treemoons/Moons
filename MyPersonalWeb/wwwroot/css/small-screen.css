@@ -135,6 +135,7 @@ body{
     height: 100vh;
     width: 100vw;
     position: fixed;
+    z-index: 89;
     left: 0;
     top: -100vh;
     overflow-y: scroll;

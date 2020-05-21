@@ -562,11 +562,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "e:\\Html\\MyWork\\ModelsLibrary\\ModelsLibrary.csproj",
+      "projectUniqueName": "E:\\Html\\MyWork\\ModelsLibrary\\ModelsLibrary.csproj",
       "projectName": "ModelsLibrary",
-      "projectPath": "e:\\Html\\MyWork\\ModelsLibrary\\ModelsLibrary.csproj",
+      "projectPath": "E:\\Html\\MyWork\\ModelsLibrary\\ModelsLibrary.csproj",
       "packagesPath": "C:\\Users\\hands\\.nuget\\packages\\",
-      "outputPath": "e:\\Html\\MyWork\\ModelsLibrary\\obj\\",
+      "outputPath": "E:\\Html\\MyWork\\ModelsLibrary\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "D:\\Microsoft\\Xamarin\\NuGet\\"
@@ -586,8 +586,8 @@
       "frameworks": {
         "netstandard2.1": {
           "projectReferences": {
-            "e:\\Html\\MyWork\\Utils\\Utils.csproj": {
-              "projectPath": "e:\\Html\\MyWork\\Utils\\Utils.csproj"
+            "E:\\Html\\MyWork\\Utils\\Utils.csproj": {
+              "projectPath": "E:\\Html\\MyWork\\Utils\\Utils.csproj"
             }
           }
         }

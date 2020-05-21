@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "e:\\Html\\MyWork\\Implementation\\Implementation.csproj": {}
+    "E:\\Html\\MyWork\\Implementation\\Implementation.csproj": {}
   },
   "projects": {
-    "e:\\Html\\MyWork\\Implementation\\Implementation.csproj": {
+    "E:\\Html\\MyWork\\Implementation\\Implementation.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "e:\\Html\\MyWork\\Implementation\\Implementation.csproj",
+        "projectUniqueName": "E:\\Html\\MyWork\\Implementation\\Implementation.csproj",
         "projectName": "Implementation",
-        "projectPath": "e:\\Html\\MyWork\\Implementation\\Implementation.csproj",
+        "projectPath": "E:\\Html\\MyWork\\Implementation\\Implementation.csproj",
         "packagesPath": "C:\\Users\\hands\\.nuget\\packages\\",
-        "outputPath": "e:\\Html\\MyWork\\Implementation\\obj\\",
+        "outputPath": "E:\\Html\\MyWork\\Implementation\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "D:\\Microsoft\\Xamarin\\NuGet\\"
@@ -31,8 +31,8 @@
         "frameworks": {
           "netstandard2.1": {
             "projectReferences": {
-              "e:\\Html\\MyWork\\Utils\\Utils.csproj": {
-                "projectPath": "e:\\Html\\MyWork\\Utils\\Utils.csproj"
+              "E:\\Html\\MyWork\\Utils\\Utils.csproj": {
+                "projectPath": "E:\\Html\\MyWork\\Utils\\Utils.csproj"
               }
             }
           }
@@ -84,14 +84,14 @@
         }
       }
     },
-    "e:\\Html\\MyWork\\Utils\\Utils.csproj": {
+    "E:\\Html\\MyWork\\Utils\\Utils.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "e:\\Html\\MyWork\\Utils\\Utils.csproj",
+        "projectUniqueName": "E:\\Html\\MyWork\\Utils\\Utils.csproj",
         "projectName": "Utils",
-        "projectPath": "e:\\Html\\MyWork\\Utils\\Utils.csproj",
+        "projectPath": "E:\\Html\\MyWork\\Utils\\Utils.csproj",
         "packagesPath": "C:\\Users\\hands\\.nuget\\packages\\",
-        "outputPath": "e:\\Html\\MyWork\\Utils\\obj\\",
+        "outputPath": "E:\\Html\\MyWork\\Utils\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "D:\\Microsoft\\Xamarin\\NuGet\\"
