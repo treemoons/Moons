@@ -24,5 +24,6 @@ namespace MyPersonalWeb.Controllers
     public class ProfileController : PermissionController
     {
 
+        public IActionResult Profile() => View(1);
     }
 }

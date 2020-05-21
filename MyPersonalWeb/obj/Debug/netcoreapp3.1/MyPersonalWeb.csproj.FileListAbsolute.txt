@@ -70,6 +70,10 @@ E:\Html\MyWork\MyPersonalWeb\bin\Debug\netcoreapp3.1\Utils.dll
 E:\Html\MyWork\MyPersonalWeb\bin\Debug\netcoreapp3.1\Implementation.pdb
 E:\Html\MyWork\MyPersonalWeb\bin\Debug\netcoreapp3.1\Utils.pdb
 E:\Html\MyWork\MyPersonalWeb\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
-E:\Html\MyWork\MyPersonalWeb\obj\Debug\netcoreapp3.1\Razor\Views\Home\Privacy.cshtml.g.cs
 E:\Html\MyWork\MyPersonalWeb\bin\Debug\netcoreapp3.1\System.Text.Json.dll
 E:\Html\MyWork\MyPersonalWeb\obj\Debug\netcoreapp3.1\Razor\Views\Profile\Profile.cshtml.g.cs
+E:\Html\MyWork\MyPersonalWeb\obj\Debug\netcoreapp3.1\Razor\Views\Profile\EditArticle.cshtml.g.cs
+E:\Html\MyWork\MyPersonalWeb\obj\Debug\netcoreapp3.1\Razor\Views\Profile\EditArticleList.cshtml.g.cs
+E:\Html\MyWork\MyPersonalWeb\obj\Debug\netcoreapp3.1\Razor\Views\Profile\EditProfile.cshtml.g.cs
+E:\Html\MyWork\MyPersonalWeb\obj\Debug\netcoreapp3.1\Razor\Views\Section\Article.cshtml.g.cs
+E:\Html\MyWork\MyPersonalWeb\obj\Debug\netcoreapp3.1\Razor\Views\Section\Searched.cshtml.g.cs
