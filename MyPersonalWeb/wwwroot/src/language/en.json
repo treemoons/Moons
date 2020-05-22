@@ -1,11 +1,12 @@
 {
+    
     "Master": {
         "HeaderConvenienceOptionsArray": {
-            "Option1": ["HeaderConvenienceOptionsArray1", "/home/privacy"],
-            "Option2": ["HeaderOptionsArray2", "/home/privacy"],
-            "Option3": ["HeaderConvenienceArray4", "/home/privacy"],
-            "Option4": ["ConvenienceOptionsArray1", "/home/privacy"],
-            "Option5": ["HeaderConvenienceOption2", "/home/privacy"]
+            "Option1": ["OptionsArray", "/home/privacy"],
+            "Option2": ["HeaderArray2", "/home/privacy"],
+            "Option3": ["HeaderArray4", "/home/privacy"],
+            "Option4": ["OptionsArray", "/home/privacy"],
+            "Option5": ["HeaderOptio2", "/home/privacy"]
         },
         "UserOptionsleftArray": {
             "Option1": ["Oprion1", "/home/privacy"],
@@ -58,5 +59,31 @@
         "CurrentLanguage": "English",
         "FooterCopyright": "by  TreeMoons in the future",
         "MenuMyProfile":"My Profile"
+    },
+
+   
+    "Index":{
+
+    },
+    
+    "Article":{
+        
+    },
+   
+    "Searched":{
+
+    },
+
+    "Profile":{
+
+    },
+    "EditProfile":{
+
+    },
+    "EditArticle":{
+
+    },
+    "EditArticleList":{
+
     }
 }

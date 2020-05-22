@@ -1,4 +1,4 @@
-﻿
+﻿using System.Reflection;
 using System;
 using System.Text.Json;
 using System.Text;
@@ -22,10 +22,15 @@ namespace ModelsLibrary
         public Language(JsonElement _json)
         {
             LanguageJson = _json;
-            if (!LanguageInfo.TryAdd(nameof(Master), new Master(LanguageJson.GetProperty(nameof(Master)))))
-                LanguageInfo[nameof(Master)] = new Master(LanguageJson.GetProperty(nameof(Master)));
+            LanguageInfo[nameof(Master)] = new Master(LanguageJson.GetProperty(nameof(Master)));
+            LanguageInfo[nameof(Index)] = new Index(LanguageJson.GetProperty(nameof(Index)));
+            LanguageInfo[nameof(Searched)] = new Searched(LanguageJson.GetProperty(nameof(Searched)));
+            LanguageInfo[nameof(Article)] = new Article(LanguageJson.GetProperty(nameof(Article)));
+            LanguageInfo[nameof(Profile)] = new Profile(LanguageJson.GetProperty(nameof(Profile)));
+            LanguageInfo[nameof(EditArticle)] = new EditArticle(LanguageJson.GetProperty(nameof(EditArticle)));
+            LanguageInfo[nameof(EditProfile)] = new EditProfile(LanguageJson.GetProperty(nameof(EditProfile)));
         }
-        private Dictionary<string, object> LanguageInfo = new Dictionary<string, object>();
+        private Hashtable LanguageInfo = Hashtable.Synchronized(new Hashtable());
         public object this[string index]
         {
             get => LanguageInfo[index];
@@ -98,20 +103,5 @@ namespace ModelsLibrary
             }
         }
 
-        /// <summary>
-        ///  the name of one of the Views: Index
-        /// </summary>
-        public struct Index
-        {
-
-        }
-        public struct Profile
-        {
-
-        }
-        public struct Searched
-        {
-
-        }
     }
 }
