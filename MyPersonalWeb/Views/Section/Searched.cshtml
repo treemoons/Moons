@@ -1,0 +1,19 @@
+@{ 
+    try {
+        ViewData["Title"] = ViewBag.UserName??throw new Exception();
+    } catch {
+        throw;
+    }
+    (ModelsLibrary.Language language,object Models)=(ValueTuple<ModelsLibrary.Language,object>)Model;
+    try{ 
+        var languageSearched=(ModelsLibrary.Language.Index)language[nameof(ModelsLibrary.Language.Profile)];
+    }catch(Exception ex)
+    {
+    <script>
+        console.log('@ex.Message')
+    </script>
+    }
+}
+<div>
+    successed!
+</div>

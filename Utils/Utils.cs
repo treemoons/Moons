@@ -10,6 +10,13 @@ namespace CommonUtils
 {
     static public class Utils
     {
+        public static JsonElement? GetProperty(this JsonElement? language, string element)
+        {
+            if (language.Value.TryGetProperty(element, out JsonElement value))
+                return value;
+            else
+                return null;
+        }
         public static Hashtable LanguageJsonElementDictionary { get; set; } = Hashtable.Synchronized(new Hashtable());
         public static Hashtable LanguageByteArrayDictionary { get; set; } = Hashtable.Synchronized(new Hashtable());
         public static void ReadAllLanguageJson()

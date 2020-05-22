@@ -1,4 +1,4 @@
-
+﻿
 using System;
 using System.Text.Json;
 using System.Text;
@@ -9,18 +9,6 @@ using System.IO;
 using CommonUtils;
 namespace ModelsLibrary
 {
-
-    static class GetJsonProperties
-    {
-
-        public static JsonElement? GetProperty(this JsonElement? language, string element)
-        {
-            if (language.Value.TryGetProperty(element, out JsonElement value))
-                return value;
-            else
-                return null;
-        }
-    }
     /// <summary>    
     ///  | Author：TreeMoons <br/>
     ///  | Date：May,6th,2020 <br/>
@@ -30,14 +18,14 @@ namespace ModelsLibrary
     [Serializable]
     public partial class Language : IEnumerable
     {
-        private  JsonElement LanguageJson { get; set; }
+        private JsonElement LanguageJson { get; set; }
         public Language(JsonElement _json)
         {
             LanguageJson = _json;
             if (!LanguageInfo.TryAdd(nameof(Master), new Master(LanguageJson.GetProperty(nameof(Master)))))
                 LanguageInfo[nameof(Master)] = new Master(LanguageJson.GetProperty(nameof(Master)));
         }
-        private  Dictionary<string, object> LanguageInfo = new Dictionary<string, object>();
+        private Dictionary<string, object> LanguageInfo = new Dictionary<string, object>();
         public object this[string index]
         {
             get => LanguageInfo[index];
@@ -104,9 +92,9 @@ namespace ModelsLibrary
                     LoginJson = _json;
                 }
                 public string Title => LoginJson.GetProperty(nameof(Title)).ToString();
-                public string[] Option1 => new string[] { LoginJson.GetProperty(nameof(Option1))?[0].ToString(),LoginJson.GetProperty(nameof(Option1))?[1].ToString() };
-                public string[] Option2 => new string[] { LoginJson.GetProperty(nameof(Option2))?[0].ToString(),LoginJson.GetProperty(nameof(Option2))?[1].ToString() };
-                public string[] Option3 => new string[] { LoginJson.GetProperty(nameof(Option3))?[0].ToString(),LoginJson.GetProperty(nameof(Option3))?[1].ToString() };
+                public string[] Option1 => new string[] { LoginJson.GetProperty(nameof(Option1))?[0].ToString(), LoginJson.GetProperty(nameof(Option1))?[1].ToString() };
+                public string[] Option2 => new string[] { LoginJson.GetProperty(nameof(Option2))?[0].ToString(), LoginJson.GetProperty(nameof(Option2))?[1].ToString() };
+                public string[] Option3 => new string[] { LoginJson.GetProperty(nameof(Option3))?[0].ToString(), LoginJson.GetProperty(nameof(Option3))?[1].ToString() };
             }
         }
 
@@ -117,9 +105,13 @@ namespace ModelsLibrary
         {
 
         }
-        public struct Profile{
-            
-        }
+        public struct Profile
+        {
 
+        }
+        public struct Searched
+        {
+
+        }
     }
 }

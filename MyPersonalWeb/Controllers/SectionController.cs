@@ -1,4 +1,4 @@
-using System.Net;
+﻿using System.Net;
 using System.ComponentModel;
 using System.Threading;
 using System;
@@ -22,8 +22,21 @@ using CommonUtils;
 
 namespace MyPersonalWeb.Controllers
 {
-    public class SectionCotroller:PermissionController
+    public class SectionController : PermissionController
     {
-        
+
+        private readonly ILogger<SectionController> _logger;
+
+        public SectionController(ILogger<SectionController> logger)
+        {
+            _logger = logger;
+        }
+        [HttpGet]
+        public async Task<IActionResult> Searched(string searchtext) =>
+            await Task.Run(() =>
+            {
+                
+                return View(1);
+            });
     }
 }

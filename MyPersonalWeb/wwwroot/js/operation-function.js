@@ -129,7 +129,7 @@ function showUserOptions() {
     }
 }
 /**
- * 返回首页
+ * 返回首页* 
  */
 function backIndex() {
     open(`/${lang}/home/index`, "_self");
@@ -138,12 +138,7 @@ function backIndex() {
 
 /**
  * 获取并操作Ajax数据
- * @param {string} url 要提交到的地址
- * @param {Function} success 获取data成功之后要执行的函数
- * @param {Function} failed 获取data失败之后要执行的函数
- * @param {string} querystring 传递的参数 默认为空
- * @param {string} httptype 方法类型'post','get'等，默认'POST'
- * @param {string} datatype mime类型，默认为表单类型
+ *@param { { url: string, success: (text:string)=>void), failed ?:  (text:string)=>void, querystring ?: string, httptype ?: string, datatype ?:string } object  options
  */
 function getAjaxData({ url, success, failed = null, querystring = '', httptype = 'POST', datatype = 'application/x-www-form-urlencoded' }) {
     debugger;

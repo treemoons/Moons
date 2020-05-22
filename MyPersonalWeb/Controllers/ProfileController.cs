@@ -1,4 +1,4 @@
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Threading;
 using System;
 using System.Collections.Generic;
@@ -24,6 +24,13 @@ namespace MyPersonalWeb.Controllers
     public class ProfileController : PermissionController
     {
 
+        private readonly ILogger<ProfileController> _logger;
+
+        public ProfileController(ILogger<ProfileController> logger)
+        {
+            _logger = logger;
+        }
         public IActionResult Profile() => View(1);
+        
     }
 }
