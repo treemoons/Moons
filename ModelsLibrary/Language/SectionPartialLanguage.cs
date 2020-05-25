@@ -19,6 +19,7 @@ namespace ModelsLibrary
             {
                 LanguageJson = _json;
             }
+            
         }
         public struct Article
         {

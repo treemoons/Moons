@@ -8,6 +8,9 @@
   --wait-animotion: 999;
   --header-bar-bcgcolor: rgba(255, 255, 255, 0.9);
   --dot-color: rgb(122, 98, 255);
+  --text-focus-border:rgb(127, 127, 243);
+  --progressbar-backcolor:rgb(139, 139, 255);
+  --language-color:plum;
 }
 
 * {
@@ -32,7 +35,7 @@ a:hover {
 header {
   position: fixed;
   top: 0;
-  z-index: 18;
+  z-index: 118;
   display: flex;
   justify-content: space-between;
   height: 50px;
@@ -54,7 +57,7 @@ header {
   left: -10%;
   width: inherit;
   height: inherit;
-  background-color: rgb(139, 139, 255);
+  background-color: var(--progressbar-backcolor);
   transition: all 0.5s ease;
   -webkit-transition: all 0.5s ease;
   -moz-transition: all 0.5s ease;
@@ -237,7 +240,7 @@ header {
 }
 
 #lang {
-  border: 1px solid plum;
+  border: 1px solid var(--language-color);
   background-color: var(--header-bar-bcgcolor);
   display: inline-block;
 }
@@ -253,7 +256,7 @@ select:focus {
 
 #lang option {
   text-align: center;
-  outline: plum;
+  outline: var(--language-color);
   border-radius: 2px;
   appearance: none;
   -moz-appearance: none;
@@ -264,7 +267,7 @@ select:focus {
 }
 
 #lang option:hover {
-  background-color: plum;
+  background-color: var(--language-color);
   color: white;
 }
 
@@ -281,7 +284,7 @@ select:focus {
 }
 
 #selected:hover {
-  color: plum;
+  color: var(--language-color);
 }
 
 #lang {
@@ -457,7 +460,7 @@ input[type="password"] {
 }
 
 .search-option input:focus {
-  border-color: rgb(127, 127, 243);
+  border-color: var(--text-focus-border);
 }
 
 /* .search-option ::after{
@@ -473,7 +476,7 @@ input[type="password"] {
 .menu-options {
   position: fixed;
   left: 0;
-  top: -30%;
+  top: -50%;
   width: 100%;
   opacity: 0;
   transition: all 0.4s ease;
@@ -560,7 +563,7 @@ input[type="password"] {
 }
 
 .user-option a:hover {
-  border-bottom-color: rgb(139, 139, 255);
+  border-bottom-color: var(--progressbar-backcolor);
 }
 
 .login h3 {
@@ -569,7 +572,7 @@ input[type="password"] {
 
 /* loginclose上的div */
 .login>div:first-child {
-  color: rgb(184, 184, 252);
+  color: var(--theme-color-opaque);
   text-align: right;
   padding: 30px 50px 0 0;
   margin-bottom: 20px;
@@ -581,11 +584,11 @@ input[type="password"] {
 }
 
 .login-close:hover {
-  color: rgb(93, 93, 255);
+  color: var(--text-focus-border);
 
 }
 
-.login form input[type="checkbox"] {
+.login form #isremembered {
   display: none;
 }
 
@@ -601,8 +604,11 @@ input[type="password"] {
   left: -10px;
 
 }
-
-.login form input[type="checkbox"]:checked+label::before {
+.login form #isremembered:hover,
+.login form #isremembered+label:hover{
+  cursor: pointer;
+}
+.login form #isremembered:checked+label::before {
   font-size: 20px;
   content: '\2611';
   position: absolute;
@@ -612,3 +618,30 @@ input[type="password"] {
 }
 
 /*#endregion*/
+
+/* #region Profile 个人信息主页 */
+
+.profile-container{
+ display: flex;
+ justify-content: space-around;
+}
+/* .left-aside,
+.center-context ,
+.right-aside {
+
+} */
+.left-aside{
+  width: 20%;
+  background-color: rgb(204, 194, 194);
+}
+.center-context{
+height: 1000px;
+width: 58%;
+background-color: rgb(255, 215, 215);
+}
+.right-aside{
+width: 20%;
+background-color: rgb(203, 203, 252);
+}
+
+/* #endregion */
