@@ -2,8 +2,7 @@
 
 //#region  用于调整设置登录弹窗的位置
 
-/**
- * 获取登录login元素的div
+/** 获取登录login元素的div
  * @param {login} l login登录元素
  */
 function getLoginLeft(l) {
@@ -72,14 +71,15 @@ function waitLoginClose() {
  * 显示或这关闭menu
  */
 function showAndCloseMenu() {
-    try{
-    if (window.getComputedStyle(userOptions).display == 'block') {
-        userOptions.style = 'opacity:0;right:-20vw;'
-        setTimeout(function () {
-            userOptions.style.display = 'none';
-        }, 400);
-        isUserOptionsShow = false;
-    }}catch(error){console.log(error);}
+    try {
+        if (window.getComputedStyle(userOptions).display == 'block') {
+            userOptions.style = 'opacity:0;right:-20vw;'
+            setTimeout(function () {
+                userOptions.style.display = 'none';
+            }, 400);
+            isUserOptionsShow = false;
+        }
+    } catch (error) { console.log(error); }
     if (!isMenuShow) {
         menuButton.style = 'display:block;';
         setTimeout(function () {
@@ -134,35 +134,6 @@ function showUserOptions() {
 function backIndex() {
     open(`/${lang}/home/index`, "_self");
 }
-//#endregion
-
-/**
- * 获取并操作Ajax数据
- *@param { { url: string, success: (text:string)=>void), failed ?:  (text:string)=>void, querystring ?: string, httptype ?: string, datatype ?:string } object  options
- */
-function getAjaxData({ url, success, failed = null, querystring = '', httptype = 'POST', datatype = 'application/x-www-form-urlencoded' }) {
-    debugger;
-    // open(url,'_blank')
-    var ajax = new XMLHttpRequest();
-    ajax.open(httptype, url);
-    ajax.setRequestHeader('Content-Type', datatype);
-    ajax.send(querystring);
-    ajax.onreadystatechange = function () {
-        if (ajax.readyState == 4 && ajax.status == 200) {
-            try {
-                success(ajax.responseText);
-            } catch (error) { }
-        }
-        else {
-            try {
-                failed(ajax.responseText);
-            } catch (error) {
-                console.log(error);
-            }
-        }
-    }
-}
-
 
 /**
  * 
@@ -306,7 +277,7 @@ function showlang() {
 function selectedlang() {
     let langselects = document.querySelectorAll('#lang option');
     langselects.forEach(item => {
-        item.onclick =async function () {
+        item.onclick = async function () {
             let selected = document.getElementById('selected');
             selected.innerText = this.innerText;
             document.getElementById('lang').style.display = 'none';
@@ -322,8 +293,38 @@ function selectedlang() {
         }
     });
 }
+//#endregion
 
 //#endregion
+
+/**
+ * 获取并操作Ajax数据
+ *@param { { url: string, success: (text:string)=>void), failed ?: 
+        (text:string)=>void, querystring ?: string, httptype ?: string, datatype ?:string } object  options
+ */
+function getAjaxData({ url, success, failed = null, querystring = '', httptype = 'POST', datatype = 'application/x-www-form-urlencoded' }) {
+    debugger;
+    // open(url,'_blank')
+    var ajax = new XMLHttpRequest();
+    ajax.open(httptype, url);
+    ajax.setRequestHeader('Content-Type', datatype);
+    ajax.send(querystring);
+    ajax.onreadystatechange = function () {
+        if (ajax.readyState == 4 && ajax.status == 200) {
+            try {
+                success(ajax.responseText);
+            } catch (error) { }
+        }
+        else {
+            try {
+                failed(ajax.responseText);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+    }
+}
+
 //#endregion
 
 
