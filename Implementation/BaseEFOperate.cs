@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -36,6 +36,7 @@ namespace Implementation
         [Description("单例服务")]
         AddSingleton
     }
+    
     /// <summary>
     /// 服务容器&#60;服务,上下文&#62;
     /// <br/>服务：继承类

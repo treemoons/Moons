@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.ComponentModel;
 using System.Threading;
 using System;
@@ -99,9 +99,21 @@ namespace MyPersonalWeb.Controllers
             #endregion
             base.OnActionExecuting(filterContext);
         }
+        public class TestAttribute:Attribute{
+           public TestAttribute(){
+                Test("");
+
+            }
+            [NonAction]
+                public void Test(string a)
+                {
+                    var aaa = a;
+                }
+        }
 
         public class NoPromissionAttribute : ActionFilterAttribute
         {
+
             [NonAction]
             public override void OnActionExecuting(ActionExecutingContext filterContext)
             {

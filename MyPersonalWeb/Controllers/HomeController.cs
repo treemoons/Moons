@@ -1,4 +1,4 @@
-﻿using System.Net;
+using System.Net;
 using System.ComponentModel;
 using System.Threading;
 using System;
@@ -68,18 +68,7 @@ namespace MyPersonalWeb.Controllers
                 // return View("Privacy",users);
             });
 
-        [HttpGet]
-        public IActionResult Privacy(string id)
-        {
-            //var isremember = HttpContext.Request.Form["isremembered"];
-            return View(1);
-        }
-        [HttpPost]
-        public void LangChanged(string Id)
-        {
-            // LanguageJson = LoadSelectedLanguageInfomation(Id);
-            // LanguageClass = new Language(LanguageJson);
-        }
+       
 
         string ShowLogin() =>
                 ViewBag.ShowLogin = "<script>setTimeout(showLogin,401);</script>";

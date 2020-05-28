@@ -1,4 +1,4 @@
-﻿using System.ComponentModel;
+using System.ComponentModel;
 using System.Threading;
 using System;
 using System.Collections.Generic;
@@ -30,6 +30,8 @@ namespace MyPersonalWeb.Controllers
         {
             _logger = logger;
         }
+
+        [Test()]
         public IActionResult Profile() => View();
         
     }
