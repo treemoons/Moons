@@ -27,7 +27,15 @@ namespace MyPersonalWeb.Controllers
     public class PermissionController : Controller
     {
         [NonAction]
-         public override ViewResult View(object Models) => base.View((new Language(Utils.LanguageJsonElementDictionary[ViewBag.lang]), Models));
+         public override ViewResult View(object models) => base.View((new Language(Utils.LanguageJsonElementDictionary[ViewBag.lang]), models));
+
+        [NonAction]
+        public override ViewResult View(string viewName, object models) => base.View(viewName, (new Language(Utils.LanguageJsonElementDictionary[ViewBag.lang]), models));
+
+        [NonAction]
+        public override ViewResult View(string viewName) => base.View(viewName, new Language(Utils.LanguageJsonElementDictionary[ViewBag.lang]));
+        [NonAction]
+        public override ViewResult View() => base.View(new Language(Utils.LanguageJsonElementDictionary[ViewBag.lang]));
 
         [NonAction]
         public override void OnActionExecuting(ActionExecutingContext filterContext)

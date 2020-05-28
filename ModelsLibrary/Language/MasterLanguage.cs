@@ -49,10 +49,22 @@ namespace ModelsLibrary
         [Serializable]
         public struct Master
         {
-            private static JsonElement? LanguageJson { get; set; }
+            private  JsonElement? LanguageJson { get; set; }
             public Master(JsonElement? _json)
             {
                 LanguageJson = _json;
+                FooterArray = new List<LinkTable>();
+                var footer = LanguageJson.GetProperty(nameof(FooterArray)).Value;
+                for (int i = 0; i < footer.GetArrayLength(); i++)
+                {
+                    FooterArray.Add(new LinkTable(footer[i]));
+                }
+                MenuArray = new List<LinkTable>();
+                var menu = LanguageJson.GetProperty(nameof(MenuArray)).Value;
+                for (int i = 0; i < menu.GetArrayLength(); i++)
+                {
+                    MenuArray.Add(new LinkTable(menu[i]));
+                }
             }
 
             public JsonElement? HeaderConvenienceOptionsArray => LanguageJson.GetProperty(nameof(HeaderConvenienceOptionsArray));
@@ -67,8 +79,8 @@ namespace ModelsLibrary
 
             public JsonElement? UserOptionsTheme => LanguageJson.GetProperty(nameof(UserOptionsTheme));
             public JsonElement? UserOptionsleftArray => LanguageJson.GetProperty(nameof(UserOptionsleftArray));
-            public LinkTable[] FooterArray => new LinkTable[2] { new LinkTable(LanguageJson.GetProperty(nameof(FooterArray)).Value[0]), new LinkTable(LanguageJson.GetProperty(nameof(FooterArray)).Value[1]) };
-            public LinkTable[] MenuArray => new LinkTable[2] { new LinkTable(LanguageJson.GetProperty(nameof(MenuArray)).Value[0]), new LinkTable(LanguageJson.GetProperty(nameof(MenuArray)).Value[1]) };
+            public List<LinkTable> FooterArray { get; }
+            public List<LinkTable> MenuArray{ get; }
             public Login? LoginArray => new Login(LanguageJson.GetProperty(nameof(LoginArray)));
             public struct Login
             {
@@ -91,7 +103,7 @@ namespace ModelsLibrary
             /// </summary>
             public struct LinkTable
             {
-                private static JsonElement? LoginJson { get; set; }
+                private  JsonElement? LoginJson { get; set; }
                 public LinkTable(JsonElement? _json)
                 {
                     LoginJson = _json;

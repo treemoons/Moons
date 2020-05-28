@@ -30,7 +30,7 @@ namespace MyPersonalWeb.Controllers
         {
             _logger = logger;
         }
-        public IActionResult Profile() => View(1);
+        public IActionResult Profile() => View();
         
     }
 }

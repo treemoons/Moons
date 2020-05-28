@@ -34,7 +34,7 @@ namespace MyPersonalWeb.Controllers
         public IActionResult Post(UserSignIn users) => Redirect(HttpContext.Request.GetDisplayUrl());
         // [Area("en")]
         // [Route("en/[Controller]/[Action]")]
-        public IActionResult Index() => View(1);
+        public IActionResult Index() => View();
 
         [HttpPost]
         public async Task<string> Login(UserSignIn users) =>
@@ -79,7 +79,6 @@ namespace MyPersonalWeb.Controllers
         {
             // LanguageJson = LoadSelectedLanguageInfomation(Id);
             // LanguageClass = new Language(LanguageJson);
-            
         }
 
         string ShowLogin() =>

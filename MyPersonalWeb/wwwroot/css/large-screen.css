@@ -16,7 +16,7 @@ body{
 .login {
     /*display: none;
     */
-    z-index: 89;
+    z-index: 199;
     position: fixed;
     background-color: rgba(255, 255, 255, 0.9);
     border-radius: 7%;
@@ -140,15 +140,19 @@ body{
     padding-top: 1vh;
 }
 .menu-option a {
-    width: 100px;
+    /* width: 100px; */
+
     height: 30px;
-    margin: 3px 0;
+    margin: 10px;
+    justify-content: center;
+    align-items: center;
     border: solid 1px var(--transparent);
 }
 .menu-option a:hover{
     color: #ffffff;
     /*padding: 4vw 2vw;
-    */border-bottom-color: var(--focus-backcolor);
+    */
+    border-bottom-color: var(--focus-backcolor);
 }
 .menu-option a:active{
     border-bottom-color: var(--focus-backcolor);
@@ -158,3 +162,24 @@ body{
     .footer-table h5 {
         /* margin-bottom: 15px; */
 }
+
+/* #region profile */
+
+.left-aside {
+    width: 16%;
+    background-color: rgb(204, 194, 194);
+}
+
+.right-aside {
+    width: 16%;
+    background-color: rgb(203, 203, 252);
+}
+.profile-pic{
+    width: 80%;
+}
+.left-aside .list>div{
+    text-align: center;
+    padding: 10px;
+}
+
+/* #endregion */

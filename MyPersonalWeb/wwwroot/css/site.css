@@ -8,9 +8,9 @@
   --wait-animotion: 999;
   --header-bar-bcgcolor: rgba(255, 255, 255, 0.9);
   --dot-color: rgb(122, 98, 255);
-  --text-focus-border:rgb(127, 127, 243);
-  --progressbar-backcolor:rgb(139, 139, 255);
-  --language-color:plum;
+  --text-focus-border: rgb(127, 127, 243);
+  --progressbar-backcolor: rgb(139, 139, 255);
+  --language-color: plum;
 }
 
 * {
@@ -42,6 +42,7 @@ header {
   width: 100%;
   background-color: var(--header-bar-bcgcolor);
 }
+
 .header-after {
   position: fixed;
   background-color: var(--theme-color-transparent-90);
@@ -107,15 +108,18 @@ header {
   width: 100%;
   height: 100%;
 }
-.convenience-option{
+
+.convenience-option {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
   overflow: hidden;
 }
-.convenience-option a{
+
+.convenience-option a {
   margin: 0 2px;
 }
+
 .header-logo {
   /* background-color: aliceblue; */
   text-align: left;
@@ -508,9 +512,7 @@ input[type="password"] {
 }
 
 .menu-option a {
-  display: block;
-
-  padding: 10px;
+  display: flex;
 }
 
 /* user-profile option */
@@ -604,10 +606,12 @@ input[type="password"] {
   left: -10px;
 
 }
+
 .login form #isremembered:hover,
-.login form #isremembered+label:hover{
+.login form #isremembered+label:hover {
   cursor: pointer;
 }
+
 .login form #isremembered:checked+label::before {
   font-size: 20px;
   content: '\2611';
@@ -621,27 +625,21 @@ input[type="password"] {
 
 /* #region Profile 个人信息主页 */
 
-.profile-container{
- display: flex;
- justify-content: space-around;
+.profile-container {
+  display: flex;
+  justify-content: space-around;
 }
+
 /* .left-aside,
 .center-context ,
 .right-aside {
 
 } */
-.left-aside{
-  width: 20%;
-  background-color: rgb(204, 194, 194);
+.center-context {
+  height: 1000px;
+  width: 66%;
+  background-color: rgb(255, 215, 215);
 }
-.center-context{
-height: 1000px;
-width: 58%;
-background-color: rgb(255, 215, 215);
-}
-.right-aside{
-width: 20%;
-background-color: rgb(203, 203, 252);
-}
+
 
 /* #endregion */

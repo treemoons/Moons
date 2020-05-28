@@ -302,7 +302,7 @@ function selectedlang() {
  *@param { { url: string, success: (text:string)=>void), failed ?: 
         (text:string)=>void, querystring ?: string, httptype ?: string, datatype ?:string } object  options
  */
-function getAjaxData({ url, success, failed = null, querystring = '', httptype = 'POST', datatype = 'application/x-www-form-urlencoded' }) {
+function getAjaxData({ url, success, failed = error => { console.log(error); }, querystring = '', httptype = 'POST', datatype = 'application/x-www-form-urlencoded' }) {
     debugger;
     // open(url,'_blank')
     var ajax = new XMLHttpRequest();
@@ -313,14 +313,12 @@ function getAjaxData({ url, success, failed = null, querystring = '', httptype =
         if (ajax.readyState == 4 && ajax.status == 200) {
             try {
                 success(ajax.responseText);
-            } catch (error) { }
-        }
-        else {
-            try {
-                failed(ajax.responseText);
             } catch (error) {
                 console.log(error);
             }
+        }
+        else {
+            failed(ajax.responseText);
         }
     }
 }

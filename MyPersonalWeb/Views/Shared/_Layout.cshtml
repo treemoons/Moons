@@ -79,7 +79,7 @@
         <nav class="menu-options" id="menu-options">
 
             <div class="menu-option">
-                @for (int i = 0; i < languageMaster.MenuArray.Count(); i++)
+                @for (int i = 0; i < languageMaster.MenuArray.Count; i++)
                 {
                 <div>
                     <h5>@languageMaster.MenuArray[i].Title</h5>
@@ -105,6 +105,7 @@
                 </div>
             </div>
         </div>
+        @* login *@
         <div class="login" id="login">
             <div><span class="login-close" onclick="loginClose();">✕</span></div>
             <h3 class="login-title">@login?.Title</h3>
@@ -134,7 +135,7 @@
 
         <footer>
             <div class="footer-table">
-                 @for (int i = 0; i < languageMaster.FooterArray.Count(); i++)
+                 @for (int i = 0; i < languageMaster.FooterArray.Count; i++)
                 {
                 <div>
                     <h5>@languageMaster.FooterArray[i].Title</h5>
@@ -166,8 +167,6 @@
         </script>
         <script src="~/js/footer-load.js"></script>
 
-        @* @RenderSection("Advertisement", required: false) *@
-        @* <iframe src="" frameborder="0" name="loginiframe" style="display: none;"></iframe> *@
     </body>
 
 </html>

@@ -15,26 +15,29 @@
 }
 <div class="profile-container">
     <aside class="left-aside">
-<div>
-    <div><img src="~/src/img/logo.png" alt="用户：@ViewBag.UserName"></div>
-    <div>
-        用户：<a href="/@ViewBag.lang/profile/profile">@ViewBag.UserName</a>
-    </div>
-   <div><a href=""></a></div>
-   <div><a href=""></a></div>
-   <div><a href=""></a></div>
-   <div><a href=""></a></div>
-   <div><a href=""></a></div>
-   <div><a href=""></a></div>
-</div>
+        <div class="list">
+            <div><a href="/@ViewBag.lang/profile/profile"><img class="profile-pic" src="~/src/img/logo.png" alt="用户：@ViewBag.UserName"></a>
+            </div>
+            <div>
+                用户：<a href="/@ViewBag.lang/profile/profile">@ViewBag.UserName</a>
+            </div>
+            @* 修改资料 *@
+            <div><a href="">修改资料</a></div>
+            @* 我的设置 *@
+            <div><a href="">我的设置</a></div>
+            @* 账号安全 *@
+            <div><a href="">账号安全</a></div>
+            @* *@
+            <div><a href=""></a></div>
+            <div><a href=""></a></div>
+            <div><a href=""></a></div>
+        </div>
     </aside>
     <div class="center-context">
 
 
-
-
     </div>
     <aside class="right-aside">
-@* messages from server *@
+        @* messages from server *@
     </aside>
 </div>

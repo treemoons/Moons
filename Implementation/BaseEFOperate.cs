@@ -45,37 +45,63 @@ namespace Implementation
     /// <typeparam name="TContext">上下文，继承DbContext预定义类型</typeparam>
     public class DBServiceProvider<TService, TContext> where TService : class where TContext : DbContext
     {
-        private IServiceCollection Service { get; set; } = new ServiceCollection();
-        private static IServiceCollection GetTransientService() => new DBServiceProvider<TService, TContext>().Service.AddTransient<TService>();
-        private static IServiceCollection GetSingletonService() => new DBServiceProvider<TService, TContext>().Service.AddSingleton<TService>();
-        private static IServiceCollection GetScopedService() => new DBServiceProvider<TService, TContext>().Service.AddScoped<TService>();
+        public DBServiceProvider()
+        {
+            Service = new ServiceCollection();
+        }
+        private IServiceCollection Service;
+        private IServiceCollection GetTransientService() => this.Service.AddTransient<TService>();
+        private IServiceCollection GetSingletonService() => this.Service.AddSingleton<TService>();
+        private IServiceCollection GetScopedService() => this.Service.AddScoped<TService>();
         /// <summary>
         /// 根据服务类型，获取相对应的服务
         /// </summary>
         /// <param name="serviceType">服务类型</param>
         /// <param name="sqlString"> 数据库连接字符串</param>
         /// <returns>服务提供的容器</returns>
-        public static IServiceProvider GetDbService(EService serviceType, string sqlString) =>
-        (serviceType switch
-        {
-            EService.AddTransient => GetTransientService(),
-            EService.AddScoped => GetScopedService(),
-            EService.AddSingleton => GetSingletonService(),
-            _ => throw new Exception(),
-        })
+        public IServiceProvider GetDbService(EService serviceType, string sqlString) =>
+            (serviceType switch
+            {
+                EService.AddTransient => GetTransientService(),
+                EService.AddScoped => GetScopedService(),
+                EService.AddSingleton => GetSingletonService(),
+                _ => throw new Exception(),
+            })
             .AddEntityFrameworkSqlServer()
             .AddDbContext<TContext>(op => op.UseSqlServer(sqlString))
             .BuildServiceProvider();
     }
+
+    /// <summary>
+    /// 服务容器
+    /// </summary>
     public static class ServiceContainer
     {
+        /// <summary> 获取服务容器（带ModelBuider）</summary>
+        /// <param name="service">服务类型</param>
+        /// <param name="sqlString">连接服务器数据库连接字符串</param>
+        /// <typeparam name="TService">服务类</typeparam>
+        /// <typeparam name="TTable">数据表类</typeparam>
+        /// <typeparam name="TModelBuilder">模型类</typeparam>
+        /// <returns>服务的容器</returns>
         public static TService GetDbService<TService, TTable, TModelBuilder>(EService service, string sqlString)
-                 where TService : DBService<DBContext<TTable, TModelBuilder>>
-                 where TTable : class
-                 where TModelBuilder : IEntityTypeConfiguration<TTable>, new()
-                  => DBServiceProvider<TService, DBContext<TTable, TModelBuilder>>.GetDbService(service, sqlString).GetService<TService>();
+            where TService : DBService<DBContext<TTable, TModelBuilder>>
+            where TTable : class
+            where TModelBuilder : IEntityTypeConfiguration<TTable>, new()
+            => new DBServiceProvider<TService, DBContext<TTable, TModelBuilder>>().GetDbService(service, sqlString).GetService<TService>();
 
+        /// <summary> 获取服务容器（不带ModelBuider） </summary>
+        /// <param name="service">服务类型</param>
+        /// <param name="sqlString">连接服务器数据库连接字符串</param>
+        /// <typeparam name="TService">服务类</typeparam>
+        /// <typeparam name="TTable">数据表类</typeparam>
+        /// <returns>服务的容器</returns>
+        public static TService GetDbService<TService, TTable>(EService service, string sqlString)
+            where TService : DBService<DBContext<TTable>>
+            where TTable : class
+            => new DBServiceProvider<TService, DBContext<TTable>>().GetDbService(service, sqlString).GetService<TService>();
     }
+
     /// <summary>
     /// 模型表
     /// </summary>
@@ -83,8 +109,8 @@ namespace Implementation
     {
         void s()
         {
-            var service= ServiceContainer.GetDbService<DBS, c, b>(EService.AddScoped, "");
-            
+            var service = ServiceContainer.GetDbService<DBS, c, b>(EService.AddScoped, "");// 获取服务
+
         }
     }
     /// <summary>
@@ -102,7 +128,7 @@ namespace Implementation
     public class DBS : DBService<DBContext<c, b>>
     {
         public DBS(DBContext<c, b> putContext) : base(putContext) { }
-       
+
     }
     /// <summary>
     /// 用户服务基类，在使用服务容器时必须继承此类
@@ -114,11 +140,11 @@ namespace Implementation
         /// 服务上下文context
         /// </summary>
         protected readonly TContext context;
-        public DBService(TContext putContext) => context = putContext;
+        protected DBService(TContext putContext) => context = putContext;
 
-        public async Task<bool> CreateDataBaseAsync() =>
+        protected async Task<bool> CreateDataBaseAsync() =>
             await context.Database.EnsureCreatedAsync();
-        public async Task<bool> DeleteDataBaseAsync() =>
+        protected async Task<bool> DeleteDataBaseAsync() =>
             await context.Database.EnsureDeletedAsync();
     }
     /// <summary>
@@ -133,12 +159,12 @@ namespace Implementation
     /// </typeparam>
     public class DBContext<TDbTable, TModelsBuilder> : DbContext where TDbTable : class where TModelsBuilder : IEntityTypeConfiguration<TDbTable>, new()
     {
-        public DBContext(DbContextOptions<DBContext<TDbTable, TModelsBuilder>> options) : base(options) { }
+        protected DBContext(DbContextOptions<DBContext<TDbTable, TModelsBuilder>> options) : base(options) { }
         /// <summary>
         /// 控制的表
         /// </summary>
         /// <value>所有表的属性值及方法</value>
-        public DbSet<TDbTable> Table { get; set; }
+        protected DbSet<TDbTable> Table { get; set; }
         /// <summary>
         /// 
         /// </summary>
@@ -155,6 +181,39 @@ namespace Implementation
         {
             base.OnModelCreating(builder);
             builder.ApplyConfiguration(new TModelsBuilder());
+        }
+    }
+
+    /// <summary>
+    /// 上下文基类，用于加载配置数据表和数据表字段属性
+    /// <br/>DBContext&#60;TDbTable&#62;
+    /// <br/>DBContext：继承自DbContext预定义类型
+    /// <br/>继承并重写OnModelCreating(ModelBuilder builder)方法，设置flexibility api配置TDTable的属性
+    /// </summary>
+    /// <typeparam name="TDbTable">数据表模型类</typeparam>
+    public class DBContext<TDbTable> : DbContext where TDbTable : class
+    {
+        protected DBContext(DbContextOptions<DBContext<TDbTable>> options) : base(options) { }
+        /// <summary>
+        /// 控制的表
+        /// </summary>
+        /// <value>所有表的属性值及方法</value>
+        protected DbSet<TDbTable> Table { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="optionsBuilder"></param>
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            base.OnConfiguring(optionsBuilder);
+        }
+        /// <summary>
+        /// 流利api可以配置加载属性，通过ModelBuilder添加属性
+        /// </summary>
+        /// <param name="builder">添加模型属性配置</param>
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
         }
     }
 }

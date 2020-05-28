@@ -63,27 +63,34 @@
 
    
     "Index":{
+        "Title":""
 
     },
     
     "Article":{
+        "Title": ""
         
     },
    
     "Searched":{
+        "Title": ""
 
     },
 
     "Profile":{
+        "Title": ""
 
     },
     "EditProfile":{
+        "Title": ""
 
     },
     "EditArticle":{
+        "Title": ""
 
     },
     "EditArticleList":{
+        "Title": ""
 
     }
 }

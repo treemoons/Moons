@@ -1,9 +1,5 @@
 @{ 
-    try {
-        ViewData["Title"] = ViewBag.UserName??throw new Exception();
-    } catch {
-        throw;
-    }
+    ViewData["Title"] = ViewBag.UserName??"";
     (ModelsLibrary.Language language,object Models)=(ValueTuple<ModelsLibrary.Language,object>)Model;
     try{ 
         var languageSearched=(ModelsLibrary.Language.Searched)language[nameof(ModelsLibrary.Language.Searched)];
@@ -16,4 +12,5 @@
 }
 <div>
     successed!
+
 </div>
