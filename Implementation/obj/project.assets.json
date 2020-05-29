@@ -1962,6 +1962,21 @@
           "lib/netstandard1.3/System.Xml.XmlSerializer.dll": {}
         }
       },
+      "ModelsLibrary/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "dependencies": {
+          "System.ComponentModel.Annotations": "4.7.0",
+          "System.Text.Json": "4.7.2",
+          "Utils": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/ModelsLibrary.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ModelsLibrary.dll": {}
+        }
+      },
       "Utils/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.1",
@@ -7010,6 +7025,11 @@
         "system.xml.xmlserializer.nuspec"
       ]
     },
+    "ModelsLibrary/1.0.0": {
+      "type": "project",
+      "path": "../ModelsLibrary/ModelsLibrary.csproj",
+      "msbuildProject": "../ModelsLibrary/ModelsLibrary.csproj"
+    },
     "Utils/1.0.0": {
       "type": "project",
       "path": "../Utils/Utils.csproj",
@@ -7022,6 +7042,7 @@
       "Microsoft.EntityFrameworkCore.Design >= 3.1.3",
       "Microsoft.EntityFrameworkCore.SqlServer >= 3.1.3",
       "Microsoft.Extensions.DependencyInjection >= 3.1.3",
+      "ModelsLibrary >= 1.0.0",
       "Utils >= 1.0.0"
     ]
   },
@@ -7056,6 +7077,9 @@
       "frameworks": {
         "netstandard2.1": {
           "projectReferences": {
+            "E:\\Html\\MyWork\\ModelsLibrary\\ModelsLibrary.csproj": {
+              "projectPath": "E:\\Html\\MyWork\\ModelsLibrary\\ModelsLibrary.csproj"
+            },
             "E:\\Html\\MyWork\\Utils\\Utils.csproj": {
               "projectPath": "E:\\Html\\MyWork\\Utils\\Utils.csproj"
             }

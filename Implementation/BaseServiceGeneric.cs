@@ -36,10 +36,10 @@ namespace Implementation
         [Description("单例服务")]
         AddSingleton
     }
-    
+
     /// <summary> 服务容器&#60;服务,上下文&#62;
-    /// <br/>服务：继承类
-    /// <br/>上下文：继承DbContext预定义类型
+    /// <br/>服务：继承自类
+    /// <br/>上下文：继承自DbContext预定义类型
     /// </summary>
     /// <typeparam name="TService">服务，继承类</typeparam>
     /// <typeparam name="TContext">上下文，继承DbContext预定义类型</typeparam>
@@ -101,7 +101,7 @@ namespace Implementation
             => new DBServiceProvider<TService, DBContext<TTable>>().GetDbServiceProvider(service, sqlString).GetService<TService>();
     }
 
-#region sample
+    #region sample
     /// <summary>
     /// 模型表
     /// </summary>
@@ -131,9 +131,12 @@ namespace Implementation
 
     }
     #endregion
-    
-    
+
+
     /// <summary> 用户服务基类，在使用服务容器时必须继承此类
+    /// <br/>TContext为继承DBContext泛型基类的派生类
+    /// <br/>作用：
+    /// <br/>添加服务方法和服务功能
     /// </summary>
     /// <typeparam name="TContext">上下文</typeparam>
     public class DBService<TContext> where TContext : DbContext
@@ -153,6 +156,9 @@ namespace Implementation
     /// <br/>DBContext&#60;TDbTable, TModelsBuilder&#62;
     /// <br/>DBContext：继承自DbContext预定义类型
     /// <br/>TModelsBuilder：继承自接口IEntityTypeConfiguration&#60;T&#62;
+    /// <br/>(其中接口IEntityTypeConfiguration&#60;T&#62;需要：
+    /// <br/>using Microsoft.EntityFrameworkCore;
+    /// <br/>using Microsoft.EntityFrameworkCore.Metadata.Builders;)
     /// </summary>
     /// <typeparam name="TDbTable">数据表模型类</typeparam>
     /// <typeparam name="TModelsBuilder">配置加载数据模型属性 
@@ -186,8 +192,8 @@ namespace Implementation
     }
 
     /// <summary> 上下文基类，用于加载配置数据表和数据表字段属性
-    /// <br/>DBContext&#60;TDbTable&#62;
     /// <br/>DBContext：继承自DbContext预定义类型
+    /// <br/>TDbTable：模型表类
     /// <br/>继承并重写OnModelCreating(ModelBuilder builder)方法，设置flexibility api配置TDTable的属性
     /// </summary>
     /// <typeparam name="TDbTable">数据表模型类</typeparam>

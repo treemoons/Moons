@@ -1,6 +1,6 @@
 namespace Implementation.Table
 {
-    public class Article
+    public class ArticleContext
     {
         
     }

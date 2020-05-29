@@ -31,6 +31,9 @@
         "frameworks": {
           "netstandard2.1": {
             "projectReferences": {
+              "E:\\Html\\MyWork\\ModelsLibrary\\ModelsLibrary.csproj": {
+                "projectPath": "E:\\Html\\MyWork\\ModelsLibrary\\ModelsLibrary.csproj"
+              },
               "E:\\Html\\MyWork\\Utils\\Utils.csproj": {
                 "projectPath": "E:\\Html\\MyWork\\Utils\\Utils.csproj"
               }

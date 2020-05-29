@@ -1284,6 +1284,7 @@
           "Microsoft.EntityFrameworkCore": "3.1.3",
           "Microsoft.EntityFrameworkCore.SqlServer": "3.1.3",
           "Microsoft.Extensions.DependencyInjection": "3.1.3",
+          "ModelsLibrary": "1.0.0",
           "Utils": "1.0.0"
         },
         "compile": {
