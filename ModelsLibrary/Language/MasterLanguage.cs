@@ -70,7 +70,6 @@ namespace ModelsLibrary
             public JsonElement? HeaderConvenienceOptionsArray => LanguageJson.GetProperty(nameof(HeaderConvenienceOptionsArray));
             public string Contact => LanguageJson.GetProperty(nameof(Contact))?.ToString();
             public string Language => LanguageJson.GetProperty(nameof(Language))?.ToString();
-            public JsonElement? AllLanguages => LanguageJson.GetProperty(nameof(AllLanguages));
             public string FooterCopyright => LanguageJson.GetProperty(nameof(FooterCopyright))?.ToString();
             public string MenuMyProfile => LanguageJson.GetProperty(nameof(MenuMyProfile))?.ToString();
             public string CurrentLanguageCode => LanguageJson.GetProperty(nameof(CurrentLanguageCode))?.ToString();

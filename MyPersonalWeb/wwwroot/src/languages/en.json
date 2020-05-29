@@ -42,10 +42,6 @@
         }],
         "Contact": "contact me",
         "Language": "Language",
-        "AllLanguages":{
-            "en": "English",
-            "zh": "Chinese"
-        },
         "LoginArray": {
             "Title": "WELCOME TO TREEMOONS",
             "UserName": "UserName",

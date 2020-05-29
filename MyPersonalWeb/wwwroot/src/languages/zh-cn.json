@@ -97,10 +97,6 @@
         }],
         "Contact": "联系我",
         "Language": "语言",
-        "AllLanguages": {
-            "en": "英语",
-            "zh": "中文"
-        },
         "LoginArray": {
             "Title": "欢迎来到墨月之神",
             "UserName": "用户名/邮箱",
