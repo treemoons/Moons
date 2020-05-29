@@ -162,6 +162,7 @@ function IsInputEmpty(input) {
         return false;
     }
 }
+
 /**
  * login to Moons
  */

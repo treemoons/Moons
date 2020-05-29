@@ -21,7 +21,7 @@ namespace CommonUtils
         public static Hashtable LanguageByteArrayDictionary { get; set; } = Hashtable.Synchronized(new Hashtable());
         public static void ReadAllLanguageJson()
         {
-            var langDictionary = new DirectoryInfo("./wwwroot/src/language");
+            var langDictionary = new DirectoryInfo("./wwwroot/src/languages");
             var fileInfos = langDictionary.GetFileSystemInfos();
             foreach (var file in fileInfos)
             {
@@ -34,18 +34,7 @@ namespace CommonUtils
                 }
             }
         }
-        public static bool TryAdd(this Hashtable hashtable, object key, object value)
-        {
-            try
-            {
-                hashtable.Add(key, value);
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
+        
         public class RSAData
         {
             /// <summary> 

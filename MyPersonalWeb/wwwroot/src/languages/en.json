@@ -41,9 +41,11 @@
             "Option4": ["footer5", "/home/privacy"]
         }],
         "Contact": "contact me",
-        "language": "language",
-        "en": "English",
-        "zh": "Chinese",
+        "Language": "Language",
+        "AllLanguages":{
+            "en": "English",
+            "zh": "Chinese"
+        },
         "LoginArray": {
             "Title": "WELCOME TO TREEMOONS",
             "UserName": "UserName",

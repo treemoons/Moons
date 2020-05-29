@@ -4,6 +4,7 @@
     var login=languageMaster.LoginArray;
     var headerConvenienceOptions=languageMaster.HeaderConvenienceOptionsArray.Value.EnumerateObject();
     var userProfileOptions=languageMaster.UserOptionsleftArray.Value.EnumerateObject();
+    var allLanguages=languageMaster.AllLanguages.Value.EnumerateObject();
 }
 <!DOCTYPE html>
 <html lang="@languageMaster.CurrentLanguageCode">
@@ -152,10 +153,12 @@
             <div class="copyright">
                 <p>©@DateTime.Now.ToString("yyyy") @languageMaster.FooterCopyright</p>
                 <div class="langselect">
-                    @languageMaster.language ：<span id="selected" onclick="showlang()">@languageMaster.CurrentLanguage</span><br>
+                    @languageMaster.Language ：<span id="selected" onclick="showlang()">@languageMaster.CurrentLanguage</span><br>
                     <div name="lang" id="lang">
-                        <option value="zh">@languageMaster.zh</option>
-                        <option value="en">@languageMaster.en</option>
+                        @foreach (var lang in allLanguages)
+                        {
+                            <option value="@lang.Name">@lang.Value</option>
+                        }
                     </div>
                 </div>
                 <p></p>

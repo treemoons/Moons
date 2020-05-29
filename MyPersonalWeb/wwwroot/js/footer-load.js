@@ -1,10 +1,7 @@
 
 windowResize.push(resizeLogin);
 windowOnload.push(loadlang, selectedlang);
-document.getElementById('lang').addEventListener('click', (ele,e) => {
-    debugger
-    ele.style.display = 'none';
-},false)
+
 /**
  * 展示menu列表
  */

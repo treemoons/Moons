@@ -31,6 +31,9 @@ namespace ModelsLibrary.User
         [DisplayName("密码")]
         public string Password { get; set; }
         public string LastLoginTime { get; set; }
+
+        [StringLength(30,MinimumLength=1, ErrorMessage = "{0}的长度在{2}至{1}个字符间")]
+        public string EMail{ get; set; }
         public string IPAddress { get; set; }
         public string IsRemembered { get; set; }
     }

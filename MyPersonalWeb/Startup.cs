@@ -61,7 +61,7 @@ namespace MyPersonalWeb
                     name: "default",
                     pattern: "{id?}/{controller=Home}/{action=Index}");
                 endpoints.MapAreaControllerRoute(
-                   name: "enlish", "english",
+                   name: "admin", "admin",
                    pattern: "{id?}/{area:exists}/{controller=Home}/{action=Index}"
                );
                 // endpoints.MapBlazorHub();

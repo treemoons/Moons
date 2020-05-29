@@ -69,9 +69,8 @@ namespace ModelsLibrary
 
             public JsonElement? HeaderConvenienceOptionsArray => LanguageJson.GetProperty(nameof(HeaderConvenienceOptionsArray));
             public string Contact => LanguageJson.GetProperty(nameof(Contact))?.ToString();
-            public string language => LanguageJson.GetProperty(nameof(language))?.ToString();
-            public string en => LanguageJson.GetProperty(nameof(en))?.ToString();
-            public string zh => LanguageJson.GetProperty(nameof(zh))?.ToString();
+            public string Language => LanguageJson.GetProperty(nameof(Language))?.ToString();
+            public JsonElement? AllLanguages => LanguageJson.GetProperty(nameof(AllLanguages));
             public string FooterCopyright => LanguageJson.GetProperty(nameof(FooterCopyright))?.ToString();
             public string MenuMyProfile => LanguageJson.GetProperty(nameof(MenuMyProfile))?.ToString();
             public string CurrentLanguageCode => LanguageJson.GetProperty(nameof(CurrentLanguageCode))?.ToString();
