@@ -1,9 +1,0 @@
-E:\Html\MyWork\Utils\bin\Debug\netstandard2.0\Utils.deps.json
-E:\Html\MyWork\Utils\bin\Debug\netstandard2.0\Utils.dll
-E:\Html\MyWork\Utils\bin\Debug\netstandard2.0\Utils.pdb
-E:\Html\MyWork\Utils\obj\Debug\netstandard2.0\Utils.csprojAssemblyReference.cache
-E:\Html\MyWork\Utils\obj\Debug\netstandard2.0\Utils.csproj.CoreCompileInputs.cache
-E:\Html\MyWork\Utils\obj\Debug\netstandard2.0\Utils.AssemblyInfoInputs.cache
-E:\Html\MyWork\Utils\obj\Debug\netstandard2.0\Utils.AssemblyInfo.cs
-E:\Html\MyWork\Utils\obj\Debug\netstandard2.0\Utils.dll
-E:\Html\MyWork\Utils\obj\Debug\netstandard2.0\Utils.pdb
