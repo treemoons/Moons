@@ -9,14 +9,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using ModelsLibrary.User;
-namespace Implementation.Table.User
+using UserTables = ModelsLibrary.User;
+namespace Implementation.Table.User.ModelsBuilder
 {
-    /// <summary>
-    /// 添加所有模型属性，阴影属性等
-    /// </summary>
-    public class UserModelBuilder:IEntityTypeConfiguration<UserProfile>
+    public class UserSignIn
     {
-        public void Configure(EntityTypeBuilder<UserProfile> builder)
-        { }
+
     }
 }

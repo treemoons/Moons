@@ -15,6 +15,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Implementation
 {
+
     /// <summary>
     /// 服务类型
     /// </summary>
@@ -76,29 +77,61 @@ namespace Implementation
     /// </summary>
     public static class ServiceContainer
     {
-        /// <summary> 获取服务容器（带ModelBuider）</summary>
+        #region Get Sigle Table Service
+        /// <summary> 获取单表服务容器（带ModelBuider）</summary>
         /// <param name="service">服务类型</param>
         /// <param name="sqlString">连接服务器数据库连接字符串</param>
         /// <typeparam name="TService">服务类</typeparam>
         /// <typeparam name="TTable">数据表类</typeparam>
         /// <typeparam name="TModelBuilder">模型类</typeparam>
         /// <returns>服务的容器</returns>
-        public static TService GetDbService<TService, TTable, TModelBuilder>(EService service, string sqlString)
+        public static TService GetDbSigleTableService<TService, TTable, TModelBuilder>(EService service, string sqlString)
             where TService : DBService<DBContext<TTable, TModelBuilder>>
             where TTable : class
             where TModelBuilder : IEntityTypeConfiguration<TTable>, new()
             => new DBServiceProvider<TService, DBContext<TTable, TModelBuilder>>().GetDbServiceProvider(service, sqlString).GetService<TService>();
 
-        /// <summary> 获取服务容器（不带ModelBuider） </summary>
+        /// <summary> 获取单表服务容器（不带ModelBuider） </summary>
         /// <param name="service">服务类型</param>
         /// <param name="sqlString">连接服务器数据库连接字符串</param>
         /// <typeparam name="TService">服务类</typeparam>
         /// <typeparam name="TTable">数据表类</typeparam>
         /// <returns>服务的容器</returns>
-        public static TService GetDbService<TService, TTable>(EService service, string sqlString)
+        public static TService GetDbSigleTableService<TService, TTable>(EService service, string sqlString)
             where TService : DBService<DBContext<TTable>>
             where TTable : class
             => new DBServiceProvider<TService, DBContext<TTable>>().GetDbServiceProvider(service, sqlString).GetService<TService>();
+        #endregion 
+
+        #region Get Multi Tables Service
+        /// <summary> 获取多表服务容器（带ModelBuider）</summary>
+        /// <param name="service">服务类型</param>
+        /// <param name="sqlString">连接服务器数据库连接字符串</param>
+        /// <typeparam name="TService">服务类</typeparam>
+        /// <typeparam name="TTable">数据表类</typeparam>
+        /// <typeparam name="TModelBuilder">模型类</typeparam>
+        /// <returns>服务的容器</returns>
+        public static TService GetDbMultiTablesService<TService, TTable1, TTable2, TModelBuilder1, TModelBuilder2>(EService service, string sqlString)
+            where TService : DBService<DBContextsWithModelsBuilder<TTable1, TTable2, TModelBuilder1, TModelBuilder2>>
+            where TTable1 : class
+            where TTable2 : class
+            where TModelBuilder1 : IEntityTypeConfiguration<TTable1>, new()
+            where TModelBuilder2 : IEntityTypeConfiguration<TTable2>, new()
+            => new DBServiceProvider<TService, DBContextsWithModelsBuilder<TTable1, TTable2, TModelBuilder1, TModelBuilder2>>().GetDbServiceProvider(service, sqlString).GetService<TService>();
+
+        /// <summary> 获取多表服务容器（不带ModelBuider） </summary>
+        /// <param name="service">服务类型</param>
+        /// <param name="sqlString">连接服务器数据库连接字符串</param>
+        /// <typeparam name="TService">服务类</typeparam>
+        /// <typeparam name="TTable">数据表类</typeparam>
+        /// <returns>服务的容器</returns>
+        public static TService GetDbMultiTablesService<TService, TTable1, TTable2>(EService service, string sqlString)
+            where TService : DBService<DBContexts<TTable1, TTable2>>
+            where TTable1 : class
+            where TTable2 : class
+            => new DBServiceProvider<TService, DBContexts<TTable1, TTable2>>().GetDbServiceProvider(service, sqlString).GetService<TService>();
+
+        #endregion
     }
 
     #region sample
@@ -109,7 +142,7 @@ namespace Implementation
     {
         void s()
         {
-            var service = ServiceContainer.GetDbService<DBS, c, b>(EService.AddScoped, "");// 获取服务
+            var service = ServiceContainer.GetDbSigleTableService<DBS, c, b>(EService.AddScoped, "");// 获取服务
             service.CreateDataBaseAsync().GetAwaiter();
         }
     }
@@ -152,7 +185,9 @@ namespace Implementation
         public async Task<bool> DeleteDataBaseAsync() =>
             await context.Database.EnsureDeletedAsync();
     }
-    /// <summary> 上下文基类，用于加载配置数据表和数据表字段属性
+
+    #region 单表上下文基类，sigle table DBcontext
+    /// <summary> 【单表】上下文基类，用于加载配置数据表和数据表字段属性
     /// <br/>DBContext&#60;TDbTable, TModelsBuilder&#62;
     /// <br/>DBContext：继承自DbContext预定义类型
     /// <br/>TModelsBuilder：继承自接口IEntityTypeConfiguration&#60;T&#62;
@@ -164,7 +199,9 @@ namespace Implementation
     /// <typeparam name="TModelsBuilder">配置加载数据模型属性 
     /// <br/><i>继承自接口IEntityTypeConfiguration&#60;TDbTable&#62;</i>
     /// </typeparam>
-    public class DBContext<TDbTable, TModelsBuilder> : DbContext where TDbTable : class where TModelsBuilder : IEntityTypeConfiguration<TDbTable>, new()
+    public class DBContext<TDbTable, TModelsBuilder> : DbContext
+     where TDbTable : class
+     where TModelsBuilder : IEntityTypeConfiguration<TDbTable>, new()
     {
         public DBContext(DbContextOptions<DBContext<TDbTable, TModelsBuilder>> options) : base(options) { }
         /// <summary>
@@ -190,6 +227,7 @@ namespace Implementation
             builder.ApplyConfiguration(new TModelsBuilder());
         }
     }
+
 
     /// <summary> 上下文基类，用于加载配置数据表和数据表字段属性
     /// <br/>DBContext：继承自DbContext预定义类型
@@ -221,5 +259,447 @@ namespace Implementation
         {
             base.OnModelCreating(builder);
         }
+
     }
+
+    #endregion
+
+    #region 多表上下文基类，multi tabels DBcontext
+    /// <summary> 上下文基类，用于加载配置数据表和数据表字段属性
+    /// <br/>DBContext：继承自DbContext预定义类型
+    /// <br/>TDbTable：模型表类
+    /// <br/>可继承并重写OnModelCreating(ModelBuilder builder)方法，设置flexibility api配置TDTable的属性
+    /// </summary>
+    /// <typeparam name="TDbTable1">数据表模型类1</typeparam>
+    /// <typeparam name="TDbTable2">数据表模型类2</typeparam>
+    public class DBContexts<TDbTable1, TDbTable2> : DbContext
+     where TDbTable1 : class
+     where TDbTable2 : class
+    {
+        public DBContexts(DbContextOptions<DBContexts<TDbTable1, TDbTable2>> options) : base(options) { }
+        /// <summary>
+        /// 控制的表,对应泛型的第一个类型
+        /// </summary>
+        /// <value>所有表的属性值及方法</value>
+        public DbSet<TDbTable1> Table1 { get; set; }
+        /// <summary>
+        /// 控制的表，对应泛型的第二个类型
+        /// </summary>
+        /// <value>所有表的属性值及方法</value>
+        public DbSet<TDbTable2> Table2 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="optionsBuilder"></param>
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            base.OnConfiguring(optionsBuilder);
+        }
+        /// <summary>
+        /// 流利api可以配置加载属性，通过ModelBuilder添加属性
+        /// </summary>
+        /// <param name="builder">添加模型属性配置</param>
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+        }
+    }
+
+    /// <summary> 上下文基类，用于加载配置数据表和数据表字段属性
+    /// <br/>DBContext：继承自DbContext预定义类型
+    /// <br/>TDbTable：模型表类
+    /// <br/>可继承并重写OnModelCreating(ModelBuilder builder)方法，设置flexibility api配置TDTable的属性
+    /// </summary>
+    /// <typeparam name="TDbTable1">数据表模型类1</typeparam>
+    /// <typeparam name="TDbTable2">数据表模型类2</typeparam>
+    /// <typeparam name="TDbTable3">数据表模型类3</typeparam>
+    public class DBContexts<TDbTable1, TDbTable2, TDbTable3> : DbContext
+     where TDbTable1 : class
+     where TDbTable2 : class
+     where TDbTable3 : class
+    {
+        public DBContexts(DbContextOptions<DBContexts<TDbTable1, TDbTable2, TDbTable3>> options) : base(options) { }
+        /// <summary>
+        /// 控制的表,对应泛型的第一个类型
+        /// </summary>
+        /// <value>所有表的属性值及方法</value>
+        public DbSet<TDbTable1> Table1 { get; set; }
+        /// <summary>
+        /// 控制的表，对应泛型的第二个类型
+        /// </summary>
+        /// <value>所有表的属性值及方法</value>
+        public DbSet<TDbTable2> Table2 { get; set; }
+        /// <summary>
+        /// 控制的表，对应泛型的第二个类型
+        /// </summary>
+        /// <value>所有表的属性值及方法</value>
+        public DbSet<TDbTable3> Table3 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="optionsBuilder"></param>
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            base.OnConfiguring(optionsBuilder);
+        }
+        /// <summary>
+        /// 流利api可以配置加载属性，通过ModelBuilder添加属性
+        /// </summary>
+        /// <param name="builder">添加模型属性配置</param>
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+        }
+    }
+
+
+    public class DBContexts<TDbTable1, TDbTable2, TDbTable3, TDbTable4> : DbContext
+      where TDbTable1 : class
+      where TDbTable2 : class
+      where TDbTable3 : class
+      where TDbTable4 : class
+    {
+        public DBContexts(DbContextOptions<DBContexts<TDbTable1, TDbTable2, TDbTable3, TDbTable4>> options) : base(options) { }
+        /// <summary>
+        /// 控制的表,对应泛型的第1个类型
+        /// </summary>
+        /// <value>所有表的属性值及方法</value>
+        public DbSet<TDbTable1> Table1 { get; set; }
+        /// <summary>
+        /// 控制的表，对应泛型的第2个类型
+        /// </summary>
+        /// <value>所有表的属性值及方法</value>
+        public DbSet<TDbTable2> Table2 { get; set; }
+        /// <summary>
+        /// 控制的表，对应泛型的第3个类型
+        /// </summary>
+        /// <value>所有表的属性值及方法</value>
+        public DbSet<TDbTable3> Table3 { get; set; }
+        /// <summary>
+        /// 控制的表，对应泛型的第4个类型
+        /// </summary>
+        /// <value>所有表的属性值及方法</value>
+        public DbSet<TDbTable4> Table4 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="optionsBuilder"></param>
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            base.OnConfiguring(optionsBuilder);
+        }
+        /// <summary>
+        /// 流利api可以配置加载属性，通过ModelBuilder添加属性
+        /// </summary>
+        /// <param name="builder">添加模型属性配置</param>
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+        }
+    }
+
+
+    public class DBContextsWithModelsBuilder<TDbTable1, TDbTable2, TDbTable3, TDbTable4, TDbTable5> : DbContext
+      where TDbTable1 : class
+      where TDbTable2 : class
+      where TDbTable3 : class
+      where TDbTable4 : class
+      where TDbTable5 : class
+    {
+        public DBContextsWithModelsBuilder(DbContextOptions<DBContextsWithModelsBuilder<TDbTable1, TDbTable2, TDbTable3, TDbTable4, TDbTable5>> options) : base(options) { }
+        /// <summary>
+        /// 控制的表,对应泛型的第1个类型
+        /// </summary>
+        /// <value>所有表的属性值及方法</value>
+        public DbSet<TDbTable1> Table1 { get; set; }
+        /// <summary>
+        /// 控制的表，对应泛型的第2个类型
+        /// </summary>
+        /// <value>所有表的属性值及方法</value>
+        public DbSet<TDbTable2> Table2 { get; set; }
+        /// <summary>
+        /// 控制的表，对应泛型的第3个类型
+        /// </summary>
+        /// <value>所有表的属性值及方法</value>
+        public DbSet<TDbTable3> Table3 { get; set; }
+        /// <summary>
+        /// 控制的表，对应泛型的第4个类型
+        /// </summary>
+        /// <value>所有表的属性值及方法</value>
+        public DbSet<TDbTable4> Table4 { get; set; }
+        /// <summary>
+        /// 控制的表，对应泛型的第5个类型
+        /// </summary>
+        /// <value>所有表的属性值及方法</value>
+        public DbSet<TDbTable4> Table5 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="optionsBuilder"></param>
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            base.OnConfiguring(optionsBuilder);
+        }
+        /// <summary>
+        /// 流利api可以配置加载属性，通过ModelBuilder添加属性
+        /// </summary>
+        /// <param name="builder">添加模型属性配置</param>
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+        }
+    }
+
+    /// <summary> 【多表】上下文基类，用于加载配置数据表和数据表字段属性
+    /// <br/>DBContext&#60;TDbTable1, TDbTable2, TModelsBuilder1, TModelsBuilder2&#62;
+    /// <br/>DBContext：继承自DbContext预定义类型
+    /// <br/>TModelsBuilder：继承自接口IEntityTypeConfiguration&#60;T&#62;
+    /// <br/>(其中接口IEntityTypeConfiguration&#60;T&#62;需要：
+    /// <br/>using Microsoft.EntityFrameworkCore;
+    /// <br/>using Microsoft.EntityFrameworkCore.Metadata.Builders;)
+    /// </summary>
+    /// <typeparam name="TDbTable1">数据表模型类1</typeparam>
+    /// <typeparam name="TDbTable2">数据表模型类2</typeparam>
+    /// <typeparam name="TModelsBuilder">配置加载数据模型属性 
+    /// <br/><i>继承自接口IEntityTypeConfiguration&#60;TDbTable&#62;</i>
+    /// </typeparam>
+    public class DBContextsWithModelsBuilder<TDbTable1, TDbTable2, TModelsBuilder1, TModelsBuilder2> : DbContext
+    where TDbTable1 : class
+    where TDbTable2 : class
+    where TModelsBuilder1 : IEntityTypeConfiguration<TDbTable1>, new()
+    where TModelsBuilder2 : IEntityTypeConfiguration<TDbTable2>, new()
+    {
+        public DBContextsWithModelsBuilder(DbContextOptions<DBContextsWithModelsBuilder<TDbTable1, TDbTable2, TModelsBuilder1, TModelsBuilder2>> options) : base(options) { }
+        /// <summary>
+        /// 控制的表,对应泛型的第一个类型
+        /// </summary>
+        /// <value>所有表的属性值及方法</value>
+        public DbSet<TDbTable1> Table1 { get; set; }
+        /// <summary>
+        /// 控制的表，对应泛型的第二个类型
+        /// </summary>
+        /// <value>所有表的属性值及方法</value>
+        public DbSet<TDbTable2> Table2 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="optionsBuilder"></param>
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            base.OnConfiguring(optionsBuilder);
+        }
+        /// <summary>
+        /// 流利api可以配置加载属性，通过ModelBuilder添加属性
+        /// </summary>
+        /// <param name="builder">添加模型属性配置</param>
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+            builder.ApplyConfiguration(new TModelsBuilder1());
+            builder.ApplyConfiguration(new TModelsBuilder2());
+        }
+    }
+
+
+    /// <summary> 【多表】上下文基类，用于加载配置数据表和数据表字段属性
+    /// <br/>DBContext&#60;TDbTable1, TDbTable2, TModelsBuilder1, TModelsBuilder2&#62;
+    /// <br/>DBContext：继承自DbContext预定义类型
+    /// <br/>TModelsBuilder：继承自接口IEntityTypeConfiguration&#60;T&#62;
+    /// <br/>(其中接口IEntityTypeConfiguration&#60;T&#62;需要：
+    /// <br/>using Microsoft.EntityFrameworkCore;
+    /// <br/>using Microsoft.EntityFrameworkCore.Metadata.Builders;)
+    /// </summary>
+    /// <typeparam name="TDbTable1">数据表模型类1</typeparam>
+    /// <typeparam name="TDbTable2">数据表模型类2</typeparam>
+    /// <typeparam name="TModelsBuilder">配置加载数据模型属性 
+    /// <br/><i>继承自接口IEntityTypeConfiguration&#60;TDbTable&#62;</i>
+    /// </typeparam>
+    public class DBContextsWithModelsBuilder<TDbTable1, TDbTable2, TDbTable3, TModelsBuilder1, TModelsBuilder2, TModelsBuilder3> : DbContext
+    where TDbTable1 : class
+    where TDbTable2 : class
+    where TDbTable3 : class
+    where TModelsBuilder1 : IEntityTypeConfiguration<TDbTable1>, new()
+    where TModelsBuilder2 : IEntityTypeConfiguration<TDbTable2>, new()
+    where TModelsBuilder3 : IEntityTypeConfiguration<TDbTable3>, new()
+    {
+        public DBContextsWithModelsBuilder(DbContextOptions<DBContextsWithModelsBuilder<TDbTable1, TDbTable2, TDbTable3, TModelsBuilder1, TModelsBuilder2, TModelsBuilder3>> options) : base(options) { }
+        /// <summary>
+        /// 控制的表,对应泛型的第1个类型
+        /// </summary>
+        /// <value>所有表的属性值及方法</value>
+        public DbSet<TDbTable1> Table1 { get; set; }
+        /// <summary>
+        /// 控制的表，对应泛型的第2个类型
+        /// </summary>
+        /// <value>所有表的属性值及方法</value>
+        public DbSet<TDbTable2> Table2 { get; set; }
+        /// <summary>
+        /// 控制的表，对应泛型的第3个类型
+        /// </summary>
+        /// <value>所有表的属性值及方法</value>
+        public DbSet<TDbTable3> Table3 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="optionsBuilder"></param>
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            base.OnConfiguring(optionsBuilder);
+        }
+        /// <summary>
+        /// 流利api可以配置加载属性，通过ModelBuilder添加属性
+        /// </summary>
+        /// <param name="builder">添加模型属性配置</param>
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+            builder.ApplyConfiguration(new TModelsBuilder1());
+            builder.ApplyConfiguration(new TModelsBuilder2());
+            builder.ApplyConfiguration(new TModelsBuilder3());
+        }
+    }
+
+
+    /// <summary> 【多表】上下文基类，用于加载配置数据表和数据表字段属性
+    /// <br/>DBContext：继承自DbContext预定义类型
+    /// <br/>TModelsBuilder：继承自接口IEntityTypeConfiguration&#60;T&#62;
+    /// <br/>(其中接口IEntityTypeConfiguration&#60;T&#62;需要：
+    /// <br/>using Microsoft.EntityFrameworkCore;
+    /// <br/>using Microsoft.EntityFrameworkCore.Metadata.Builders;)
+    /// </summary>
+    /// <typeparam name="TDbTable1">数据表模型类1</typeparam>
+    /// <typeparam name="TDbTable2">数据表模型类2</typeparam>
+    /// <typeparam name="TModelsBuilder">配置加载数据模型属性 
+    /// <br/><i>继承自接口IEntityTypeConfiguration&#60;TDbTable&#62;</i>
+    /// </typeparam>
+    public class DBContextsWithModelsBuilder<TDbTable1, TDbTable2, TDbTable3, TDbTable4, TModelsBuilder1, TModelsBuilder2, TModelsBuilder3,TModelsBuilder4> : DbContext
+      where TDbTable1 : class
+      where TDbTable2 : class
+      where TDbTable3 : class
+      where TDbTable4 : class
+      where TModelsBuilder1 : IEntityTypeConfiguration<TDbTable1>, new()
+      where TModelsBuilder2 : IEntityTypeConfiguration<TDbTable2>, new()
+      where TModelsBuilder3 : IEntityTypeConfiguration<TDbTable3>, new()
+      where TModelsBuilder4 : IEntityTypeConfiguration<TDbTable4>, new()
+    {
+        public DBContextsWithModelsBuilder(DbContextOptions<DBContextsWithModelsBuilder<TDbTable1, TDbTable2, TDbTable3, TDbTable4, TModelsBuilder1, TModelsBuilder2, TModelsBuilder3,TModelsBuilder4>> options) : base(options) { }
+        /// <summary>
+        /// 控制的表,对应泛型的第1个类型
+        /// </summary>
+        /// <value>所有表的属性值及方法</value>
+        public DbSet<TDbTable1> Table1 { get; set; }
+        /// <summary>
+        /// 控制的表，对应泛型的第2个类型
+        /// </summary>
+        /// <value>所有表的属性值及方法</value>
+        public DbSet<TDbTable2> Table2 { get; set; }
+        /// <summary>
+        /// 控制的表，对应泛型的第3个类型
+        /// </summary>
+        /// <value>所有表的属性值及方法</value>
+        public DbSet<TDbTable3> Table3 { get; set; }
+        /// <summary>
+        /// 控制的表，对应泛型的第4个类型
+        /// </summary>
+        /// <value>所有表的属性值及方法</value>
+        public DbSet<TDbTable4> Table4 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="optionsBuilder"></param>
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            base.OnConfiguring(optionsBuilder);
+        }
+        /// <summary>
+        /// 流利api可以配置加载属性，通过ModelBuilder添加属性
+        /// </summary>
+        /// <param name="builder">添加模型属性配置</param>
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+            builder.ApplyConfiguration(new TModelsBuilder1());
+            builder.ApplyConfiguration(new TModelsBuilder2());
+            builder.ApplyConfiguration(new TModelsBuilder3());
+            builder.ApplyConfiguration(new TModelsBuilder4());
+        }
+    }
+
+
+    /// <summary> 【多表】上下文基类，用于加载配置数据表和数据表字段属性
+    /// <br/>DBContext：继承自DbContext预定义类型
+    /// <br/>TModelsBuilder：继承自接口IEntityTypeConfiguration&#60;T&#62;
+    /// <br/>(其中接口IEntityTypeConfiguration&#60;T&#62;需要：
+    /// <br/>using Microsoft.EntityFrameworkCore;
+    /// <br/>using Microsoft.EntityFrameworkCore.Metadata.Builders;)
+    /// </summary>
+    /// <typeparam name="TDbTable1">数据表模型类1</typeparam>
+    /// <typeparam name="TDbTable2">数据表模型类2</typeparam>
+    /// <typeparam name="TDbTable3">数据表模型类3</typeparam>
+    /// <typeparam name="TDbTable4">数据表模型类4</typeparam>
+    /// <typeparam name="TDbTable5">数据表模型类5</typeparam>
+    /// <typeparam name="TModelsBuilder1">配置加载数据模型属性 
+    /// <br/><i>继承自接口IEntityTypeConfiguration&#60;TDbTable&#62;</i>
+    /// </typeparam>
+    public class DBContextsWithModelsBuilder<TDbTable1, TDbTable2, TDbTable3, TDbTable4,TDbTable5, TModelsBuilder1, TModelsBuilder2, TModelsBuilder3, TModelsBuilder4,TModelsBuilder5> : DbContext
+      where TDbTable1 : class
+      where TDbTable2 : class
+      where TDbTable3 : class
+      where TDbTable4 : class
+      where TDbTable5 : class
+      where TModelsBuilder1 : IEntityTypeConfiguration<TDbTable1>, new()
+      where TModelsBuilder2 : IEntityTypeConfiguration<TDbTable2>, new()
+      where TModelsBuilder3 : IEntityTypeConfiguration<TDbTable3>, new()
+      where TModelsBuilder4 : IEntityTypeConfiguration<TDbTable4>, new()
+      where TModelsBuilder5 : IEntityTypeConfiguration<TDbTable5>, new()
+    {
+        public DBContextsWithModelsBuilder(DbContextOptions<DBContextsWithModelsBuilder<TDbTable1, TDbTable2, TDbTable3, TDbTable4,TDbTable5, TModelsBuilder1, TModelsBuilder2, TModelsBuilder3, TModelsBuilder4,TModelsBuilder5>> options) : base(options) { }
+        /// <summary>
+        /// 控制的表,对应泛型的第1个类型
+        /// </summary>
+        /// <value>所有表的属性值及方法</value>
+        public DbSet<TDbTable1> Table1 { get; set; }
+        /// <summary>
+        /// 控制的表，对应泛型的第2个类型
+        /// </summary>
+        /// <value>所有表的属性值及方法</value>
+        public DbSet<TDbTable2> Table2 { get; set; }
+        /// <summary>
+        /// 控制的表，对应泛型的第3个类型
+        /// </summary>
+        /// <value>所有表的属性值及方法</value>
+        public DbSet<TDbTable3> Table3 { get; set; }
+        /// <summary>
+        /// 控制的表，对应泛型的第4个类型
+        /// </summary>
+        /// <value>所有表的属性值及方法</value>
+        public DbSet<TDbTable4> Table4 { get; set; }
+        /// <summary>
+        /// 控制的表，对应泛型的第5个类型
+        /// </summary>
+        /// <value>所有表的属性值及方法</value>
+        public DbSet<TDbTable4> Table5 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="optionsBuilder"></param>
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            base.OnConfiguring(optionsBuilder);
+        }
+        /// <summary>
+        /// 流利api可以配置加载属性，通过ModelBuilder添加属性
+        /// </summary>
+        /// <param name="builder">添加模型属性配置</param>
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+            builder.ApplyConfiguration(new TModelsBuilder1());
+            builder.ApplyConfiguration(new TModelsBuilder2());
+            builder.ApplyConfiguration(new TModelsBuilder3());
+            builder.ApplyConfiguration(new TModelsBuilder4());
+            builder.ApplyConfiguration(new TModelsBuilder5());
+        }
+    }
+    #endregion
 }

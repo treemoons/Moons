@@ -16,15 +16,19 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using ModelsLibrary.User;
 namespace Implementation.Table.User
 {
+    
     /// <summary>
     /// 添加所有服务方法
     /// </summary>
     public class UserService:DBService<UserContext>
     {
         public UserService(UserContext putContext) : base(putContext) { }
-        public static bool CheckingLogin(string username, string password)
+        public async  Task<bool> CheckingLogin(string username, string password)
         {
-            return false;
+           var find= await context.Table.FirstOrDefaultAsync();
+            return find==null?false:true;
         }
+
+       
     }
 }
