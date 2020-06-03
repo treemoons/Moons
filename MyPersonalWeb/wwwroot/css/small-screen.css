@@ -145,6 +145,7 @@ body{
     z-index: 89;
     left: 0;
     top: -100vh;
+    padding-bottom: 10vh;
     overflow-y: scroll;
 }
 .menu-option div {
