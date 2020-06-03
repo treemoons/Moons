@@ -1,17 +1,5 @@
 @{
-    try {
-        @* ViewData["Title"] = ViewBag.UserName??throw new Exception(); *@
-    } catch {
-        throw;
-    }
-    (ModelsLibrary.Language language,object Models)=(ValueTuple<ModelsLibrary.Language,object>)Model;
-    try{ 
-        var languageProfile=(ModelsLibrary.Language.Profile)language[nameof(ModelsLibrary.Language.Profile)];
-    }catch(Exception ex){
-    <script>
-        console.log('@ex.Message')
-    </script>
-    }
+    var languageProfile=(Language.Profile)Utils.Languages[ViewBag.lang][nameof(Language.Profile)];
 }
 <div class="profile-container">
     <aside class="left-aside">

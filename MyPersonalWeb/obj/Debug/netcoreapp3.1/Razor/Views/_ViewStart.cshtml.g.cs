@@ -26,8 +26,15 @@ using MyPersonalWeb.Models;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 3 "E:\Html\MyWork\MyPersonalWeb\Views\_ViewImports.cshtml"
+using ModelsLibrary.Languages;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"4db4318fd7203b5568c96af3952b3bb946e52ab1", @"/Views/_ViewStart.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"00860175af1fb77bb0c424d5fc71d5c4b738756f", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"841d8175322e625cc1e7ade094fffb7b01a5aa4e", @"/Views/_ViewImports.cshtml")]
     public class Views__ViewStart : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         #pragma warning disable 1998

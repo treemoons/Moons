@@ -48,10 +48,10 @@ namespace MyPersonalWeb.Controllers
                 {
                     HttpContext.Session.SetString("CurrentUser", users.UserName);
                     HttpContext.Response.Cookies.Append(LoginCookieBase64.GetCookieUserNameBase64,
-                        Utils.RSAData.RSAEncryption(users.UserName, "username"),
+                        RSAData.RSAEncryption(users.UserName, "username"),
                         new CookieOptions { Expires = DateTimeOffset.Now.AddDays(7d) });
                     HttpContext.Response.Cookies.Append(LoginCookieBase64.GetCookiePasswordBase64,
-                        Utils.RSAData.RSAEncryption(users.Password, "password"),
+                        RSAData.RSAEncryption(users.Password, "password"),
                         new CookieOptions { Expires = DateTimeOffset.Now.AddDays(7d) });
                     var IsRemembered = users.IsRemembered;
                     if (IsRemembered == "true")

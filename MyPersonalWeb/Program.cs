@@ -22,7 +22,7 @@ namespace MyPersonalWeb
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    Utils.ReadAllLanguageJson();
+                    ModelsLibrary.Languages.Utils.ReadAllLanguageJson();
                     webBuilder.UseStartup<Startup>();
                 });
     }

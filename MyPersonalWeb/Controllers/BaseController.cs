@@ -16,9 +16,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Logging;
 using MyPersonalWeb.Models;
-using ModelsLibrary.User;
 using ModelsLibrary;
 using CommonUtils;
+using Languages= ModelsLibrary.Languages;
 namespace MyPersonalWeb.Controllers
 {
     /// <summary>
@@ -26,16 +26,6 @@ namespace MyPersonalWeb.Controllers
     /// </summary>
     public class PermissionController : Controller
     {
-        [NonAction]
-         public override ViewResult View(object models) => base.View((new Language(Utils.LanguageJsonElementDictionary[ViewBag.lang]), models));
-
-        [NonAction]
-        public override ViewResult View(string viewName, object models) => base.View(viewName, (new Language(Utils.LanguageJsonElementDictionary[ViewBag.lang]), models));
-
-        [NonAction]
-        public override ViewResult View(string viewName) => base.View(viewName, new Language(Utils.LanguageJsonElementDictionary[ViewBag.lang]));
-        [NonAction]
-        public override ViewResult View() => base.View(new Language(Utils.LanguageJsonElementDictionary[ViewBag.lang]));
 
         [NonAction]
         public override void OnActionExecuting(ActionExecutingContext filterContext)
@@ -49,7 +39,7 @@ namespace MyPersonalWeb.Controllers
             {
                 parameterValue = filterContext.RouteData.Values["id"].ToString();
                 var allLanguage =
-                    from lang in Utils.LanguageJsonElementDictionary.Keys.Cast<string>()
+                    from lang in Languages.Utils.LanguageJsonElementDictionary.Keys.Cast<string>()
                     where lang.Contains(parameterValue) //judging id which is contained by all languages
                     select lang;
                 if (allLanguage.Count()==0)
@@ -85,8 +75,8 @@ namespace MyPersonalWeb.Controllers
                     ViewBag.isremembered = "checked";
                     filterContext.HttpContext.Request.Cookies.TryGetValue(LoginCookieBase64.GetCookieUserNameBase64, out string encryptUserName);
                     filterContext.HttpContext.Request.Cookies.TryGetValue(LoginCookieBase64.GetCookiePasswordBase64, out string encrptyPassword);
-                    ViewBag.username = Utils.RSAData.RSADecrypt(encryptUserName, "username");
-                    ViewBag.password = Utils.RSAData.RSADecrypt(encrptyPassword, "password");
+                    ViewBag.username = RSAData.RSADecrypt(encryptUserName, "username");
+                    ViewBag.password = RSAData.RSADecrypt(encrptyPassword, "password");
                 }
                 ViewBag.logged=false;
             }

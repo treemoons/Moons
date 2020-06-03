@@ -1,18 +1,12 @@
 @{
+    var languageIndex=(Language.Index)Utils.Languages[ViewBag.lang][nameof(Language.Index)];
 ViewData["Title"] = ViewBag.UserName??"Home Page";
-(ModelsLibrary.Language language,object Models)=(ValueTuple<ModelsLibrary.Language,object>)Model;
-    try{ 
-        var languageIndex=(ModelsLibrary.Language.Index)language[nameof(ModelsLibrary.Language.Index)];
-    }catch(Exception ex){
-    <script>
-        console.log('@ex.Message')
-    </script>
-    }
+    
 }
 
     <div class="text-center">
-                        <img src="~/src/img/logo.png" alt="">
-                        <img src="~/src/img/logo.png" alt="">
-                        <img src="../../../MyPersonalWeb/wwwroot/src/img/big.jpg" alt="">
+        <img src="~/src/img/logo.png" alt="">
+        <img src="~/src/img/logo.png" alt="">
+        <img src="../../../MyPersonalWeb/wwwroot/src/img/big.jpg" alt="">
 
     </div>

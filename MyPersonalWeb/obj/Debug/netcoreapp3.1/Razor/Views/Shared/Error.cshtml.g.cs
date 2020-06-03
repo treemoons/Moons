@@ -26,8 +26,15 @@ using MyPersonalWeb.Models;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 3 "E:\Html\MyWork\MyPersonalWeb\Views\_ViewImports.cshtml"
+using ModelsLibrary.Languages;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"8e36c99e85704d0f2d1766f11d875a37c118a605", @"/Views/Shared/Error.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"00860175af1fb77bb0c424d5fc71d5c4b738756f", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"841d8175322e625cc1e7ade094fffb7b01a5aa4e", @"/Views/_ViewImports.cshtml")]
     public class Views_Shared_Error : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<ErrorViewModel>
     {
         #pragma warning disable 1998

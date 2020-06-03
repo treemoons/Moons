@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Collections;
 using System.IO;
 using CommonUtils;
-namespace ModelsLibrary
+namespace ModelsLibrary.Languages
 {
     public partial class Language
     {

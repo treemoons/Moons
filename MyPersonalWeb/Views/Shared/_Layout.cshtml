@@ -1,6 +1,5 @@
 @{
-    (ModelsLibrary.Language language,object Models)=(ValueTuple<ModelsLibrary.Language,object>)Model;
-    var languageMaster=(ModelsLibrary.Language.Master)language[nameof(ModelsLibrary.Language.Master)];
+    var languageMaster=(Language.Master)Utils.Languages[ViewBag.lang][nameof(Language.Master)];
     var login=languageMaster.LoginArray;
     var headerConvenienceOptions=languageMaster.HeaderConvenienceOptionsArray.Value.EnumerateObject();
     var userProfileOptions=languageMaster.UserOptionsleftArray.Value.EnumerateObject();

@@ -7,8 +7,41 @@ using System.Collections.Generic;
 using System.Collections;
 using System.IO;
 using CommonUtils;
-namespace ModelsLibrary
+namespace ModelsLibrary.Languages
 {
+
+    static public class Utils
+    {
+        public static JsonElement? GetProperty(this JsonElement? language, string element)
+        {
+            if (language.Value.TryGetProperty(element, out JsonElement value))
+                return value;
+            else
+                return null;
+        }
+
+        public static Hashtable Languages { get; set; } = Hashtable.Synchronized(new Hashtable());
+        public static Hashtable LanguageJsonElementDictionary { get; set; } = Hashtable.Synchronized(new Hashtable());
+        public static Hashtable LanguageByteArrayDictionary { get; set; } = Hashtable.Synchronized(new Hashtable());
+        public static void ReadAllLanguageJson()
+        {
+            var langDictionary = new DirectoryInfo("./wwwroot/src/languages");
+            var fileInfos = langDictionary.GetFileSystemInfos();
+            foreach (var file in fileInfos)
+            {
+                if (file.Extension == ".json")
+                {
+                    using var stream = new FileStream(file.FullName, FileMode.Open, FileAccess.Read);
+                    var fileName = file.Name.Replace(file.Extension, "");
+                    var element = JsonDocument.Parse(stream).RootElement;
+                    LanguageJsonElementDictionary[fileName] = element;
+                    LanguageByteArrayDictionary[fileName] = stream;
+                    Languages[fileName]= new Language(element);
+                }
+            }
+        }
+
+    }
     /// <summary>    
     ///  | Author：TreeMoons <br/>
     ///  | Date：May,6th,2020 <br/>

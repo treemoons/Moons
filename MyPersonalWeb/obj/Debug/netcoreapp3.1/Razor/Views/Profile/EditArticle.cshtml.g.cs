@@ -26,8 +26,15 @@ using MyPersonalWeb.Models;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 3 "E:\Html\MyWork\MyPersonalWeb\Views\_ViewImports.cshtml"
+using ModelsLibrary.Languages;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"da39a3ee5e6b4b0d3255bfef95601890afd80709", @"/Views/Profile/EditArticle.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"00860175af1fb77bb0c424d5fc71d5c4b738756f", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"841d8175322e625cc1e7ade094fffb7b01a5aa4e", @"/Views/_ViewImports.cshtml")]
     public class Views_Profile_EditArticle : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         #pragma warning disable 1998

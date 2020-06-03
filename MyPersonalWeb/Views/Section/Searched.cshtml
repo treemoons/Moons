@@ -1,16 +1,9 @@
-@{ 
-    ViewData["Title"] = ViewBag.UserName??"";
-    (ModelsLibrary.Language language,object Models)=(ValueTuple<ModelsLibrary.Language,object>)Model;
-    try{ 
-        var languageSearched=(ModelsLibrary.Language.Searched)language[nameof(ModelsLibrary.Language.Searched)];
-    }catch(Exception ex)
-    {
-    <script>
-        console.log('@ex.Message')
-    </script>
-    }
+@{
+    var languageSearched=(Language.Searched)Utils.Languages[ViewBag.lang][nameof(Language.Searched)];
+    ViewData["Title"] = ViewBag.UserName??Model;
 }
+<h1 style="display: none;"></h1>
 <div>
-    successed!
+   
 
 </div>
