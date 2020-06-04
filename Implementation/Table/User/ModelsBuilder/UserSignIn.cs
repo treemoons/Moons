@@ -8,12 +8,12 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using ModelsLibrary.User;
 using UserTables = ModelsLibrary.User;
 namespace Implementation.Table.User.ModelsBuilder
 {
-    public class UserSignIn
+    public class UserSignIn: IEntityTypeConfiguration<UserTables.UserSignIn>
     {
-
+        public void Configure(EntityTypeBuilder<UserTables.UserSignIn> builder)
+        { }
     }
 }

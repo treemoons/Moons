@@ -277,19 +277,18 @@ function showlang() {
  */
 function selectedlang() {
     let langselects = document.querySelectorAll('#lang option');
-    langselects.forEach(item => {
-        item.onclick = async function () {
+    langselects.forEach(option => {
+        option.onclick = async function () {
             let selected = document.getElementById('selected');
             selected.innerText = this.innerText;
             document.getElementById('lang').style.display = 'none';
             selected.style.fontWeight = 'normal';
-            debugger;
-            changeLanguage(item.value);
+            changeLanguage(option.value);
             let querystring = location.href.substr(location.href.indexOf('?'));
             if (!querystring.startsWith('?')) {
                 querystring = '';
             }
-            open(`/${item.value}/${route}${querystring}`, '_self');
+            open(`/${option.value}/${route}${querystring}`, '_self');
 
         }
     });

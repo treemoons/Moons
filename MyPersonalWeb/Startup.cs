@@ -59,10 +59,11 @@ namespace MyPersonalWeb
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{id?}/{controller=Home}/{action=Index}");
+                    pattern: "{language?}/{controller=Home}/{action=Index}/{id?}",
+                    constraints:new {language=ModelsLibrary.Languages.Utils.LanguagesParterrn});
                 endpoints.MapAreaControllerRoute(
                    name: "admin", "admin",
-                   pattern: "{id?}/{area:exists}/{controller=Home}/{action=Index}"
+                   pattern: "{language?}/{area:exists}/{controller=Home}/{action=Index}/{id?}"
                );
                 // endpoints.MapBlazorHub();
 

@@ -37,15 +37,15 @@ namespace MyPersonalWeb.Controllers
             route = $"{controller}/{action}";
             try
             {
-                parameterValue = filterContext.RouteData.Values["id"].ToString();
-                var allLanguage =
-                    from lang in Languages.Utils.LanguageJsonElementDictionary.Keys.Cast<string>()
-                    where lang.Contains(parameterValue) //judging id which is contained by all languages
-                    select lang;
-                if (allLanguage.Count()==0)
-                {
-                    throw new Exception();
-                }
+                parameterValue = filterContext.RouteData.Values["language"].ToString();
+                // var allLanguage =
+                //     from lang in Languages.Utils.LanguageJsonElementDictionary.Keys.Cast<string>()
+                //     where lang.Contains(parameterValue) //judging id which is contained by all languages
+                //     select lang;
+                // if (allLanguage.Count()==0)
+                // {
+                //     throw new Exception();
+                // }
             }
             catch
             {

@@ -178,7 +178,7 @@ namespace Implementation
         /// 服务上下文context
         /// </summary>
         protected readonly TContext context;
-        public DBService(TContext putContext) => context = putContext;
+        public DBService(TContext _context) => context = _context;
 
         public async Task<bool> CreateDataBaseAsync() =>
             await context.Database.EnsureCreatedAsync();

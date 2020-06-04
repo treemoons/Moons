@@ -31,7 +31,6 @@ namespace MyPersonalWeb.Controllers
             _logger = logger;
         }
 
-        [Test()]
         public IActionResult Profile() => View();
         
     }

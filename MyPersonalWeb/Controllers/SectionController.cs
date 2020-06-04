@@ -32,10 +32,10 @@ namespace MyPersonalWeb.Controllers
             _logger = logger;
         }
         [HttpGet]
-        public async Task<IActionResult> Searched(string searchtext) =>
+        public async Task<IActionResult> Searched(string searchtext,string language) =>
             await Task.Run(() =>
             {
-                return View(nameof(Searched),searchtext);
+                return View((searchtext,language));
             });
     }
 }

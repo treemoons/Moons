@@ -19,7 +19,7 @@ namespace ModelsLibrary.Languages
             else
                 return null;
         }
-
+        public static string LanguagesParterrn{ get; set; }
         public static Hashtable Languages { get; set; } = Hashtable.Synchronized(new Hashtable());
         public static Hashtable LanguageJsonElementDictionary { get; set; } = Hashtable.Synchronized(new Hashtable());
         public static Hashtable LanguageByteArrayDictionary { get; set; } = Hashtable.Synchronized(new Hashtable());
@@ -33,6 +33,7 @@ namespace ModelsLibrary.Languages
                 {
                     using var stream = new FileStream(file.FullName, FileMode.Open, FileAccess.Read);
                     var fileName = file.Name.Replace(file.Extension, "");
+                    LanguagesParterrn += $@"({fileName})?";
                     var element = JsonDocument.Parse(stream).RootElement;
                     LanguageJsonElementDictionary[fileName] = element;
                     LanguageByteArrayDictionary[fileName] = stream;

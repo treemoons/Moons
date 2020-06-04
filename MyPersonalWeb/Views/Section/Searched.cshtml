@@ -1,9 +1,9 @@
 @{
     var languageSearched=(Language.Searched)Utils.Languages[ViewBag.lang][nameof(Language.Searched)];
-    ViewData["Title"] = ViewBag.UserName??Model;
+    ViewData["Title"] = ViewBag.UserName??Model.Item1;
 }
 <h1 style="display: none;"></h1>
 <div>
-   
+   @Model.Item2
 
 </div>
