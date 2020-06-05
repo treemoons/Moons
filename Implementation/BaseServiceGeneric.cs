@@ -353,6 +353,16 @@ namespace Implementation
     }
 
 
+
+    /// <summary> 上下文基类，用于加载配置数据表和数据表字段属性
+    /// <br/>DBContext：继承自DbContext预定义类型
+    /// <br/>TDbTable：模型表类
+    /// <br/>可继承并重写OnModelCreating(ModelBuilder builder)方法，设置flexibility api配置TDTable的属性
+    /// </summary>
+    /// <typeparam name="TDbTable1">数据表模型类1</typeparam>
+    /// <typeparam name="TDbTable2">数据表模型类2</typeparam>
+    /// <typeparam name="TDbTable3">数据表模型类3</typeparam>
+    /// <typeparam name="TDbTable3">数据表模型类4</typeparam>
     public class DBContexts<TDbTable1, TDbTable2, TDbTable3, TDbTable4> : DbContext
       where TDbTable1 : class
       where TDbTable2 : class
@@ -399,6 +409,17 @@ namespace Implementation
     }
 
 
+
+    /// <summary> 上下文基类，用于加载配置数据表和数据表字段属性
+    /// <br/>DBContext：继承自DbContext预定义类型
+    /// <br/>TDbTable：模型表类
+    /// <br/>可继承并重写OnModelCreating(ModelBuilder builder)方法，设置flexibility api配置TDTable的属性
+    /// </summary>
+    /// <typeparam name="TDbTable1">数据表模型类1</typeparam>
+    /// <typeparam name="TDbTable2">数据表模型类2</typeparam>
+    /// <typeparam name="TDbTable3">数据表模型类3</typeparam>
+    /// <typeparam name="TDbTable3">数据表模型类4</typeparam>
+    /// <typeparam name="TDbTable3">数据表模型类5</typeparam>
     public class DBContextsWithModelsBuilder<TDbTable1, TDbTable2, TDbTable3, TDbTable4, TDbTable5> : DbContext
       where TDbTable1 : class
       where TDbTable2 : class

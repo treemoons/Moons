@@ -29,7 +29,6 @@ function whiteBack() {
     isMenuShow = false;
 }
 function showLogin() {
-    debugger
     if (isMenuShow) {
         showAndCloseMenu();
     }
@@ -185,9 +184,10 @@ function signin() {
             debugger;
             loginClose();
             if (data == 'T') {
-                // open(window.location.href, '_self')
-                loginform.setAttribute('action', location.href);
-                loginform.submit();
+                open(window.location.href, '_self')
+                // debugger;
+                // loginform.setAttribute('action', location.href);
+                // loginform.submit();
             } else {
                 let loginerror = document.getElementById('loginerror');
                 switch (data) {
