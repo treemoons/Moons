@@ -60,11 +60,14 @@ namespace MyPersonalWeb
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{language?}/{controller=Home}/{action=Index}/{id?}",
-                    constraints:new {language=ModelsLibrary.Languages.Utils.LanguagesParterrn});
+                    constraints: new { language = ModelsLibrary.Languages.Utils.LanguagesParterrn }
+                    );
+                    
                 endpoints.MapAreaControllerRoute(
-                   name: "admin", "admin",
-                   pattern: "{language?}/{area:exists}/{controller=Home}/{action=Index}/{id?}"
-               );
+                    name: "admin", "admin",
+                    pattern: "{language?}/{area:exists}/{controller=Home}/{action=Index}/{id?}",
+                    constraints: new { language = ModelsLibrary.Languages.Utils.LanguagesParterrn }
+                    );
                 // endpoints.MapBlazorHub();
 
                 endpoints.MapRazorPages();
