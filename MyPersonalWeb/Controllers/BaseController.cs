@@ -31,44 +31,22 @@ namespace MyPersonalWeb.Controllers
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             #region get route
-            string parameterValue = default, action = default, controller = default, route = default;
+            string parameterValue = default, action = default, controller = default;
             action = filterContext.RouteData.Values["Action"].ToString();
             controller = filterContext.RouteData.Values["controller"].ToString();
-            route = $"{controller}/{action}";
-            try
-            {
-                parameterValue = filterContext.RouteData.Values["language"].ToString();
-                // var allLanguage =
-                //     from lang in Languages.Utils.LanguageJsonElementDictionary.Keys.Cast<string>()
-                //     where lang.Contains(parameterValue) //judging id which is contained by all languages
-                //     select lang;
-                // if (allLanguage.Count()==0)
-                // {
-                //     throw new Exception();
-                // }
-            }
-            catch
-            {
-                if (HttpContext.Request.Cookies.TryGetValue("lang", out string lang))
-                {
-                    parameterValue = lang;
-                    // do language translation
-                }
-                else
-                {
-                    parameterValue = "en";
-                }
-            }
-            ViewBag.route = route.ToLowerInvariant();
+            parameterValue = filterContext.RouteData.Values["language"]?.ToString();
+            parameterValue= parameterValue??
+            (HttpContext.Request.Cookies.TryGetValue("lang", out string lang) ? lang : "en");
+            ViewBag.controller = controller.ToLowerInvariant();
+            ViewBag.action = action.ToLowerInvariant();
             ViewBag.lang = parameterValue.ToLowerInvariant();
             ViewBag.langTranslation = parameterValue.ToLowerInvariant();// 暂时测试使用 parameterValue
             #endregion
 
             #region about login
-            string username = default;
-            if ((username= filterContext.HttpContext.Session.GetString("CurrentUser"))==null)
+            if (filterContext.HttpContext.Session.GetString("CurrentUser")==null)
             {
-                TempData["userprofile"] = "showLogin()";
+                ViewBag.userprofile = "showLogin()";
                 var isremembered = filterContext.HttpContext.Request.Cookies.TryGetValue(LoginCookieBase64.GetCookieRememberBase64, out string IsRemembered);
                 if (isremembered)
                 {
@@ -82,9 +60,8 @@ namespace MyPersonalWeb.Controllers
             }
             else
             {
-                TempData["userprofile"] = "showUserOptions()";
+                ViewBag. userprofile = "showUserOptions()";
                 ViewBag.logged = true;
-                ViewBag.UserName = username;
             }
             #endregion
             base.OnActionExecuting(filterContext);
