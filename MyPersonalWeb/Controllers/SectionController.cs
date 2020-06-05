@@ -35,7 +35,7 @@ namespace MyPersonalWeb.Controllers
         public async Task<IActionResult> Searched(string searchtext) =>
             await Task.Run(() =>
             {
-                return View(nameof(Searched),searchtext);
+                return View((searchtext,"kong"));
             });
     }
 }

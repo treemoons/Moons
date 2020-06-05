@@ -1,4 +1,4 @@
-@{
+﻿@{
     var languageMaster = (Language.Master)Utils.Languages[ViewBag.lang][nameof(Language.Master)];
     var login = languageMaster.LoginArray;
     var headerConvenienceOptions = languageMaster.HeaderConvenienceOptionsArray.Value.EnumerateObject();
@@ -18,6 +18,9 @@
             }
         })()
     </script>
+    <link rel="stylesheet" href="~/css/@ViewBag.controller/site.css" />
+    <link rel="stylesheet" href="~/css/@ViewBag.controller/large-screen.css" media="screen and (min-width: 769px)" />
+    <link rel="stylesheet" href="~/css/@ViewBag.controller/small-screen.css" media="screen and (max-width: 768px)" />
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="shortcut icon" href="~/src/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="~/css/large-screen.css" media="screen and (min-width: 769px)" />
@@ -52,7 +55,7 @@
                 <div class="menu-icon" onclick="showAndCloseMenu();">
                     <!-- <b>&#60;</b> -->
                 </div>
-                <div class="user-icon" onclick='@TempData["userprofile"]'>
+                <div class="user-icon" onclick="@ViewBag.userprofile">
                     <img width="35" src="~/src/img/logo.png" alt="user">
                 </div>
             </div>
@@ -76,6 +79,30 @@
             </ul>
         </nav>
     }
+    else
+    {
+        @* login *@
+        <div class="login" id="login">
+            <div><span class="login-close" onclick="loginClose();">✕</span></div>
+            <h3 class="login-title">@login?.Title</h3>
+            <form action="#" method="post" name="loginform" id="loginform">
+                @* @Html.AntiForgeryToken() *@
+                <div>
+                    <p>@login?.UserName</p>
+                    <input tabindex="1" type="text" tip="@login?.UserName" value="@ViewBag.username" name="username">
+                    <p>@login?.Password <a href=""> @login?.Forget</a></p>
+                    <input tabindex="2" type="password" tip="@login?.Password" value="@ViewBag.password" name="password">
+                    <div id="loginerror" style="color: red;">&#160;</div>
+                    <input tabindex="3" name="commit" type="submit" value="@login?.Signin" onclick="return signin()">
+                    <input type="checkbox" name="isremembered" @ViewBag.isremembered id="isremembered"><label for="isremembered">&#160;&nbsp;@login?.IsRemember</label>
+                </div>
+            </form>
+            <div>
+                <p>@login?.NewUser,<a href="">@login?.Create</a></p>
+            </div>
+        </div>
+
+    }
     <nav class="menu-options" id="menu-options">
 
         <div class="menu-option">
@@ -90,7 +117,7 @@
             }
             <div>
                 <img src="~/src/img/logo.png" width="120" alt="QRcode">
-                <a href="/@ViewBag.lang/profile/profile" onclick="showLogin();">@(ViewBag.UserName??languageMaster.MenuMyProfile)</a>
+                <a href="/@ViewBag.lang/profile/profile" ">@(ViewBag.username??languageMaster.MenuMyProfile)</a>
             </div>
         </div>
     </nav>
@@ -105,26 +132,7 @@
             </div>
         </div>
     </div>
-    @* login *@
-    <div class="login" id="login">
-        <div><span class="login-close" onclick="loginClose();">✕</span></div>
-        <h3 class="login-title">@login?.Title</h3>
-        <form action="#" method="post" name="loginform" id="loginform">
-            @* @Html.AntiForgeryToken() *@
-            <div>
-                <p>@login?.UserName</p>
-                <input tabindex="1" type="text" tip="@login?.UserName" value="@ViewBag.username" name="username">
-                <p>@login?.Password <a href=""> @login?.Forget</a></p>
-                <input tabindex="2" type="password" tip="@login?.Password" value="@ViewBag.password" name="password">
-                <div id="loginerror" style="color: red;">&#160;</div>
-                <input tabindex="3" name="commit" type="submit" value="@login?.Signin" onclick="return signin()">
-                <input type="checkbox" name="isremembered" @ViewBag.isremembered id="isremembered"><label for="isremembered">&#160;&nbsp;@login?.IsRemember</label>
-            </div>
-        </form>
-        <div>
-            <p>@login?.NewUser,<a href="">@login?.Create</a></p>
-        </div>
-    </div>
+
     <div class="conponent">
         @RenderBody()
     </div>
@@ -162,10 +170,9 @@
     </footer>
     <script>
             var lang='@ViewBag.lang';
-            var route= '@ViewBag.route';
+            var route= '@ViewBag.controller/@ViewBag.action';
     </script>
     <script src="~/js/footer-load.js"></script>
-
 </body>
 
 </html>

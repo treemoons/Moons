@@ -1,7 +1,8 @@
 @{
     var languageSearched = (Language.Searched)Utils.Languages[ViewBag.lang][nameof(Language.Searched)];
-    ViewData["Title"] = ViewBag.UserName ?? Model;
+    ViewData["Title"] = ViewBag.UserName ?? Model.Item1;
 }
+@model ValueTuple<string, object>
 <div>
     <div class="searched-keywords">
         <div>搜索：</div>
@@ -9,12 +10,37 @@
             <form action="/@ViewBag.lang/section/searched" method="GET" name="searched">
                 <input type="search"
                        placeholder="@(((Language.Master)Utils.Languages[ViewBag.lang][nameof(Language.Master)]).SearchText)"
-                       name="searchtext"
-                       value="@Model">
+                       name="searchtext" value="@Model.Item1">
             </form>
         </div>
         <div class="search-icon">
             <i onclick="searched.submit();"></i>
         </div>
+    </div>
+    <div></div>
+    <div class="searched-results">
+        @if (Model.Item2 == null)
+        {
+        }
+        else
+        {
+
+            @for (int i = 0; i < 8; i++)
+            {
+                <div class="searched-result">
+                    <h3 class="result-title">
+                        <a href="#"><span>关键字1</span>不相关词语bioatssssss<span>关键字1</span>不相关词语bioatssssss<span>关键字1</span>不相关词语bioatssssss<span>关键字1</span>不相关词语bioatssssss<span>关键字1</span>不相关词语bioatssssss<span>关键字1</span>不相关词语bioatssssss</a>
+                    </h3>
+                    <article>
+                        <span>关键字1</span>不相关词语句子<span>关键字1</span>不相关词语句子<span>关键字1</span>不相关词语句子
+                        <span>关键字1</span>不相关词语句子<span>关键字1</span>不相关词语句子<span>关键字1</span>不相关词语句子
+                        <span>关键字1</span>不相关词语句子<span>关键字1</span>不相关词语句子<span>关键字1</span>不相关词语句子
+
+                    </article>
+                    <address class="result-author">作者用户<time>2020-06-05</time></address>
+                </div>
+
+            }
+        }
     </div>
 </div>
