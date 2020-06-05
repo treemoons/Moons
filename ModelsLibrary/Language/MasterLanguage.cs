@@ -104,6 +104,7 @@ namespace ModelsLibrary.Languages
             public JsonElement? HeaderConvenienceOptionsArray => LanguageJson.GetProperty(nameof(HeaderConvenienceOptionsArray));
             public string Contact => LanguageJson.GetProperty(nameof(Contact))?.ToString();
             public string Language => LanguageJson.GetProperty(nameof(Language))?.ToString();
+            public string SearchText => LanguageJson.GetProperty(nameof(SearchText))?.ToString();
             public string FooterCopyright => LanguageJson.GetProperty(nameof(FooterCopyright))?.ToString();
             public string MenuMyProfile => LanguageJson.GetProperty(nameof(MenuMyProfile))?.ToString();
             public string CurrentLanguageCode => LanguageJson.GetProperty(nameof(CurrentLanguageCode))?.ToString();
