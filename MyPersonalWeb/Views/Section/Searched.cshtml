@@ -1,9 +1,20 @@
 @{
-    var languageSearched=(Language.Searched)Utils.Languages[ViewBag.lang][nameof(Language.Searched)];
-    ViewData["Title"] = ViewBag.UserName??Model.Item1;
+    var languageSearched = (Language.Searched)Utils.Languages[ViewBag.lang][nameof(Language.Searched)];
+    ViewData["Title"] = ViewBag.UserName ?? Model;
 }
-<h1 style="display: none;"></h1>
 <div>
-   @Model.Item2
-
+    <div class="searched-keywords">
+        <div>搜索：</div>
+        <div class="search-option">
+            <form action="/@ViewBag.lang/section/searched" method="GET" name="searched">
+                <input type="search"
+                       placeholder="@(((Language.Master)Utils.Languages[ViewBag.lang][nameof(Language.Master)]).SearchText)"
+                       name="searchtext"
+                       value="@Model">
+            </form>
+        </div>
+        <div class="search-icon">
+            <i onclick="searched.submit();"></i>
+        </div>
+    </div>
 </div>

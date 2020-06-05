@@ -183,3 +183,9 @@ body{
 }
 
 /* #endregion */
+/* #region searched */
+.searched-keywords .search-icon>i {
+    left: -42px;
+}
+
+/* #endregion */
