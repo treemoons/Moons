@@ -1,8 +1,8 @@
 @charset "utf-8";
 :root{
-    --box-shadow-around: 0px 0px 20px rgba(0, 0, 0, 0.16);
-    --theme-color-opaque: rgb(185, 185, 255);
-    --focus-backcolor:rgb(139, 139, 255);
+    --box-shadow-around: 0px 0px 20px #00000029;
+    --theme-color-opaque: #b9b9ff;
+    --focus-backcolor:#8b8bff;
     --transparent:transparent;
 }
 body{
@@ -52,6 +52,7 @@ body{
     z-index: 19;
     box-sizing: border-box;
     background-color: transparent;
+    display: none;
 }
 .login-title {
     text-align: center;

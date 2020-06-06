@@ -161,7 +161,7 @@ function IsInputEmpty(input) {
         return false;
     }
 }
-
+//#region  login and logout
 /**
  * login to Moons
  */
@@ -182,7 +182,6 @@ function signin() {
             `isremembered=${loginform.isremembered.checked}`,
         success: data => {
             debugger;
-            loginClose();
             if (data == 'T') {
                 open(window.location.href, '_self')
                 // debugger;
@@ -211,8 +210,42 @@ function signin() {
     return false;
 }
 
+
+function signout() {
+    // waitLogin();
+    getAjaxData({
+        url: `/${lang}/home/logout`,
+        success: data => {
+            debugger;
+            //loginClose();
+            if (data == 'T')// {
+                open(window.location.href, '_self')
+                // debugger;
+                // loginform.setAttribute('action', location.href);
+                // loginform.submit();
+          /* }   else {
+               let loginerror = document.getElementById('loginerror');
+                switch (data) {
+                    case 'F':
+                        loginerror.innerText = "账号或密码错误，请重新输入。"
+                        break;
+                    // case 'U':
+                    //     loginerror.innerText = "账号超过，请重新输入。"
+                    //     break;
+                    // case 'P':
+                    //     loginerror.innerText = "账号或密码错误，请重新输入。"
+                    //     break;
+                    default:
+                        loginerror.innerText = "未知错误。"
+                        break;
+                }
+            }
+            waitLoginClose();*/
+        }
+    });
+}
+
 /**
- * 
  * @param {string} name key
  * @param {string} value value
  * @param {Int32Array} day date
@@ -236,6 +269,7 @@ function getCookie(name) {
 function delCookie(name) {
     setCookie(name, null, -1);
 };
+//#endregion
 
 //#region national lanuage
 //#region  load and change display

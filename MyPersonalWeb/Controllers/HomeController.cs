@@ -40,7 +40,7 @@ namespace MyPersonalWeb.Controllers
         public async Task<string> Login(UserSignIn users) =>
             await Task.Run(() =>
             {
-                if (!ModelState.IsValid || users.UserName == "default")
+                if (!ModelState.IsValid)
                 {
                     return "F";
                 }
@@ -65,11 +65,18 @@ namespace MyPersonalWeb.Controllers
                     }
                     return "T";
                 }
-                // return View("Privacy",users);
             });
 
-       
-
+        [HttpPost]
+        public async Task<string> Logout(UserSignIn users) =>
+                   await Task.Run(() =>
+                   {
+                       try{
+                       HttpContext.Session.Remove("CurrentUser");
+                        return "T";
+                       }catch{return "F";}
+                       
+                   });
         string ShowLogin() =>
                 ViewBag.ShowLogin = "<script>setTimeout(showLogin,401);</script>";
 

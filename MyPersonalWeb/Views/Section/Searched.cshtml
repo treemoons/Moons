@@ -2,7 +2,7 @@
     var languageSearched = (Language.Searched)Utils.Languages[ViewBag.lang][nameof(Language.Searched)];
     ViewData["Title"] = ViewBag.UserName ?? Model.Item1;
 }
-@model ValueTuple<string, object>
+@model ValueTuple<string, string>
 <div>
     <div class="searched-keywords">
         <div>搜索：</div>
@@ -17,10 +17,11 @@
             <i onclick="searched.submit();"></i>
         </div>
     </div>
-    <div></div>
+    <div onclick="signout()"> 退出登录</div>
     <div class="searched-results">
         @if (Model.Item2 == null)
         {
+            <div>没找到</div>
         }
         else
         {

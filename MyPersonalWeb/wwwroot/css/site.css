@@ -191,6 +191,10 @@ header {
   -o-border-radius: 100%;
 }
 
+input[type="search"]::-webkit-search-cancel-button {
+  display: none;
+  appearance: none;
+}
 .search-icon i::before {
   content: '';
   position: absolute;
@@ -625,6 +629,7 @@ input[type="password"] {
 
 /*#endregion*/
 
+
 /* #region Profile 个人信息主页 */
 
 .profile-container {
@@ -642,86 +647,4 @@ input[type="password"] {
   width: 66%;
   background-color: rgb(255, 215, 215);
 }
-
-
 /* #endregion */
-
-.searched-keywords {
-  margin-top: 10px;
-  text-align: center;
-}
-
-.searched-keywords>div {
-  display: inline-block;
-}
-
-.searched-keywords .search-option {
-  bottom: 0;
-}
-
-.searched-keywords .search-icon>i {
-  top: 4px;
-  left: -40px;
-  border-width: 2px;
-}
-
-.searched-keywords .search-icon>i::before {
-  width: 2px;
-}
-
-input[type="search"]::-webkit-search-cancel-button {
-  display: none;
-  appearance: none;
-}
-
-/* #region searched results */
-.searched-results {
-  width: 80vw;
-  overflow: hidden;
-  margin: 0 auto;
-}
-.searched-results .searched-result {
-  text-overflow: ellipsis;
-  margin-top: 20px;
-}
-.searched-results .searched-result .result-title {
-  width: 60vw;
-  font-size: 2px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  margin-bottom: 5px;
-  color: blue;
-}
-.searched-result .result-title a,
-.searched-result .result-title span {
-  font-size: 18px;
-}
-
-.searched-result .result-title a:hover span {
-  color: var(--dot-color);
-}
-
-.searched-results .searched-result article{
-  width: 80vw;
-  overflow: hidden;
-  line-height: 20px;
-  text-overflow: ellipsis;
-}
-.searched-result .result-author{
-  margin-top: 3px;
-  font-size: 13px;
-  color: gray;
-}
-.result-author time{
-  font-size: 12px;
-  margin-left: 5px;
-}
-.searched-results .searched-result article,
-.searched-results .searched-result article span{
-  font-size: 14px;
-}
-.searched-results .searched-result span{
-  color: var(--keywords-color);
-}
-
-/* #endregion  */
