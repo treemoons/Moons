@@ -1,0 +1,138 @@
+{
+    "Master": {
+        "HeaderConvenienceOptionsArray": {
+            "Option1": ["选项1", "/home/index"],
+            "Option2": ["选项2", "/home/index"],
+            "Option3": ["选项4", "/home/index"],
+            "Option4": ["选项1", "/home/index"],
+            "Option5": ["选项2", "/home/index"],
+            "Option6": ["选项4", "/home/index"],
+            "Option7": ["Oprion2", "/home/index"],
+            "Option8": ["Oprion4", "/home/index"]
+        },
+        "UserOptionsleftArray": {
+            "Option1": ["选项1", "/home/index"],
+            "Option2": ["选项2", "/home/index"],
+            "Option3": ["选项4", "/home/index"],
+            "Option4": ["选项1", "/home/index"],
+            "Option5": ["选项2", "/home/index"],
+            "Option6": ["选项4", "/home/index"]
+        },
+        "MenuArray": [{
+            "Title": "link",
+            "Option1": ["选项1","/home/index"],
+            "Option2": ["选项2","/home/index"],
+            "Option3": ["选项4","/home/index"]
+        }, {
+            "Title": "技术mm",
+            "Option1": ["选项2","/home/index"],
+            "Option2": ["选项4","/home/index"],
+            "Option3": ["选项5","/home/index"]
+        }],
+        "FooterArray": [{
+            "Title": "link",
+            "Option1": ["脚部1","/home/index"],
+            "Option2": ["脚部2","/home/index"],
+            "Option3": ["脚部4","/home/index"]
+        },
+        {
+            "Title": "技术ff",
+            "Option1": [
+                "脚部啊2",
+                "/home/index"
+            ],
+            "Option2": [
+                "脚部啊4",
+                "/home/index"
+            ],
+            "Option3": [
+                "脚部啊5",
+                "/home/index"
+            ]
+        },
+        {
+            "Title": "技术ff",
+            "Option1": [
+                "脚部啊2",
+                "/home/index"
+            ],
+            "Option2": [
+                "脚部啊4",
+                "/home/index"
+            ],
+            "Option3": [
+                "脚部啊5",
+                "/home/index"
+            ]
+        },
+        {
+            "Title": "技术ff",
+            "Option1": [
+                "脚部啊2",
+                "/home/index"
+            ],
+            "Option2": [
+                "脚部啊4",
+                "/home/index"
+            ],
+            "Option3": [
+                "脚部啊5",
+                "/home/index"
+            ]
+        },
+        {
+            "Title": "技术ff",
+            "Option1": [
+                "脚部啊2",
+                "/home/index"
+            ],
+            "Option2": [
+                "脚部啊4",
+                "/home/index"
+            ],
+            "Option3": [
+                "脚部啊5",
+                "/home/index"
+            ]
+        }],
+        "Contact": "联系我",
+        "Language": "语言",
+        "LoginArray": {
+            "Title": "欢迎来到墨月之神",
+            "UserName": "用户名/邮箱",
+            "Password": "密码",
+            "Signin": "登录",
+            "Forget": "忘记密码?",
+            "IsRemember": "记住密码",
+            "NewUser": "没有账号?",
+            "Create": "现在创建"
+
+        },
+        "SearchText": "请输入搜索内容",
+        "CurrentLanguageCode": "zh-cn",
+        "CurrentLanguage": "中文",
+        "FooterCopyright": "TreeMoons 来自未来的我",
+        "MenuMyProfile": "我的账号"
+    },
+    "Index": {
+        "Title":""
+    },
+    "Article": {
+        "Title":""
+    },
+    "Searched": {
+        "Title":""
+    },
+    "Profile": {
+        "Title":""
+    },
+    "EditProfile": {
+        "Title":""
+    },
+    "EditArticle": {
+        "Title":""
+    },
+    "EditArticleList": {
+        "Title":""
+    }
+}

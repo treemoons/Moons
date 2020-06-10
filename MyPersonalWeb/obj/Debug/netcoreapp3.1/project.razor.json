@@ -20551,6 +20551,16 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "e:\\Html\\MyWork\\MyPersonalWeb\\Areas\\API\\Views\\Home\\Index.cshtml",
+      "TargetPath": "Areas\\API\\Views\\Home\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "e:\\Html\\MyWork\\MyPersonalWeb\\Areas\\API\\Views\\Shared\\_Laout.cshtml",
+      "TargetPath": "Areas\\API\\Views\\Shared\\_Laout.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "e:\\Html\\MyWork\\MyPersonalWeb\\Views\\Home\\Index.cshtml",
       "TargetPath": "Views\\Home\\Index.cshtml",
       "FileKind": "mvc"
@@ -20568,6 +20578,11 @@
     {
       "FilePath": "e:\\Html\\MyWork\\MyPersonalWeb\\Views\\Shared\\_Layout.cshtml",
       "TargetPath": "Views\\Shared\\_Layout.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "e:\\Html\\MyWork\\MyPersonalWeb\\Areas\\Admin\\Views\\Home\\Index.cshtml",
+      "TargetPath": "Areas\\Admin\\Views\\Home\\Index.cshtml",
       "FileKind": "mvc"
     },
     {

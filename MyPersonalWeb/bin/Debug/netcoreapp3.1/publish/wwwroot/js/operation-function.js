@@ -2,8 +2,7 @@
 
 //#region  用于调整设置登录弹窗的位置
 
-/**
- * 获取登录login元素的div
+/** 获取登录login元素的div
  * @param {login} l login登录元素
  */
 function getLoginLeft(l) {
@@ -30,7 +29,6 @@ function whiteBack() {
     isMenuShow = false;
 }
 function showLogin() {
-    debugger
     if (isMenuShow) {
         showAndCloseMenu();
     }
@@ -71,19 +69,22 @@ function waitLoginClose() {
 /**
  * 显示或这关闭menu
  */
-function showAndCloseMenu() {debugger;
-    if (window.getComputedStyle(userOptions).display == 'block') {
-        userOptions.style = 'opacity:0;right:-20vw;'
-        setTimeout(function () {
-            userOptions.style.display = 'none';
-        }, 400);
-        isUserOptionsShow = false;
-    }
+function showAndCloseMenu() {
+    try {
+        if (window.getComputedStyle(userOptions).display == 'block') {
+            userOptions.style = 'opacity:0;right:-20vw;'
+            setTimeout(function () {
+                userOptions.style.display = 'none';
+            }, 400);
+            isUserOptionsShow = false;
+        }
+    } catch (error) { console.log(error); }
     if (!isMenuShow) {
         menuButton.style = 'display:block;';
         setTimeout(function () {
             menuButton.style = 'opacity:100;top:54px;'
         }, 40);
+        // document.getElementById('login-background').style.display='block'
         isMenuShow = true;
     } else {
         menuButton.style = 'opacity:0;top:-20%;'
@@ -127,45 +128,11 @@ function showUserOptions() {
     }
 }
 /**
- * 返回首页
+ * 返回首页* 
  */
 function backIndex() {
     open(`/${lang}/home/index`, "_self");
 }
-//#endregion
-
-/**
- * 获取并操作Ajax数据
- * @param {string} url 要提交到的地址
- * @param {Function} success 获取data成功之后要执行的函数
- * @param {Function} failed 获取data失败之后要执行的函数
- * @param {string} querystring 传递的参数 默认为空
- * @param {string} httptype 方法类型'post','get'等，默认'POST'
- * @param {string} datatype mime类型，默认为表单类型
- */
-function getAjaxData({ url, success, failed = null, querystring = '', httptype = 'POST', datatype = 'application/x-www-form-urlencoded' }) {
-    debugger;
-    // open(url,'_blank')
-    var ajax = new XMLHttpRequest();
-    ajax.open(httptype, url);
-    ajax.setRequestHeader('Content-Type', datatype);
-    ajax.send(querystring);
-    ajax.onreadystatechange = function () {
-        if (ajax.readyState == 4 && ajax.status == 200) {
-            try {
-                success(ajax.responseText);
-            } catch (error) { }
-        }
-        else {
-            try {
-                failed(ajax.responseText);
-            } catch (error) {
-                console.log(error);
-            }
-        }
-    }
-}
-
 
 /**
  * 
@@ -194,6 +161,7 @@ function IsInputEmpty(input) {
         return false;
     }
 }
+//#region  login and logout
 /**
  * login to Moons
  */
@@ -215,9 +183,10 @@ function signin() {
         success: data => {
             debugger;
             if (data == 'T') {
-                // open(window.location.href, '_self')
-                loginform.setAttribute('action', location.href);
-                loginform.submit();
+                open(window.location.href, '_self')
+                // debugger;
+                // loginform.setAttribute('action', location.href);
+                // loginform.submit();
             } else {
                 let loginerror = document.getElementById('loginerror');
                 switch (data) {
@@ -241,8 +210,42 @@ function signin() {
     return false;
 }
 
+
+function signout() {
+    // waitLogin();
+    getAjaxData({
+        url: `/${lang}/home/logout`,
+        success: data => {
+            debugger;
+            //loginClose();
+            if (data == 'T')// {
+                open(window.location.href, '_self')
+                // debugger;
+                // loginform.setAttribute('action', location.href);
+                // loginform.submit();
+          /* }   else {
+               let loginerror = document.getElementById('loginerror');
+                switch (data) {
+                    case 'F':
+                        loginerror.innerText = "账号或密码错误，请重新输入。"
+                        break;
+                    // case 'U':
+                    //     loginerror.innerText = "账号超过，请重新输入。"
+                    //     break;
+                    // case 'P':
+                    //     loginerror.innerText = "账号或密码错误，请重新输入。"
+                    //     break;
+                    default:
+                        loginerror.innerText = "未知错误。"
+                        break;
+                }
+            }
+            waitLoginClose();*/
+        }
+    });
+}
+
 /**
- * 
  * @param {string} name key
  * @param {string} value value
  * @param {Int32Array} day date
@@ -266,6 +269,7 @@ function getCookie(name) {
 function delCookie(name) {
     setCookie(name, null, -1);
 };
+//#endregion
 
 //#region national lanuage
 //#region  load and change display
@@ -307,23 +311,52 @@ function showlang() {
  */
 function selectedlang() {
     let langselects = document.querySelectorAll('#lang option');
-    langselects.forEach(item => {
-        item.onclick =async function () {
+    langselects.forEach(option => {
+        option.onclick = async function () {
             let selected = document.getElementById('selected');
             selected.innerText = this.innerText;
             document.getElementById('lang').style.display = 'none';
             selected.style.fontWeight = 'normal';
-            debugger;
-            changeLanguage(item.value);
+            changeLanguage(option.value);
             let querystring = location.href.substr(location.href.indexOf('?'));
             if (!querystring.startsWith('?')) {
                 querystring = '';
             }
-            open(`/${item.value}/${route}${querystring}`, '_self');
+            open(`/${option.value}/${route}${querystring}`, '_self');
 
         }
     });
 }
+//#endregion
 
 //#endregion
+
+/**
+ * 获取并操作Ajax数据
+ *@param { { url: string, success: (text:string)=>void), failed ?: 
+        (text:string)=>void, querystring ?: string, httptype ?: string, datatype ?:string } object  options
+ */
+function getAjaxData({ url, success, failed = error => { console.log(error); }, querystring = '', httptype = 'POST', datatype = 'application/x-www-form-urlencoded' }) {
+    debugger;
+    // open(url,'_blank')
+    var ajax = new XMLHttpRequest();
+    ajax.open(httptype, url);
+    ajax.setRequestHeader('Content-Type', datatype);
+    ajax.send(querystring);
+    ajax.onreadystatechange = function () {
+        if (ajax.readyState == 4 && ajax.status == 200) {
+            try {
+                success(ajax.responseText);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        else {
+            failed(ajax.responseText);
+        }
+    }
+}
+
 //#endregion
+
+

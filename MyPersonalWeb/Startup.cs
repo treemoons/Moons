@@ -57,17 +57,26 @@ namespace MyPersonalWeb
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{language?}/{controller=Home}/{action=Index}/{id?}",
-                    constraints: new { language = ModelsLibrary.Languages.Utils.LanguagesParterrn }
-                    );
-                    
+
                 endpoints.MapAreaControllerRoute(
-                    name: "admin", "admin",
+                    name: "admin",
+                    areaName: "admin",
                     pattern: "{language?}/{area:exists}/{controller=Home}/{action=Index}/{id?}",
                     constraints: new { language = ModelsLibrary.Languages.Utils.LanguagesParterrn }
                     );
+                endpoints.MapAreaControllerRoute(
+                    name: "api",
+                    areaName: "api",
+                    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}",
+                    constraints: new { area = "admin" }
+                    );
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{language?}/{controller=Home}/{action=Index}/{id?}",
+                    constraints: new { language = ModelsLibrary.Languages.Utils.LanguagesParterrn } //new {pattern=@"正则表达式"}
+                    );
+
+
                 // endpoints.MapBlazorHub();
 
                 endpoints.MapRazorPages();

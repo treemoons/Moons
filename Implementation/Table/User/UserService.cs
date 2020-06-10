@@ -26,6 +26,7 @@ namespace Implementation.Table.User
         public async  Task<bool> CheckingLogin(string username, string password)
         {
            var find= await context.Table1.FirstOrDefaultAsync();
+            var find2 = await context.Table2.FirstOrDefaultAsync();
             return find==null?false:true;
         }
 

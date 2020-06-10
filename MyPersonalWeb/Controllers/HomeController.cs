@@ -32,8 +32,6 @@ namespace MyPersonalWeb.Controllers
         }
         [HttpPost]
         public IActionResult Post(UserSignIn users) => Redirect(HttpContext.Request.GetDisplayUrl());
-        // [Area("en")]
-        // [Route("en/[Controller]/[Action]")]
         public IActionResult Index() => View();
 
         [HttpPost]
@@ -77,8 +75,10 @@ namespace MyPersonalWeb.Controllers
                        }catch{return "F";}
                        
                    });
-        string ShowLogin() =>
-                ViewBag.ShowLogin = "<script>setTimeout(showLogin,401);</script>";
+                   
+        [HttpPost]
+       public string Show() =>"scriptsetTimeout(showLogin,401);script";
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
