@@ -32,6 +32,7 @@ namespace MyPersonalWeb.Controllers
         }
         [HttpPost]
         public IActionResult Post(UserSignIn users) => Redirect(HttpContext.Request.GetDisplayUrl());
+        
         public IActionResult Index() => View();
 
         [HttpPost]

@@ -25,16 +25,13 @@ namespace MyPersonalWeb
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddDistributedMemoryCache();
             services.AddSession(option =>
             {
                 option.IdleTimeout = TimeSpan.FromMinutes(10d);
                 option.Cookie.IsEssential = true;
                 option.Cookie.HttpOnly = true;
             });
-            services.AddRazorPages();
             services.AddControllers();
-            // services.AddServerSideBlazor();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,7 +43,7 @@ namespace MyPersonalWeb
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("Home/Error");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
@@ -59,27 +56,31 @@ namespace MyPersonalWeb
             {
 
                 endpoints.MapAreaControllerRoute(
-                    name: "admin",
-                    areaName: "admin",
-                    pattern: "{language?}/{area:exists}/{controller=Home}/{action=Index}/{id?}",
-                    constraints: new { language = ModelsLibrary.Languages.Utils.LanguagesParterrn }
-                    );
+                        name: "MyAreaProducts",
+                        areaName: "Products",
+                        pattern: "Products/{controller=Home}/{action=Index}/{id?}");
+
                 endpoints.MapAreaControllerRoute(
-                    name: "api",
-                    areaName: "api",
-                    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}",
-                    constraints: new { area = "admin" }
-                    );
+                        name: "MyAreaServices",
+                        areaName: "Services",
+                        pattern: "Services/{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapAreaControllerRoute(
+                        name: "MyAreaAdmin",
+                        areaName: "Admin",
+                        pattern: "Admin/{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapAreaControllerRoute(
+                        name: "MyAreaAPI",
+                        areaName: "API",
+                        pattern: "API/{controller=Home}/{action=Index}/{id?}");
+
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{language?}/{controller=Home}/{action=Index}/{id?}",
                     constraints: new { language = ModelsLibrary.Languages.Utils.LanguagesParterrn } //new {pattern=@"正则表达式"}
                     );
 
-
-                // endpoints.MapBlazorHub();
-
-                endpoints.MapRazorPages();
             });
         }
     }

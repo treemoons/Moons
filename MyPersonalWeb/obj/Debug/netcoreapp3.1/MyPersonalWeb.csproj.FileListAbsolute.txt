@@ -77,6 +77,5 @@ E:\Html\MyWork\MyPersonalWeb\obj\Debug\netcoreapp3.1\Razor\Views\Profile\EditArt
 E:\Html\MyWork\MyPersonalWeb\obj\Debug\netcoreapp3.1\Razor\Views\Profile\EditProfile.cshtml.g.cs
 E:\Html\MyWork\MyPersonalWeb\obj\Debug\netcoreapp3.1\Razor\Views\Section\Article.cshtml.g.cs
 E:\Html\MyWork\MyPersonalWeb\obj\Debug\netcoreapp3.1\Razor\Views\Section\Searched.cshtml.g.cs
+E:\Html\MyWork\MyPersonalWeb\bin\Debug\netcoreapp3.1\.filenesting.json
 E:\Html\MyWork\MyPersonalWeb\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Home\Index.cshtml.g.cs
-E:\Html\MyWork\MyPersonalWeb\obj\Debug\netcoreapp3.1\Razor\Areas\API\Views\Home\Index.cshtml.g.cs
-E:\Html\MyWork\MyPersonalWeb\obj\Debug\netcoreapp3.1\Razor\Areas\API\Views\Shared\_Laout.cshtml.g.cs

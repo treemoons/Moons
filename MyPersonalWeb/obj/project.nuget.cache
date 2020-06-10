@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "ij5kpd4N7zLRNk5Zeh3RCoj2WjdmFBjcO09wDy4jauBrOHWCQ0DCraswiLAIcJJQQeU5E0xFp0u82YMwN3kicQ==",
+  "dgSpecHash": "hxW/IptOAWSl3wasVcQ7Dunlhs4WwRjoahEnUEDvvjkwpQJHtWC04e8xXUMox2CjXsuF+cVX3XFAIMVsduIBIA==",
   "success": true,
   "projectFilePath": "E:\\Html\\MyWork\\MyPersonalWeb\\MyPersonalWeb.csproj",
   "expectedPackageFiles": [
@@ -91,8 +91,7 @@
     "C:\\Users\\hands\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Users\\hands\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
     "C:\\Users\\hands\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
-    "C:\\Users\\hands\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512",
-    "C:\\Users\\hands\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\3.1.2\\microsoft.aspnetcore.app.ref.3.1.2.nupkg.sha512"
+    "C:\\Users\\hands\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512"
   ],
   "logs": []
 }

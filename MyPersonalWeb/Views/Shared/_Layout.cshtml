@@ -140,7 +140,6 @@
             </div>
         </div>
     </div>
-
     <div class="conponent">
         @RenderBody()
     </div>
@@ -180,7 +179,9 @@
             var lang='@ViewBag.lang';
             var route= '@ViewBag.controller/@ViewBag.action';
     </script>
+
     <script src="~/js/footer-load.js"></script>
+    <a asp-area="admin" asp-controller="admin" asp-action="index">这测试AREA</a>
 </body>
 
 </html>

@@ -20536,6 +20536,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "e:\\Html\\MyWork\\MyPersonalWeb\\Areas\\Products\\Views\\Manage\\Index.cshtml",
+      "TargetPath": "Areas\\Products\\Views\\Manage\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "e:\\Html\\MyWork\\MyPersonalWeb\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
       "TargetPath": "Views\\Shared\\_ValidationScriptsPartial.cshtml",
       "FileKind": "mvc"
@@ -20548,16 +20553,6 @@
     {
       "FilePath": "e:\\Html\\MyWork\\MyPersonalWeb\\Views\\_ViewStart.cshtml",
       "TargetPath": "Views\\_ViewStart.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "e:\\Html\\MyWork\\MyPersonalWeb\\Areas\\API\\Views\\Home\\Index.cshtml",
-      "TargetPath": "Areas\\API\\Views\\Home\\Index.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "e:\\Html\\MyWork\\MyPersonalWeb\\Areas\\API\\Views\\Shared\\_Laout.cshtml",
-      "TargetPath": "Areas\\API\\Views\\Shared\\_Laout.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -20576,6 +20571,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "e:\\Html\\MyWork\\MyPersonalWeb\\Areas\\Products\\Views\\Home\\About.cshtml",
+      "TargetPath": "Areas\\Products\\Views\\Home\\About.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "e:\\Html\\MyWork\\MyPersonalWeb\\Views\\Shared\\_Layout.cshtml",
       "TargetPath": "Views\\Shared\\_Layout.cshtml",
       "FileKind": "mvc"
@@ -20588,6 +20588,16 @@
     {
       "FilePath": "e:\\Html\\MyWork\\MyPersonalWeb\\Views\\Profile\\EditArticleList.cshtml",
       "TargetPath": "Views\\Profile\\EditArticleList.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "e:\\Html\\MyWork\\MyPersonalWeb\\Areas\\Products\\Views\\Manage\\About.cshtml",
+      "TargetPath": "Areas\\Products\\Views\\Manage\\About.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "e:\\Html\\MyWork\\MyPersonalWeb\\Areas\\Products\\Views\\Home\\Index.cshtml",
+      "TargetPath": "Areas\\Products\\Views\\Home\\Index.cshtml",
       "FileKind": "mvc"
     },
     {
