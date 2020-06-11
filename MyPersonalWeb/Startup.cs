@@ -54,21 +54,10 @@ namespace MyPersonalWeb
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
-
-                endpoints.MapAreaControllerRoute(
-                        name: "MyAreaProducts",
-                        areaName: "Products",
-                        pattern: "Products/{controller=Home}/{action=Index}/{id?}");
-
-                endpoints.MapAreaControllerRoute(
-                        name: "MyAreaServices",
-                        areaName: "Services",
-                        pattern: "Services/{controller=Home}/{action=Index}/{id?}");
-
                 endpoints.MapAreaControllerRoute(
                         name: "MyAreaAdmin",
                         areaName: "Admin",
-                        pattern: "Admin/{controller=Home}/{action=Index}/{id?}");
+                        pattern: "{language?}/Admin/{controller=Home}/{action=Index}/{id?}");
 
                 endpoints.MapAreaControllerRoute(
                         name: "MyAreaAPI",
@@ -78,7 +67,7 @@ namespace MyPersonalWeb
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{language?}/{controller=Home}/{action=Index}/{id?}",
-                    constraints: new { language = ModelsLibrary.Languages.Utils.LanguagesParterrn } //new {pattern=@"正则表达式"}
+                    constraints: new { language = ModelsLibrary.Languages.Utils.LanguagesParterrn.ToString() } //new {pattern=@"正则表达式"}
                     );
 
             });

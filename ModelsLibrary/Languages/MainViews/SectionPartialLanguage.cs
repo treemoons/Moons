@@ -7,18 +7,24 @@ using System.Collections.Generic;
 using System.Collections;
 using System.IO;
 using CommonUtils;
-namespace ModelsLibrary.Languages
+namespace ModelsLibrary.Languages.MainViews
 {
     public partial class Language
     {
 
-        /// <summary>
-        ///  the name of one of the Views: Index
-        /// </summary>
-        public struct Index
+        public struct Searched
         {
             private static JsonElement? LanguageJson { get; set; }
-            public Index(JsonElement? _json)
+            public Searched(JsonElement? _json)
+            {
+                LanguageJson = _json;
+            }
+            
+        }
+        public struct Article
+        {
+            private static JsonElement? LanguageJson { get; set; }
+            public Article(JsonElement? _json)
             {
                 LanguageJson = _json;
             }

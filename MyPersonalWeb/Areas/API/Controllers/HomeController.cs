@@ -6,9 +6,6 @@ namespace MyPersonalWeb.Areas.API.Controllers
     public class HomeController : Controller
     {
         public string Index() => "sssss";
-        public IActionResult About()
-        {
-            return View();
-        }
+
     }
 }

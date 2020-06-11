@@ -7,42 +7,10 @@ using System.Collections.Generic;
 using System.Collections;
 using System.IO;
 using CommonUtils;
-namespace ModelsLibrary.Languages
+
+namespace ModelsLibrary.Languages.MainViews
 {
 
-    static public class Utils
-    {
-        public static JsonElement? GetProperty(this JsonElement? language, string element)
-        {
-            if (language.Value.TryGetProperty(element, out JsonElement value))
-                return value;
-            else
-                return null;
-        }
-        public static string LanguagesParterrn{ get; set; }
-        public static Hashtable Languages { get; set; } = Hashtable.Synchronized(new Hashtable());
-        public static Hashtable LanguageJsonElementDictionary { get; set; } = Hashtable.Synchronized(new Hashtable());
-        public static Hashtable LanguageByteArrayDictionary { get; set; } = Hashtable.Synchronized(new Hashtable());
-        public static void ReadAllLanguageJson()
-        {
-            var langDictionary = new DirectoryInfo("./wwwroot/src/languages");
-            var fileInfos = langDictionary.GetFileSystemInfos();
-            foreach (var file in fileInfos)
-            {
-                if (file.Extension == ".json")
-                {
-                    using var stream = new FileStream(file.FullName, FileMode.Open, FileAccess.Read);
-                    var fileName = file.Name.Replace(file.Extension, "");
-                    LanguagesParterrn += $@"({fileName})?";
-                    var element = JsonDocument.Parse(stream).RootElement;
-                    LanguageJsonElementDictionary[fileName] = element;
-                    LanguageByteArrayDictionary[fileName] = stream;
-                    Languages[fileName]= new Language(element);
-                }
-            }
-        }
-
-    }
     /// <summary>    
     ///  | Author：TreeMoons <br/>
     ///  | Date：May,6th,2020 <br/>
@@ -50,11 +18,22 @@ namespace ModelsLibrary.Languages
     ///  | instructon：store struct by action name,which reflect keywords in the views <br/>
     /// </summary>
     [Serializable]
-    public partial class Language : IEnumerable
+    public partial class Language : ILanguage
     {
-        private JsonElement LanguageJson { get; set; }
+        private JsonElement? LanguageJson { get; set; }
+        public Language() { }
         public Language(JsonElement _json)
         {
+            Initialing(_json);
+        }
+        /// <summary>
+        /// Initialing all languages.
+        /// <br/>throw exception ,if languageInfo has initialed.
+        /// </summary>
+        /// <param name="_json">json info</param>
+        public void Initialing(JsonElement _json)
+        {
+            if(LanguageInfo.Count>0) throw new Exception ("LanguageInfo has initialed.");
             LanguageJson = _json;
             LanguageInfo[nameof(Master)] = new Master(LanguageJson.GetProperty(nameof(Master)));
             LanguageInfo[nameof(Index)] = new Index(LanguageJson.GetProperty(nameof(Index)));
@@ -64,7 +43,7 @@ namespace ModelsLibrary.Languages
             LanguageInfo[nameof(EditArticle)] = new EditArticle(LanguageJson.GetProperty(nameof(EditArticle)));
             LanguageInfo[nameof(EditProfile)] = new EditProfile(LanguageJson.GetProperty(nameof(EditProfile)));
         }
-        private Hashtable LanguageInfo = Hashtable.Synchronized(new Hashtable());
+        private Hashtable LanguageInfo{ get; set; } = Hashtable.Synchronized(new Hashtable());
         public object this[string index]
         {
             get => LanguageInfo[index];
