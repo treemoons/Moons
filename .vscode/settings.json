@@ -1,15 +1,2 @@
 {
-    "sqltools.connections": [
-        {
-            "connectString": "server=SURFACE-PRO-7\\MSSQLSERVER2017;database=DMPF_JP;uid=sa;pwd=LINPENG123;",
-            "dialect": "MSSQL",
-            "isActive": false,
-            "isConnected": false,
-            "name": "123"
-        }
-    ],
-    "workbench.colorCustomizations": {
-    
-    
-    }
 }

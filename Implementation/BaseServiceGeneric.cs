@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Microsoft.Extensions.Logging;
 
 namespace Implementation
 {
@@ -68,7 +69,12 @@ namespace Implementation
                 _ => throw new Exception(),
             })
             .AddEntityFrameworkSqlServer()
-            .AddDbContext<TContext>(op => op.UseSqlServer(sqlString))
+            .AddDbContext<TContext>(
+                op =>
+                {
+                    op.UseSqlServer(sqlString);
+                    op.UseLoggerFactory(ServiceContainer.MyLoggerFactory);
+                })
             .BuildServiceProvider();
     }
 
@@ -77,6 +83,12 @@ namespace Implementation
     /// </summary>
     public static class ServiceContainer
     {
+        /// <summary>
+        /// logging  to  console
+        /// </summary>
+        /// <returns>ILoggerFactory</returns>
+        public static readonly ILoggerFactory MyLoggerFactory = LoggerFactory.Create(builder => { builder.AddConsole(); });
+        
         #region Get Sigle Table Service
         /// <summary> 获取单表服务容器（带ModelBuider）</summary>
         /// <param name="service">服务类型</param>
@@ -593,7 +605,7 @@ namespace Implementation
     /// <typeparam name="TModelsBuilder">配置加载数据模型属性 
     /// <br/><i>继承自接口IEntityTypeConfiguration&#60;TDbTable&#62;</i>
     /// </typeparam>
-    public class DBContextsWithModelsBuilder<TDbTable1, TDbTable2, TDbTable3, TDbTable4, TModelsBuilder1, TModelsBuilder2, TModelsBuilder3,TModelsBuilder4> : DbContext
+    public class DBContextsWithModelsBuilder<TDbTable1, TDbTable2, TDbTable3, TDbTable4, TModelsBuilder1, TModelsBuilder2, TModelsBuilder3, TModelsBuilder4> : DbContext
       where TDbTable1 : class
       where TDbTable2 : class
       where TDbTable3 : class
@@ -603,7 +615,7 @@ namespace Implementation
       where TModelsBuilder3 : IEntityTypeConfiguration<TDbTable3>, new()
       where TModelsBuilder4 : IEntityTypeConfiguration<TDbTable4>, new()
     {
-        public DBContextsWithModelsBuilder(DbContextOptions<DBContextsWithModelsBuilder<TDbTable1, TDbTable2, TDbTable3, TDbTable4, TModelsBuilder1, TModelsBuilder2, TModelsBuilder3,TModelsBuilder4>> options) : base(options) { }
+        public DBContextsWithModelsBuilder(DbContextOptions<DBContextsWithModelsBuilder<TDbTable1, TDbTable2, TDbTable3, TDbTable4, TModelsBuilder1, TModelsBuilder2, TModelsBuilder3, TModelsBuilder4>> options) : base(options) { }
         /// <summary>
         /// 控制的表,对应泛型的第1个类型
         /// </summary>
@@ -662,7 +674,7 @@ namespace Implementation
     /// <typeparam name="TModelsBuilder1">配置加载数据模型属性 
     /// <br/><i>继承自接口IEntityTypeConfiguration&#60;TDbTable&#62;</i>
     /// </typeparam>
-    public class DBContextsWithModelsBuilder<TDbTable1, TDbTable2, TDbTable3, TDbTable4,TDbTable5, TModelsBuilder1, TModelsBuilder2, TModelsBuilder3, TModelsBuilder4,TModelsBuilder5> : DbContext
+    public class DBContextsWithModelsBuilder<TDbTable1, TDbTable2, TDbTable3, TDbTable4, TDbTable5, TModelsBuilder1, TModelsBuilder2, TModelsBuilder3, TModelsBuilder4, TModelsBuilder5> : DbContext
       where TDbTable1 : class
       where TDbTable2 : class
       where TDbTable3 : class
@@ -674,7 +686,7 @@ namespace Implementation
       where TModelsBuilder4 : IEntityTypeConfiguration<TDbTable4>, new()
       where TModelsBuilder5 : IEntityTypeConfiguration<TDbTable5>, new()
     {
-        public DBContextsWithModelsBuilder(DbContextOptions<DBContextsWithModelsBuilder<TDbTable1, TDbTable2, TDbTable3, TDbTable4,TDbTable5, TModelsBuilder1, TModelsBuilder2, TModelsBuilder3, TModelsBuilder4,TModelsBuilder5>> options) : base(options) { }
+        public DBContextsWithModelsBuilder(DbContextOptions<DBContextsWithModelsBuilder<TDbTable1, TDbTable2, TDbTable3, TDbTable4, TDbTable5, TModelsBuilder1, TModelsBuilder2, TModelsBuilder3, TModelsBuilder4, TModelsBuilder5>> options) : base(options) { }
         /// <summary>
         /// 控制的表,对应泛型的第1个类型
         /// </summary>
