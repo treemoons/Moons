@@ -7150,11 +7150,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Html\\MyWork\\Implementation\\Implementation.csproj",
+      "projectUniqueName": "e:\\Html\\MyWork\\Implementation\\Implementation.csproj",
       "projectName": "Implementation",
-      "projectPath": "E:\\Html\\MyWork\\Implementation\\Implementation.csproj",
+      "projectPath": "e:\\Html\\MyWork\\Implementation\\Implementation.csproj",
       "packagesPath": "C:\\Users\\hands\\.nuget\\packages\\",
-      "outputPath": "E:\\Html\\MyWork\\Implementation\\obj\\",
+      "outputPath": "e:\\Html\\MyWork\\Implementation\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "D:\\Microsoft\\Xamarin\\NuGet\\"
@@ -7174,11 +7174,11 @@
       "frameworks": {
         "netstandard2.1": {
           "projectReferences": {
-            "E:\\Html\\MyWork\\ModelsLibrary\\ModelsLibrary.csproj": {
-              "projectPath": "E:\\Html\\MyWork\\ModelsLibrary\\ModelsLibrary.csproj"
+            "e:\\Html\\MyWork\\ModelsLibrary\\ModelsLibrary.csproj": {
+              "projectPath": "e:\\Html\\MyWork\\ModelsLibrary\\ModelsLibrary.csproj"
             },
-            "E:\\Html\\MyWork\\Utils\\Utils.csproj": {
-              "projectPath": "E:\\Html\\MyWork\\Utils\\Utils.csproj"
+            "e:\\Html\\MyWork\\Utils\\Utils.csproj": {
+              "projectPath": "e:\\Html\\MyWork\\Utils\\Utils.csproj"
             }
           }
         }
@@ -7229,12 +7229,18 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "NETStandard.Library.Ref",
+            "version": "[2.1.0, 2.1.0]"
+          }
+        ],
         "frameworkReferences": {
           "NETStandard.Library": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.301\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100-preview.5.20279.10\\RuntimeIdentifierGraph.json"
       }
     }
   }

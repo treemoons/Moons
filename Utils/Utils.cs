@@ -11,6 +11,18 @@ namespace CommonUtils
     static public class Utils
     {
     }
+
+
+    /// <summary>
+    /// encrypt cookie with Base64
+    /// </summary>
+    public struct LoginCookieBase64
+    {
+        static public string GetCookieUserNameBase64 => Convert.ToBase64String(Encoding.ASCII.GetBytes("username"));
+        static public string GetCookiePasswordBase64 => Convert.ToBase64String(Encoding.ASCII.GetBytes("password"));
+        static public string GetCookieRememberBase64 => Convert.ToBase64String(Encoding.ASCII.GetBytes("isremembered"));
+    }
+
     public class RSAData
     {
         /// <summary> 

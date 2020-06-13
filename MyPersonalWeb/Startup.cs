@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using ModelsLibrary.Languages;
 using Microsoft.AspNetCore.Http.Features;
 
 namespace MyPersonalWeb
@@ -57,17 +58,19 @@ namespace MyPersonalWeb
                 endpoints.MapAreaControllerRoute(
                         name: "MyAreaAdmin",
                         areaName: "Admin",
-                        pattern: "{language?}/Admin/{controller=Home}/{action=Index}/{id?}");
+                        pattern: "{language?}/admin/{controller=Home}/{action=Index}/{id?}",
+                        constraints: Utils.AreaAdminLanguagesParttern.Length == 0 ? null : new { language = Utils.AreaAdminLanguagesParttern.ToString() }
+                        );
 
                 endpoints.MapAreaControllerRoute(
                         name: "MyAreaAPI",
                         areaName: "API",
-                        pattern: "API/{controller=Home}/{action=Index}/{id?}");
+                        pattern: "api/{controller=Home}/{action=Index}/{id?}");
 
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{language?}/{controller=Home}/{action=Index}/{id?}",
-                    constraints: new { language = ModelsLibrary.Languages.Utils.LanguagesParterrn.ToString() } //new {pattern=@"正则表达式"}
+                    constraints: new { language = Utils.LanguagesParterrn.ToString() } //new {pattern=@"正则表达式"}
                     );
 
             });

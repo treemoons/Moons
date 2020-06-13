@@ -18,6 +18,7 @@ namespace ModelsLibrary.Languages
             else
                 return null;
         }
+        public static StringBuilder AreaAdminLanguagesParttern { get; set; } = new StringBuilder();
         public static StringBuilder LanguagesParterrn { get; set; } = new StringBuilder();
         public static Hashtable Languages { get; set; } = Hashtable.Synchronized(new Hashtable());
         public static Hashtable LanguageJsonElementDictionary { get; set; } = Hashtable.Synchronized(new Hashtable());

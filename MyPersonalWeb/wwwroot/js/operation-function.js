@@ -255,6 +255,8 @@ function setCookie(name, value, day) {
     date.setDate(date.getDate() + day);
     document.cookie = `${name}=${value};expires=${date}`;
 };
+
+
 /**  获取cookie*/
 function getCookie(name) {
     var reg = RegExp(`${name}=([^;]+)`);
@@ -356,6 +358,7 @@ function getAjaxData({ url, success, failed = error => { console.log(error); }, 
         }
     }
 }
+
 
 //#endregion
 

@@ -16,9 +16,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Logging;
 using MyPersonalWeb.Models;
-using ModelsLibrary;
 using CommonUtils;
-using Languages= ModelsLibrary.Languages;
 namespace MyPersonalWeb.Controllers
 {
     /// <summary>
@@ -26,7 +24,7 @@ namespace MyPersonalWeb.Controllers
     /// </summary>
     public class PermissionController : Controller
     {
-
+        
         [NonAction]
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
@@ -77,35 +75,5 @@ namespace MyPersonalWeb.Controllers
                     var aaa = a;
                 }
         }
-
-        public class NoPromissionAttribute : ActionFilterAttribute
-        {
-
-            [NonAction]
-            public override void OnActionExecuting(ActionExecutingContext filterContext)
-            {
-                base.OnActionExecuting(filterContext);
-            }
-        }
-
-        public class CheckAttribute : ActionFilterAttribute
-        {
-            [NonAction]
-            public override void OnActionExecuting(ActionExecutingContext filterContext)
-            {
-                base.OnActionExecuting(filterContext);
-            }
-        }
     }
-
-    /// <summary>
-    /// encrypt cookie with Base64
-    /// </summary>
-    public struct LoginCookieBase64
-    {
-        static public string GetCookieUserNameBase64 => Convert.ToBase64String(Encoding.ASCII.GetBytes("username"));
-        static public string GetCookiePasswordBase64 => Convert.ToBase64String(Encoding.ASCII.GetBytes("password"));
-        static public string GetCookieRememberBase64 => Convert.ToBase64String(Encoding.ASCII.GetBytes("isremembered"));
-    }
-
 }

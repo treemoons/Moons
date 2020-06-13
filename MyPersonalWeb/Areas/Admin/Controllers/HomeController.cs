@@ -2,10 +2,10 @@
 
 namespace MyPersonalWeb.Areas.Admin.Controllers
 {
-    [Area("Admin")]
-    public class HomeController : Controller
+    // [Area("Admin")]
+    public class HomeController : BaseAdminController
     {
-       public string Index() => "test!";
+       public IActionResult Index() => View();
 
     }
 }

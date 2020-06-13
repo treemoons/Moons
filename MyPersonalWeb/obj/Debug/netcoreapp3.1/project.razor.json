@@ -20576,6 +20576,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "e:\\Html\\MyWork\\MyPersonalWeb\\Areas\\Admin\\Views\\Shared\\_Layout.cshtml",
+      "TargetPath": "Areas\\Admin\\Views\\Shared\\_Layout.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "e:\\Html\\MyWork\\MyPersonalWeb\\Views\\Profile\\EditArticleList.cshtml",
       "TargetPath": "Views\\Profile\\EditArticleList.cshtml",
       "FileKind": "mvc"

@@ -79,3 +79,9 @@ E:\Html\MyWork\MyPersonalWeb\obj\Debug\netcoreapp3.1\Razor\Views\Section\Article
 E:\Html\MyWork\MyPersonalWeb\obj\Debug\netcoreapp3.1\Razor\Views\Section\Searched.cshtml.g.cs
 E:\Html\MyWork\MyPersonalWeb\bin\Debug\netcoreapp3.1\.filenesting.json
 E:\Html\MyWork\MyPersonalWeb\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Home\Index.cshtml.g.cs
+E:\Html\MyWork\MyPersonalWeb\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.Configuration.dll
+E:\Html\MyWork\MyPersonalWeb\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.Console.dll
+E:\Html\MyWork\MyPersonalWeb\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Options.ConfigurationExtensions.dll
+E:\Html\MyWork\MyPersonalWeb\bin\Debug\netcoreapp3.1\System.Collections.Immutable.dll
+E:\Html\MyWork\MyPersonalWeb\bin\Debug\netcoreapp3.1\System.Diagnostics.DiagnosticSource.dll
+E:\Html\MyWork\MyPersonalWeb\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Shared\_Layout.cshtml.g.cs
