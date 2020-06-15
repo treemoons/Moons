@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "oFO1hQ1kbPDDEW3tSMDJkUHJm1jm3UebKf82Zfn+xHcvIjI8xz0aflf5Ey6SQdvBlWlyaoWEyChEr7Zrb/K4aA==",
+  "dgSpecHash": "N1P6KEdx8pdrL4vzesP1QJpKq+5Be6J7QB7CbwVRuKhhDRGdsDDxKzkteFcXKD6vp0DQh5ydmLSfR/FFX0TOcQ==",
   "success": true,
-  "projectFilePath": "e:\\Html\\MyWork\\Implementation\\Implementation.csproj",
+  "projectFilePath": "E:\\Html\\MyWork\\Implementation\\Implementation.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\hands\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\hands\\.nuget\\packages\\microsoft.bcl.hashcode\\1.1.0\\microsoft.bcl.hashcode.1.1.0.nupkg.sha512",
@@ -132,8 +132,7 @@
     "C:\\Users\\hands\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Users\\hands\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
     "C:\\Users\\hands\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
-    "C:\\Users\\hands\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512",
-    "C:\\Users\\hands\\.nuget\\packages\\netstandard.library.ref\\2.1.0\\netstandard.library.ref.2.1.0.nupkg.sha512"
+    "C:\\Users\\hands\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512"
   ],
   "logs": []
 }

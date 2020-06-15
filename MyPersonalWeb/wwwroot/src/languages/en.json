@@ -50,15 +50,17 @@
             "Forget": "Forget?",
             "IsRemember": "IsRemember",
             "NewUser": "New Account?",
-            "Create": "Create Now"
-
+            "Create": "Create Now",
+            "ErrorNull": "can't be null.",
+            "ErrorLogin": "account or password would be wrong,please input again."
         },
         "SearchText":"Put The Keywords",
         "CurrentLanguageCode": "en",
         "CurrentLanguage": "English",
         "FooterCopyright": "by  TreeMoons in the future",
         "MenuMyProfile":"My Profile",
-        "LengthErrorMessage":""
+        "LengthErrorMessage":"",
+        "SearchType":["All","ssss"]
     },
 
    

@@ -1,6 +1,6 @@
 
 windowResize.push(resizeLogin);
-windowOnload.push(loadlang, selectedlang);
+windowOnload.push(loadlang, selectedlang, loadSelectedType);
 
 /**
  * 展示menu列表

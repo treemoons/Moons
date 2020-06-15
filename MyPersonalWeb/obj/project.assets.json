@@ -1,7 +1,7 @@
 {
   "version": 3,
   "targets": {
-    ".NETCoreApp,Version=v5.0": {
+    ".NETCoreApp,Version=v3.1": {
       "Microsoft.Bcl.AsyncInterfaces/1.1.1": {
         "type": "package",
         "compile": {
@@ -5204,7 +5204,7 @@
     }
   },
   "projectFileDependencyGroups": {
-    ".NETCoreApp,Version=v5.0": [
+    ".NETCoreApp,Version=v3.1": [
       "Implementation >= 1.0.0",
       "ModelsLibrary >= 1.0.0",
       "Utils >= 1.0.0"
@@ -5217,11 +5217,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "e:\\Html\\MyWork\\MyPersonalWeb\\MyPersonalWeb.csproj",
+      "projectUniqueName": "E:\\Html\\MyWork\\MyPersonalWeb\\MyPersonalWeb.csproj",
       "projectName": "MyPersonalWeb",
-      "projectPath": "e:\\Html\\MyWork\\MyPersonalWeb\\MyPersonalWeb.csproj",
+      "projectPath": "E:\\Html\\MyWork\\MyPersonalWeb\\MyPersonalWeb.csproj",
       "packagesPath": "C:\\Users\\hands\\.nuget\\packages\\",
-      "outputPath": "e:\\Html\\MyWork\\MyPersonalWeb\\obj\\",
+      "outputPath": "E:\\Html\\MyWork\\MyPersonalWeb\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "D:\\Microsoft\\Xamarin\\NuGet\\"
@@ -5232,23 +5232,23 @@
         "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
       "originalTargetFrameworks": [
-        "net5.0"
+        "netcoreapp3.1"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
-        "net5.0": {
+        "netcoreapp3.1": {
           "projectReferences": {
-            "e:\\Html\\MyWork\\Implementation\\Implementation.csproj": {
-              "projectPath": "e:\\Html\\MyWork\\Implementation\\Implementation.csproj"
+            "E:\\Html\\MyWork\\Implementation\\Implementation.csproj": {
+              "projectPath": "E:\\Html\\MyWork\\Implementation\\Implementation.csproj"
             },
-            "e:\\Html\\MyWork\\ModelsLibrary\\ModelsLibrary.csproj": {
-              "projectPath": "e:\\Html\\MyWork\\ModelsLibrary\\ModelsLibrary.csproj"
+            "E:\\Html\\MyWork\\ModelsLibrary\\ModelsLibrary.csproj": {
+              "projectPath": "E:\\Html\\MyWork\\ModelsLibrary\\ModelsLibrary.csproj"
             },
-            "e:\\Html\\MyWork\\Utils\\Utils.csproj": {
-              "projectPath": "e:\\Html\\MyWork\\Utils\\Utils.csproj"
+            "E:\\Html\\MyWork\\Utils\\Utils.csproj": {
+              "projectPath": "E:\\Html\\MyWork\\Utils\\Utils.csproj"
             }
           }
         }
@@ -5260,7 +5260,7 @@
       }
     },
     "frameworks": {
-      "net5.0": {
+      "netcoreapp3.1": {
         "imports": [
           "net461",
           "net462",
@@ -5279,7 +5279,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100-preview.5.20279.10\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.301\\RuntimeIdentifierGraph.json"
       }
     }
   }

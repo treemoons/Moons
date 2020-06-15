@@ -62,6 +62,7 @@ namespace MyPersonalWeb.Controllers
                     {
                         HttpContext.Response.Cookies.Delete(LoginCookieBase64.GetCookieRememberBase64);
                     }
+                    if(users.UserName=="aa")return "F";
                     return "T";
                 }
             });

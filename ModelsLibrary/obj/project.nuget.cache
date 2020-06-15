@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "e7UgtuaczcLoaC5X6wSZOR+dBb6bLGxytuPl50W40Z2HhyOGorIZDyQ2w1sygL6LUgtUDgcTcPM/cW/FjDu4ow==",
+  "dgSpecHash": "fB0lzpZWZdeBZ3WydT1ymzwTgXaF2n9FkGYSWYwAXimUN2bvzF4xiAid/CDdpFvtXOfeWbM0Bw4hGCTdChnjrQ==",
   "success": true,
-  "projectFilePath": "e:\\Html\\MyWork\\ModelsLibrary\\ModelsLibrary.csproj",
+  "projectFilePath": "E:\\Html\\MyWork\\ModelsLibrary\\ModelsLibrary.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\hands\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.0\\microsoft.bcl.asyncinterfaces.1.1.0.nupkg.sha512",
     "C:\\Users\\hands\\.nuget\\packages\\system.buffers\\4.5.1\\system.buffers.4.5.1.nupkg.sha512",
@@ -13,8 +13,7 @@
     "C:\\Users\\hands\\.nuget\\packages\\system.security.cryptography.cng\\4.7.0\\system.security.cryptography.cng.4.7.0.nupkg.sha512",
     "C:\\Users\\hands\\.nuget\\packages\\system.text.encodings.web\\4.7.1\\system.text.encodings.web.4.7.1.nupkg.sha512",
     "C:\\Users\\hands\\.nuget\\packages\\system.text.json\\4.7.2\\system.text.json.4.7.2.nupkg.sha512",
-    "C:\\Users\\hands\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512",
-    "C:\\Users\\hands\\.nuget\\packages\\netstandard.library.ref\\2.1.0\\netstandard.library.ref.2.1.0.nupkg.sha512"
+    "C:\\Users\\hands\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512"
   ],
   "logs": []
 }

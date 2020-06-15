@@ -148,13 +148,37 @@ function pressEnter(input, action) {
 }
 
 /**
+ * show or hide div which contains searchText options
+ */
+function selectSearchType() {
+    showSelect('searchtypeoptions', 'searchselected');
+
+}
+
+/**
+ * load click event
+ */
+function loadSelectedType() {
+    let typeSelect = document.querySelectorAll('#searchtypeoptions option');
+    typeSelect.forEach(option => {
+        option.onclick = async function () {
+            let selected = document.getElementById('searchselected');
+            selected.innerText = this.innerText;
+            search.searchtype.value = this.innerText;
+            document.getElementById('searchtypeoptions').style.display = 'none';
+            selected.style.fontWeight = 'normal';
+        }
+    });
+}
+
+/**
  * 
  * @param {HTMLElement} input  input where type is text and whose attributes have 'tip'
  */
 function IsInputEmpty(input) {
     let error = document.getElementById('loginerror')
     if (input.value == '') {
-        error.innerText = input.getAttribute('tip') + '不能为空';
+        error.innerText = input.getAttribute('tip');
         return true;
     }
     else {
@@ -163,7 +187,7 @@ function IsInputEmpty(input) {
 }
 //#region  login and logout
 /**
- * login to Moons
+ * login your account to Moons
  */
 function signin() {
     if (IsInputEmpty(loginform.username)) {
@@ -191,7 +215,7 @@ function signin() {
                 let loginerror = document.getElementById('loginerror');
                 switch (data) {
                     case 'F':
-                        loginerror.innerText = "账号或密码错误，请重新输入。"
+                        loginerror.innerText = loginerror.getAttribute('tip1');
                         break;
                     // case 'U':
                     //     loginerror.innerText = "账号超过，请重新输入。"
@@ -210,7 +234,9 @@ function signin() {
     return false;
 }
 
-
+/**
+ * SIGN OUT CAN BE DONE
+ */
 function signout() {
     // waitLogin();
     getAjaxData({
@@ -254,23 +280,19 @@ function setCookie(name, value, day) {
     var date = new Date();
     date.setDate(date.getDate() + day);
     document.cookie = `${name}=${value};expires=${date}`;
-};
+}
 
 
 /**  获取cookie*/
 function getCookie(name) {
-    var reg = RegExp(`${name}=([^;]+)`);
-    var arr = document.cookie.match(reg);
-    if (arr) {
-        return arr[1];
-    } else {
-        return '';
-    }
-};
+   return getQueryString(name,document.cookie)
+}
+
+
 /**  删除cookie*/
 function delCookie(name) {
     setCookie(name, null, -1);
-};
+}
 //#endregion
 
 //#region national lanuage
@@ -280,7 +302,7 @@ function delCookie(name) {
  * @param {string} elelang Abbreviation of language between all of world
  * @param {Number} date date of expires
  */
-function changeLanguage(elelang, date = 100) {
+function changeLanguageCookie(elelang, date = 100) {
     setCookie('lang', elelang, date)
 }
 /**
@@ -295,17 +317,22 @@ function loadlang() {
 }
 //#endregion
 //#region  select language options
-function showlang() {
-    let option = document.getElementById('lang');
-    document.getElementById('selected').style.fontWeight = 'bolder';
-    if (option.style.display == 'block') {
-        option.style.display = 'none';
+/**
+ * 
+ * @param {HTMLElement} parent parent element DIV
+ * @param {HTMLElement} chlidren selected shows
+ */
+function showSelect(parent,chlidren) {
+    let options = document.getElementById(parent);
+    document.getElementById(chlidren).style.fontWeight = 'bolder';
+    if (options.style.display == 'block') {
+        options.style.display = 'none';
     } else {
-        option.style.opacity = '0';
-        option.style.display = 'block';
+        options.style.opacity = '0';
+        options.style.display = 'block';
         setInterval(() => {
-            option.style.opacity = '100';
-        }, 00);
+            options.style.opacity = '100';
+        }, 0);
     }
 }
 /**
@@ -319,12 +346,8 @@ function selectedlang() {
             selected.innerText = this.innerText;
             document.getElementById('lang').style.display = 'none';
             selected.style.fontWeight = 'normal';
-            changeLanguage(option.value);
-            let querystring = location.href.substr(location.href.indexOf('?'));
-            if (!querystring.startsWith('?')) {
-                querystring = '';
-            }
-            open(`/${option.value}/${route}${querystring}`, '_self');
+            changeLanguageCookie(option.value);debugger
+            open(`/${option.value}/${route}${location.search}`, '_self');
 
         }
     });

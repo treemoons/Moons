@@ -88,3 +88,24 @@ Date.prototype.formatDate = function (fmt) {
     }
     return fmt;
 }
+
+String.prototype.write = function () {debugger
+    document.write(this);
+}
+String.prototype.getEleById =function(){
+    return document.getElementById(this);
+}
+
+/**
+ * @param {string} name search keywords
+ * @param {string} purposeString results pool
+ */
+function getQueryString(name, purposeString) {
+    var reg = RegExp(`${name}=([^&]+)`);
+    var arr = purposeString.match(reg);
+    if (arr) {
+        return arr[1];
+    } else {
+        return '';
+    }
+}

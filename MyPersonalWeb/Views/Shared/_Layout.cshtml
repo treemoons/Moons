@@ -52,9 +52,25 @@
         </nav>
         <div role="navigation" class="user-search-icon">
             <div>
+                <div class="searchselect">
+                        <span id="searchselected" onclick="selectSearchType()">
+                            <script>
+                                let trysearchtext = getQueryString('searchtype', location.search);
+                                let searchtext= (trysearchtext ===""?'@languageMaster.SearchType.Value[0]': trysearchtext);
+                                decodeURI(searchtext).write();
+                                </script>
+                        </span><br>
+                        <div name="type" id="searchtypeoptions">
+                        @for (int i = 0; i < languageMaster.SearchType.Value.GetArrayLength(); i++)
+                        {
+                            <option value="@i">@languageMaster.SearchType.Value[i]</option>
+                        }
+                        </div>
+                    </div>
                 <div class="search-option">
                     <form action="/@ViewBag.lang/section/searched" method="GET" name="search">
                         <input type="search" placeholder="@languageMaster.SearchText" name="searchtext">
+                        <input type="hidden" value="@languageMaster.SearchType.Value[0].ToString().ToLower()" name="searchtype">
                     </form>
                 </div>
                 <div class="search-icon">
@@ -97,10 +113,10 @@
                 @* @Html.AntiForgeryToken() *@
                 <div>
                     <p>@login?.UserName</p>
-                    <input tabindex="1" type="text" tip="@login?.UserName" value="@ViewBag.username" name="username">
+                    <input tabindex="1" type="text" tip="@login?.UserName@login?.ErrorNull" value="@ViewBag.username" name="username">
                     <p>@login?.Password <a href=""> @login?.Forget</a></p>
-                    <input tabindex="2" type="password" tip="@login?.Password" value="@ViewBag.password" name="password">
-                    <div id="loginerror" style="color: red;">&#160;</div>
+                    <input tabindex="2" type="password" tip="@login?.Password@login?.ErrorNull" value="@ViewBag.password" name="password">
+                    <div id="loginerror" style="color: red;" tip1="@login?.ErrorLogin" >&#160;</div>
                     <input tabindex="3" name="commit" type="submit" value="@login?.Signin" onclick="return signin()">
                     <input type="checkbox" name="isremembered" @ViewBag.isremembered id="isremembered"><label for="isremembered">&#160;&nbsp;@login?.IsRemember</label>
                 </div>
@@ -166,7 +182,7 @@
         <div class="copyright">
             <p>©@DateTime.Now.ToString("yyyy") @languageMaster.FooterCopyright</p>
             <div class="langselect">
-                @languageMaster.Language ：<span id="selected" onclick="showlang()">@languageMaster.CurrentLanguage</span><br>
+                @languageMaster.Language ：<span id="selected" onclick="showSelect('lang','selected')">@languageMaster.CurrentLanguage</span><br>
                 <div name="lang" id="lang">
                     <option value="en">English</option>
                     <option value="zh-cn">中文简体</option>

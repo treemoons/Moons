@@ -88,7 +88,7 @@ namespace ModelsLibrary.Languages.MainViews
             public string MenuMyProfile => LanguageJson.GetProperty(nameof(MenuMyProfile))?.ToString();
             public string CurrentLanguageCode => LanguageJson.GetProperty(nameof(CurrentLanguageCode))?.ToString();
             public string CurrentLanguage => LanguageJson.GetProperty(nameof(CurrentLanguage))?.ToString();
-
+            public JsonElement? SearchType =>LanguageJson.GetProperty(nameof(SearchType));
             public JsonElement? UserOptionsTheme => LanguageJson.GetProperty(nameof(UserOptionsTheme));
             public JsonElement? UserOptionsleftArray => LanguageJson.GetProperty(nameof(UserOptionsleftArray));
             public List<LinkTable> FooterArray { get; }
@@ -109,6 +109,8 @@ namespace ModelsLibrary.Languages.MainViews
                 public string IsRemember => LoginJson.GetProperty(nameof(IsRemember))?.ToString();
                 public string NewUser => LoginJson.GetProperty(nameof(NewUser))?.ToString();
                 public string Create => LoginJson.GetProperty(nameof(Create))?.ToString();
+                public string ErrorNull => LoginJson.GetProperty(nameof(ErrorNull))?.ToString();
+                public string ErrorLogin => LoginJson.GetProperty(nameof(ErrorLogin))?.ToString();
             }
             /// <summary>
             ///  Array contains two options,put using into menu or footer
