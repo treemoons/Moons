@@ -285,7 +285,7 @@ function setCookie(name, value, day) {
 
 /**  获取cookie*/
 function getCookie(name) {
-   return getQueryString(name,document.cookie)
+   return getQueryString(name,document.cookie,';')
 }
 
 

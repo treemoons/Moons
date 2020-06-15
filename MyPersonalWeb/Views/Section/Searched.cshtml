@@ -7,11 +7,9 @@
     <div class="searched-keywords">
         <div>搜索：</div>
         <div class="search-option">
-            <form action="/@ViewBag.lang/section/searched" method="GET" name="searched">
-                <input type="search"
-                       placeholder="@(((Language.Master)Utils.Languages[ViewBag.lang][nameof(Language.Master)]).SearchText)"
-                       name="searchtext" value="@Model.Item1">
-            </form>
+            <input type="search"
+                placeholder="@(((Language.Master)Utils.Languages[ViewBag.lang][nameof(Language.Master)]).SearchText)"
+                name="searchtext" value="@Model.Item1">
         </div>
         <div class="search-icon">
             <i onclick="searched.submit();"></i>

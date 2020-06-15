@@ -97,11 +97,12 @@ String.prototype.getEleById =function(){
 }
 
 /**
+ * 
  * @param {string} name search keywords
  * @param {string} purposeString results pool
  */
-function getQueryString(name, purposeString) {
-    var reg = RegExp(`${name}=([^&]+)`);
+function getQueryString(name, purposeString,splitMark) {
+    var reg = RegExp(`${name}=([^${splitMark}]+)`);
     var arr = purposeString.match(reg);
     if (arr) {
         return arr[1];
