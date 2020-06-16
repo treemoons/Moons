@@ -34,7 +34,9 @@ namespace MyPersonalWeb.Controllers
             controller = filterContext.RouteData.Values["controller"].ToString();
             parameterValue = filterContext.RouteData.Values["language"]?.ToString();
             parameterValue= parameterValue??
-            (HttpContext.Request.Cookies.TryGetValue("lang", out string lang) ? lang : "en");
+            (HttpContext.Request.Cookies.TryGetValue("lang", out string lang) ? lang : 
+            (ModelsLibrary.Languages.Utils.LanguagesParterrn.ToString().Contains(System.Globalization.CultureInfo.InstalledUICulture.Name.ToLower())?
+            System.Globalization.CultureInfo.InstalledUICulture.Name.ToLower():"en"));
             ViewBag.controller = controller.ToLowerInvariant();
             ViewBag.action = action.ToLowerInvariant();
             ViewBag.lang = parameterValue.ToLowerInvariant();

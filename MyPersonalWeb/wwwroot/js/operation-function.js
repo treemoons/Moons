@@ -128,7 +128,7 @@ function showUserOptions() {
     }
 }
 /**
- * 返回首页* 
+ *  back to home page
  */
 function backIndex() {
     open(`/${lang}/home/index`, "_self");
@@ -145,6 +145,24 @@ function pressEnter(input, action) {
             action(form);
         }
     };
+}
+/**
+ * 
+ * @param {HTMLElement} input input where type is text
+ * @param {Function} action when press enter key , do this function
+ */
+function press(input) {
+    input.onkeypress = e => {
+       input.value
+    };
+}
+/**
+ * sync searchtext which is input element 
+ */
+function loadSearchText() {
+    debugger
+    let text = getQueryString('searchtext', location.search, '&').decodeUriString();
+    search.searchtext.value = text;
 }
 
 /**
@@ -338,7 +356,7 @@ function showSelect(parent,chlidren) {
 /**
  * 添加language选中一个显示之后的click事件
  */
-function selectedlang() {
+function loadSelectedlang() {
     let langselects = document.querySelectorAll('#lang option');
     langselects.forEach(option => {
         option.onclick = async function () {

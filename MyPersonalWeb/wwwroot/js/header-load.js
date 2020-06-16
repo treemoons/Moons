@@ -89,13 +89,15 @@ Date.prototype.formatDate = function (fmt) {
     return fmt;
 }
 
-String.prototype.write = function () {debugger
+String.prototype.write = function () {
     document.write(this);
 }
 String.prototype.getEleById =function(){
     return document.getElementById(this);
 }
-
+String.prototype.decodeUriString=function(){
+    return decodeURI(this)
+}
 /**
  * 
  * @param {string} name search keywords

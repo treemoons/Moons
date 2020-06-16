@@ -54,6 +54,7 @@
             "ErrorNull": "can't be null.",
             "ErrorLogin": "account or password would be wrong,please input again."
         },
+        "ErrorBrowser": "NOT SUPPORT IE !  PLEASE USE OTHER BROWSER.",
         "SearchText":"Put The Keywords",
         "CurrentLanguageCode": "en",
         "CurrentLanguage": "English",

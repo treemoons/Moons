@@ -110,6 +110,7 @@
             "ErrorLogin": "账号或密码错误，请重新输入。"
 
         },
+        "ErrorBrowser": "不支持IE浏览器，请更换其他浏览器。",
         "SearchText": "请输入搜索内容",
         "CurrentLanguageCode": "zh-cn",
         "CurrentLanguage": "中文",
