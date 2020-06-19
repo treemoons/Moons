@@ -1,6 +1,6 @@
 @{
     var languageSearched = (Language.Searched)Utils.Languages[ViewBag.lang][nameof(Language.Searched)];
-    ViewData["Title"] = ViewBag.UserName ?? Model.Item1;
+    ViewData["Title"] ="" + ViewBag.UserName ?? Model.Item1;
 }
 @model ValueTuple<string, string>
 <div>

@@ -14,7 +14,7 @@ namespace ModelsLibrary.User
     {
         public UserSignIn()
         {
-
+            
         }
         [StringLength(10)]
         [DisplayName("用户名")]

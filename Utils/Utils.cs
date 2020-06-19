@@ -38,7 +38,7 @@ namespace CommonUtils
             param.KeyContainerName = KeyContainerName ?? "default"; //密匙容器的名称，保持加密解密一致才能解密成功
             using (System.Security.Cryptography.RSACryptoServiceProvider rsa = new System.Security.Cryptography.RSACryptoServiceProvider(param))
             {
-                byte[] plaindata = System.Text.Encoding.Default.GetBytes(express);//将要加密的字符串转换为字节数组
+                byte[] plaindata = System.Text.Encoding.ASCII.GetBytes(express);//将要加密的字符串转换为字节数组
                 byte[] encryptdata = rsa.Encrypt(plaindata, false);//将加密后的字节数据转换为新的加密字节数组
                 return Convert.ToBase64String(encryptdata);//将加密后的字节数组转换为字符串
             }
@@ -57,7 +57,7 @@ namespace CommonUtils
             {
                 byte[] encryptdata = Convert.FromBase64String(ciphertext);
                 byte[] decryptdata = rsa.Decrypt(encryptdata, false);
-                return System.Text.Encoding.Default.GetString(decryptdata);
+                return System.Text.Encoding.ASCII.GetString(decryptdata);
             }
         }
 

@@ -75,7 +75,9 @@ namespace MyPersonalWeb.Controllers
                 public void Test(string a)
                 {
                     var aaa = a;
-                }
+                var t=System. Convert.FromBase64String("ewoidiI6ICIyIiwKInBzIjogIjE0OS4yOC42NS4yOSIsCiJhZGQiOiAiMTQ5LjI4LjY1LjI5IiwKInBvcnQiOiAiNDM1MTQiLAoiaWQiOiAiODY0YmQ2ZDQtNTgzMy00YjYzLWI0OTYtNjE0ZjVkNTk1YTA2IiwKImFpZCI6ICI0NDQiLAoibmV0IjogInRjcCIsCiJ0eXBlIjogIm5vbmUiLAoiaG9zdCI6ICIiLAoicGF0aCI6ICIiLAoidGxzIjogIiIKfQo=");
+                System.Console.WriteLine(System.Text.Encoding.UTF8.GetString(t));
+            }
         }
     }
 }
