@@ -1,4 +1,4 @@
-namespace ModelsLibrary.User
+namespace ModelsLibrary.MainViews.User
 {
     public class UserProfile
     {

@@ -16,7 +16,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Logging;
 using MyPersonalWeb.Models;
-using ModelsLibrary.User;
+using ModelsLibrary.MainViews.User;
 using ModelsLibrary;
 using CommonUtils;
 

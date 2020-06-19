@@ -1,11 +1,11 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Text;
 using System.Text.Json;
 
 namespace ModelsLibrary.Languages
 {
     /// <summary>
-    /// internal language class must inherit。
+    /// international language class must inherit it
     /// </summary>
     public interface ILanguage:IEnumerable
     {

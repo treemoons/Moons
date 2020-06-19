@@ -8,12 +8,16 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using UserTables = ModelsLibrary.User;
-namespace Implementation.Table.User.ModelsBuilder
+using UserTables = ModelsLibrary.MainViews.User;
+
+namespace Implementation.Tables.MainViews.User.ModelsBuilder
 {
-    public class UserSignIn: IEntityTypeConfiguration<UserTables.UserSignIn>
+    /// <summary>
+    /// 添加所有模型属性，阴影属性等
+    /// </summary>
+    public class UserProfile : IEntityTypeConfiguration<UserTables.UserProfile>
     {
-        public void Configure(EntityTypeBuilder<UserTables.UserSignIn> builder)
+        public void Configure(EntityTypeBuilder<UserTables.UserProfile> builder)
         { }
     }
 }

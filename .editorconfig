@@ -1,8 +1,17 @@
-root = true
 
+# http://editorconfig.org
+root = true
+#所有设置
 [*]
+#缩进风格：空格
 indent_style = space
+#缩进大小2
 indent_size = 4
+#字符集utf-8 with bom
 charset = utf-8-bom
 trim_trailing_whitespace = false
 insert_final_newline = false
+
+#具体后缀文件
+[*.md]
+trim_trailing_whitespace = false

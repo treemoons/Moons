@@ -13,8 +13,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using ModelsLibrary.User;
-namespace Implementation.Table.User
+using ModelsLibrary.MainViews.User;
+namespace Implementation.Tables.MainViews.User
 {
     
     /// <summary>

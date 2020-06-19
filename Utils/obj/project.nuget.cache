@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "4FnyX5Ay9OZeCyrqgsiVqWV3wKuFq6kVkbYSIpu4qvLItTox7uyoBII2U/SOys2/NMs0q7ZXrKK6PLXguhT6ZQ==",
+  "dgSpecHash": "5WjaVLqzIW8x2eFcOVxFrK6e5G8HBWSopPgwDcftqOvWKCcC5ygL46nzMMfhsaBvsIHewUsFRqEdZhvcQxsKgQ==",
   "success": true,
-  "projectFilePath": "E:\\Html\\MyWork\\Utils\\Utils.csproj",
+  "projectFilePath": "e:\\Html\\MyWork\\Utils\\Utils.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\hands\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.0\\microsoft.bcl.asyncinterfaces.1.1.0.nupkg.sha512",
     "C:\\Users\\hands\\.nuget\\packages\\system.buffers\\4.5.1\\system.buffers.4.5.1.nupkg.sha512",
