@@ -75,11 +75,10 @@ namespace MyPersonalWeb.Controllers
                        HttpContext.Session.Remove("CurrentUser");
                         return "T";
                        }catch{return "F";}
-                       
                    });
                    
-        [HttpPost]
-       public string Show() =>"scriptsetTimeout(showLogin,401);script";
+        
+       public string Show() =>@"{""name"":""username""} ";
 
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

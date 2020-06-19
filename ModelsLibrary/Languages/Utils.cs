@@ -33,7 +33,16 @@ namespace ModelsLibrary.Languages
                 languages: Languages
             );
         }
-
+        /// <summary>
+        /// 分域加载国家语言到hashtable，将参数中的hashtable以文件名（即国家语言对应代码）为主键
+        /// 进行初始化加载。
+        /// </summary>
+        /// <param name="path">要加载的包含所有语言的资源文件夹目录</param>
+        /// <param name="routeParttern">域下要传输的多国显示的过滤正则</param>
+        /// <param name="languages">所有国家语言对应LANGUAGE MODEL对象的HASHTABLE表</param>
+        /// <param name="languagesTable">所有国家语言对应json对象的HASHTABLE表</param>
+        /// <param name="languagesBtyes">所有国家语言对应文件流对象的HASHTABLE表</param>
+        /// <typeparam name="TAreaLanguage">对应的LANGUAGE MODEL的类型</typeparam>
         public static void GetAreaLanguageJson<TAreaLanguage>(string path, StringBuilder routeParttern, Hashtable languages, Hashtable languagesTable, Hashtable languagesBtyes)
         where TAreaLanguage : class, ILanguage, new()
         {

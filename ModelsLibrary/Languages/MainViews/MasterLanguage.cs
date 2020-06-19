@@ -20,28 +20,23 @@ namespace ModelsLibrary.Languages.MainViews
     [Serializable]
     public partial class Language : ILanguage
     {
-        private JsonElement? LanguageJson { get; set; }
         public Language() { }
-        public Language(JsonElement _json)
-        {
-            Initialing(_json);
-        }
+        public Language(JsonElement _json)=> Initialing(_json);
         /// <summary>
-        /// Initialing all languages.
+        /// Initialing all international languages.
         /// <br/>throw exception ,if languageInfo has initialed.
         /// </summary>
         /// <param name="_json">json info</param>
         public void Initialing(JsonElement _json)
         {
             if(LanguageInfo.Count>0) throw new Exception ("LanguageInfo has initialed.");
-            LanguageJson = _json;
-            LanguageInfo[nameof(Master)] = new Master(LanguageJson.GetProperty(nameof(Master)));
-            LanguageInfo[nameof(Index)] = new Index(LanguageJson.GetProperty(nameof(Index)));
-            LanguageInfo[nameof(Searched)] = new Searched(LanguageJson.GetProperty(nameof(Searched)));
-            LanguageInfo[nameof(Article)] = new Article(LanguageJson.GetProperty(nameof(Article)));
-            LanguageInfo[nameof(Profile)] = new Profile(LanguageJson.GetProperty(nameof(Profile)));
-            LanguageInfo[nameof(EditArticle)] = new EditArticle(LanguageJson.GetProperty(nameof(EditArticle)));
-            LanguageInfo[nameof(EditProfile)] = new EditProfile(LanguageJson.GetProperty(nameof(EditProfile)));
+            LanguageInfo[nameof(Master)] = new Master(_json.GetProperty(nameof(Master)));
+            LanguageInfo[nameof(Index)] = new Index(_json.GetProperty(nameof(Index)));
+            LanguageInfo[nameof(Searched)] = new Searched(_json.GetProperty(nameof(Searched)));
+            LanguageInfo[nameof(Article)] = new Article(_json.GetProperty(nameof(Article)));
+            LanguageInfo[nameof(Profile)] = new Profile(_json.GetProperty(nameof(Profile)));
+            LanguageInfo[nameof(EditArticle)] = new EditArticle(_json.GetProperty(nameof(EditArticle)));
+            LanguageInfo[nameof(EditProfile)] = new EditProfile(_json.GetProperty(nameof(EditProfile)));
         }
         private Hashtable LanguageInfo{ get; set; } = Hashtable.Synchronized(new Hashtable());
         public object this[string index]
@@ -62,7 +57,7 @@ namespace ModelsLibrary.Languages.MainViews
         [Serializable]
         public struct Master
         {
-            private  JsonElement? LanguageJson { get; set; }
+            private readonly JsonElement? LanguageJson;
             public Master(JsonElement? _json)
             {
                 LanguageJson = _json;
@@ -98,7 +93,7 @@ namespace ModelsLibrary.Languages.MainViews
             public Login? LoginArray => new Login(LanguageJson.GetProperty(nameof(LoginArray)));
             public struct Login
             {
-                private static JsonElement? LoginJson { get; set; }
+                private readonly JsonElement? LoginJson;
                 public Login(JsonElement? _json)
                 {
                     LoginJson = _json;
@@ -119,15 +114,15 @@ namespace ModelsLibrary.Languages.MainViews
             /// </summary>
             public struct LinkTable
             {
-                private  JsonElement? LoginJson { get; set; }
+                private readonly JsonElement? threeOptionsJson;
                 public LinkTable(JsonElement? _json)
                 {
-                    LoginJson = _json;
+                    threeOptionsJson = _json;
                 }
-                public string Title => LoginJson.GetProperty(nameof(Title)).ToString();
-                public string[] Option1 => new string[] { LoginJson.GetProperty(nameof(Option1))?[0].ToString(), LoginJson.GetProperty(nameof(Option1))?[1].ToString() };
-                public string[] Option2 => new string[] { LoginJson.GetProperty(nameof(Option2))?[0].ToString(), LoginJson.GetProperty(nameof(Option2))?[1].ToString() };
-                public string[] Option3 => new string[] { LoginJson.GetProperty(nameof(Option3))?[0].ToString(), LoginJson.GetProperty(nameof(Option3))?[1].ToString() };
+                public string Title => threeOptionsJson.GetProperty(nameof(Title)).ToString();
+                public string[] Option1 => new string[] { threeOptionsJson.GetProperty(nameof(Option1))?[0].ToString(), threeOptionsJson.GetProperty(nameof(Option1))?[1].ToString() };
+                public string[] Option2 => new string[] { threeOptionsJson.GetProperty(nameof(Option2))?[0].ToString(), threeOptionsJson.GetProperty(nameof(Option2))?[1].ToString() };
+                public string[] Option3 => new string[] { threeOptionsJson.GetProperty(nameof(Option3))?[0].ToString(), threeOptionsJson.GetProperty(nameof(Option3))?[1].ToString() };
             }
         }
 
