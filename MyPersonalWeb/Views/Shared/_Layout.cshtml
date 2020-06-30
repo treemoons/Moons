@@ -6,22 +6,25 @@ var userProfileOptions = languageMaster.UserOptionsleftArray.Value.EnumerateObje
 }
 <!DOCTYPE html>
 <html lang="@languageMaster.CurrentLanguageCode">
+
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-        <meta http-equiv="X-UA-Compatible" content="IE=6" />@*<!-- 使用IE6 -->*@
-        <meta http-equiv="X-UA-Compatible" content="IE=7" />@*<!-- 使用IE7 -->*@
-        <meta http-equiv="X-UA-Compatible" content="IE=8" />@*<!-- 使用IE8 -->*@
+        <meta http-equiv="X-UA-Compatible" content="IE=6" />@*
+        <!-- 使用IE6 -->*@
+        <meta http-equiv="X-UA-Compatible" content="IE=7" />@*
+        <!-- 使用IE7 -->*@
+        <meta http-equiv="X-UA-Compatible" content="IE=8" />@*
+        <!-- 使用IE8 -->*@
         <meta http-equiv="Cache-Control" content="no-siteapp" />
-        <meta name="description" content="TreeMoons" />
-        <meta name="keywords" content="keywords" />
         <meta name="author" content="TreeMoons" />
+        @RenderSection("meta",false)
         <title>@ViewData["Title"]</title>
         <script>
-            !function isIE() { //ie?
+            ! function isIE() { //ie?
                 if (window.ActiveXObject || "ActiveXObject" in window) {
-                    alert(unescape('@languageMaster.ErrorBrowser'.replace(/&#x/g,'%u').replace(/;/g,'')));
+                    alert(unescape('@languageMaster.ErrorBrowser'.replace(/&#x/g, '%u').replace(/;/g, '')));
                     window.open("about:blank", "_self").close()
                 }
             }()
@@ -56,22 +59,23 @@ var userProfileOptions = languageMaster.UserOptionsleftArray.Value.EnumerateObje
             </nav>
             <div role="navigation" class="user-search-icon">
                 <div>
-                    <div class="searchselect">
-                        <span id="searchselected" onclick="selectSearchType()">
+                   @* <div class="searchselect">
+                            <span id="searchselected" onclick="selectSearchType()">
                             <script>
                                 let trysearchtext = getQueryString('searchtype', location.search, '&');
-                                let searchtext = (trysearchtext === "" ? '@languageMaster.SearchType.Value[0]' :
+                                let searchtext = (trysearchtext === '' ? '@languageMaster.SearchType.Value[0]' :
                                     trysearchtext);
                                 decodeURI(searchtext).write();
                             </script>
-                        </span><br>
-                        <div name="type" id="searchtypeoptions">
+                             </span>
+                             <div name="type" id="searchtypeoptions">
                             @for (int i = 0; i < languageMaster.SearchType.Value.GetArrayLength(); i++) { <option
                                 value="@i">@languageMaster.SearchType.Value[i]</option>
                                 }
-                        </div>
-                    </div>
-                    <div class="search-option">
+                            </div>
+                        </div>*@
+                    <div class="search-option"> 
+                       
                         <form action="/@ViewBag.lang/section/searched" method="GET" name="search">
                             <input type="search" placeholder="@languageMaster.SearchText" name="searchtext">
                             <input type="hidden" value="@languageMaster.SearchType.Value[0].ToString().ToLower()"
@@ -208,8 +212,8 @@ var userProfileOptions = languageMaster.UserOptionsleftArray.Value.EnumerateObje
 
             <script src="~/js/@ViewBag.controller/footer-load.js"></script>
             <script src="~/js/footer-load.js"></script>
-            <a asp-area="admin" asp-controller="home" asp-action="index" asp-route-language="en"
-                asp-route-id="id">这测试AREA</a>
+            @* <a asp-area="admin" asp-controller="home" asp-action="index" asp-route-language="en"
+                asp-route-id="id">这测试AREA</a> *@
     </body>
 
 </html>

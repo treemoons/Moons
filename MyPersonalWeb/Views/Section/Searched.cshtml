@@ -3,6 +3,10 @@
     ViewData["Title"] ="" + ViewBag.UserName ?? Model.Item1;
 }
 @model ValueTuple<string, string>
+@section meta{
+        <meta name="keywords" content="keywords" />
+        <meta name="description" content="TreeMoons" />
+}
 <div>
     <div class="searched-keywords">
         <div class="search-option">
@@ -16,6 +20,7 @@
             <i onclick="submitSearchText()"></i>
         </div>
     </div>
+    <button onclick="test()">testest</button>
     <div onclick="signout()"> 退出登录</div>
     <div class="searched-results">
         @if (Model.Item2 == null)

@@ -5,10 +5,17 @@
 var windowResize = [];
 var windowOnload = [];
 
+/**
+ * 判断菜单显示
+ */
 var isMenuShow = false;
+/**
+ * 判断是都登录成功
+ */
 var isUserOptionsShow = false;
+
 /**push login window */
-window.onresize = e=> {
+window.onresize = e => {
     if (this.windowResize != null) {
         this.windowResize.forEach(item => {
             try { item(); } catch (error) { console.log(error); }
@@ -16,42 +23,14 @@ window.onresize = e=> {
     }
 }
 
-window.onload = e=> {
+window.onload = e => {
     if (this.windowOnload != null) {
         this.windowOnload.forEach(item => {
-            try { item(); } catch(error){console.log(error); }
+            try { item(); } catch (error) { console.log(error); }
         });
     }
 }
 
-document.onreadystatechange = e => {
-    let process;
-    try {
-        process = document.getElementById('processbar');
-    } catch (error) {
-        console.log(error); 
-        return;
-    }
-    switch (document.readyState) {
-        case "uninitialized":
-            process.style.left='-75%'
-            break;
-        case "loading":
-            process.style.left = '-50%'
-            break;
-        case "interactive":
-            process.style.left = '-25%'
-            break;
-        case "complete":
-            process.style.left = '0%'
-            setTimeout(() => {
-                process.style.opacity = '0';
-            }, 10);
-            break;
-        default:
-            break;
-    }
-}
 /**
  * formating datetime
  */
@@ -91,24 +70,121 @@ Date.prototype.formatDate = function (fmt) {
 
 String.prototype.write = function () {
     document.write(this);
-}
-String.prototype.getEleById =function(){
+};
+String.prototype.getEleById = function () {
     return document.getElementById(this);
-}
-String.prototype.decodeUriString=function(){
-    return decodeURI(this)
-}
+};
 /**
- * 
+ * 扩展--URI转换成string
+ */
+String.prototype.decodeUriString = function () {
+    let result;
+    if (this == '' || this == undefined || this == null) return this;
+    try {
+        result = decodeURI(this);
+    } catch (error) {
+        return this;
+    }
+    return result;
+};
+/**
+ * 在指定格式(?)[key]=[value][splitMark]中，根据key找到value值，若没找到，返回空
  * @param {string} name search keywords
  * @param {string} purposeString results pool
  */
-function getQueryString(name, purposeString,splitMark) {
+function getQueryString(name, purposeString, splitMark) {
     var reg = RegExp(`${name}=([^${splitMark}]+)`);
     var arr = purposeString.match(reg);
     if (arr) {
         return arr[1];
     } else {
         return '';
+    }
+}
+
+
+/**
+ * 写入Cookie到浏览器
+ * @param {string} name key
+ * @param {string} value value
+ * @param {Int32Array} day date
+ */
+function setCookie(name, value, day) {
+    var date = new Date();
+    date.setDate(date.getDate() + day);
+    document.cookie = `${name}=${value};expires=${date}`;
+}
+
+
+/**  获取cookie
+ *  @param {string} name key
+*/
+function getCookie(name) {
+    return getQueryString(name, document.cookie, ';')
+}
+
+
+/**  删除cookie
+ *  @param {string} name key
+*/
+function delCookie(name) {
+    setCookie(name, null, -1);
+}
+
+
+/**
+ * 
+ * @param {HTMLElement} input input where type is text
+ * @param {Function} action when press enter key , do this function
+ */
+function pressEnter(input, action =
+    /**@param {HTMLElement} form*/
+    form => form.submit.click()) {
+    input.onkeypress = e => {
+        if (e.keyCode == 13) {
+            action(form);
+        }
+    };
+}
+/**
+ * 
+ * @param {HTMLElement} input input where type is text
+ * @param {RegExp} parttern when press enter key , do this function
+ * @param {Function} action default is submit param{input} to target form
+ */
+function press(input, parttern, action) {
+    input.onkeypress = e => {
+        if (e.keyCode == 13) {
+            if (parttern.test(input.value))
+                action(form);
+        }
+    };
+}
+
+
+/**
+ * 获取并操作Ajax数据
+ *@param { { url: string, success: (text:string)=>void), failed ?: 
+        (text:string)=>void, data ?: string, method ?: string, httptype ?:string } object  options
+ */
+function getAjaxData({ url, success, failed = error => { console.log(`error of failed data : ${error}`); }, data = undefined, method = 'POST', httptype = 'application/x-www-form-urlencoded' }) {
+    debugger;
+    // open(url,'_blank')
+    var ajax = new XMLHttpRequest();
+    ajax.open(method, url);
+    ajax.setRequestHeader('Content-Type', httptype);
+    if (data !== undefined)
+        ajax.send(data);
+    ajax.onreadystatechange = function () {
+        if (ajax.readyState == 4 && ajax.status == 200) {
+            try {
+                success(ajax.responseText);
+            } catch (error) {
+                console.log(`error of success data : ${error}`);
+            }
+        }
+        else {
+            failed(ajax.responseText);
+        }
     }
 }

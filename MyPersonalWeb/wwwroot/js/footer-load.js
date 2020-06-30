@@ -15,8 +15,6 @@ var login = document.getElementById('login');
  * 展示个人选项
  */
 var userOptions = document.getElementById('user-options');
-
+keyEnterLogin();
 loginClose();
-pressEnter(loginform.username, form => form.submit.click());
-pressEnter(loginform.password, form => form.submit.click());
 closemenu();

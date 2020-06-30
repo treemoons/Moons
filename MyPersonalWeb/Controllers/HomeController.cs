@@ -1,4 +1,4 @@
-using System.Net;
+﻿using System.Net;
 using System.ComponentModel;
 using System.Threading;
 using System;
@@ -32,7 +32,7 @@ namespace MyPersonalWeb.Controllers
         }
         [HttpPost]
         public IActionResult Post(UserSignIn users) => Redirect(HttpContext.Request.GetDisplayUrl());
-        
+
         public IActionResult Index() => View();
 
         [HttpPost]
@@ -62,7 +62,7 @@ namespace MyPersonalWeb.Controllers
                     {
                         HttpContext.Response.Cookies.Delete(LoginCookieBase64.GetCookieRememberBase64);
                     }
-                    if(users.UserName=="aa")return "F";
+                    if (users.UserName == "aa") return "F";
                     return "T";
                 }
             });
@@ -71,16 +71,19 @@ namespace MyPersonalWeb.Controllers
         public async Task<string> Logout(UserSignIn users) =>
                    await Task.Run(() =>
                    {
-                       try{
-                       HttpContext.Session.Remove("CurrentUser");
-                        return "T";
-                       }catch{return "F";}
+                       try
+                       {
+                           HttpContext.Session.Remove("CurrentUser");
+                           return "T";
+                       }
+                       catch { return "F"; }
                    });
-                   
-        
-       public string Show() =>@"{""name"":""username""} ";
 
-
+        [HttpPost]
+        public string Show(string lists)
+        {
+            return @"{""name"":""username""} ";
+        }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
