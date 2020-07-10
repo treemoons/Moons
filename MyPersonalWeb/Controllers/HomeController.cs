@@ -48,15 +48,15 @@ namespace MyPersonalWeb.Controllers
                     HttpContext.Session.SetString("CurrentUser", users.UserName);
                     HttpContext.Response.Cookies.Append(LoginCookieBase64.GetCookieUserNameBase64,
                         RSAData.RSAEncryption(users.UserName, "username"),
-                        new CookieOptions { Expires = DateTimeOffset.Now.AddDays(7d) });
+                        new CookieOptions { Expires = DateTimeOffset.Now.AddMonths(1) });
                     HttpContext.Response.Cookies.Append(LoginCookieBase64.GetCookiePasswordBase64,
                         RSAData.RSAEncryption(users.Password, "password"),
-                        new CookieOptions { Expires = DateTimeOffset.Now.AddDays(7d) });
+                        new CookieOptions { Expires = DateTimeOffset.Now.AddMonths(1) });
                     var IsRemembered = users.IsRemembered;
                     if (IsRemembered == "true")
                     {
                         HttpContext.Response.Cookies.Append(LoginCookieBase64.GetCookieRememberBase64, "1",
-                            new CookieOptions { Expires = DateTimeOffset.Now.AddYears(1) });
+                            new CookieOptions { Expires = DateTimeOffset.Now.AddMonths(1) });
                     }
                     else
                     {
@@ -79,11 +79,7 @@ namespace MyPersonalWeb.Controllers
                        catch { return "F"; }
                    });
 
-        [HttpPost]
-        public string Show(string lists)
-        {
-            return @"{""name"":""username""} ";
-        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

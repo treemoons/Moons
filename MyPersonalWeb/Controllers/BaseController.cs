@@ -24,7 +24,7 @@ namespace MyPersonalWeb.Controllers
     /// </summary>
     public class PermissionController : Controller
     {
-        
+
         [NonAction]
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
@@ -33,18 +33,65 @@ namespace MyPersonalWeb.Controllers
             action = filterContext.RouteData.Values["Action"].ToString();
             controller = filterContext.RouteData.Values["controller"].ToString();
             parameterValue = filterContext.RouteData.Values["language"]?.ToString();
-            parameterValue= parameterValue??
-            (HttpContext.Request.Cookies.TryGetValue("lang", out string lang) ? lang : 
-            (ModelsLibrary.Languages.Utils.LanguagesParterrn.ToString().Contains(System.Globalization.CultureInfo.InstalledUICulture.Name.ToLower())?
-            System.Globalization.CultureInfo.InstalledUICulture.Name.ToLower():"en"));
+            JudgeRouteLang(ref parameterValue, filterContext);
             ViewBag.controller = controller.ToLowerInvariant();
-            ViewBag.action = action.ToLowerInvariant();
-            ViewBag.lang = parameterValue.ToLowerInvariant();
-            ViewBag.langTranslation = parameterValue.ToLowerInvariant();// 暂时测试使用 parameterValue
+            ViewBag.action = action?.ToLowerInvariant();
+            ViewBag.lang = parameterValue?.ToLowerInvariant();
+            ViewBag.langTranslation = parameterValue?.ToLowerInvariant();// 暂时测试使用 parameterValue
             #endregion
+            FilterLogin(filterContext);
+            base.OnActionExecuting(filterContext);
+        }
+
+        /// <summary>
+        /// judge and set route lang
+        /// </summary>
+        /// <param name="parameterValue">lang of route</param>
+        /// <param name="filterContext">filterContext parameter</param>
+        [NonAction]
+        private void JudgeRouteLang(ref string parameterValue, ActionExecutingContext filterContext)
+        {
+            //parameter is null or empty or excoluded with parterrn
+            if (string.IsNullOrEmpty(parameterValue) || !ModelsLibrary.Languages.Utils.LanguagesParterrn.ToString().Contains(parameterValue))
+            {
+                if (HttpContext.Request.Cookies.TryGetValue("lang", out string lang)
+                    && !string.IsNullOrEmpty(lang)
+                    && ModelsLibrary.Languages.Utils.LanguagesParterrn.ToString().Contains(lang))
+                {
+                    parameterValue = lang;
+                }
+                else
+                {
+                    SetLocalLanguage(ref parameterValue, filterContext);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Set Local language culture ,default is 'en'
+        /// </summary>
+        /// <param name="param">parameter of route</param>
+        /// <param name="localLanguage">computer default language of culture</param>
+        /// <returns></returns>
+        [NonAction]
+        private void SetLocalLanguage(ref string param, ActionExecutingContext filterContext)
+        {
+            var localLanguage = System.Globalization.CultureInfo.InstalledUICulture.Name.ToLower();
+            param = ModelsLibrary.Languages.Utils.LanguagesParterrn.ToString().Contains(localLanguage) ?
+            localLanguage : "en";
+            filterContext.HttpContext.Response.Cookies.Append("lang", param, new CookieOptions { Expires = DateTimeOffset.Now.AddYears(1) });
+        }
+
+
+        /// <summary>
+        /// judge  Login (remember password)
+        /// </summary>
+        /// <param name="filterContext"></param>
+        void FilterLogin(ActionExecutingContext filterContext)
+        {
 
             #region about login
-            if (filterContext.HttpContext.Session.GetString("CurrentUser")==null)
+            if (string.IsNullOrEmpty(filterContext.HttpContext.Session.GetString("CurrentUser")))
             {
                 ViewBag.userprofile = "showLogin()";
                 var isremembered = filterContext.HttpContext.Request.Cookies.TryGetValue(LoginCookieBase64.GetCookieRememberBase64, out string IsRemembered);
@@ -56,28 +103,15 @@ namespace MyPersonalWeb.Controllers
                     ViewBag.username = RSAData.RSADecrypt(encryptUserName, "username");
                     ViewBag.password = RSAData.RSADecrypt(encrptyPassword, "password");
                 }
-                ViewBag.logged=false;
+                ViewBag.logged = false;
             }
             else
             {
-                ViewBag. userprofile = "showUserOptions()";
+                ViewBag.userprofile = "showUserOptions()";
                 ViewBag.logged = true;
             }
             #endregion
-            base.OnActionExecuting(filterContext);
-        }
-        public class TestAttribute:Attribute{
-           public TestAttribute(){
-                Test("");
 
-            }
-            [NonAction]
-                public void Test(string a)
-                {
-                    var aaa = a;
-                var t=System. Convert.FromBase64String("ewoidiI6ICIyIiwKInBzIjogIjE0OS4yOC42NS4yOSIsCiJhZGQiOiAiMTQ5LjI4LjY1LjI5IiwKInBvcnQiOiAiNDM1MTQiLAoiaWQiOiAiODY0YmQ2ZDQtNTgzMy00YjYzLWI0OTYtNjE0ZjVkNTk1YTA2IiwKImFpZCI6ICI0NDQiLAoibmV0IjogInRjcCIsCiJ0eXBlIjogIm5vbmUiLAoiaG9zdCI6ICIiLAoicGF0aCI6ICIiLAoidGxzIjogIiIKfQo=");
-                System.Console.WriteLine(System.Text.Encoding.UTF8.GetString(t));
-            }
         }
     }
 }

@@ -167,14 +167,13 @@ function press(input, parttern, action) {
  *@param { { url: string, success: (text:string)=>void), failed ?: 
         (text:string)=>void, data ?: string, method ?: string, httptype ?:string } object  options
  */
-function getAjaxData({ url, success, failed = error => { console.log(`error of failed data : ${error}`); }, data = undefined, method = 'POST', httptype = 'application/x-www-form-urlencoded' }) {
+function getAjaxData({ url, success, failed = error => { console.log(`error of failed data : ${error}`); }, data = '', method = 'POST', httptype = 'application/x-www-form-urlencoded' }) {
     debugger;
     // open(url,'_blank')
     var ajax = new XMLHttpRequest();
     ajax.open(method, url);
     ajax.setRequestHeader('Content-Type', httptype);
-    if (data !== undefined)
-        ajax.send(data);
+    ajax.send(data);
     ajax.onreadystatechange = function () {
         if (ajax.readyState == 4 && ajax.status == 200) {
             try {

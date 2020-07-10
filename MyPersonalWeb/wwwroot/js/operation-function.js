@@ -230,7 +230,7 @@ function signout() {
  */
 function showAndCloseMenu() {
     try {
-        if (userOptions == undefined) return;
+        if (userOptions == undefined) throw 'userOption Element is undefined！';
         if (window.getComputedStyle(userOptions).display == 'block') {
             userOptions.style = 'opacity:0;right:-20vw;'
             setTimeout(function () {
@@ -266,14 +266,16 @@ function closemenu() {
 
 
 function showUserOptions() {
-    if (menuButton == undefined) return;
-    if (window.getComputedStyle(menuButton).display == 'block') {
-        menuButton.style = 'opacity:0;top:-20%;'
-        setTimeout(function () {
-            menuButton.style.display = 'none';
-        }, 400);
-        isMenuShow = false;
-    }
+    try {
+        if (menuButton == undefined) throw'menuButton Element is undefined!';
+        if (window.getComputedStyle(menuButton).display == 'block') {
+            menuButton.style = 'opacity:0;top:-20%;'
+            setTimeout(function () {
+                menuButton.style.display = 'none';
+            }, 400);
+            isMenuShow = false;
+        }
+    }catch(error){console.log(error)}
     if (userOptions == undefined) return;
     if (!isUserOptionsShow) {
         userOptions.style = 'display:block';
@@ -304,32 +306,35 @@ function loadSearchText() {
     search.searchtext.value = text;
 }
 
-/**
- * show or hide div which contains searchText options
- */
-function selectSearchType() {
-    showSelect('searchtypeoptions', 'searchselected');
-
-}
-
 //#region national lanuage
-/**
- * load click event
- */
-function loadSelectedType() {
-    let typeSelect = document.querySelectorAll('#searchtypeoptions option');
-    typeSelect.forEach(option => {
-        option.onclick = async function () {
-            let selected = document.getElementById('searchselected');
-            selected.innerText = this.innerText;
-            search.searchtype.value = this.innerText;
-            document.getElementById('searchtypeoptions').style.display = 'none';
-            selected.style.fontWeight = 'normal';
-        }
-    });
-}
 
+//#region searchType
 
+// /**
+//  * show or hide div which contains searchText options
+//  */
+// function selectSearchType() {
+//     showSelect('searchtypeoptions', 'searchselected');
+
+// }
+
+// /**
+//  * load click event
+//  */
+// function loadSelectedType() {
+//     let typeSelect = document.querySelectorAll('#searchtypeoptions option');
+//     typeSelect.forEach(option => {
+//         option.onclick = async function () {
+//             let selected = document.getElementById('searchselected');
+//             selected.innerText = this.innerText;
+//             search.searchtype.value = this.innerText;
+//             document.getElementById('searchtypeoptions').style.display = 'none';
+//             selected.style.fontWeight = 'normal';
+//         }
+//     });
+// }
+
+//#endregion
 
 //#region  load and change display
 /**
@@ -381,9 +386,8 @@ function loadSelectedlang() {
             selected.innerText = this.innerText;
             document.getElementById('lang').style.display = 'none';
             selected.style.fontWeight = 'normal';
-            changeLanguageCookie(option.value); debugger
+            changeLanguageCookie(option.value); 
             open(`/${option.value}/${route}${location.search}`, '_self');
-
         }
     });
 }

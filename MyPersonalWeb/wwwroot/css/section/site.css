@@ -64,6 +64,13 @@
     color: var(--dot-color);
 }
 
+.searched-results .result-title:link{
+    color: rgba(255, 166, 0, 0.7);
+}
+.searched-results .result-title a:link span{
+    color: rgba(0, 0, 0, 0.7);
+}
+
 .searched-results .searched-result article {
     width: 80vw;
     overflow: hidden;
