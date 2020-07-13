@@ -75,7 +75,6 @@ var userProfileOptions = languageMaster.UserOptionsleftArray.Value.EnumerateObje
                             </div>
                         </div>*@
                     <div class="search-option"> 
-                       
                         <form action="/@ViewBag.lang/section/searched" method="GET" name="search">
                             <input type="search" placeholder="@languageMaster.SearchText" name="searchtext">
                             <input type="hidden" value="@languageMaster.SearchType.Value[0].ToString().ToLower()"
@@ -108,7 +107,11 @@ var userProfileOptions = languageMaster.UserOptionsleftArray.Value.EnumerateObje
                         @item.Value[0]
                     </a>
                 </li>
-                }
+                } <li class="user-option">
+                    <a href="javascript:signout();">
+                        @languageMaster.Logout
+                    </a>
+                </li>
             </ul>
         </nav>
         }

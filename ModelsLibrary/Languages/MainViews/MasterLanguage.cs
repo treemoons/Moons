@@ -79,6 +79,7 @@ namespace ModelsLibrary.Languages.MainViews
             public string ErrorBrowser =>LanguageJson.GetProperty(nameof(ErrorBrowser))?.ToString();
             public JsonElement? HeaderConvenienceOptionsArray => LanguageJson.GetProperty(nameof(HeaderConvenienceOptionsArray));
             public string Contact => LanguageJson.GetProperty(nameof(Contact))?.ToString();
+            public string Logout=>LanguageJson.GetProperty(nameof(Logout))?.ToString();
             public string Language => LanguageJson.GetProperty(nameof(Language))?.ToString();
             public string SearchText => LanguageJson.GetProperty(nameof(SearchText))?.ToString();
             public string FooterCopyright => LanguageJson.GetProperty(nameof(FooterCopyright))?.ToString();

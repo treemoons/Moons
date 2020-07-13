@@ -188,35 +188,11 @@ function signin() {
  * SIGN OUT CAN BE DONE
  */
 function signout() {
-    // waitLogin();
     getAjaxData({
         url: `/${lang}/home/logout`,
         success: data => {
-            debugger;
-            //loginClose();
-            if (data == 'T')// {
+            if (data == 'T')
                 open(window.location.href, '_self')
-            // debugger;
-            // loginform.setAttribute('action', location.href);
-            // loginform.submit();
-            /* }   else {
-                 let loginerror = document.getElementById('loginerror');
-                  switch (data) {
-                      case 'F':
-                          loginerror.innerText = "账号或密码错误，请重新输入。"
-                          break;
-                      // case 'U':
-                      //     loginerror.innerText = "账号超过，请重新输入。"
-                      //     break;
-                      // case 'P':
-                      //     loginerror.innerText = "账号或密码错误，请重新输入。"
-                      //     break;
-                      default:
-                          loginerror.innerText = "未知错误。"
-                          break;
-                  }
-              }
-              waitLoginClose();*/
         }
     });
 }
@@ -267,7 +243,7 @@ function closemenu() {
 
 function showUserOptions() {
     try {
-        if (menuButton == undefined) throw'menuButton Element is undefined!';
+        if (menuButton == undefined) throw 'menuButton Element is undefined!';
         if (window.getComputedStyle(menuButton).display == 'block') {
             menuButton.style = 'opacity:0;top:-20%;'
             setTimeout(function () {
@@ -275,7 +251,7 @@ function showUserOptions() {
             }, 400);
             isMenuShow = false;
         }
-    }catch(error){console.log(error)}
+    } catch (error) { console.log(error) }
     if (userOptions == undefined) return;
     if (!isUserOptionsShow) {
         userOptions.style = 'display:block';
@@ -386,7 +362,7 @@ function loadSelectedlang() {
             selected.innerText = this.innerText;
             document.getElementById('lang').style.display = 'none';
             selected.style.fontWeight = 'normal';
-            changeLanguageCookie(option.value); 
+            changeLanguageCookie(option.value);
             open(`/${option.value}/${route}${location.search}`, '_self');
         }
     });
@@ -422,7 +398,7 @@ function test() {
                 { "name": "胡歌", "age": "24", "movie": "琅琊榜" }
             ]
         },
-        method:"post",
+        method: "post",
         success: data => {
             console.log(data);
             console.log(this.data)

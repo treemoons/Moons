@@ -78,6 +78,11 @@ namespace MyPersonalWeb.Controllers
                        }
                        catch { return "F"; }
                    });
+        public async Task<IActionResult> Signout() =>
+           await Task.Run(() => {
+               HttpContext.Session.Remove("CurrentUser");
+               return Redirect($"/{ViewBag.lang}/{ViewBag.route}");
+            });
 
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

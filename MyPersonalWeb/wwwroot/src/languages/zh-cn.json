@@ -16,7 +16,7 @@
             "Option3": ["选项4", "/home/index"],
             "Option4": ["选项1", "/home/index"],
             "Option5": ["选项2", "/home/index"],
-            "Option6": ["选项4", "/home/index"]
+            "Option6": ["退出登录", "/home/signout"]
         },
         "MenuArray": [{
             "Title": "link",
@@ -95,6 +95,7 @@
                 "/home/index"
             ]
         }],
+        "Logout": "退出登录",
         "Contact": "联系我",
         "Language": "语言",
         "LoginArray": {

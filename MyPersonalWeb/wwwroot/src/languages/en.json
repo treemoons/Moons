@@ -2,44 +2,45 @@
     
     "Master": {
         "HeaderConvenienceOptionsArray": {
-            "Option1": ["OptionsArray", "/home/privacy"],
-            "Option2": ["HeaderArray2", "/home/privacy"],
-            "Option3": ["HeaderArray4", "/home/privacy"],
-            "Option4": ["OptionsArray", "/home/privacy"],
-            "Option5": ["HeaderOptio2", "/home/privacy"]
+            "Option1": ["OptionsArray", "/home/profile"],
+            "Option2": ["HeaderArray2", "/home/profile"],
+            "Option3": ["HeaderArray4", "/home/profile"],
+            "Option4": ["OptionsArray", "/home/profile"],
+            "Option5": ["HeaderOptio2", "/home/profile"]
         },
         "UserOptionsleftArray": {
-            "Option1": ["Oprion1", "/home/privacy"],
-            "Option2": ["Oprion2", "/home/privacy"],
-            "Option3": ["Oprion4", "/home/privacy"],
-            "Option4": ["Oprion1", "/home/privacy"],
-            "Option5": ["Oprion2", "/home/privacy"],
-            "Option6": ["Oprion4", "/home/privacy"],
-            "Option7": ["Oprion2", "/home/privacy"],
-            "Option8": ["Oprion4", "/home/privacy"]
+            "Option1": ["Oprion1", "/home/profile"],
+            "Option2": ["Oprion2", "/home/profile"],
+            "Option3": ["Oprion4", "/home/profile"],
+            "Option4": ["Oprion1", "/home/profile"],
+            "Option5": ["Oprion2", "/home/profile"],
+            "Option6": ["Oprion4", "/home/profile"],
+            "Option7": ["Oprion2", "/home/profile"],
+            "Option8": ["CAMP", "/home/profile"]
         },
         "MenuArray": [{
             "Title": "link",
-            "Option1": ["Option1", "/home/privacy"],
-            "Option2": ["Option2", "/home/privacy"],
-            "Option3": ["Option4", "/home/privacy"]
+            "Option1": ["Option1", "/home/profile"],
+            "Option2": ["Option2", "/home/profile"],
+            "Option3": ["Option4", "/home/profile"]
         }, {
             "Title": "techenology",
-            "Option1": ["Option2", "/home/privacy"],
-            "Option2": ["Option4", "/home/privacy"],
-            "Option3": ["Option5", "/home/privacy"]
+            "Option1": ["Option2", "/home/profile"],
+            "Option2": ["Option4", "/home/profile"],
+            "Option3": ["Option5", "/home/profile"]
         }],
         "FooterArray": [{
             "Title": "link",
-            "Option1": ["footer1", "/home/privacy"],
-            "Option2": ["footer2", "/home/privacy"],
-            "Option3": ["footer4", "/home/privacy"]
+            "Option1": ["footer1", "/home/profile"],
+            "Option2": ["footer2", "/home/profile"],
+            "Option3": ["footer4", "/home/profile"]
         }, {
             "Title": "techenology",
-            "Option2": ["footer2", "/home/privacy"],
-            "Option3": ["footer4", "/home/privacy"],
-            "Option4": ["footer5", "/home/privacy"]
+            "Option2": ["footer2", "/home/profile"],
+            "Option3": ["footer4", "/home/profile"],
+            "Option4": ["footer5", "/home/profile"]
         }],
+        "Logout":"Sign Out",
         "Contact": "contact me",
         "Language": "Language",
         "LoginArray": {
