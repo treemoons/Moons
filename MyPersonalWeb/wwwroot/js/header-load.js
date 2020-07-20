@@ -175,15 +175,17 @@ function getAjaxData({ url, success, failed = error => { console.log(`error of f
     ajax.setRequestHeader('Content-Type', httptype);
     ajax.send(data);
     ajax.onreadystatechange = function () {
-        if (ajax.readyState == 4 && ajax.status == 200) {
-            try {
-                success(ajax.responseText);
-            } catch (error) {
-                console.log(`error of success data : ${error}`);
+        if (ajax.readyState == 4) {
+            if (ajax.status == 200) {
+                try {
+                    success(ajax.responseText);
+                } catch (error) {
+                    console.log(`error of success data : ${error}`);
+                }
             }
-        }
-        else {
-            failed(ajax.responseText);
+            else {
+                failed(ajax.responseText);
+            }
         }
     }
 }

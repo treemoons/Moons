@@ -78,12 +78,20 @@ namespace MyPersonalWeb.Controllers
                        }
                        catch { return "F"; }
                    });
-        public async Task<IActionResult> Signout() =>
-           await Task.Run(() => {
-               HttpContext.Session.Remove("CurrentUser");
-               return Redirect($"/{ViewBag.lang}/{ViewBag.route}");
-            });
 
+        [HttpPost]
+        [Microsoft.AspNetCore.Cors.EnableCors("_myCorsSpecificOrigins")]
+        public string Test(string test)
+        {
+            
+            return test;
+        }
+        [HttpGet]
+        [Microsoft.AspNetCore.Cors.EnableCors("_myCorsSpecificOrigins")]
+        public string Testget(string test)
+        {
+            return test;
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

@@ -32,6 +32,14 @@ namespace MyPersonalWeb
                 option.Cookie.IsEssential = true;
                 option.Cookie.HttpOnly = true;
             });
+            services.AddCors(op => {
+                op.AddPolicy(name:"_myCorsSpecificOrigins",
+                biuld =>
+                {
+                    // biuld.AllowAnyOrigin();
+                    biuld.WithOrigins("https://127.0.0.1","https://localhost");
+                });
+            });
             services.AddControllers();
         }
 
@@ -53,6 +61,7 @@ namespace MyPersonalWeb
             app.UseSession();
             app.UseRouting();
             app.UseAuthorization();
+            app.UseCors();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapAreaControllerRoute(
@@ -72,7 +81,7 @@ namespace MyPersonalWeb
                     pattern: "{language?}/{controller=Home}/{action=Index}/{id?}",
                     constraints: new { language = Utils.LanguagesParterrn.ToString() } //new {pattern=@"正则表达式"}
                     );
-
+                // endpoints.MapControllers().RequireCors("_myCorsSpecificOrigins");
             });
         }
     }

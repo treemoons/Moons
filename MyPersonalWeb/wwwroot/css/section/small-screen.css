@@ -6,3 +6,6 @@
     --focus-backcolor: #8b8bff;
     --transparent: transparent;
 }
+.searched-results .searched-result .result-title {
+    width: 75vw;
+}

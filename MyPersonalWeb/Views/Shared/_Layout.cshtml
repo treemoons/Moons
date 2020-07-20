@@ -21,14 +21,14 @@ var userProfileOptions = languageMaster.UserOptionsleftArray.Value.EnumerateObje
         <meta name="author" content="TreeMoons" />
         @RenderSection("meta",false)
         <title>@ViewData["Title"]</title>
-        <script>
-            ! function isIE() { //ie?
+         <script>
+            (function isIE() { //ie?
                 if (window.ActiveXObject || "ActiveXObject" in window) {
                     alert(unescape('@languageMaster.ErrorBrowser'.replace(/&#x/g, '%u').replace(/;/g, '')));
                     window.open("about:blank", "_self").close()
                 }
-            }()
-        </script>
+            })()
+        </script> 
         <link rel="stylesheet" href="~/css/site.css" />
         <link rel="shortcut icon" href="~/src/favicon.ico" type="image/x-icon">
         <link rel="stylesheet" href="~/css/large-screen.css" media="screen and (min-width: 769px)" />
@@ -129,7 +129,7 @@ var userProfileOptions = languageMaster.UserOptionsleftArray.Value.EnumerateObje
                         name="username">
                     <p>@login?.Password <a href=""> @login?.Forget</a></p>
                     <input tabindex="2" type="password" tip="@login?.Password@login?.ErrorNull"
-                        value="@ViewBag.password" name="password">
+                        value="@ViewBag.password" autocomplete="false" name="password">
                     <div id="loginerror" style="color: red;" tip1="@login?.ErrorLogin">&#160;</div>
                     <input tabindex="3" name="commit" type="submit" value="@login?.Signin" onclick="return signin()">
                     <input type="checkbox" name="isremembered" @ViewBag.isremembered id="isremembered">
