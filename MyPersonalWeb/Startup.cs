@@ -37,7 +37,7 @@ namespace MyPersonalWeb
                 biuld =>
                 {
                     // biuld.AllowAnyOrigin();
-                    biuld.WithOrigins("https://127.0.0.1","https://localhost");
+                    // biuld.WithOrigins("https://127.0.0.1");
                 });
             });
             services.AddControllers();
@@ -52,7 +52,7 @@ namespace MyPersonalWeb
             }
             else
             {
-                app.UseExceptionHandler("Home/Error");
+                app.UseExceptionHandler("/EN/Home/Error");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
@@ -67,18 +67,18 @@ namespace MyPersonalWeb
                 endpoints.MapAreaControllerRoute(
                         name: "MyAreaAdmin",
                         areaName: "Admin",
-                        pattern: "{language?}/admin/{controller=Home}/{action=Index}/{id?}",
+                        pattern: "{language?}/admin/{controller=home}/{action=index}/{id?}",
                         constraints: Utils.AreaAdminLanguagesParttern.Length == 0 ? null : new { language = Utils.AreaAdminLanguagesParttern.ToString() }
                         );
 
                 endpoints.MapAreaControllerRoute(
                         name: "MyAreaAPI",
                         areaName: "API",
-                        pattern: "api/{controller=Home}/{action=Index}/{id?}");
+                        pattern: "api/{controller=home}/{action=index}/{id?}");
 
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{language?}/{controller=Home}/{action=Index}/{id?}",
+                    pattern: "{language?}/{controller=home}/{action=index}/{id?}",
                     constraints: new { language = Utils.LanguagesParterrn.ToString() } //new {pattern=@"正则表达式"}
                     );
                 // endpoints.MapControllers().RequireCors("_myCorsSpecificOrigins");

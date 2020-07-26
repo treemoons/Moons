@@ -1,0 +1,12 @@
+E:\Html\MyWork\ModelsLibrary\bin\Debug\netstandard2.1\win-x64\ModelsLibrary.deps.json
+E:\Html\MyWork\ModelsLibrary\bin\Debug\netstandard2.1\win-x64\ModelsLibrary.dll
+E:\Html\MyWork\ModelsLibrary\bin\Debug\netstandard2.1\win-x64\ModelsLibrary.pdb
+E:\Html\MyWork\ModelsLibrary\bin\Debug\netstandard2.1\win-x64\Utils.dll
+E:\Html\MyWork\ModelsLibrary\bin\Debug\netstandard2.1\win-x64\Utils.pdb
+E:\Html\MyWork\ModelsLibrary\obj\Debug\netstandard2.1\win-x64\ModelsLibrary.csprojAssemblyReference.cache
+E:\Html\MyWork\ModelsLibrary\obj\Debug\netstandard2.1\win-x64\ModelsLibrary.AssemblyInfoInputs.cache
+E:\Html\MyWork\ModelsLibrary\obj\Debug\netstandard2.1\win-x64\ModelsLibrary.AssemblyInfo.cs
+E:\Html\MyWork\ModelsLibrary\obj\Debug\netstandard2.1\win-x64\ModelsLibrary.csproj.CoreCompileInputs.cache
+E:\Html\MyWork\ModelsLibrary\obj\Debug\netstandard2.1\win-x64\ModelsLibrary.csproj.CopyComplete
+E:\Html\MyWork\ModelsLibrary\obj\Debug\netstandard2.1\win-x64\ModelsLibrary.dll
+E:\Html\MyWork\ModelsLibrary\obj\Debug\netstandard2.1\win-x64\ModelsLibrary.pdb

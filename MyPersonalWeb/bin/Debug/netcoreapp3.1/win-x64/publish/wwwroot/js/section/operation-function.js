@@ -1,0 +1,7 @@
+
+//#region 
+
+function submitSearchText() {
+    
+}
+//#endregion

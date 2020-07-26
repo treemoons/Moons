@@ -21,14 +21,14 @@ var userProfileOptions = languageMaster.UserOptionsleftArray.Value.EnumerateObje
         <meta name="author" content="TreeMoons" />
         @RenderSection("meta",false)
         <title>@ViewData["Title"]</title>
-         <script>
+         @* <script>
             (function isIE() { //ie?
                 if (window.ActiveXObject || "ActiveXObject" in window) {
                     alert(unescape('@languageMaster.ErrorBrowser'.replace(/&#x/g, '%u').replace(/;/g, '')));
                     window.open("about:blank", "_self").close()
                 }
             })()
-        </script> 
+        </script>  *@
         <link rel="stylesheet" href="~/css/site.css" />
         <link rel="shortcut icon" href="~/src/favicon.ico" type="image/x-icon">
         <link rel="stylesheet" href="~/css/large-screen.css" media="screen and (min-width: 769px)" />
