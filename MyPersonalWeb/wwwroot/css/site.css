@@ -666,23 +666,3 @@ input[type="password"] {
 
 /*#endregion*/
 
-
-/* #region Profile 个人信息主页 */
-
-.profile-container {
-    display: flex;
-    justify-content: space-around;
-}
-
-/* .left-aside,
-.center-context ,
-.right-aside {
-
-} */
-.center-context {
-    height: 1000px;
-    width: 66%;
-    background-color: rgb(255, 215, 215);
-}
-
-/* #endregion */

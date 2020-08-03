@@ -27,7 +27,7 @@ namespace MyPersonalWeb.Areas
             ViewBag.controller = controller.ToLowerInvariant();
             ViewBag.action = action.ToLowerInvariant();
             ViewBag.lang = parameterValue.ToLowerInvariant();
-            ViewBag.langTranslation = parameterValue.ToLowerInvariant();// 暂时测试使用 parameterValue
+           // ViewBag.langTranslation = parameterValue.ToLowerInvariant();// 暂时测试使用 parameterValue
             #endregion
 
             #region about login

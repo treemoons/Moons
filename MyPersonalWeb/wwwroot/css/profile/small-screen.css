@@ -6,3 +6,14 @@
     --focus-backcolor: rgb(139, 139, 255);
     --transparent: transparent;
 }
+/* #region profile */
+.left-aside,
+.right-aside {
+    display: none;
+}
+
+.center-context {
+    width: 99%;
+}
+
+/* #endregion */

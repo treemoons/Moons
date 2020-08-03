@@ -164,26 +164,7 @@ body{
         /* margin-bottom: 15px; */
 }
 
-/* #region profile */
 
-.left-aside {
-    width: 16%;
-    background-color: rgb(204, 194, 194);
-}
-
-.right-aside {
-    width: 16%;
-    background-color: rgb(203, 203, 252);
-}
-.profile-pic{
-    width: 80%;
-}
-.left-aside .list>div{
-    text-align: center;
-    padding: 10px;
-}
-
-/* #endregion */
 /* #region searched */
 .searched-keywords .search-icon>i {
     left: -42px;

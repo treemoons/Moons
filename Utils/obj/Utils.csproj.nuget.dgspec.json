@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Html\\MyWork\\Utils\\Utils.csproj": {}
+    "e:\\Html\\MyWork\\Utils\\Utils.csproj": {}
   },
   "projects": {
-    "E:\\Html\\MyWork\\Utils\\Utils.csproj": {
+    "e:\\Html\\MyWork\\Utils\\Utils.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Html\\MyWork\\Utils\\Utils.csproj",
+        "projectUniqueName": "e:\\Html\\MyWork\\Utils\\Utils.csproj",
         "projectName": "Utils",
-        "projectPath": "E:\\Html\\MyWork\\Utils\\Utils.csproj",
+        "projectPath": "e:\\Html\\MyWork\\Utils\\Utils.csproj",
         "packagesPath": "C:\\Users\\hands\\.nuget\\packages\\",
-        "outputPath": "E:\\Html\\MyWork\\Utils\\obj\\",
+        "outputPath": "e:\\Html\\MyWork\\Utils\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "D:\\Microsoft\\Xamarin\\NuGet\\"

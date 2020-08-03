@@ -178,12 +178,3 @@ body{
 .menu-option a:active{
     font-size: large;
 }
-/* #region profile */
-.left-aside,
-.right-aside{
-    display: none;
-}
-.center-context{
-    width: 99%;
-}
-/* #endregion */

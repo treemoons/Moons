@@ -21,34 +21,34 @@ var userProfileOptions = languageMaster.UserOptionsleftArray.Value.EnumerateObje
         <meta name="author" content="TreeMoons" />
         @RenderSection("meta",false)
         <title>@ViewData["Title"]</title>
-         @* <script>
+          <script>
             (function isIE() { //ie?
                 if (window.ActiveXObject || "ActiveXObject" in window) {
                     alert(unescape('@languageMaster.ErrorBrowser'.replace(/&#x/g, '%u').replace(/;/g, '')));
                     window.open("about:blank", "_self").close()
                 }
             })()
-        </script>  *@
-        <link rel="stylesheet" href="~/css/site.css" />
-        <link rel="shortcut icon" href="~/src/favicon.ico" type="image/x-icon">
-        <link rel="stylesheet" href="~/css/large-screen.css" media="screen and (min-width: 769px)" />
-        <link rel="stylesheet" href="~/css/small-screen.css" media="screen and (max-width: 768px)" />
-        <link rel="stylesheet" href="~/css/@ViewBag.controller/site.css" />
-        <link rel="stylesheet" href="~/css/@ViewBag.controller/large-screen.css"
+        </script>  
+        <link rel="stylesheet" href="/css/site.css" />
+        <link rel="shortcut icon" href="/src/favicon.ico" type="image/x-icon">
+        <link rel="stylesheet" href="/css/large-screen.css" media="screen and (min-width: 769px)" />
+        <link rel="stylesheet" href="/css/small-screen.css" media="screen and (max-width: 768px)" />
+        <link rel="stylesheet" href="/css/@ViewBag.controller/site.css" />
+        <link rel="stylesheet" href="/css/@ViewBag.controller/large-screen.css"
             media="screen and (min-width: 769px)" />
-        <link rel="stylesheet" href="~/css/@ViewBag.controller/small-screen.css"
+        <link rel="stylesheet" href="/css/@ViewBag.controller/small-screen.css"
             media="screen and (max-width: 768px)" />
-        <script charset="utf-8" src="~/js/header-load.js"></script>
-        <script charset="utf-8" src="~/js/operation-function.js"></script>
-        <script charset="utf-8" src="~/js/@ViewBag.controller/header-load.js"></script>
-        <script charset="utf-8" src="~/js/@ViewBag.controller/operation-function.js"></script>
+        <script charset="utf-8" src="/js/header-load.js"></script>
+        <script charset="utf-8" src="/js/operation-function.js"></script>
+        <script charset="utf-8" src="/js/@ViewBag.controller/header-load.js"></script>
+        <script charset="utf-8" src="/js/@ViewBag.controller/operation-function.js"></script>
     </head>
 
     <body>
         <div onclick="whiteBack();" id="login-background">
         </div>
         <header>
-            <div class="header-logo" onclick="backIndex()"><img src="~/src/img/logo.png" alt="LOGO"></div>
+            <div class="header-logo" onclick="backIndex()"><img src="/src/img/logo.png" alt="LOGO"></div>
             <nav class="convenience-option">
                 @foreach (var item in headerConvenienceOptions)
                 {
@@ -88,7 +88,7 @@ var userProfileOptions = languageMaster.UserOptionsleftArray.Value.EnumerateObje
                         <!-- <b>&#60;</b> -->
                     </div>
                     <div class="user-icon" onclick="@ViewBag.userprofile">
-                        <img width="35" src="~/src/img/logo.png" alt="user">
+                        <img width="35" src="/src/img/logo.png" alt="user">
                     </div>
                 </div>
             </div>
@@ -155,7 +155,7 @@ var userProfileOptions = languageMaster.UserOptionsleftArray.Value.EnumerateObje
             </div>
             }
             <div>
-                <img src="~/src/img/logo.png" width="120" alt="QRcode">
+                <img src="/src/img/logo.png" width="120" alt="QRcode">
                 <a href="/@ViewBag.lang/profile/profile" ">@(ViewBag.username??languageMaster.MenuMyProfile)</a>
             </div>
         </div>
@@ -191,8 +191,8 @@ var userProfileOptions = languageMaster.UserOptionsleftArray.Value.EnumerateObje
                 </div>
                 }
                 <div>
-                    <img src="~/src/img/logo.png" width="120" alt="QRcode">
-                    <a href="mailto:handsome___boy@outlook.com">@languageMaster.Contact</a>
+                    <img src="/src/img/logo.png" width="120" alt="QRcode">
+                    <a href="mailto:treemoons@outlook.com">@languageMaster.Contact</a>
                 </div>
                 </div>
                 <div class="copyright">
@@ -213,8 +213,8 @@ var userProfileOptions = languageMaster.UserOptionsleftArray.Value.EnumerateObje
                 const route = '@ViewBag.controller/@ViewBag.action';
             </script>
 
-            <script src="~/js/@ViewBag.controller/footer-load.js"></script>
-            <script src="~/js/footer-load.js"></script>
+            <script src="/js/@ViewBag.controller/footer-load.js"></script>
+            <script src="/js/footer-load.js"></script>
             @* <a asp-area="admin" asp-controller="home" asp-action="index" asp-route-language="en"
                 asp-route-id="id">这测试AREA</a> *@
     </body>
