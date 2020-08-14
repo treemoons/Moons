@@ -2,10 +2,18 @@
     var test=ViewBag.lang;
     var languageIndex=(Language.Index)Utils.Languages[ViewBag.lang][nameof(Language.Index)];
     ViewData["Title"] = ViewBag.UserName??"Home Page";
-    
+    List<SelectListItem> li = new List<SelectListItem>(); 
+     for (int i = 0; i < 4; i++)
+     {
+         SelectListItem listItem = new SelectListItem();
+                listItem.Text = "key:"+i;
+                listItem.Value = "item.Code"+i;
+                li.Add(listItem);
+     }
 }
 
     <div class="text-center">
+        @Html.DropDownList("title",li);
         @* <img src="~/src/img/logo.png" alt="">
         <img src="~/src/img/logo.png" alt="">
         <img src="../../../MyPersonalWeb/wwwroot/src/img/big.jpg" alt=""> *@

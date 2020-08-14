@@ -1,8 +1,8 @@
 ﻿@{
-var languageMaster = (Language.Master)Utils.Languages[ViewBag.lang][nameof(Language.Master)];
-var login = languageMaster.LoginArray;
-var headerConvenienceOptions = languageMaster.HeaderConvenienceOptionsArray.Value.EnumerateObject();
-var userProfileOptions = languageMaster.UserOptionsleftArray.Value.EnumerateObject();
+    var languageMaster = (Language.Master)Utils.Languages[ViewBag.lang][nameof(Language.Master)];
+    var login = languageMaster.LoginArray;
+    var headerConvenienceOptions = languageMaster.HeaderConvenienceOptionsArray.Value.EnumerateObject();
+    var userProfileOptions = languageMaster.UserOptionsleftArray.Value.EnumerateObject();
 }
 <!DOCTYPE html>
 <html lang="@languageMaster.CurrentLanguageCode">
@@ -212,11 +212,9 @@ var userProfileOptions = languageMaster.UserOptionsleftArray.Value.EnumerateObje
                 const lang = '@ViewBag.lang';
                 const route = '@ViewBag.controller/@ViewBag.action';
             </script>
-
             <script src="/js/@ViewBag.controller/footer-load.js"></script>
             <script src="/js/footer-load.js"></script>
             @* <a asp-area="admin" asp-controller="home" asp-action="index" asp-route-language="en"
                 asp-route-id="id">这测试AREA</a> *@
     </body>
-
 </html>

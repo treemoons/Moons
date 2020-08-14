@@ -444,11 +444,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Html\\MyWork\\Utils\\Utils.csproj",
+      "projectUniqueName": "e:\\Html\\MyWork\\Utils\\Utils.csproj",
       "projectName": "Utils",
-      "projectPath": "E:\\Html\\MyWork\\Utils\\Utils.csproj",
+      "projectPath": "e:\\Html\\MyWork\\Utils\\Utils.csproj",
       "packagesPath": "C:\\Users\\hands\\.nuget\\packages\\",
-      "outputPath": "E:\\Html\\MyWork\\Utils\\obj\\",
+      "outputPath": "e:\\Html\\MyWork\\Utils\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "D:\\Microsoft\\Xamarin\\NuGet\\"
@@ -503,7 +503,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.302\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.401\\RuntimeIdentifierGraph.json"
       }
     }
   }
