@@ -12,3 +12,6 @@ E:\Html\MyWork\Implementation\bin\Debug\netstandard2.1\Utils.pdb
 E:\Html\MyWork\Implementation\obj\Debug\netstandard2.1\Implementation.csproj.CopyComplete
 E:\Html\MyWork\Implementation\bin\Debug\netstandard2.1\ModelsLibrary.dll
 E:\Html\MyWork\Implementation\bin\Debug\netstandard2.1\ModelsLibrary.pdb
+E:\Html\MyWork\Implementation\bin\Debug\netstandard2.1\Utils.xml
+E:\Html\MyWork\Implementation\bin\Debug\netstandard2.1\ModelsLibrary.xml
+E:\Html\MyWork\Implementation\bin\Debug\netstandard2.1\Implementation.xml

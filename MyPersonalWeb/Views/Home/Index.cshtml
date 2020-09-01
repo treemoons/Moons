@@ -12,11 +12,38 @@
      }
 }
 
+<style>
+    body{
+        transition: all 0.s ease-in-out;
+    }
+</style>
     <div class="text-center">
         @Html.DropDownList("title",li);
+        <div style="height: 1000px;background-color:plum;width:20px;"></div>
+        <div style="height: 1000px;background-color:red;width:20px;"></div>
+        <div style="height: 1000px;background-color:blue;width:20px;"></div>
+        <div style="height: 1000px;background-color:green;width:20px;"></div>
+        <div style="height: 1000px;background-color:orange;width:20px;"></div>
+        <div style="height: 1000px;background-color:plum;width:20px;"></div>
+        <div style="height: 1000px;background-color:red;width:20px;"></div>
+        <div style="height: 1000px;background-color:blue;width:20px;"></div>
+        <div style="height: 1000px;background-color:green;width:20px;"></div>
+        <div style="height: 1000px;background-color:orange;width:20px;"></div>
+        <button onclick="totop()">top</button>
         @* <img src="~/src/img/logo.png" alt="">
         <img src="~/src/img/logo.png" alt="">
         <img src="../../../MyPersonalWeb/wwwroot/src/img/big.jpg" alt=""> *@
-
+<script>
+    
+            function totop() {
+                let a = document.scrollingElement.scrollTop;
+                let b = 2;
+                for (let i = a - 1; i >= 0; i--) {
+                    setTimeout(() => {
+                        this.scrollTo(0, i);
+                    }, (b+=(0.2*b) * 0.1);
+                }
+            }
+</script>
     </div>
     

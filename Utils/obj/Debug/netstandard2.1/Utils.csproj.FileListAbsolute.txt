@@ -7,3 +7,4 @@ E:\Html\MyWork\Utils\obj\Debug\netstandard2.1\Utils.AssemblyInfo.cs
 E:\Html\MyWork\Utils\obj\Debug\netstandard2.1\Utils.csproj.CoreCompileInputs.cache
 E:\Html\MyWork\Utils\obj\Debug\netstandard2.1\Utils.dll
 E:\Html\MyWork\Utils\obj\Debug\netstandard2.1\Utils.pdb
+E:\Html\MyWork\Utils\bin\Debug\netstandard2.1\Utils.xml

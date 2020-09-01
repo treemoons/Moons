@@ -46,7 +46,7 @@ namespace CommonUtils
         /// <summary> 
         /// RSA解密数据 
         /// </summary> 
-        /// <param name="express">要解密数据</param> 
+        /// <param name="ciphertext">要解密数据</param> 
         /// <param name="KeyContainerName">密匙容器的名称</param> 
         /// <returns></returns> 
         public static string RSADecrypt(string ciphertext, string KeyContainerName = null)

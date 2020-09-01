@@ -85,3 +85,6 @@ E:\Html\MyWork\MyPersonalWeb\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Option
 E:\Html\MyWork\MyPersonalWeb\bin\Debug\netcoreapp3.1\System.Collections.Immutable.dll
 E:\Html\MyWork\MyPersonalWeb\bin\Debug\netcoreapp3.1\System.Diagnostics.DiagnosticSource.dll
 E:\Html\MyWork\MyPersonalWeb\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Shared\_Layout.cshtml.g.cs
+E:\Html\MyWork\MyPersonalWeb\bin\Debug\netcoreapp3.1\ModelsLibrary.xml
+E:\Html\MyWork\MyPersonalWeb\bin\Debug\netcoreapp3.1\Implementation.xml
+E:\Html\MyWork\MyPersonalWeb\bin\Debug\netcoreapp3.1\Utils.xml
