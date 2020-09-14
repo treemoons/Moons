@@ -438,8 +438,7 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\hands\\.nuget\\packages\\": {},
-    "D:\\Microsoft\\Xamarin\\NuGet\\": {}
+    "C:\\Users\\hands\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
@@ -450,13 +449,9 @@
       "packagesPath": "C:\\Users\\hands\\.nuget\\packages\\",
       "outputPath": "e:\\Html\\MyWork\\Utils\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "D:\\Microsoft\\Xamarin\\NuGet\\"
-      ],
       "configFilePaths": [
         "C:\\Users\\hands\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netstandard2.1"

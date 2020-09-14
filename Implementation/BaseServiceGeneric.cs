@@ -104,6 +104,7 @@ namespace Implementation
             where TModelBuilder : IEntityTypeConfiguration<TTable>, new()
             => new DBServiceProvider<TService, DBContext<TTable, TModelBuilder>>().GetDbServiceProvider(service, sqlString).GetService<TService>();
 
+
         /// <summary> 获取单表服务容器（不带ModelBuider） </summary>
         /// <param name="service">服务类型</param>
         /// <param name="sqlString">连接服务器数据库连接字符串</param>
@@ -375,7 +376,7 @@ namespace Implementation
     /// <typeparam name="TDbTable1">数据表模型类1</typeparam>
     /// <typeparam name="TDbTable2">数据表模型类2</typeparam>
     /// <typeparam name="TDbTable3">数据表模型类3</typeparam>
-    /// <typeparam name="TDbTable3">数据表模型类4</typeparam>
+    /// <typeparam name="TDbTable4">数据表模型类4</typeparam>
     public class DBContexts<TDbTable1, TDbTable2, TDbTable3, TDbTable4> : DbContext
       where TDbTable1 : class
       where TDbTable2 : class
@@ -431,8 +432,8 @@ namespace Implementation
     /// <typeparam name="TDbTable1">数据表模型类1</typeparam>
     /// <typeparam name="TDbTable2">数据表模型类2</typeparam>
     /// <typeparam name="TDbTable3">数据表模型类3</typeparam>
-    /// <typeparam name="TDbTable3">数据表模型类4</typeparam>
-    /// <typeparam name="TDbTable3">数据表模型类5</typeparam>
+    /// <typeparam name="TDbTable4">数据表模型类4</typeparam>
+    /// <typeparam name="TDbTable5">数据表模型类5</typeparam>
     public class DBContextsWithModelsBuilder<TDbTable1, TDbTable2, TDbTable3, TDbTable4, TDbTable5> : DbContext
       where TDbTable1 : class
       where TDbTable2 : class
@@ -494,7 +495,8 @@ namespace Implementation
     /// </summary>
     /// <typeparam name="TDbTable1">数据表模型类1</typeparam>
     /// <typeparam name="TDbTable2">数据表模型类2</typeparam>
-    /// <typeparam name="TModelsBuilder">配置加载数据模型属性 
+    /// <typeparam name="TModelsBuilder1">配置加载数据模型属性 
+    /// <typeparam name="TModelsBuilder2">配置加载数据模型属性 
     /// <br/><i>继承自接口IEntityTypeConfiguration&#60;TDbTable&#62;</i>
     /// </typeparam>
     public class DBContextsWithModelsBuilder<TDbTable1, TDbTable2, TModelsBuilder1, TModelsBuilder2> : DbContext
@@ -545,7 +547,9 @@ namespace Implementation
     /// </summary>
     /// <typeparam name="TDbTable1">数据表模型类1</typeparam>
     /// <typeparam name="TDbTable2">数据表模型类2</typeparam>
-    /// <typeparam name="TModelsBuilder">配置加载数据模型属性 
+    /// <typeparam name="TModelsBuilder1">配置加载数据模型属性 
+    /// <typeparam name="TModelsBuilder2">配置加载数据模型属性 
+    /// <typeparam name="TModelsBuilder3">配置加载数据模型属性 
     /// <br/><i>继承自接口IEntityTypeConfiguration&#60;TDbTable&#62;</i>
     /// </typeparam>
     public class DBContextsWithModelsBuilder<TDbTable1, TDbTable2, TDbTable3, TModelsBuilder1, TModelsBuilder2, TModelsBuilder3> : DbContext
@@ -603,7 +607,12 @@ namespace Implementation
     /// </summary>
     /// <typeparam name="TDbTable1">数据表模型类1</typeparam>
     /// <typeparam name="TDbTable2">数据表模型类2</typeparam>
-    /// <typeparam name="TModelsBuilder">配置加载数据模型属性 
+    /// <typeparam name="TDbTable3">数据表模型类1</typeparam>
+    /// <typeparam name="TDbTable4">数据表模型类2</typeparam>
+    /// <typeparam name="TModelsBuilder1">配置加载数据模型属性 
+    /// <typeparam name="TModelsBuilder2">配置加载数据模型属性 
+    /// <typeparam name="TModelsBuilder3">配置加载数据模型属性 
+    /// <typeparam name="TModelsBuilder4">配置加载数据模型属性 
     /// <br/><i>继承自接口IEntityTypeConfiguration&#60;TDbTable&#62;</i>
     /// </typeparam>
     public class DBContextsWithModelsBuilder<TDbTable1, TDbTable2, TDbTable3, TDbTable4, TModelsBuilder1, TModelsBuilder2, TModelsBuilder3, TModelsBuilder4> : DbContext

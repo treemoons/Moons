@@ -81,7 +81,7 @@ String.prototype.decodeUriString = function () {
     let result;
     if (this == '' || this == undefined || this == null) return this;
     try {
-        result = decodeURI(this);
+        result = decodeURI(this);debugger
     } catch (error) {
         return this;
     }
@@ -141,7 +141,7 @@ function pressEnter(input, action =
     /**@param {HTMLElement} form*/
     form => form.submit.click()) {
     input.onkeypress = e => {
-        if (e.keyCode == 13) {
+        if (e.key == 'Enter') {
             action(form);
         }
     };
@@ -154,7 +154,7 @@ function pressEnter(input, action =
  */
 function press(input, parttern, action) {
     input.onkeypress = e => {
-        if (e.keyCode == 13) {
+        if (e.key == 'Enter') {
             if (parttern.test(input.value))
                 action(form);
         }

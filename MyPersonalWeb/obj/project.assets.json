@@ -5211,25 +5211,20 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\hands\\.nuget\\packages\\": {},
-    "D:\\Microsoft\\Xamarin\\NuGet\\": {}
+    "C:\\Users\\hands\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "e:\\Html\\MyWork\\MyPersonalWeb\\MyPersonalWeb.csproj",
+      "projectUniqueName": "E:\\Html\\MyWork\\MyPersonalWeb\\MyPersonalWeb.csproj",
       "projectName": "MyPersonalWeb",
-      "projectPath": "e:\\Html\\MyWork\\MyPersonalWeb\\MyPersonalWeb.csproj",
+      "projectPath": "E:\\Html\\MyWork\\MyPersonalWeb\\MyPersonalWeb.csproj",
       "packagesPath": "C:\\Users\\hands\\.nuget\\packages\\",
-      "outputPath": "e:\\Html\\MyWork\\MyPersonalWeb\\obj\\",
+      "outputPath": "E:\\Html\\MyWork\\MyPersonalWeb\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "D:\\Microsoft\\Xamarin\\NuGet\\"
-      ],
       "configFilePaths": [
         "C:\\Users\\hands\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
@@ -5241,14 +5236,14 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "e:\\Html\\MyWork\\Implementation\\Implementation.csproj": {
-              "projectPath": "e:\\Html\\MyWork\\Implementation\\Implementation.csproj"
+            "E:\\Html\\MyWork\\Implementation\\Implementation.csproj": {
+              "projectPath": "E:\\Html\\MyWork\\Implementation\\Implementation.csproj"
             },
-            "e:\\Html\\MyWork\\ModelsLibrary\\ModelsLibrary.csproj": {
-              "projectPath": "e:\\Html\\MyWork\\ModelsLibrary\\ModelsLibrary.csproj"
+            "E:\\Html\\MyWork\\ModelsLibrary\\ModelsLibrary.csproj": {
+              "projectPath": "E:\\Html\\MyWork\\ModelsLibrary\\ModelsLibrary.csproj"
             },
-            "e:\\Html\\MyWork\\Utils\\Utils.csproj": {
-              "projectPath": "e:\\Html\\MyWork\\Utils\\Utils.csproj"
+            "E:\\Html\\MyWork\\Utils\\Utils.csproj": {
+              "projectPath": "E:\\Html\\MyWork\\Utils\\Utils.csproj"
             }
           }
         }

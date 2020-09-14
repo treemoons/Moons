@@ -279,7 +279,13 @@ function backIndex() {
  */
 function loadSearchText() {
     let text = getQueryString('searchtext', location.search, '&').decodeUriString();
+    debugger
     search.searchtext.value = text;
+}
+function searchsubmit() {
+    debugger
+    // search.searchtext.value = encodeURI(search.searchtext.value);
+    search.submit();
 }
 
 //#region national lanuage

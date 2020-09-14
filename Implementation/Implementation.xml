@@ -252,7 +252,7 @@
             <typeparam name="TDbTable1">数据表模型类1</typeparam>
             <typeparam name="TDbTable2">数据表模型类2</typeparam>
             <typeparam name="TDbTable3">数据表模型类3</typeparam>
-            <typeparam name="TDbTable3">数据表模型类4</typeparam>
+            <typeparam name="TDbTable4">数据表模型类4</typeparam>
         </member>
         <member name="P:Implementation.DBContexts`4.Table1">
             <summary>
@@ -299,8 +299,8 @@
             <typeparam name="TDbTable1">数据表模型类1</typeparam>
             <typeparam name="TDbTable2">数据表模型类2</typeparam>
             <typeparam name="TDbTable3">数据表模型类3</typeparam>
-            <typeparam name="TDbTable3">数据表模型类4</typeparam>
-            <typeparam name="TDbTable3">数据表模型类5</typeparam>
+            <typeparam name="TDbTable4">数据表模型类4</typeparam>
+            <typeparam name="TDbTable5">数据表模型类5</typeparam>
         </member>
         <member name="P:Implementation.DBContextsWithModelsBuilder`5.Table1">
             <summary>
@@ -344,21 +344,7 @@
             </summary>
             <param name="builder">添加模型属性配置</param>
         </member>
-        <member name="T:Implementation.DBContextsWithModelsBuilder`4">
-            <summary> 【多表】上下文基类，用于加载配置数据表和数据表字段属性
-            <br/>DBContext&#60;TDbTable1, TDbTable2, TModelsBuilder1, TModelsBuilder2&#62;
-            <br/>DBContext：继承自DbContext预定义类型
-            <br/>TModelsBuilder：继承自接口IEntityTypeConfiguration&#60;T&#62;
-            <br/>(其中接口IEntityTypeConfiguration&#60;T&#62;需要：
-            <br/>using Microsoft.EntityFrameworkCore;
-            <br/>using Microsoft.EntityFrameworkCore.Metadata.Builders;)
-            </summary>
-            <typeparam name="TDbTable1">数据表模型类1</typeparam>
-            <typeparam name="TDbTable2">数据表模型类2</typeparam>
-            <typeparam name="TModelsBuilder">配置加载数据模型属性 
-            <br/><i>继承自接口IEntityTypeConfiguration&#60;TDbTable&#62;</i>
-            </typeparam>
-        </member>
+        <!-- Badly formed XML comment ignored for member "T:Implementation.DBContextsWithModelsBuilder`4" -->
         <member name="P:Implementation.DBContextsWithModelsBuilder`4.Table1">
             <summary>
             控制的表,对应泛型的第一个类型
@@ -383,21 +369,7 @@
             </summary>
             <param name="builder">添加模型属性配置</param>
         </member>
-        <member name="T:Implementation.DBContextsWithModelsBuilder`6">
-            <summary> 【多表】上下文基类，用于加载配置数据表和数据表字段属性
-            <br/>DBContext&#60;TDbTable1, TDbTable2, TModelsBuilder1, TModelsBuilder2&#62;
-            <br/>DBContext：继承自DbContext预定义类型
-            <br/>TModelsBuilder：继承自接口IEntityTypeConfiguration&#60;T&#62;
-            <br/>(其中接口IEntityTypeConfiguration&#60;T&#62;需要：
-            <br/>using Microsoft.EntityFrameworkCore;
-            <br/>using Microsoft.EntityFrameworkCore.Metadata.Builders;)
-            </summary>
-            <typeparam name="TDbTable1">数据表模型类1</typeparam>
-            <typeparam name="TDbTable2">数据表模型类2</typeparam>
-            <typeparam name="TModelsBuilder">配置加载数据模型属性 
-            <br/><i>继承自接口IEntityTypeConfiguration&#60;TDbTable&#62;</i>
-            </typeparam>
-        </member>
+        <!-- Badly formed XML comment ignored for member "T:Implementation.DBContextsWithModelsBuilder`6" -->
         <member name="P:Implementation.DBContextsWithModelsBuilder`6.Table1">
             <summary>
             控制的表,对应泛型的第1个类型
@@ -428,20 +400,7 @@
             </summary>
             <param name="builder">添加模型属性配置</param>
         </member>
-        <member name="T:Implementation.DBContextsWithModelsBuilder`8">
-            <summary> 【多表】上下文基类，用于加载配置数据表和数据表字段属性
-            <br/>DBContext：继承自DbContext预定义类型
-            <br/>TModelsBuilder：继承自接口IEntityTypeConfiguration&#60;T&#62;
-            <br/>(其中接口IEntityTypeConfiguration&#60;T&#62;需要：
-            <br/>using Microsoft.EntityFrameworkCore;
-            <br/>using Microsoft.EntityFrameworkCore.Metadata.Builders;)
-            </summary>
-            <typeparam name="TDbTable1">数据表模型类1</typeparam>
-            <typeparam name="TDbTable2">数据表模型类2</typeparam>
-            <typeparam name="TModelsBuilder">配置加载数据模型属性 
-            <br/><i>继承自接口IEntityTypeConfiguration&#60;TDbTable&#62;</i>
-            </typeparam>
-        </member>
+        <!-- Badly formed XML comment ignored for member "T:Implementation.DBContextsWithModelsBuilder`8" -->
         <member name="P:Implementation.DBContextsWithModelsBuilder`8.Table1">
             <summary>
             控制的表,对应泛型的第1个类型

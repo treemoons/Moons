@@ -4,6 +4,8 @@
     var headerConvenienceOptions = languageMaster.HeaderConvenienceOptionsArray.Value.EnumerateObject();
     var userProfileOptions = languageMaster.UserOptionsleftArray.Value.EnumerateObject();
 }
+
+@model ValueTuple<string, string>
 <!DOCTYPE html>
 <html lang="@languageMaster.CurrentLanguageCode">
 
@@ -76,13 +78,13 @@
                         </div>*@
                     <div class="search-option"> 
                         <form action="/@ViewBag.lang/section/searched" method="GET" name="search">
-                            <input type="search" placeholder="@languageMaster.SearchText" name="searchtext">
+                            <input type="search" placeholder="@languageMaster.SearchText" value="@ViewBag.search" name="searchtext">
                             <input type="hidden" value="@languageMaster.SearchType.Value[0].ToString().ToLower()"
                                 name="searchtype">
                         </form>
                     </div>
                     <div class="search-icon">
-                        <i onclick="search.submit();"></i>
+                        <i onclick="searchsubmit()"></i>
                     </div>
                     <div class="menu-icon" onclick="showAndCloseMenu();">
                         <!-- <b>&#60;</b> -->
