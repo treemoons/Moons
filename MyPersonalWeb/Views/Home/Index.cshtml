@@ -1,49 +1,49 @@
 @{
-    var test=ViewBag.lang;
-    var languageIndex=(Language.Index)Utils.Languages[ViewBag.lang][nameof(Language.Index)];
-    ViewData["Title"] = ViewBag.UserName??"Home Page";
-    List<SelectListItem> li = new List<SelectListItem>(); 
-     for (int i = 0; i < 4; i++)
-     {
-         SelectListItem listItem = new SelectListItem();
-                listItem.Text = "key:"+i;
-                listItem.Value = "item.Code"+i;
-                li.Add(listItem);
-     }
+    var test = ViewBag.lang;
+    var languageIndex = (Language.Index)Utils.Languages[ViewBag.lang][nameof(Language.Index)];
+    ViewData["Title"] = ViewBag.UserName ?? "Home Page";
+    List<SelectListItem> li = new List<SelectListItem>();
+    for (int i = 0; i < 4; i++)
+    {
+        SelectListItem listItem = new SelectListItem();
+        listItem.Text = "key:" + i;
+        listItem.Value = "item.Code" + i;
+        li.Add(listItem);
+    }
 }
 
 <style>
-    body{
-        transition: all 0.s ease-in-out;
+    body {
+    transition: all 0.s ease-in-out;
     }
 </style>
-    <div class="text-center">
-        @Html.DropDownList("title",li);
-        <div style="height: 1000px;background-color:plum;width:20px;"></div>
-        <div style="height: 1000px;background-color:red;width:20px;"></div>
-        <div style="height: 1000px;background-color:blue;width:20px;"></div>
-        <div style="height: 1000px;background-color:green;width:20px;"></div>
-        <div style="height: 1000px;background-color:orange;width:20px;"></div>
-        <div style="height: 1000px;background-color:plum;width:20px;"></div>
-        <div style="height: 1000px;background-color:red;width:20px;"></div>
-        <div style="height: 1000px;background-color:blue;width:20px;"></div>
-        <div style="height: 1000px;background-color:green;width:20px;"></div>
-        <div style="height: 1000px;background-color:orange;width:20px;"></div>
-        <button onclick="totop()">top</button>
-        @* <img src="~/src/img/logo.png" alt="">
+<div class="text-center">
+    @Html.DropDownList("title",li);
+    <div style="height: 1000px;background-color:plum;width:20px;"></div>
+    <div style="height: 1000px;background-color:red;width:20px;"></div>
+    <div style="height: 1000px;background-color:blue;width:20px;"></div>
+    <div style="height: 1000px;background-color:green;width:20px;"></div>
+    <div style="height: 1000px;background-color:orange;width:20px;"></div>
+    <div style="height: 1000px;background-color:plum;width:20px;"></div>
+    <div style="height: 1000px;background-color:red;width:20px;"></div>
+    <div style="height: 1000px;background-color:blue;width:20px;"></div>
+    <div style="height: 1000px;background-color:green;width:20px;"></div>
+    <div style="height: 1000px;background-color:orange;width:20px;"></div>
+    <button onclick="totop()">top</button>
+    @* <img src="~/src/img/logo.png" alt="">
         <img src="~/src/img/logo.png" alt="">
         <img src="../../../MyPersonalWeb/wwwroot/src/img/big.jpg" alt=""> *@
-<script>
-    
-            function totop() {
-                let a = document.scrollingElement.scrollTop;
-                let b = 2;
-                for (let i = a - 1; i >= 0; i--) {
-                    setTimeout(() => {
-                        this.scrollTo(0, i);
-                    }, (b+=(0.2*b) * 0.1);
-                }
-            }
-</script>
-    </div>
-    
+    <script>
+
+        function totop() {
+        let a = document.scrollingElement.scrollTop;
+        let b = 2;
+        b += 0.02 * b
+        for (let i = a - 1; i >= 0; i--) {
+        setTimeout(() => {
+        this.scrollTo(0, i);
+        }, 0.1);
+        }
+        }
+    </script>
+</div>
