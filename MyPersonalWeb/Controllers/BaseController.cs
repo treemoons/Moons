@@ -101,8 +101,10 @@ namespace MyPersonalWeb.Controllers
                     ViewBag.isremembered = "checked";
                     filterContext.HttpContext.Request.Cookies.TryGetValue(LoginCookieBase64.GetCookieUserNameBase64, out string encryptUserName);
                     filterContext.HttpContext.Request.Cookies.TryGetValue(LoginCookieBase64.GetCookiePasswordBase64, out string encrptyPassword);
-                    ViewBag.username = RSAData.RSADecrypt(encryptUserName, "username");
-                    ViewBag.password = RSAData.RSADecrypt(encrptyPassword, "password");
+                    if (null != encryptUserName)
+                        ViewBag.username = RSAData.RSADecrypt(encryptUserName, "username");
+                    if (null != encrptyPassword)
+                        ViewBag.password = RSAData.RSADecrypt(encrptyPassword, "password");
                 }
                 ViewBag.logged = false;
             }

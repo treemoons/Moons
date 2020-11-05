@@ -11,7 +11,7 @@ using CommonUtils;
 namespace MyPersonalWeb.Areas
 {
     [Area("Admin")]
-    public class BaseAdminController:Controller
+    public class BaseAdminController : Controller
     {
 
         [NonAction]
@@ -27,7 +27,7 @@ namespace MyPersonalWeb.Areas
             ViewBag.controller = controller.ToLowerInvariant();
             ViewBag.action = action.ToLowerInvariant();
             ViewBag.lang = parameterValue.ToLowerInvariant();
-           // ViewBag.langTranslation = parameterValue.ToLowerInvariant();// 暂时测试使用 parameterValue
+            // ViewBag.langTranslation = parameterValue.ToLowerInvariant();// 暂时测试使用 parameterValue
             #endregion
 
             #region about login
@@ -39,8 +39,10 @@ namespace MyPersonalWeb.Areas
                     ViewBag.isremembered = "checked";
                     filterContext.HttpContext.Request.Cookies.TryGetValue(LoginCookieBase64.GetCookieUserNameBase64, out string encryptUserName);
                     filterContext.HttpContext.Request.Cookies.TryGetValue(LoginCookieBase64.GetCookiePasswordBase64, out string encrptyPassword);
-                    ViewBag.username = RSAData.RSADecrypt(encryptUserName, "username");
-                    ViewBag.password = RSAData.RSADecrypt(encrptyPassword, "password");
+                    if (null != encryptUserName)
+                        ViewBag.username = RSAData.RSADecrypt(encryptUserName, "username");
+                    if (null != encrptyPassword)
+                        ViewBag.password = RSAData.RSADecrypt(encrptyPassword, "password");
                 }
                 ViewBag.logged = false;
             }

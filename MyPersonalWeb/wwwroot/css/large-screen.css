@@ -16,7 +16,7 @@ body{
 .login {
     /*display: none;
     */
-    z-index: 199;
+    z-index: 999;
     position: fixed;
     background-color: rgba(255, 255, 255, 0.9);
     border-radius: 7%;
@@ -49,7 +49,9 @@ body{
     width: 100vw;
     height: 100vh;
     position: fixed;
-    z-index: 19;
+    justify-content: center;
+    align-items: center;
+    z-index: 116;
     box-sizing: border-box;
     background-color: transparent;
     display: none;

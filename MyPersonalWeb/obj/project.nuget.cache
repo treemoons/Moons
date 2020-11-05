@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "WC6/y9XmM1W3MttH38QUeTMnZ4F/iucJQZ+VvEQfi4ikaNeQaCO3qDtD1OMEJ4JPnIqKullMMnoqVzRY1Zxs8w==",
+  "dgSpecHash": "anZhHA1IvzUUldcMnItXtSDnPn7hOKhVF8B0E1ydB3Ehg9UWd+CsyF40+HejtbcHnLCHTMHRRMoikDWeIFQ+7Q==",
   "success": true,
-  "projectFilePath": "E:\\Html\\MyWork\\MyPersonalWeb\\MyPersonalWeb.csproj",
+  "projectFilePath": "e:\\Html\\MyWork\\MyPersonalWeb\\MyPersonalWeb.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\hands\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\hands\\.nuget\\packages\\microsoft.bcl.hashcode\\1.1.0\\microsoft.bcl.hashcode.1.1.0.nupkg.sha512",

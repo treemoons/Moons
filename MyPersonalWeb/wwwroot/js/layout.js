@@ -1,26 +1,176 @@
-//#region  master context
+
+import common from './common.js';
+/**
+ * 用于附加在windowResize事件上的函数数组
+ */
+export var windowResize = [];
+export var windowOnload = [];
 
 /**
- * 显示等待动画，配合等待div元素
+ * 判断菜单显示
  */
-function waitDot() {
-    var wait = document.getElementById('wait');
-    if (wait == undefined) return;
-    wait.style = 'display:block';
+export var isMenuShow = false;
+/**
+ * 判断是都登录成功
+ */
+export var isUserOptionsShow = false;
+
+/**
+ * 展示menu列表
+ */
+export var menuButton = document.getElementById('menu-options');
+/**
+ * 登录用途的div元素（最外父元素）
+ * 用于调整位置
+ */
+export var login = document.getElementById('login');
+/**
+ * 展示个人选项
+ */
+export var userOptions = document.getElementById('user-options');
+
+let whiteBackgroundEle = document.getElementById('login-background');
+
+/**push login window */
+window.onresize = function (e) {
+    if (this.windowResize != null) {
+        this.windowResize.forEach(item => {
+            try { item(); } catch (error) { console.log(error); }
+        });
+    }
 }
-function waitLoginClose() {
-    setTimeout(() => {
-        var wait = document.getElementById('wait');
-        if (wait == undefined) return;
-        wait.style = 'display:none';
-    }, 400);
+
+document.onload = function (e) {
+    if (this.windowOnload != null) {
+        this.windowOnload.forEach(item => {
+            try { item(); } catch (error) { console.log(error); }
+        });
+    }
 }
+
+/**
+ * formating datetime
+ */
+Date.prototype.formatDate = function (fmt) {
+    let o = {
+        "M+": this.getMonth() + 1, //月份           
+        "d+": this.getDate(), //日           
+        "h+": this.getHours() % 12 == 0 ? 12 : this.getHours() % 12, //小时           
+        "H+": this.getHours(), //小时           
+        "m+": this.getMinutes(), //分           
+        "s+": this.getSeconds(), //秒           
+        "q+": Math.floor((this.getMonth() + 3) / 3), //季度           
+        "f": this.getMilliseconds() //毫秒           
+    };
+    let week = {
+        "0": "\u65e5",
+        "1": "\u4e00",
+        "2": "\u4e8c",
+        "3": "\u4e09",
+        "4": "\u56db",
+        "5": "\u4e94",
+        "6": "\u516d"
+    };
+    if (/(y+)/.test(fmt)) {
+        fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+    }
+    if (/(E+)/.test(fmt)) {
+        fmt = fmt.replace(RegExp.$1, ((RegExp.$1.length > 1) ? (RegExp.$1.length > 2 ? "\u661f\u671f" : "\u5468") : "") + week[this.getDay() + ""]);
+    }
+    for (let k in o) {
+        if (new RegExp("(" + k + ")").test(fmt)) {
+            fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+        }
+    }
+    return fmt;
+}
+
+String.prototype.write = function () {
+    document.write(this);
+};
+String.prototype.getEleById = function () {
+    return document.getElementById(this);
+};
+/**
+ * 扩展--URI转换成string
+ */
+String.prototype.decodeUriString = function () {
+    let result;
+    if (!this) return this;
+    try {
+        result = decodeURI(this); debugger
+    } catch (error) {
+        return this;
+    }
+    return result;
+};
+/**
+ * 在指定格式(?)[key]=[value][splitMark]中，根据key找到value值，若没找到，返回空
+ * @param {string} name search keywords
+ * @param {string} purposeString results pool
+ */
+export function getQueryString(name, purposeString, splitMark) {
+    let reg = RegExp(`${name}=([^${splitMark}]+)`);
+    let arr = purposeString.match(reg);
+    if (arr) {
+        return arr[1];
+    } else {
+        return '';
+    }
+}
+
+
+/**
+ * 写入Cookie到浏览器
+ * @param {string} name key
+ * @param {string} value value
+ * @param {Int32Array} day date
+ */
+export function setCookie(name, value, day) {
+    let date = new Date();
+    date.setDate(date.getDate() + day);
+    document.cookie = `${name}=${value};expires=${date}`;
+}
+
+
+/**  获取cookie
+ *  @param {string} name key
+*/
+export function getCookie(name) {
+    return getQueryString(name, document.cookie, ';')
+}
+
+
+/**  删除cookie
+ *  @param {string} name key
+*/
+export function delCookie(name) {
+    setCookie(name, null, -1);
+}
+/**
+ * 
+ * @param {HTMLElement} input input where type is text
+ * @param {RegExp} parttern when press enter key , do this function
+ * @param {Function} action default is submit param{input} to target form
+ */
+export function press(input, parttern, action) {
+    input.onkeypress = e => {
+        if (e.key == 'Enter') {
+            if (parttern.test(input.value))
+                action(form);
+        }
+    };
+}
+
+
+//#region  master context
+
 
 document.onreadystatechange = e => {
     let process;
     try {
         process = document.getElementById('processbar');
-        if (process == undefined) return;
+        if (!process) return;
     } catch (error) {
         console.log(error);
         return;
@@ -48,62 +198,42 @@ document.onreadystatechange = e => {
 //#region  用于调整设置登录弹窗的位置
 
 
-/** 获取登录login元素的div
- * @param {HTMLElement} l login登录元素
+/**
+ * 
+ * @param {'none'|'block'|'flex'} display 
  */
-function getLoginLeft(l) {
-    if (login == undefined) return;
-    return `left:${(document.body.clientWidth - parseInt(window.getComputedStyle(l).width)) / 2}px`
-}
-/**刷新login宽度 */
-function resizeLogin() {
-    if (login == undefined) return;
-    let block = getComputedStyle(login, null).getPropertyValue('display') == 'block';
-    let largesreen = document.body.clientWidth > 766;
-    let bool = block && largesreen;
-    if (bool)
-        login.style.left = (document.body.clientWidth - parseInt(window.getComputedStyle(login).width)) / 2 + 'px';
-    else
-        login.style.left = '0';
-}
-function whiteBackground(display) {
-    let background = document.getElementById('login-background');
-    if (background == undefined) return false;
-    background.style.display = display;
+export function whiteBackground(display) {
+    if (!whiteBackgroundEle) return false;
+    if (display == 'none')
+        setTimeout(() => {
+            whiteBackgroundEle.style.display = display;
+        }, 400);
+    else {
+        whiteBackgroundEle.style.display = display;
+    }
     return true;
 }
 
-/** 点击空白，关闭login弹窗 */
-function whiteBack() {
-    loginClose();
-    if (menuButton == undefined) return;
-    menuButton.style = 'opacity:0;top:-20%;'
-    setTimeout(function () {
-        menuButton.style.display = 'none';
-    }, 400);
-    if (!whiteBackground('none')) return;
-    isMenuShow = false;
-}
-
-function showLogin() {
-    if (login == undefined) return;
+export function showLogin() {
+    if (!login) return;
     if (isMenuShow) {
         showAndCloseMenu();
     }
-    login.style = 'display:block;' + getLoginLeft(login);
+    login.style = 'display:block;'
     setTimeout(function () {
-        login.style = 'opacity:100;top: 5vh;' + getLoginLeft(login);
+        login.style = 'opacity:100;top: 5vh;';
+
     }, 40);
-    whiteBackground('block');
+    whiteBackground('flex');
     loginform.username.focus();
 }
 
 /**
  * 关闭登录窗口
  */
-function loginClose() {
-    if (login == undefined) return;
-    login.style = 'opacity:0;top:-100%;' + getLoginLeft(login);
+export function loginClose() {
+    if (!login) return;
+    login.style = 'opacity:0;top:-100%;'
     let loginerror = document.getElementById('loginerror');
     loginerror.innerHTML = '&#160;';
     setTimeout(function () {
@@ -113,10 +243,10 @@ function loginClose() {
 }
 
 
-function keyEnterLogin() {
-    if (login == undefined) return;
-    pressEnter(loginform.username);
-    pressEnter(loginform.password);
+export function keyEnterLogin() {
+    if (!login) return;
+    common.pressEnter(loginform.username);
+    common.pressEnter(loginform.password);
 }
 //#endregion
 
@@ -124,9 +254,10 @@ function keyEnterLogin() {
  * 
  * @param {HTMLElement} input  input where type is text and whose attributes have 'tip'
  */
-function IsInputEmpty(input) {
+export function IsInputEmpty(input) {
+    debugger
     let error = document.getElementById('loginerror')
-    if (error == undefined) return;
+    if (!error) return;
     if (input.value == '') {
         error.innerText = input.getAttribute('tip');
         return true;
@@ -139,7 +270,8 @@ function IsInputEmpty(input) {
 /**
  * login your account to Moons
  */
-function signin() {
+export function signin() {
+    debugger
     if (IsInputEmpty(loginform.username)) {
         loginform.username.focus();
         return false;
@@ -147,8 +279,8 @@ function signin() {
         loginform.password.focus();
         return false;
     }
-    waitDot();
-    getAjaxData({
+    common.waitDot('');
+    common.getAjaxData({
         url: `/${lang}/home/login`,
         data:
             `username=${loginform.username.value}&` +
@@ -178,7 +310,7 @@ function signin() {
                         break;
                 }
             }
-            waitLoginClose();
+            common.waitDot('none');
         }
     });
     return false;
@@ -187,8 +319,8 @@ function signin() {
 /**
  * SIGN OUT CAN BE DONE
  */
-function signout() {
-    getAjaxData({
+export function signout() {
+    common.getAjaxData({
         url: `/${lang}/home/logout`,
         success: data => {
             if (data == 'T')
@@ -204,9 +336,9 @@ function signout() {
 /**
  * 显示或这关闭menu
  */
-function showAndCloseMenu() {
+export function showAndCloseMenu() {
     try {
-        if (userOptions == undefined) throw 'userOption Element is undefined！';
+        if (!userOptions) throw 'userOption Element is undefined！';
         if (window.getComputedStyle(userOptions).display == 'block') {
             userOptions.style = 'opacity:0;right:-20vw;'
             setTimeout(function () {
@@ -215,7 +347,7 @@ function showAndCloseMenu() {
             isUserOptionsShow = false;
         }
     } catch (error) { console.log(error); }
-    if (menuButton == undefined) return;
+    if (!menuButton) return;
     if (!isMenuShow) {
         menuButton.style = 'display:block;';
         setTimeout(function () {
@@ -230,20 +362,22 @@ function showAndCloseMenu() {
         isMenuShow = false;
     }
 }
-function closemenu() {
+export function closemenu() {
     let conponent = document.querySelector('.conponent');
-    if (conponent == undefined) return;
+    if (!conponent) return;
     conponent.onclick = function () {
         if (isMenuShow) {
             showAndCloseMenu();
         }
+        if (isUserOptionsShow)
+            showAndCloseUserOptions();
     }
 }
 
 
-function showUserOptions() {
+export function showAndCloseUserOptions() {
     try {
-        if (menuButton == undefined) throw 'menuButton Element is undefined!';
+        if (!menuButton) throw 'menuButton Element is undefined!';
         if (window.getComputedStyle(menuButton).display == 'block') {
             menuButton.style = 'opacity:0;top:-20%;'
             setTimeout(function () {
@@ -252,7 +386,7 @@ function showUserOptions() {
             isMenuShow = false;
         }
     } catch (error) { console.log(error) }
-    if (userOptions == undefined) return;
+    if (!userOptions) return;
     if (!isUserOptionsShow) {
         userOptions.style = 'display:block';
         setTimeout(function () {
@@ -270,19 +404,19 @@ function showUserOptions() {
 /**
  *  back to home page
  */
-function backIndex() {
+export function backIndex() {
     open(`/${lang}/home/index`, "_self");
 }
 
 /**
  * sync searchtext which is input element 
  */
-function loadSearchText() {
+export function loadSearchText() {
     let text = getQueryString('searchtext', location.search, '&').decodeUriString();
     debugger
     search.searchtext.value = text;
 }
-function searchsubmit() {
+export function searchsubmit() {
     debugger
     // search.searchtext.value = encodeURI(search.searchtext.value);
     search.submit();
@@ -324,15 +458,15 @@ function searchsubmit() {
  * @param {string} elelang Abbreviation of language between all of world
  * @param {Number} date date of expires
  */
-function changeLanguageCookie(elelang, date = 100) {
+export function changeLanguageCookie(elelang, date = 100) {
     setCookie('lang', elelang, date)
 }
 /**
  * 加载上一次
  */
-function loadlang() {
+export function loadlang() {
     let elelang = getCookie('lang');
-    if (elelang == undefined) {
+    if (!elelang) {
         elelang = 'en';
     }
     setCookie('lang', elelang)
@@ -340,27 +474,27 @@ function loadlang() {
 //#endregion
 //#region  select language options
 /**
- * 
+ * 展示点击选择语言的窗口
  * @param {HTMLElement} parent parent element DIV
  * @param {HTMLElement} chlidren selected shows
  */
-function showSelect(parent, chlidren) {
-    let options = document.getElementById(parent);
+export function showSelect(parent = 'lang', chlidren = 'selected') {
+    let optionWindow = document.getElementById(parent);
     document.getElementById(chlidren).style.fontWeight = 'bolder';
-    if (options.style.display == 'block') {
-        options.style.display = 'none';
+    if (optionWindow.style.display == 'block') {
+        optionWindow.style.display = 'none';
     } else {
-        options.style.opacity = '0';
-        options.style.display = 'block';
+        optionWindow.style.opacity = '0';
+        optionWindow.style.display = 'block';
         setInterval(() => {
-            options.style.opacity = '100';
+            optionWindow.style.opacity = '100';
         }, 0);
     }
 }
 /**
  * 添加language选中一个显示之后的click事件
  */
-function loadSelectedlang() {
+export function loadSelectedlang() {
     let langselects = document.querySelectorAll('#lang option');
     langselects.forEach(option => {
         option.onclick = async function () {
@@ -411,3 +545,45 @@ function test() {
         }
     })
 }
+
+
+
+/** 点击空白，关闭login弹窗
+ * @param {Event}e
+ */
+if (whiteBackgroundEle)
+    whiteBackgroundEle.addEventListener('click', whiteBackClick);
+function whiteBackClick(e) {
+    loginClose();
+    if (!menuButton) return;
+    menuButton.style = 'opacity:0;top:-20%;'
+    setTimeout(function () {
+        menuButton.style.display = 'none';
+    }, 400);
+    if (!whiteBackground('none')) return;
+    isMenuShow = false;
+}
+
+
+/**
+ * 阻止冒泡
+ * @param {Event} e 
+ */
+if (login)
+    login.addEventListener('click', e => e.stopPropagation());
+
+windowOnload.push(loadlang, loadSelectedlang);
+
+keyEnterLogin();
+loginClose();
+closemenu();
+
+top.backIndex = backIndex;
+top.searchsubmit = searchsubmit;
+top.showAndCloseMenu = showAndCloseMenu;
+top.loginClose = loginClose;
+top.signin = signin;
+top.showSelect = showSelect;
+top.showUserOptions = showAndCloseUserOptions;
+top.showLogin = showLogin;
+top.signout = signout;

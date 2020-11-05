@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Rwe8SUXVyJIzP/x+keHA7BH+TFIqyGtdhsz0ElyHHCusQ2y0hly3n1NJnuM+t2aQvC2H/bN4BDHSZ41kgmEl6A==",
+  "dgSpecHash": "dij03AzG+6r+uuKw+EuqqrmJqNhyqXQW9IanwuAW5i0mlKRqmysTW+Hp7HeFvMPA/WrMNgA/1JIPB8rdOXalFg==",
   "success": true,
-  "projectFilePath": "E:\\Html\\MyWork\\ModelsLibrary\\ModelsLibrary.csproj",
+  "projectFilePath": "e:\\Html\\MyWork\\ModelsLibrary\\ModelsLibrary.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\hands\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.0\\microsoft.bcl.asyncinterfaces.1.1.0.nupkg.sha512",
     "C:\\Users\\hands\\.nuget\\packages\\system.buffers\\4.5.1\\system.buffers.4.5.1.nupkg.sha512",
