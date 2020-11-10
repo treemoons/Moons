@@ -10,6 +10,7 @@ namespace CommonUtils
 {
     static public class Utils
     {
+        
     }
 
 
@@ -18,11 +19,25 @@ namespace CommonUtils
     /// </summary>
     public struct LoginCookieBase64
     {
+        /// <summary>
+        /// [username] The string representation, in base 64, of the contents of inArray
+        /// </summary>
+        /// <returns></returns>
         static public string GetCookieUserNameBase64 => Convert.ToBase64String(Encoding.ASCII.GetBytes("username"));
+        /// <summary>
+        /// [password]The string representation, in base 64, of the contents of inArray
+        /// </summary>
+        /// <returns></returns>
         static public string GetCookiePasswordBase64 => Convert.ToBase64String(Encoding.ASCII.GetBytes("password"));
+        /// <summary>
+        /// [isremembered]The string representation, in base 64, of the contents of inArray
+        /// </summary>
+        /// <returns></returns>
         static public string GetCookieRememberBase64 => Convert.ToBase64String(Encoding.ASCII.GetBytes("isremembered"));
     }
-
+/// <summary>
+///  Decrypt/Encrypt data via RSA 
+/// </summary>
     public class RSAData
     {
         /// <summary> 
@@ -60,6 +75,75 @@ namespace CommonUtils
                 return System.Text.Encoding.ASCII.GetString(decryptdata);
             }
         }
+
+    }
+
+    /// <summary>
+    /// 写下日志，记录操作信息
+    /// </summary>
+    public static class LogText
+    {
+        /// <summary>
+        /// 存放日志的类型
+        /// </summary>
+        public enum LogType
+        {
+            /// <summary>
+            /// 数据库执行类
+            /// </summary>
+            ImplemnetationTrance = 0,
+            /// <summary>
+            /// 模型数据类
+            /// </summary>
+            ModelsLibraryTrance,
+            /// <summary>
+            /// 主网站类
+            /// </summary>
+            MainWebTrance
+        }
+        /// <summary>
+        /// logText全局锁
+        /// </summary>
+        private static object locks = new object();
+        /// <summary>
+        /// 将文本写入文件(可以自行创建路径)
+        /// </summary>
+        /// <param name="text">要写入的文本</param>
+        /// <param name="relationPath">要写入文件的文件夹路径(定位路径)</param>
+        /// <param name="path">相对路径下中间加入"\log\"之后的路径（一般为Log日志的类型）</param>
+        public static void WriteLog(string text, string relationPath="", LogType path=LogType.ImplemnetationTrance)
+        {
+            if(relationPath=="")
+                relationPath = Environment.CurrentDirectory;
+            string fullPath = relationPath + @"\log\" + path.ToString();
+            lock (locks)
+            {
+                DirectoryInfo directory = new DirectoryInfo(fullPath);
+                if (!directory.Exists)
+                {
+                    directory.Create();//创建文件夹
+                }
+                using (FileStream file = new FileStream(fullPath + $@"\{DateTime.Now.ToString("yyyyMMdd")}.txt", FileMode.Append, FileAccess.Write))
+                {
+                    byte[] bytes = Encoding.UTF8.GetBytes(text);
+                    file.Write(bytes, 0, bytes.Length);
+                }
+            }
+        }
+        /// <summary>
+        /// 规范日志的格式，例如（标题：2019-10-1 12：22：11 内容 ）
+        /// </summary>
+        /// <param name="LogName">日志的标题</param>
+        /// <param name="LogContent">日志的内容</param>
+        /// <returns>完整的整理好格式的字符串</returns>
+        public static string FormatLog(string LogName, string LogContent) => $"{LogName}({ DateTime.Now.ToString("yyyy年MM月dd日 HH时mm分ss秒")})：\n{LogContent}\n\r";
+        /// <summary>
+        /// 书写默认格式的日志
+        /// </summary>
+        /// <param name="title">标题</param>
+        /// <param name="content">内容</param>
+        /// <param name="type">类型（相对路径下中间加入"\log\"之后的路径）</param>
+        public static void WriteLogs(string title, string content, LogType type = LogType.ImplemnetationTrance) => WriteLog(FormatLog(title, content), Environment.CurrentDirectory, type);
 
     }
 
