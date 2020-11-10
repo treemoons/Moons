@@ -286,7 +286,7 @@ export function signin() {
             `username=${loginform.username.value}&` +
             `password=${loginform.password.value}&` +
             `isremembered=${loginform.isremembered.checked}`,
-        success: data => {
+        success:async data => {
             debugger;
             if (data == 'T') {
                 open(window.location.href, '_self')
@@ -322,7 +322,7 @@ export function signin() {
 export function signout() {
     common.getAjaxData({
         url: `/${lang}/home/logout`,
-        success: data => {
+        success: async data => {
             if (data == 'T')
                 open(window.location.href, '_self')
         }
@@ -587,3 +587,4 @@ top.showSelect = showSelect;
 top.showUserOptions = showAndCloseUserOptions;
 top.showLogin = showLogin;
 top.signout = signout;
+top.totop = common.totop;

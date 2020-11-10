@@ -12,15 +12,23 @@ namespace ModelsLibrary.Languages.MainViews
 {
 
     /// <summary>    
-    ///  | Author：TreeMoons <br/>
-    ///  | Date：May,6th,2020 <br/>
-    ///  | work：store the temporary keywords by international language <br/>
-    ///  | instructon：store struct by action name,which reflect keywords in the views <br/>
+    ///  | Author:TreeMoons <br/>
+    ///  | Date:May,6th,2020 <br/>
+    ///  | work:store the temporary keywords by international language <br/>
+    ///  | instructon:store struct by action name,which reflect keywords in the views <br/>
     /// </summary>
     [Serializable]
     public partial class Language : ILanguage
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public Language() { }
+        /// <summary>
+        /// initialing language of json
+        /// </summary>
+        /// <param name="_json">main of json</param>
+        /// <returns> class of laguage </returns>
         public Language(JsonElement _json)=> Initialing(_json);
         /// <summary>
         /// Initialing all international languages.
@@ -38,12 +46,24 @@ namespace ModelsLibrary.Languages.MainViews
             LanguageInfo[nameof(EditArticle)] = new EditArticle(_json.GetProperty(nameof(EditArticle)));
             LanguageInfo[nameof(EditProfile)] = new EditProfile(_json.GetProperty(nameof(EditProfile)));
         }
+        /// <summary>
+        /// store the language with hash ,which is security , synchronized
+        /// </summary>
+        /// <returns></returns>
         private Hashtable LanguageInfo{ get; set; } = Hashtable.Synchronized(new Hashtable());
+        /// <summary>
+        /// building index of language
+        /// </summary>
+        /// <value></value>
         public object this[string index]
         {
             get => LanguageInfo[index];
             set => LanguageInfo[index] = value;
         }
+        /// <summary>
+        /// get IEnumerator about language
+        /// </summary>
+        /// <returns></returns>
         public IEnumerator GetEnumerator()
         {
             foreach (var i in LanguageInfo)
@@ -58,6 +78,10 @@ namespace ModelsLibrary.Languages.MainViews
         public struct Master
         {
             private readonly JsonElement? LanguageJson;
+            /// <summary>
+            /// initialing Master
+            /// </summary>
+            /// <param name="_json"></param>
             public Master(JsonElement? _json)
             {
                 LanguageJson = _json;

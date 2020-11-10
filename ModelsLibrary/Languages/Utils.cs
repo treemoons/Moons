@@ -23,6 +23,9 @@ namespace ModelsLibrary.Languages
         public static Hashtable Languages { get; set; } = Hashtable.Synchronized(new Hashtable());
         public static Hashtable LanguageJsonElementDictionary { get; set; } = Hashtable.Synchronized(new Hashtable());
         public static Hashtable LanguageByteArrayDictionary { get; set; } = Hashtable.Synchronized(new Hashtable());
+        /// <summary>
+        /// 初始化所有语言
+        /// </summary>
         public static void ReadAllLanguageJson()
         {
             GetAreaLanguageJson<MainViews.Language>(
@@ -52,15 +55,23 @@ namespace ModelsLibrary.Languages
             {
                 if (file.Extension == ".json")
                 {
-                    using var stream = new FileStream(file.FullName, FileMode.Open, FileAccess.Read);
-                    var fileName = file.Name.Replace(file.Extension, "");
-                    routeParttern.Append($@"({fileName})?");
-                    var element = JsonDocument.Parse(stream).RootElement;
-                    languagesTable[fileName] = element;
-                    languagesBtyes[fileName] = stream;
-                    var language = new TAreaLanguage();
-                    language.Initialing(element);
-                    languages[fileName] = language;
+                    try
+                    {
+                        using var stream = new FileStream(file.FullName, FileMode.Open, FileAccess.Read);
+                        var fileName = file.Name.Replace(file.Extension, "");
+                        routeParttern.Append($@"({fileName})?");
+                        var element = JsonDocument.Parse(stream).RootElement;
+                        languagesTable[fileName] = element;
+                        languagesBtyes[fileName] = stream;
+                        var language = new TAreaLanguage();
+                        language.Initialing(element);
+                        languages[fileName] = language;
+                    }
+                    catch (System.Exception ex)
+                    {
+                        CommonUtils.LogText.WriteLogs("", ex.ToString());
+                        continue;
+                    }
                 }
             }
         }

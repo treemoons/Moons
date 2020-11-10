@@ -14,6 +14,10 @@ namespace ModelsLibrary.Languages
         /// </summary>
         /// <param name="_json">hasttable that saves all international languages' jsonElement</param>
         void Initialing(JsonElement _json);
+        /// <summary>
+        /// get language via index
+        /// </summary>
+        /// <value></value>
         object this[string index]{ get; set; }
     }
 }
