@@ -32,6 +32,11 @@
             <typeparam name="TService">服务，继承类</typeparam>
             <typeparam name="TContext">上下文，继承DbContext预定义类型</typeparam>
         </member>
+        <member name="M:Implementation.DBServiceProvider`2.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="M:Implementation.DBServiceProvider`2.GetDbServiceProvider(Implementation.EService,System.String)">
             <summary>根据服务类型，获取相对应的服务
             </summary>
@@ -50,39 +55,15 @@
             </summary>
             <returns>ILoggerFactory</returns>
         </member>
-        <member name="M:Implementation.ServiceContainer.GetDbSigleTableService``3(Implementation.EService,System.String)">
-            <summary> 获取单表服务容器（带ModelBuider）</summary>
-            <param name="service">服务类型</param>
-            <param name="sqlString">连接服务器数据库连接字符串</param>
-            <typeparam name="TService">服务类</typeparam>
-            <typeparam name="TTable">数据表类</typeparam>
-            <typeparam name="TModelBuilder">模型类</typeparam>
-            <returns>服务的容器</returns>
-        </member>
-        <member name="M:Implementation.ServiceContainer.GetDbSigleTableService``2(Implementation.EService,System.String)">
-            <summary> 获取单表服务容器（不带ModelBuider） </summary>
-            <param name="service">服务类型</param>
-            <param name="sqlString">连接服务器数据库连接字符串</param>
-            <typeparam name="TService">服务类</typeparam>
-            <typeparam name="TTable">数据表类</typeparam>
-            <returns>服务的容器</returns>
-        </member>
-        <member name="M:Implementation.ServiceContainer.GetDbMultiTablesService``5(Implementation.EService,System.String)">
-            <summary> 获取多表服务容器（带ModelBuider）</summary>
-            <param name="service">服务类型</param>
-            <param name="sqlString">连接服务器数据库连接字符串</param>
-            <typeparam name="TService">服务类</typeparam>
-            <typeparam name="TTable">数据表类</typeparam>
-            <typeparam name="TModelBuilder">模型类</typeparam>
-            <returns>服务的容器</returns>
-        </member>
-        <member name="M:Implementation.ServiceContainer.GetDbMultiTablesService``3(Implementation.EService,System.String)">
-            <summary> 获取多表服务容器（不带ModelBuider） </summary>
-            <param name="service">服务类型</param>
-            <param name="sqlString">连接服务器数据库连接字符串</param>
-            <typeparam name="TService">服务类</typeparam>
-            <typeparam name="TTable">数据表类</typeparam>
-            <returns>服务的容器</returns>
+        <member name="M:Implementation.ServiceContainer.GetService``2(Implementation.EService,System.String)">
+            <summary>
+            Get service,which built service of database and dealing with tables of database.
+            </summary>
+            <param name="service">Enum,which is type of Service</param>
+            <param name="sqlString"> SQL string  of connection</param>
+            <typeparam name="TService">Service ,which is class including functions of dealing with database</typeparam>
+            <typeparam name="TDbContext">DbContext of service,which built the models of database</typeparam>
+            <returns></returns>
         </member>
         <member name="T:Implementation.c">
             <summary>
@@ -111,6 +92,12 @@
             <summary>
             服务上下文context
             </summary>
+        </member>
+        <member name="M:Implementation.DBService`1.#ctor(`0)">
+            <summary>
+            basic service of dbcontext
+            </summary>
+            <param name="_context"></param>
         </member>
         <member name="T:Implementation.DBContext`2">
             <summary> 【单表】上下文基类，用于加载配置数据表和数据表字段属性
@@ -179,6 +166,13 @@
             <typeparam name="TDbTable1">数据表模型类1</typeparam>
             <typeparam name="TDbTable2">数据表模型类2</typeparam>
         </member>
+        <member name="M:Implementation.DBContexts`2.#ctor(Microsoft.EntityFrameworkCore.DbContextOptions{Implementation.DBContexts{`0,`1}})">
+            <summary>
+            
+            </summary>
+            <param name="options"></param>
+            <returns></returns>
+        </member>
         <member name="P:Implementation.DBContexts`2.Table1">
             <summary>
             控制的表,对应泛型的第一个类型
@@ -212,6 +206,13 @@
             <typeparam name="TDbTable1">数据表模型类1</typeparam>
             <typeparam name="TDbTable2">数据表模型类2</typeparam>
             <typeparam name="TDbTable3">数据表模型类3</typeparam>
+        </member>
+        <member name="M:Implementation.DBContexts`3.#ctor(Microsoft.EntityFrameworkCore.DbContextOptions{Implementation.DBContexts{`0,`1,`2}})">
+            <summary>
+            
+            </summary>
+            <param name="options"></param>
+            <returns></returns>
         </member>
         <member name="P:Implementation.DBContexts`3.Table1">
             <summary>
@@ -344,7 +345,23 @@
             </summary>
             <param name="builder">添加模型属性配置</param>
         </member>
-        <!-- Badly formed XML comment ignored for member "T:Implementation.DBContextsWithModelsBuilder`4" -->
+        <member name="T:Implementation.DBContextsWithModelsBuilder`4">
+            <summary> 【多表】上下文基类，用于加载配置数据表和数据表字段属性
+            <br/>DBContext&#60;TDbTable1, TDbTable2, TModelsBuilder1, TModelsBuilder2&#62;
+            <br/>DBContext：继承自DbContext预定义类型
+            <br/>TModelsBuilder：继承自接口IEntityTypeConfiguration&#60;T&#62;
+            <br/>(其中接口IEntityTypeConfiguration&#60;T&#62;需要：
+            <br/>using Microsoft.EntityFrameworkCore;
+            <br/>using Microsoft.EntityFrameworkCore.Metadata.Builders;)
+            </summary>
+            <typeparam name="TDbTable1">数据表模型类1</typeparam>
+            <typeparam name="TDbTable2">数据表模型类2</typeparam>
+            <typeparam name="TModelsBuilder1">配置加载数据模型属性 1
+            <br/><i>继承自接口IEntityTypeConfiguration&#60;TDbTable&#62;</i></typeparam>
+            <typeparam name="TModelsBuilder2">配置加载数据模型属性 2
+            <br/><i>继承自接口IEntityTypeConfiguration&#60;TDbTable&#62;</i>
+            </typeparam>
+        </member>
         <member name="P:Implementation.DBContextsWithModelsBuilder`4.Table1">
             <summary>
             控制的表,对应泛型的第一个类型
@@ -369,7 +386,32 @@
             </summary>
             <param name="builder">添加模型属性配置</param>
         </member>
-        <!-- Badly formed XML comment ignored for member "T:Implementation.DBContextsWithModelsBuilder`6" -->
+        <member name="T:Implementation.DBContextsWithModelsBuilder`6">
+            <summary>
+             【多表】上下文基类，用于加载配置数据表和数据表字段属性
+            <br/>DBContext&#60;TDbTable1, TDbTable2, TModelsBuilder1, TModelsBuilder2&#62;
+            <br/>DBContext：继承自DbContext预定义类型
+            <br/>TModelsBuilder：继承自接口IEntityTypeConfiguration&#60;T&#62;
+            <br/>(其中接口IEntityTypeConfiguration&#60;T&#62;需要：
+            <br/>using Microsoft.EntityFrameworkCore;
+            <br/>using Microsoft.EntityFrameworkCore.Metadata.Builders;)
+            </summary>
+            <typeparam name="TDbTable1">数据表模型类1</typeparam>
+            <typeparam name="TDbTable2">数据表模型类2</typeparam>
+            <typeparam name="TDbTable3">数据表模型类3</typeparam>
+            <typeparam name="TModelsBuilder1">配置加载数据模型属性1</typeparam> 
+            <typeparam name="TModelsBuilder2">配置加载数据模型属性2</typeparam> 
+            <typeparam name="TModelsBuilder3">配置加载数据模型属性3
+            <br/><i>继承自接口IEntityTypeConfiguration&#60;TDbTable&#62;</i>
+            </typeparam>
+        </member>
+        <member name="M:Implementation.DBContextsWithModelsBuilder`6.#ctor(Microsoft.EntityFrameworkCore.DbContextOptions{Implementation.DBContextsWithModelsBuilder{`0,`1,`2,`3,`4,`5}})">
+            <summary>
+            
+            </summary>
+            <param name="options"></param>
+            <returns></returns>
+        </member>
         <member name="P:Implementation.DBContextsWithModelsBuilder`6.Table1">
             <summary>
             控制的表,对应泛型的第1个类型
@@ -400,7 +442,25 @@
             </summary>
             <param name="builder">添加模型属性配置</param>
         </member>
-        <!-- Badly formed XML comment ignored for member "T:Implementation.DBContextsWithModelsBuilder`8" -->
+        <member name="T:Implementation.DBContextsWithModelsBuilder`8">
+            <summary> 【多表】上下文基类，用于加载配置数据表和数据表字段属性
+            <br/>DBContext：继承自DbContext预定义类型
+            <br/>TModelsBuilder：继承自接口IEntityTypeConfiguration&#60;T&#62;
+            <br/>(其中接口IEntityTypeConfiguration&#60;T&#62;需要：
+            <br/>using Microsoft.EntityFrameworkCore;
+            <br/>using Microsoft.EntityFrameworkCore.Metadata.Builders;)
+            </summary>
+            <typeparam name="TDbTable1">数据表模型类1</typeparam>
+            <typeparam name="TDbTable2">数据表模型类2</typeparam>
+            <typeparam name="TDbTable3">数据表模型类3</typeparam>
+            <typeparam name="TDbTable4">数据表模型类4</typeparam>
+            <typeparam name="TModelsBuilder1">配置加载数据模型属性1 </typeparam>
+            <typeparam name="TModelsBuilder2">配置加载数据模型属性2 </typeparam>
+            <typeparam name="TModelsBuilder3">配置加载数据模型属性3 </typeparam>
+            <typeparam name="TModelsBuilder4">配置加载数据模型属性4 
+            <br/><i>继承自接口IEntityTypeConfiguration&#60;TDbTable&#62;</i>
+            </typeparam>
+        </member>
         <member name="P:Implementation.DBContextsWithModelsBuilder`8.Table1">
             <summary>
             控制的表,对应泛型的第1个类型
@@ -450,7 +510,11 @@
             <typeparam name="TDbTable3">数据表模型类3</typeparam>
             <typeparam name="TDbTable4">数据表模型类4</typeparam>
             <typeparam name="TDbTable5">数据表模型类5</typeparam>
-            <typeparam name="TModelsBuilder1">配置加载数据模型属性 
+            <typeparam name="TModelsBuilder1">配置加载数据模型属性 </typeparam>
+            <typeparam name="TModelsBuilder2">配置加载数据模型属性 </typeparam>
+            <typeparam name="TModelsBuilder3">配置加载数据模型属性 </typeparam>
+            <typeparam name="TModelsBuilder4">配置加载数据模型属性  </typeparam>
+            <typeparam name="TModelsBuilder5">配置加载数据模型属性 
             <br/><i>继承自接口IEntityTypeConfiguration&#60;TDbTable&#62;</i>
             </typeparam>
         </member>

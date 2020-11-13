@@ -48,6 +48,9 @@ namespace Implementation
     /// <typeparam name="TContext">上下文，继承DbContext预定义类型</typeparam>
     public class DBServiceProvider<TService, TContext> where TService : class where TContext : DbContext
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public DBServiceProvider()
         {
             Service = new ServiceCollection();
@@ -74,6 +77,7 @@ namespace Implementation
                 op =>
                 {
                     op.UseSqlServer(sqlString);
+                    
                     op.UseLoggerFactory(ServiceContainer.MyLoggerFactory);
                 })
             .BuildServiceProvider();
@@ -89,61 +93,22 @@ namespace Implementation
         /// </summary>
         /// <returns>ILoggerFactory</returns>
         public static readonly ILoggerFactory MyLoggerFactory = LoggerFactory.Create(builder => { builder.AddConsole(); });
-        
-        #region Get Sigle Table Service
-        /// <summary> 获取单表服务容器（带ModelBuider）</summary>
-        /// <param name="service">服务类型</param>
-        /// <param name="sqlString">连接服务器数据库连接字符串</param>
-        /// <typeparam name="TService">服务类</typeparam>
-        /// <typeparam name="TTable">数据表类</typeparam>
-        /// <typeparam name="TModelBuilder">模型类</typeparam>
-        /// <returns>服务的容器</returns>
-        public static TService GetDbSigleTableService<TService, TTable, TModelBuilder>(EService service, string sqlString)
-            where TService : DBService<DBContext<TTable, TModelBuilder>>
-            where TTable : class
-            where TModelBuilder : IEntityTypeConfiguration<TTable>, new()
-            => new DBServiceProvider<TService, DBContext<TTable, TModelBuilder>>().GetDbServiceProvider(service, sqlString).GetService<TService>();
 
 
-        /// <summary> 获取单表服务容器（不带ModelBuider） </summary>
-        /// <param name="service">服务类型</param>
-        /// <param name="sqlString">连接服务器数据库连接字符串</param>
-        /// <typeparam name="TService">服务类</typeparam>
-        /// <typeparam name="TTable">数据表类</typeparam>
-        /// <returns>服务的容器</returns>
-        public static TService GetDbSigleTableService<TService, TTable>(EService service, string sqlString)
-            where TService : DBService<DBContext<TTable>>
-            where TTable : class
-            => new DBServiceProvider<TService, DBContext<TTable>>().GetDbServiceProvider(service, sqlString).GetService<TService>();
-        #endregion 
+        #region Get Services of MultiTables
 
-        #region Get Multi Tables Service
-        /// <summary> 获取多表服务容器（带ModelBuider）</summary>
-        /// <param name="service">服务类型</param>
-        /// <param name="sqlString">连接服务器数据库连接字符串</param>
-        /// <typeparam name="TService">服务类</typeparam>
-        /// <typeparam name="TTable">数据表类</typeparam>
-        /// <typeparam name="TModelBuilder">模型类</typeparam>
-        /// <returns>服务的容器</returns>
-        public static TService GetDbMultiTablesService<TService, TTable1, TTable2, TModelBuilder1, TModelBuilder2>(EService service, string sqlString)
-            where TService : DBService<DBContextsWithModelsBuilder<TTable1, TTable2, TModelBuilder1, TModelBuilder2>>
-            where TTable1 : class
-            where TTable2 : class
-            where TModelBuilder1 : IEntityTypeConfiguration<TTable1>, new()
-            where TModelBuilder2 : IEntityTypeConfiguration<TTable2>, new()
-            => new DBServiceProvider<TService, DBContextsWithModelsBuilder<TTable1, TTable2, TModelBuilder1, TModelBuilder2>>().GetDbServiceProvider(service, sqlString).GetService<TService>();
-
-        /// <summary> 获取多表服务容器（不带ModelBuider） </summary>
-        /// <param name="service">服务类型</param>
-        /// <param name="sqlString">连接服务器数据库连接字符串</param>
-        /// <typeparam name="TService">服务类</typeparam>
-        /// <typeparam name="TTable">数据表类</typeparam>
-        /// <returns>服务的容器</returns>
-        public static TService GetDbMultiTablesService<TService, TTable1, TTable2>(EService service, string sqlString)
-            where TService : DBService<DBContexts<TTable1, TTable2>>
-            where TTable1 : class
-            where TTable2 : class
-            => new DBServiceProvider<TService, DBContexts<TTable1, TTable2>>().GetDbServiceProvider(service, sqlString).GetService<TService>();
+        /// <summary>
+        /// Get service,which built service of database and dealing with tables of database.
+        /// </summary>
+        /// <param name="service">Enum,which is type of Service</param>
+        /// <param name="sqlString"> SQL string  of connection</param>
+        /// <typeparam name="TService">Service ,which is class including functions of dealing with database</typeparam>
+        /// <typeparam name="TDbContext">DbContext of service,which built the models of database</typeparam>
+        /// <returns></returns>
+        public static TService GetService<TService, TDbContext>(EService service, string sqlString)
+            where TService : DBService<TDbContext>
+            where TDbContext : DbContext
+            => new DBServiceProvider<TService, TDbContext>().GetDbServiceProvider(service, sqlString).GetService<TService>();
 
         #endregion
     }
@@ -154,10 +119,11 @@ namespace Implementation
     /// </summary>
     public class c
     {
-        void s()
+       async void s()
         {
-            var service = ServiceContainer.GetDbSigleTableService<DBS, c, b>(EService.AddScoped, "");// 获取服务
-            service.CreateDataBaseAsync().GetAwaiter();
+           
+            var user = ServiceContainer.GetService<Implementation.Tables.MainViews.User.UserService, Implementation.Tables.MainViews.User.UserContext>(EService.AddScoped, "");
+           await user.CheckingLogin("","");
         }
     }
     /// <summary>
@@ -192,6 +158,10 @@ namespace Implementation
         /// 服务上下文context
         /// </summary>
         protected readonly TContext context;
+        /// <summary>
+        /// basic service of dbcontext
+        /// </summary>
+        /// <param name="_context"></param>
         public DBService(TContext _context) => context = _context;
 
         public async Task<bool> CreateDataBaseAsync() =>
@@ -290,6 +260,11 @@ namespace Implementation
      where TDbTable1 : class
      where TDbTable2 : class
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="options"></param>
+        /// <returns></returns>
         public DBContexts(DbContextOptions<DBContexts<TDbTable1, TDbTable2>> options) : base(options) { }
         /// <summary>
         /// 控制的表,对应泛型的第一个类型
@@ -332,6 +307,11 @@ namespace Implementation
      where TDbTable2 : class
      where TDbTable3 : class
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="options"></param>
+        /// <returns></returns>
         public DBContexts(DbContextOptions<DBContexts<TDbTable1, TDbTable2, TDbTable3>> options) : base(options) { }
         /// <summary>
         /// 控制的表,对应泛型的第一个类型
@@ -495,8 +475,9 @@ namespace Implementation
     /// </summary>
     /// <typeparam name="TDbTable1">数据表模型类1</typeparam>
     /// <typeparam name="TDbTable2">数据表模型类2</typeparam>
-    /// <typeparam name="TModelsBuilder1">配置加载数据模型属性 
-    /// <typeparam name="TModelsBuilder2">配置加载数据模型属性 
+    /// <typeparam name="TModelsBuilder1">配置加载数据模型属性 1
+    /// <br/><i>继承自接口IEntityTypeConfiguration&#60;TDbTable&#62;</i></typeparam>
+    /// <typeparam name="TModelsBuilder2">配置加载数据模型属性 2
     /// <br/><i>继承自接口IEntityTypeConfiguration&#60;TDbTable&#62;</i>
     /// </typeparam>
     public class DBContextsWithModelsBuilder<TDbTable1, TDbTable2, TModelsBuilder1, TModelsBuilder2> : DbContext
@@ -537,7 +518,8 @@ namespace Implementation
     }
 
 
-    /// <summary> 【多表】上下文基类，用于加载配置数据表和数据表字段属性
+    /// <summary>
+    ///  【多表】上下文基类，用于加载配置数据表和数据表字段属性
     /// <br/>DBContext&#60;TDbTable1, TDbTable2, TModelsBuilder1, TModelsBuilder2&#62;
     /// <br/>DBContext：继承自DbContext预定义类型
     /// <br/>TModelsBuilder：继承自接口IEntityTypeConfiguration&#60;T&#62;
@@ -547,9 +529,10 @@ namespace Implementation
     /// </summary>
     /// <typeparam name="TDbTable1">数据表模型类1</typeparam>
     /// <typeparam name="TDbTable2">数据表模型类2</typeparam>
-    /// <typeparam name="TModelsBuilder1">配置加载数据模型属性 
-    /// <typeparam name="TModelsBuilder2">配置加载数据模型属性 
-    /// <typeparam name="TModelsBuilder3">配置加载数据模型属性 
+    /// <typeparam name="TDbTable3">数据表模型类3</typeparam>
+    /// <typeparam name="TModelsBuilder1">配置加载数据模型属性1</typeparam> 
+    /// <typeparam name="TModelsBuilder2">配置加载数据模型属性2</typeparam> 
+    /// <typeparam name="TModelsBuilder3">配置加载数据模型属性3
     /// <br/><i>继承自接口IEntityTypeConfiguration&#60;TDbTable&#62;</i>
     /// </typeparam>
     public class DBContextsWithModelsBuilder<TDbTable1, TDbTable2, TDbTable3, TModelsBuilder1, TModelsBuilder2, TModelsBuilder3> : DbContext
@@ -560,6 +543,11 @@ namespace Implementation
     where TModelsBuilder2 : IEntityTypeConfiguration<TDbTable2>, new()
     where TModelsBuilder3 : IEntityTypeConfiguration<TDbTable3>, new()
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="options"></param>
+        /// <returns></returns>
         public DBContextsWithModelsBuilder(DbContextOptions<DBContextsWithModelsBuilder<TDbTable1, TDbTable2, TDbTable3, TModelsBuilder1, TModelsBuilder2, TModelsBuilder3>> options) : base(options) { }
         /// <summary>
         /// 控制的表,对应泛型的第1个类型
@@ -607,12 +595,12 @@ namespace Implementation
     /// </summary>
     /// <typeparam name="TDbTable1">数据表模型类1</typeparam>
     /// <typeparam name="TDbTable2">数据表模型类2</typeparam>
-    /// <typeparam name="TDbTable3">数据表模型类1</typeparam>
-    /// <typeparam name="TDbTable4">数据表模型类2</typeparam>
-    /// <typeparam name="TModelsBuilder1">配置加载数据模型属性 
-    /// <typeparam name="TModelsBuilder2">配置加载数据模型属性 
-    /// <typeparam name="TModelsBuilder3">配置加载数据模型属性 
-    /// <typeparam name="TModelsBuilder4">配置加载数据模型属性 
+    /// <typeparam name="TDbTable3">数据表模型类3</typeparam>
+    /// <typeparam name="TDbTable4">数据表模型类4</typeparam>
+    /// <typeparam name="TModelsBuilder1">配置加载数据模型属性1 </typeparam>
+    /// <typeparam name="TModelsBuilder2">配置加载数据模型属性2 </typeparam>
+    /// <typeparam name="TModelsBuilder3">配置加载数据模型属性3 </typeparam>
+    /// <typeparam name="TModelsBuilder4">配置加载数据模型属性4 
     /// <br/><i>继承自接口IEntityTypeConfiguration&#60;TDbTable&#62;</i>
     /// </typeparam>
     public class DBContextsWithModelsBuilder<TDbTable1, TDbTable2, TDbTable3, TDbTable4, TModelsBuilder1, TModelsBuilder2, TModelsBuilder3, TModelsBuilder4> : DbContext
@@ -681,7 +669,11 @@ namespace Implementation
     /// <typeparam name="TDbTable3">数据表模型类3</typeparam>
     /// <typeparam name="TDbTable4">数据表模型类4</typeparam>
     /// <typeparam name="TDbTable5">数据表模型类5</typeparam>
-    /// <typeparam name="TModelsBuilder1">配置加载数据模型属性 
+    /// <typeparam name="TModelsBuilder1">配置加载数据模型属性 </typeparam>
+    /// <typeparam name="TModelsBuilder2">配置加载数据模型属性 </typeparam>
+    /// <typeparam name="TModelsBuilder3">配置加载数据模型属性 </typeparam>
+    /// <typeparam name="TModelsBuilder4">配置加载数据模型属性  </typeparam>
+    /// <typeparam name="TModelsBuilder5">配置加载数据模型属性 
     /// <br/><i>继承自接口IEntityTypeConfiguration&#60;TDbTable&#62;</i>
     /// </typeparam>
     public class DBContextsWithModelsBuilder<TDbTable1, TDbTable2, TDbTable3, TDbTable4, TDbTable5, TModelsBuilder1, TModelsBuilder2, TModelsBuilder3, TModelsBuilder4, TModelsBuilder5> : DbContext

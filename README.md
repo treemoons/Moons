@@ -25,16 +25,28 @@
 
 
 ## 大致内容：
- - Master母版页 √
 
-    - 登录弹窗 √
+ - Master母版页 (`MyPersonalWeb\Views\Shared\_Layout.cshtml`)√
 
-    - 导航布局
+    - 登录弹窗 (测试可登录，无数据库)√
 
-    - 个人导航布局
+    - 导航布局 (菜单栏均没有据用界面提供)√
+
+    - 个人导航布局 √
+
+    - 搜索全站资源 (仅UI) √
 
 
- - DenpendenceInjection泛型封装 √
+ - DenpendenceInjection泛型封装 (`Implementation\BaseServiceGeneric.cs`)√
+
+    - 最多为5个表的同时操作
+    - 所有服务和上下文均要分别继承封装的泛型类
+    - 所有依赖注入均只是用:
+    ```c# 
+    public static TService GetService<TService, TDbContext>(EService service, string sqlString)
+    ```
+     这一个方法获取服务
+ 
 
 ```c#
 ```
