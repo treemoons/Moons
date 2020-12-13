@@ -1,2 +1,11 @@
 {
+    "path-autocomplete.pathMappings": {
+        "/": "${folder}/MyPersonalWeb/wwwroot/"
+    },
+    "gutterpreview.paths": {
+        "/": "/MyPersonalWeb/wwwroot/"
+    },
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": true
+    },
 }

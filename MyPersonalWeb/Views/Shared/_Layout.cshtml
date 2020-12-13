@@ -9,211 +9,214 @@
 <!DOCTYPE html>
 <html lang="@languageMaster.CurrentLanguageCode">
 
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta http-equiv="X-UA-Compatible" content="IE=6" />@*
-        <!-- 使用IE6 -->*@
-    <meta http-equiv="X-UA-Compatible" content="IE=7" />@*
-        <!-- 使用IE7 -->*@
-    <meta http-equiv="X-UA-Compatible" content="IE=8" />@*
-        <!-- 使用IE8 -->*@
-    <meta http-equiv="Cache-Control" content="no-siteapp" />
-    <meta name="author" content="TreeMoons" />
-    @RenderSection("meta",false)
-    <title>@ViewData["Title"]</title>
-    <script>
-        (function isIE() { //ie?
-        if (window.ActiveXObject || "ActiveXObject" in window) {
-        alert(unescape('@languageMaster.ErrorBrowser'.replace(/&#x/g, '%u').replace(/;/g, '')));
-        window.open("about:blank", "_self").close()
-        }
-        })()
-    </script>
-    <link rel="stylesheet" href="/css/site.css" />
-    <link rel="shortcut icon" href="/src/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="/css/large-screen.css" media="screen and (min-width: 769px)" />
-    <link rel="stylesheet" href="/css/small-screen.css" media="screen and (max-width: 768px)" />
-    <link rel="stylesheet" href="/css/@ViewBag.controller/site.css" />
-    <link rel="stylesheet" href="/css/@ViewBag.controller/large-screen.css" media="screen and (min-width: 769px)" />
-    <link rel="stylesheet" href="/css/@ViewBag.controller/small-screen.css" media="screen and (max-width: 768px)" />
-    <script charset="utf-8" type="module" async src="/js/@(ViewBag.controller).js"></script>
-</head>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <meta http-equiv="X-UA-Compatible" content="IE=6" />@*
+            <!-- 使用IE6 -->*@
+        <meta http-equiv="X-UA-Compatible" content="IE=7" />@*
+            <!-- 使用IE7 -->*@
+        <meta http-equiv="X-UA-Compatible" content="IE=8" />@*
+            <!-- 使用IE8 -->*@
+        <meta http-equiv="Cache-Control" content="no-siteapp" />
+        <meta name="author" content="TreeMoons" />
+        @RenderSection("meta",false)
+        <title>@ViewData["Title"]</title>
+        <script>
+            (function isIE() { //ie?
+                if (window.ActiveXObject || "ActiveXObject" in window) {
+                    alert(unescape('@languageMaster.ErrorBrowser'.replace(/&#x/g, '%u').replace(/;/g, '')));
+                    @* window.open("about:blank", "_self").close() *@
+                }
+            })()
+        </script>
+        <link rel="stylesheet" href="/css/site.css" />
+        <link rel="shortcut icon" href="/src/favicon.ico" type="image/x-icon">
+        <link rel="stylesheet" href="/css/large-screen.css" media="screen and (min-width: 769px)" />
+        <link rel="stylesheet" href="/css/small-screen.css" media="screen and (max-width: 768px)" />
+        <link rel="stylesheet" href="/css/@ViewBag.controller/site.css" />
+        <link rel="stylesheet" href="/css/@ViewBag.controller/large-screen.css" media="screen and (min-width: 769px)" />
+        <link rel="stylesheet" href="/css/@ViewBag.controller/small-screen.css" media="screen and (max-width: 768px)" />
+        <script charset="utf-8" type="module" async src="/js/@(ViewBag.controller).js"></script>
+        <script charset="utf-8" type="module" src="/js/layout.js"></script>
+    </head>
 
-<body>
-    <header>
-        <div class="header-logo" onclick="backIndex()"><img src="/src/img/logo.png" alt="LOGO"></div>
-        <nav class="convenience-option">
-            @foreach (var item in headerConvenienceOptions)
+    <body>
+        <header>
+            <div class="header-logo" onclick="backIndex()"><img src="/src/img/logo.png" alt="LOGO"></div>
+            <nav class="convenience-option">
+                @foreach (var item in headerConvenienceOptions)
             {
-                <a href="/@ViewBag.lang@item.Value[1]">
-                    @item.Value[0]
-                </a>
+                    <a href="/@ViewBag.lang@item.Value[1]">
+                        @item.Value[0]
+                    </a>
             }
-        </nav>
-        <div role="navigation" class="user-search-icon">
-            <div>
-                @* <div class="searchselect">
-                    <span id="searchselected" onclick="selectSearchType()">
-                    <script>
-                    let trysearchtext = getQueryString('searchtype', location.search, '&');
-                    let searchtext = (trysearchtext === '' ? '@languageMaster.SearchType.Value[0]' :
-                    trysearchtext);
-                    decodeURI(searchtext).write();
-                    </script>
-                    </span>
-                    <div name="type" id="searchtypeoptions">
-                    @for (int i = 0; i < languageMaster.SearchType.Value.GetArrayLength(); i++) { <option
-                    value="@i">@languageMaster.SearchType.Value[i]</option>
-                    }
+            </nav>
+            <div role="navigation" class="user-search-icon">
+                <div>
+                    @* <div class="searchselect">
+                        <span id="searchselected" onclick="selectSearchType()">
+                        <script>
+                        let trysearchtext = getQueryString('searchtype', location.search, '&');
+                        let searchtext = (trysearchtext === '' ? '@languageMaster.SearchType.Value[0]' :
+                        trysearchtext);
+                        decodeURI(searchtext).write();
+                        </script>
+                        </span>
+                        <div name="type" id="searchtypeoptions">
+                        @for (int i = 0; i < languageMaster.SearchType.Value.GetArrayLength(); i++) { <option
+                        value="@i">@languageMaster.SearchType.Value[i]</option>
+                        }
+                        </div>
+                        </div>*@
+                    <div class="search-option">
+                        <form action="/@ViewBag.lang/section/searched" method="GET" name="search">
+                            <input type="search" placeholder="@languageMaster.SearchText" value="@ViewBag.search"
+                                name="searchtext">
+                            <input type="hidden" value="@languageMaster.SearchType.Value[0].ToString().ToLower()"
+                                name="searchtype">
+                        </form>
                     </div>
-                    </div>*@
-                <div class="search-option">
-                    <form action="/@ViewBag.lang/section/searched" method="GET" name="search">
-                        <input type="search" placeholder="@languageMaster.SearchText" value="@ViewBag.search"
-                        name="searchtext">
-                        <input type="hidden" value="@languageMaster.SearchType.Value[0].ToString().ToLower()"
-                        name="searchtype">
-                    </form>
-                </div>
-                <div class="search-icon">
-                    <i onclick="search.submit();"></i>
-                </div>
-                <div class="menu-icon" onclick="showAndCloseMenu();">
-                    <!-- <b>&#60;</b> -->
-                </div>
-                <div class="user-icon" onclick="@ViewBag.userprofile">
-                    <img width="35" src="/src/img/logo.png" alt="user">
+                    <div class="search-icon">
+                        <i onclick="search.submit();"></i>
+                    </div>
+                    <div class="menu-icon" onclick="showAndCloseMenu();">
+                        <!-- <b>&#60;</b> -->
+                    </div>
+                    <div class="user-icon" onclick="@ViewBag.userprofile">
+                        <img width="35" src="/src/img/logo.png" alt="user">
+                    </div>
                 </div>
             </div>
+        </header>
+        <div class="header-after">
+            <div id="processbar"></div>
         </div>
-    </header>
-    <div class="header-after">
-        <div id="processbar"></div>
-    </div>
-    @if (ViewBag.logged)
+        @if (ViewBag.logged)
     {
-        <nav class="user-options" id="user-options">
-            <ul>
-                @foreach (var item in userProfileOptions)
+            <nav class="user-options" id="user-options">
+                <ul>
+                    @foreach (var item in userProfileOptions)
                 {
-                    <li class="user-option">
-                        <a href="/@ViewBag.lang@item.Value[1]">
-                            @item.Value[0]
+                        <li class="user-option">
+                            <a href="/@ViewBag.lang@item.Value[1]">
+                                @item.Value[0]
+                            </a>
+                        </li>
+                }
+                 <li class="user-option">
+                        <a href="javascript:signout();">
+                            @languageMaster.Logout
                         </a>
                     </li>
-                } <li class="user-option">
-                    <a href="javascript:signout();">
-                        @languageMaster.Logout
-                    </a>
-                </li>
-            </ul>
-        </nav>
+                </ul>
+            </nav>
     }
     else
     {
-        @* login *@
-        <div id="login-background">
-            <div class="login" id="login">
-                <div><span class="login-close" onclick="loginClose();">✕</span></div>
-                <h3 class="login-title">@login?.Title</h3>
-                <form action="#" method="post" name="loginform" id="loginform">
-                    @* @Html.AntiForgeryToken() *@
+            @* login *@
+            <div id="login-background">
+                <div class="login" id="login">
+                    <div><span class="login-close" onclick="loginClose();">✕</span></div>
+                    <h3 class="login-title">@login?.Title</h3>
+                    <form action="#" method="post" name="loginform" id="loginform">
+                        @* @Html.AntiForgeryToken() *@
+                        <div>
+                            <p>@login?.UserName</p>
+                            <input tabindex="1" type="text" tip="@login?.UserName@login?.ErrorNull"
+                                value="@ViewBag.username" name="username">
+                            <p>@login?.Password <a href=""> @login?.Forget</a></p>
+                            <input tabindex="2" type="password" tip="@login?.Password@login?.ErrorNull"
+                                value="@ViewBag.password" autocomplete="false" name="password">
+                            <div id="loginerror" style="color: red;" tip1="@login?.ErrorLogin">&#160;</div>
+                            <input tabindex="3" name="commit" type="submit" value="@login?.Signin"
+                                onclick="return signin()">
+                            <input type="checkbox" name="isremembered" @ViewBag.isremembered id="isremembered">
+                            <label for="isremembered">&#160;&nbsp;@login?.IsRemember</label>
+                        </div>
+                    </form>
                     <div>
-                        <p>@login?.UserName</p>
-                        <input tabindex="1" type="text" tip="@login?.UserName@login?.ErrorNull"
-                        value="@ViewBag.username" name="username">
-                        <p>@login?.Password <a href=""> @login?.Forget</a></p>
-                        <input tabindex="2" type="password" tip="@login?.Password@login?.ErrorNull"
-                        value="@ViewBag.password" autocomplete="false" name="password">
-                        <div id="loginerror" style="color: red;" tip1="@login?.ErrorLogin">&#160;</div>
-                        <input tabindex="3" name="commit" type="submit" value="@login?.Signin"
-                        onclick="return signin()">
-                        <input type="checkbox" name="isremembered" @ViewBag.isremembered id="isremembered">
-                        <label for="isremembered">&#160;&nbsp;@login?.IsRemember</label>
+                        <p>@login?.NewUser,<a href="">@login?.Create</a></p>
                     </div>
-                </form>
-                <div>
-                    <p>@login?.NewUser,<a href="">@login?.Create</a></p>
                 </div>
             </div>
-        </div>
     }
-    <nav class="menu-options" id="menu-options">
+        <nav class="menu-options" id="menu-options">
 
-        <div class="menu-option">
-            @for (int i = 0; i < languageMaster.MenuArray.Count; i++)
-            { <div>
-                    <h5>@languageMaster.MenuArray[i].Title</h5>
-                    <a
-                    href="/@ViewBag.lang@languageMaster.MenuArray[i].Option1[1]">@languageMaster.MenuArray[i].Option1[0]</a>
-                    <a
-                    href="/@ViewBag.lang@languageMaster.MenuArray[i].Option2[1]">@languageMaster.MenuArray[i].Option2[0]</a>
-                    <a
-                    href="/@ViewBag.lang@languageMaster.MenuArray[i].Option3[1]">@languageMaster.MenuArray[i].Option3[0]</a>
-                </div>
+            <div class="menu-option">
+                @for (int i = 0; i < languageMaster.MenuArray.Count; i++)
+            { 
+                <div>
+                        <h5>@languageMaster.MenuArray[i].Title</h5>
+                        <a
+                            href="/@ViewBag.lang@languageMaster.MenuArray[i].Option1[1]">@languageMaster.MenuArray[i].Option1[0]</a>
+                        <a
+                            href="/@ViewBag.lang@languageMaster.MenuArray[i].Option2[1]">@languageMaster.MenuArray[i].Option2[0]</a>
+                        <a
+                            href="/@ViewBag.lang@languageMaster.MenuArray[i].Option3[1]">@languageMaster.MenuArray[i].Option3[0]</a>
+                    </div>
             }
-            <div>
-                <img src="/src/img/logo.png" width="120" alt="QRcode">
+                <div>
+                    <img src="/src/img/logo.png" width="120" alt="QRcode">
                     <a href="/@ViewBag.lang/profile/profile" ">@(ViewBag.username??languageMaster.MenuMyProfile)</a>
                     </div>
                     </div>
                     </nav>
                     <div class=" wait" id="wait">
-                    <div class="move">
-                    <div class="bar">
-                    <div class="dot1"></div>
-                    <div class="dot2"></div>
-                    <div class="dot3"></div>
-                    <div class="dot4"></div>
-                    <div class="dot5"></div>
-                    </div>
-                    </div>
-                    </div>
-                    <div class="conponent">
-                    @RenderBody()
-                    </div>
-                    <p>
-                    &nbsp;
-                    </p>
-
-                    <footer>
-                    <div class="footer-table">
-                    @for (int i = 0; i < languageMaster.FooterArray.Count; i++) { <div>
-                        <h5>@languageMaster.FooterArray[i].Title</h5>
-                        <a
-                        href="/@ViewBag.lang@languageMaster.FooterArray[i].Option1[1]">@languageMaster.FooterArray[i].Option1[0]</a>
-                        <a
-                        href="/@ViewBag.lang@languageMaster.FooterArray[i].Option2[1]">@languageMaster.FooterArray[i].Option2[0]</a>
-                        <a
-                        href="/@ViewBag.lang@languageMaster.FooterArray[i].Option3[1]">@languageMaster.FooterArray[i].Option3[0]</a>
-                    </div>
-                    }
-                    <div>
-                    <img src="/src/img/logo.png" width="120" alt="QRcode">
-                        <a href="mailto:treemoons@outlook.com">@languageMaster.Contact</a>
-            </div>
-        </div>
-        <div class="copyright">
-            <p>©@DateTime.Now.ToString("yyyy") @languageMaster.FooterCopyright</p>
-            <div class="langselect">
-                @languageMaster.Language ：<span id="selected"
-                onclick="showSelect()">@languageMaster.CurrentLanguage</span><br>
-                <div name="lang" id="lang">
-                    <option value="en">English</option>
-                    <option value="zh-cn">中文简体</option>
+                        <div class="move">
+                            <div class="bar">
+                                <div class="dot1"></div>
+                                <div class="dot2"></div>
+                                <div class="dot3"></div>
+                                <div class="dot4"></div>
+                                <div class="dot5"></div>
+                            </div>
+                        </div>
                 </div>
-            </div>
-            <p></p>
-        </div>
-        </footer>
-        <script>
-            const lang = '@ViewBag.lang';
-            const route = '@ViewBag.controller/@ViewBag.action';
-        </script>
-        @* <a asp-area="admin" asp-controller="home" asp-action="index" asp-route-language="en"
-            asp-route-id="id">这测试AREA</a> *@
-</body>
+                <div class="conponent">
+                    @RenderBody()
+                </div>
+                <p>
+                    &nbsp;
+                </p>
+
+                <footer>
+                    <div class="footer-table">
+                        @for (int i = 0; i < languageMaster.FooterArray.Count; i++) { <div>
+                            <h5>@languageMaster.FooterArray[i].Title</h5>
+                            <a
+                                href="/@ViewBag.lang@languageMaster.FooterArray[i].Option1[1]">@languageMaster.FooterArray[i].Option1[0]</a>
+                            <a
+                                href="/@ViewBag.lang@languageMaster.FooterArray[i].Option2[1]">@languageMaster.FooterArray[i].Option2[0]</a>
+                            <a
+                                href="/@ViewBag.lang@languageMaster.FooterArray[i].Option3[1]">@languageMaster.FooterArray[i].Option3[0]</a>
+                        </div>
+                    }
+                        <div>
+                            <img src="/src/img/logo.png" width="120" alt="QRcode">
+                            <a href="mailto:treemoons@outlook.com">@languageMaster.Contact</a>
+                        </div>
+                    </div>
+                    <div class="copyright">
+                        <p>©@DateTime.Now.ToString("yyyy") @languageMaster.FooterCopyright</p>
+                        <div class="langselect">
+                            @languageMaster.Language ：<span id="selected"
+                                onclick="showSelect()">@languageMaster.CurrentLanguage</span><br>
+                            <div name="lang" id="lang">
+                                <option value="en">English</option>
+                                <option value="zh-cn">中文简体</option>
+                            </div>
+                        </div>
+                        <p></p>
+                    </div>
+                </footer>
+                <script>
+                    const lang = '@ViewBag.lang';
+                    const route = '@ViewBag.controller/@ViewBag.action';
+                </script>
+                @* <a asp-area="admin" asp-controller="home" asp-action="index" asp-route-language="en"
+                    asp-route-id="id">这测试AREA</a> *@
+    </body>
 
 </html>

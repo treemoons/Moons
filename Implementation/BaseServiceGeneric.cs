@@ -55,10 +55,55 @@ namespace Implementation
         {
             Service = new ServiceCollection();
         }
-        private IServiceCollection Service;
+        /// <summary>
+        /// Get DBServiceProvider with sqlstring
+        /// </summary>
+        /// <param name="sqlString">connection sqlstring</param>
+        public DBServiceProvider(string sqlString)
+        {
+            ConnectionString = sqlString;
+            Service = new ServiceCollection();
+        }
+        /// <summary>
+        /// SQLServer Connetion String
+        /// </summary>
+        /// <value>const</value>
+        public string ConnectionString { set; get; } = default;
+        private IServiceCollection Service = default;
         private IServiceCollection GetTransientService() => this.Service.AddTransient<TService>();
         private IServiceCollection GetSingletonService() => this.Service.AddSingleton<TService>();
         private IServiceCollection GetScopedService() => this.Service.AddScoped<TService>();
+
+
+        /// <summary>
+        /// logging  to  console
+        /// </summary>
+        /// <returns>ILoggerFactory</returns>
+        private static readonly ILoggerFactory MyLoggerFactory = LoggerFactory.Create(builder => { builder.AddConsole(op => { }); });
+
+        /// <summary>根据服务类型，获取相对应的服务
+        /// </summary>
+        /// <param name="serviceType">服务类型</param>
+        /// <returns>服务提供的容器</returns>
+        public IServiceProvider GetDbServiceProvider(EService serviceType) =>
+            (serviceType switch
+            {
+                EService.AddTransient => GetTransientService(),
+                EService.AddScoped => GetScopedService(),
+                EService.AddSingleton => GetSingletonService(),
+                _ => throw new Exception()
+            })
+            .AddEntityFrameworkSqlServer()
+            .AddDbContext<TContext>(
+                op =>
+                {
+                    if (string.IsNullOrEmpty(ConnectionString))
+                        throw new NullReferenceException("ConnectionString is null or empty.");
+                    op.UseSqlServer(ConnectionString);
+                    op.UseLoggerFactory(MyLoggerFactory);
+                })
+            .BuildServiceProvider();
+
         /// <summary>根据服务类型，获取相对应的服务
         /// </summary>
         /// <param name="serviceType">服务类型</param>
@@ -70,17 +115,17 @@ namespace Implementation
                 EService.AddTransient => GetTransientService(),
                 EService.AddScoped => GetScopedService(),
                 EService.AddSingleton => GetSingletonService(),
-                _ => throw new Exception(),
+                _ => throw new Exception()
             })
             .AddEntityFrameworkSqlServer()
             .AddDbContext<TContext>(
                 op =>
                 {
                     op.UseSqlServer(sqlString);
-                    
-                    op.UseLoggerFactory(ServiceContainer.MyLoggerFactory);
+                    op.UseLoggerFactory(MyLoggerFactory);
                 })
             .BuildServiceProvider();
+
     }
 
     /// <summary>
@@ -88,13 +133,6 @@ namespace Implementation
     /// </summary>
     public static class ServiceContainer
     {
-        /// <summary>
-        /// logging  to  console
-        /// </summary>
-        /// <returns>ILoggerFactory</returns>
-        public static readonly ILoggerFactory MyLoggerFactory = LoggerFactory.Create(builder => { builder.AddConsole(); });
-
-
         #region Get Services of MultiTables
 
         /// <summary>
@@ -119,11 +157,11 @@ namespace Implementation
     /// </summary>
     public class c
     {
-       async void s()
+        async void s()
         {
-           
+
             var user = ServiceContainer.GetService<Implementation.Tables.MainViews.User.UserService, Implementation.Tables.MainViews.User.UserContext>(EService.AddScoped, "");
-           await user.CheckingLogin("","");
+            await user.CheckingLogin("", "");
         }
     }
     /// <summary>
@@ -162,11 +200,19 @@ namespace Implementation
         /// basic service of dbcontext
         /// </summary>
         /// <param name="_context"></param>
-        public DBService(TContext _context) => context = _context;
+        protected DBService(TContext _context) => context = _context;
 
-        public async Task<bool> CreateDataBaseAsync() =>
+        /// <summary>
+        /// CREATE DATABASE
+        /// </summary>
+        /// <returns></returns>
+        protected async Task<bool> CreateDataBaseAsync() =>
             await context.Database.EnsureCreatedAsync();
-        public async Task<bool> DeleteDataBaseAsync() =>
+        /// <summary>
+        /// DELETE DATABASE
+        /// </summary>
+        /// <returns></returns>
+        protected async Task<bool> DeleteDataBaseAsync() =>
             await context.Database.EnsureDeletedAsync();
     }
 

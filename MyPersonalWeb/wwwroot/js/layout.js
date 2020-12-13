@@ -1,5 +1,5 @@
 
-import common from './common.js';
+import * as common from './common.js';
 /**
  * 用于附加在windowResize事件上的函数数组
  */
@@ -32,7 +32,7 @@ export var userOptions = document.getElementById('user-options');
 let whiteBackgroundEle = document.getElementById('login-background');
 
 /**push login window */
-window.onresize = function (e) {
+window.onresize = async function (e) {
     if (this.windowResize != null) {
         this.windowResize.forEach(item => {
             try { item(); } catch (error) { console.log(error); }
@@ -40,7 +40,7 @@ window.onresize = function (e) {
     }
 }
 
-document.onload = function (e) {
+document.onload = async function (e) {
     if (this.windowOnload != null) {
         this.windowOnload.forEach(item => {
             try { item(); } catch (error) { console.log(error); }
@@ -48,53 +48,16 @@ document.onload = function (e) {
     }
 }
 
-/**
- * formating datetime
- */
-Date.prototype.formatDate = function (fmt) {
-    let o = {
-        "M+": this.getMonth() + 1, //月份           
-        "d+": this.getDate(), //日           
-        "h+": this.getHours() % 12 == 0 ? 12 : this.getHours() % 12, //小时           
-        "H+": this.getHours(), //小时           
-        "m+": this.getMinutes(), //分           
-        "s+": this.getSeconds(), //秒           
-        "q+": Math.floor((this.getMonth() + 3) / 3), //季度           
-        "f": this.getMilliseconds() //毫秒           
-    };
-    let week = {
-        "0": "\u65e5",
-        "1": "\u4e00",
-        "2": "\u4e8c",
-        "3": "\u4e09",
-        "4": "\u56db",
-        "5": "\u4e94",
-        "6": "\u516d"
-    };
-    if (/(y+)/.test(fmt)) {
-        fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
-    }
-    if (/(E+)/.test(fmt)) {
-        fmt = fmt.replace(RegExp.$1, ((RegExp.$1.length > 1) ? (RegExp.$1.length > 2 ? "\u661f\u671f" : "\u5468") : "") + week[this.getDay() + ""]);
-    }
-    for (let k in o) {
-        if (new RegExp("(" + k + ")").test(fmt)) {
-            fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
-        }
-    }
-    return fmt;
-}
-
-String.prototype.write = function () {
+String.prototype.write = async function () {
     document.write(this);
 };
-String.prototype.getEleById = function () {
+String.prototype.getEleById = async function () {
     return document.getElementById(this);
 };
 /**
  * 扩展--URI转换成string
  */
-String.prototype.decodeUriString = function () {
+String.prototype.decodeUriString = async function () {
     let result;
     if (!this) return this;
     try {
@@ -104,56 +67,15 @@ String.prototype.decodeUriString = function () {
     }
     return result;
 };
-/**
- * 在指定格式(?)[key]=[value][splitMark]中，根据key找到value值，若没找到，返回空
- * @param {string} name search keywords
- * @param {string} purposeString results pool
- */
-export function getQueryString(name, purposeString, splitMark) {
-    let reg = RegExp(`${name}=([^${splitMark}]+)`);
-    let arr = purposeString.match(reg);
-    if (arr) {
-        return arr[1];
-    } else {
-        return '';
-    }
-}
 
 
-/**
- * 写入Cookie到浏览器
- * @param {string} name key
- * @param {string} value value
- * @param {Int32Array} day date
- */
-export function setCookie(name, value, day) {
-    let date = new Date();
-    date.setDate(date.getDate() + day);
-    document.cookie = `${name}=${value};expires=${date}`;
-}
-
-
-/**  获取cookie
- *  @param {string} name key
-*/
-export function getCookie(name) {
-    return getQueryString(name, document.cookie, ';')
-}
-
-
-/**  删除cookie
- *  @param {string} name key
-*/
-export function delCookie(name) {
-    setCookie(name, null, -1);
-}
 /**
  * 
  * @param {HTMLElement} input input where type is text
- * @param {RegExp} parttern when press enter key , do this function
+ * @param {RegExp} parttern when press enter key , do this async function
  * @param {Function} action default is submit param{input} to target form
  */
-export function press(input, parttern, action) {
+export async function press(input, parttern, action) {
     input.onkeypress = e => {
         if (e.key == 'Enter') {
             if (parttern.test(input.value))
@@ -202,7 +124,7 @@ document.onreadystatechange = e => {
  * 
  * @param {'none'|'block'|'flex'} display 
  */
-export function whiteBackground(display) {
+export async function whiteBackground(display) {
     if (!whiteBackgroundEle) return false;
     if (display == 'none')
         setTimeout(() => {
@@ -214,13 +136,13 @@ export function whiteBackground(display) {
     return true;
 }
 
-export function showLogin() {
+export async function showLogin() {
     if (!login) return;
     if (isMenuShow) {
         showAndCloseMenu();
     }
     login.style = 'display:block;'
-    setTimeout(function () {
+    setTimeout(async function () {
         login.style = 'opacity:100;top: 5vh;';
 
     }, 40);
@@ -231,19 +153,19 @@ export function showLogin() {
 /**
  * 关闭登录窗口
  */
-export function loginClose() {
+export async function loginClose() {
     if (!login) return;
     login.style = 'opacity:0;top:-100%;'
     let loginerror = document.getElementById('loginerror');
     loginerror.innerHTML = '&#160;';
-    setTimeout(function () {
+    setTimeout(async function () {
         login.style = 'display:none'
     }, 400);
     whiteBackground('none');
 }
 
 
-export function keyEnterLogin() {
+export async function keyEnterLogin() {
     if (!login) return;
     common.pressEnter(loginform.username);
     common.pressEnter(loginform.password);
@@ -254,7 +176,7 @@ export function keyEnterLogin() {
  * 
  * @param {HTMLElement} input  input where type is text and whose attributes have 'tip'
  */
-export function IsInputEmpty(input) {
+export async function IsInputEmpty(input) {
     debugger
     let error = document.getElementById('loginerror')
     if (!error) return;
@@ -270,7 +192,7 @@ export function IsInputEmpty(input) {
 /**
  * login your account to Moons
  */
-export function signin() {
+export async function signin() {
     debugger
     if (IsInputEmpty(loginform.username)) {
         loginform.username.focus();
@@ -319,7 +241,7 @@ export function signin() {
 /**
  * SIGN OUT CAN BE DONE
  */
-export function signout() {
+export async function signout() {
     common.getAjaxData({
         url: `/${lang}/home/logout`,
         success: async data => {
@@ -336,12 +258,12 @@ export function signout() {
 /**
  * 显示或这关闭menu
  */
-export function showAndCloseMenu() {
+export  function showAndCloseMenu() {
     try {
         if (!userOptions) throw 'userOption Element is undefined！';
         if (window.getComputedStyle(userOptions).display == 'block') {
             userOptions.style = 'opacity:0;right:-20vw;'
-            setTimeout(function () {
+            setTimeout(async function () {
                 userOptions.style.display = 'none';
             }, 400);
             isUserOptionsShow = false;
@@ -350,22 +272,22 @@ export function showAndCloseMenu() {
     if (!menuButton) return;
     if (!isMenuShow) {
         menuButton.style = 'display:block;';
-        setTimeout(function () {
+        setTimeout(async function () {
             menuButton.style = 'opacity:100;top:54px;'
         }, 40);
         isMenuShow = true;
     } else {
         menuButton.style = 'opacity:0;top:-20%;'
-        setTimeout(function () {
+        setTimeout(async function () {
             menuButton.style.display = 'none';
         }, 400);
         isMenuShow = false;
     }
 }
-export function closemenu() {
+export async function closemenu() {
     let conponent = document.querySelector('.conponent');
     if (!conponent) return;
-    conponent.onclick = function () {
+    conponent.onclick = async function () {
         if (isMenuShow) {
             showAndCloseMenu();
         }
@@ -375,12 +297,12 @@ export function closemenu() {
 }
 
 
-export function showAndCloseUserOptions() {
+export async function showAndCloseUserOptions() {
     try {
         if (!menuButton) throw 'menuButton Element is undefined!';
         if (window.getComputedStyle(menuButton).display == 'block') {
             menuButton.style = 'opacity:0;top:-20%;'
-            setTimeout(function () {
+            setTimeout(async function () {
                 menuButton.style.display = 'none';
             }, 400);
             isMenuShow = false;
@@ -389,13 +311,13 @@ export function showAndCloseUserOptions() {
     if (!userOptions) return;
     if (!isUserOptionsShow) {
         userOptions.style = 'display:block';
-        setTimeout(function () {
+        setTimeout(async function () {
             userOptions.style = 'opacity:100;right:0;'
         }, 40);
         isUserOptionsShow = true;
     } else {
         userOptions.style = 'opacity:0;right:-20vw;'
-        setTimeout(function () {
+        setTimeout(async function () {
             userOptions.style.display = 'none';
         }, 400);
         isUserOptionsShow = false;
@@ -404,19 +326,19 @@ export function showAndCloseUserOptions() {
 /**
  *  back to home page
  */
-export function backIndex() {
+export async function backIndex() {
     open(`/${lang}/home/index`, "_self");
 }
 
 /**
  * sync searchtext which is input element 
  */
-export function loadSearchText() {
-    let text = getQueryString('searchtext', location.search, '&').decodeUriString();
+export async function loadSearchText() {
+    let text = (await common.getQueryString('searchtext', location.search, '&')).decodeUriString();
     debugger
     search.searchtext.value = text;
 }
-export function searchsubmit() {
+export async function searchsubmit() {
     debugger
     // search.searchtext.value = encodeURI(search.searchtext.value);
     search.submit();
@@ -429,7 +351,7 @@ export function searchsubmit() {
 // /**
 //  * show or hide div which contains searchText options
 //  */
-// function selectSearchType() {
+// async function selectSearchType() {
 //     showSelect('searchtypeoptions', 'searchselected');
 
 // }
@@ -437,10 +359,10 @@ export function searchsubmit() {
 // /**
 //  * load click event
 //  */
-// function loadSelectedType() {
+// async function loadSelectedType() {
 //     let typeSelect = document.querySelectorAll('#searchtypeoptions option');
 //     typeSelect.forEach(option => {
-//         option.onclick = async function () {
+//         option.onclick = async async function () {
 //             let selected = document.getElementById('searchselected');
 //             selected.innerText = this.innerText;
 //             search.searchtype.value = this.innerText;
@@ -458,13 +380,13 @@ export function searchsubmit() {
  * @param {string} elelang Abbreviation of language between all of world
  * @param {Number} date date of expires
  */
-export function changeLanguageCookie(elelang, date = 100) {
+export async function changeLanguageCookie(elelang, date = 100) {
     setCookie('lang', elelang, date)
 }
 /**
  * 加载上一次
  */
-export function loadlang() {
+export async function loadlang() {
     let elelang = getCookie('lang');
     if (!elelang) {
         elelang = 'en';
@@ -478,7 +400,7 @@ export function loadlang() {
  * @param {HTMLElement} parent parent element DIV
  * @param {HTMLElement} chlidren selected shows
  */
-export function showSelect(parent = 'lang', chlidren = 'selected') {
+export async function showSelect(parent = 'lang', chlidren = 'selected') {
     let optionWindow = document.getElementById(parent);
     document.getElementById(chlidren).style.fontWeight = 'bolder';
     if (optionWindow.style.display == 'block') {
@@ -494,7 +416,7 @@ export function showSelect(parent = 'lang', chlidren = 'selected') {
 /**
  * 添加language选中一个显示之后的click事件
  */
-export function loadSelectedlang() {
+export async function loadSelectedlang() {
     let langselects = document.querySelectorAll('#lang option');
     langselects.forEach(option => {
         option.onclick = async function () {
@@ -515,7 +437,7 @@ export function loadSelectedlang() {
 
 //#endregion
 
-function test() {
+async function test() {
     getAjaxData({
         url: "/en/home/show",
         data: {
@@ -553,11 +475,11 @@ function test() {
  */
 if (whiteBackgroundEle)
     whiteBackgroundEle.addEventListener('click', whiteBackClick);
-function whiteBackClick(e) {
+async function whiteBackClick(e) {
     loginClose();
     if (!menuButton) return;
     menuButton.style = 'opacity:0;top:-20%;'
-    setTimeout(function () {
+    setTimeout(async function () {
         menuButton.style.display = 'none';
     }, 400);
     if (!whiteBackground('none')) return;

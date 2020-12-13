@@ -7148,11 +7148,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Html\\MyWork\\Implementation\\Implementation.csproj",
+      "projectUniqueName": "e:\\Html\\MyWork\\Implementation\\Implementation.csproj",
       "projectName": "Implementation",
-      "projectPath": "E:\\Html\\MyWork\\Implementation\\Implementation.csproj",
+      "projectPath": "e:\\Html\\MyWork\\Implementation\\Implementation.csproj",
       "packagesPath": "C:\\Users\\hands\\.nuget\\packages\\",
-      "outputPath": "E:\\Html\\MyWork\\Implementation\\obj\\",
+      "outputPath": "e:\\Html\\MyWork\\Implementation\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\hands\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -7169,11 +7169,11 @@
         "netstandard2.1": {
           "targetAlias": "netstandard2.1",
           "projectReferences": {
-            "E:\\Html\\MyWork\\ModelsLibrary\\ModelsLibrary.csproj": {
-              "projectPath": "E:\\Html\\MyWork\\ModelsLibrary\\ModelsLibrary.csproj"
+            "e:\\Html\\MyWork\\ModelsLibrary\\ModelsLibrary.csproj": {
+              "projectPath": "e:\\Html\\MyWork\\ModelsLibrary\\ModelsLibrary.csproj"
             },
-            "E:\\Html\\MyWork\\Utils\\Utils.csproj": {
-              "projectPath": "E:\\Html\\MyWork\\Utils\\Utils.csproj"
+            "e:\\Html\\MyWork\\Utils\\Utils.csproj": {
+              "projectPath": "e:\\Html\\MyWork\\Utils\\Utils.csproj"
             }
           }
         }
@@ -7230,7 +7230,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
       }
     }
   }

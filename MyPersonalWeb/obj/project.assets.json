@@ -5217,11 +5217,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Html\\MyWork\\MyPersonalWeb\\MyPersonalWeb.csproj",
+      "projectUniqueName": "e:\\Html\\MyWork\\MyPersonalWeb\\MyPersonalWeb.csproj",
       "projectName": "MyPersonalWeb",
-      "projectPath": "E:\\Html\\MyWork\\MyPersonalWeb\\MyPersonalWeb.csproj",
+      "projectPath": "e:\\Html\\MyWork\\MyPersonalWeb\\MyPersonalWeb.csproj",
       "packagesPath": "C:\\Users\\hands\\.nuget\\packages\\",
-      "outputPath": "E:\\Html\\MyWork\\MyPersonalWeb\\obj\\",
+      "outputPath": "e:\\Html\\MyWork\\MyPersonalWeb\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\hands\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -5238,14 +5238,14 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "E:\\Html\\MyWork\\Implementation\\Implementation.csproj": {
-              "projectPath": "E:\\Html\\MyWork\\Implementation\\Implementation.csproj"
+            "e:\\Html\\MyWork\\Implementation\\Implementation.csproj": {
+              "projectPath": "e:\\Html\\MyWork\\Implementation\\Implementation.csproj"
             },
-            "E:\\Html\\MyWork\\ModelsLibrary\\ModelsLibrary.csproj": {
-              "projectPath": "E:\\Html\\MyWork\\ModelsLibrary\\ModelsLibrary.csproj"
+            "e:\\Html\\MyWork\\ModelsLibrary\\ModelsLibrary.csproj": {
+              "projectPath": "e:\\Html\\MyWork\\ModelsLibrary\\ModelsLibrary.csproj"
             },
-            "E:\\Html\\MyWork\\Utils\\Utils.csproj": {
-              "projectPath": "E:\\Html\\MyWork\\Utils\\Utils.csproj"
+            "e:\\Html\\MyWork\\Utils\\Utils.csproj": {
+              "projectPath": "e:\\Html\\MyWork\\Utils\\Utils.csproj"
             }
           }
         }
@@ -5277,7 +5277,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
       }
     }
   }

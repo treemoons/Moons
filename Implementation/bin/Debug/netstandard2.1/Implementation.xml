@@ -37,6 +37,30 @@
             
             </summary>
         </member>
+        <member name="M:Implementation.DBServiceProvider`2.#ctor(System.String)">
+            <summary>
+            Get DBServiceProvider with sqlstring
+            </summary>
+            <param name="sqlString">connection sqlstring</param>
+        </member>
+        <member name="P:Implementation.DBServiceProvider`2.ConnectionString">
+            <summary>
+            SQLServer Connetion String
+            </summary>
+            <value>const</value>
+        </member>
+        <member name="F:Implementation.DBServiceProvider`2.MyLoggerFactory">
+            <summary>
+            logging  to  console
+            </summary>
+            <returns>ILoggerFactory</returns>
+        </member>
+        <member name="M:Implementation.DBServiceProvider`2.GetDbServiceProvider(Implementation.EService)">
+            <summary>根据服务类型，获取相对应的服务
+            </summary>
+            <param name="serviceType">服务类型</param>
+            <returns>服务提供的容器</returns>
+        </member>
         <member name="M:Implementation.DBServiceProvider`2.GetDbServiceProvider(Implementation.EService,System.String)">
             <summary>根据服务类型，获取相对应的服务
             </summary>
@@ -48,12 +72,6 @@
             <summary>
             服务容器
             </summary>
-        </member>
-        <member name="F:Implementation.ServiceContainer.MyLoggerFactory">
-            <summary>
-            logging  to  console
-            </summary>
-            <returns>ILoggerFactory</returns>
         </member>
         <member name="M:Implementation.ServiceContainer.GetService``2(Implementation.EService,System.String)">
             <summary>
@@ -98,6 +116,18 @@
             basic service of dbcontext
             </summary>
             <param name="_context"></param>
+        </member>
+        <member name="M:Implementation.DBService`1.CreateDataBaseAsync">
+            <summary>
+            CREATE DATABASE
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Implementation.DBService`1.DeleteDataBaseAsync">
+            <summary>
+            DELETE DATABASE
+            </summary>
+            <returns></returns>
         </member>
         <member name="T:Implementation.DBContext`2">
             <summary> 【单表】上下文基类，用于加载配置数据表和数据表字段属性
