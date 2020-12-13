@@ -1,8 +1,0 @@
-E:\Html\MyWork\ModelsLibrary\bin\test\netstandard2.1\ModelsLibrary.deps.json
-E:\Html\MyWork\ModelsLibrary\bin\test\netstandard2.1\ModelsLibrary.dll
-E:\Html\MyWork\ModelsLibrary\bin\test\netstandard2.1\ModelsLibrary.pdb
-E:\Html\MyWork\ModelsLibrary\obj\test\netstandard2.1\ModelsLibrary.csproj.CoreCompileInputs.cache
-E:\Html\MyWork\ModelsLibrary\obj\test\netstandard2.1\ModelsLibrary.AssemblyInfoInputs.cache
-E:\Html\MyWork\ModelsLibrary\obj\test\netstandard2.1\ModelsLibrary.AssemblyInfo.cs
-E:\Html\MyWork\ModelsLibrary\obj\test\netstandard2.1\ModelsLibrary.dll
-E:\Html\MyWork\ModelsLibrary\obj\test\netstandard2.1\ModelsLibrary.pdb
