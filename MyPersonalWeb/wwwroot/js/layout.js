@@ -1,10 +1,6 @@
 
 import * as common from './common.js';
-/**
- * 用于附加在windowResize事件上的函数数组
- */
-export var windowResize = [];
-export var windowOnload = [];
+common.test();
 
 /**
  * 判断菜单显示
@@ -31,14 +27,6 @@ export var userOptions = document.getElementById('user-options');
 
 let whiteBackgroundEle = document.getElementById('login-background');
 
-/**push login window */
-window.onresize = async function (e) {
-    if (this.windowResize != null) {
-        this.windowResize.forEach(item => {
-            try { item(); } catch (error) { console.log(error); }
-        });
-    }
-}
 
 document.onload = async function (e) {
     if (this.windowOnload != null) {
@@ -252,8 +240,6 @@ export async function signout() {
 }
 
 //#endregion
-
-
 
 /**
  * 显示或这关闭menu
@@ -494,7 +480,8 @@ async function whiteBackClick(e) {
 if (login)
     login.addEventListener('click', e => e.stopPropagation());
 
-windowOnload.push(loadlang, loadSelectedlang);
+loadlang();
+loadSelectedlang();
 
 keyEnterLogin();
 loginClose();

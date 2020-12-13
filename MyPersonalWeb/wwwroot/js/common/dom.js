@@ -277,3 +277,7 @@ export async function messagebox(text, warningtype, messageButton, { yes = d => 
 
     }
 }
+
+export function test() {
+    console.log('test')
+}
