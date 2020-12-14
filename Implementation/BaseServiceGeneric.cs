@@ -84,8 +84,8 @@ namespace Implementation
         /// <summary>根据服务类型，获取相对应的服务
         /// </summary>
         /// <param name="serviceType">服务类型</param>
-        /// <returns>服务提供的容器</returns>
-        public IServiceProvider GetDbServiceProvider(EService serviceType) =>
+        /// <returns>服务</returns>
+        public IServiceCollection GetDbService(EService serviceType) =>
             (serviceType switch
             {
                 EService.AddTransient => GetTransientService(),
@@ -101,15 +101,14 @@ namespace Implementation
                         throw new NullReferenceException("ConnectionString is null or empty.");
                     op.UseSqlServer(ConnectionString);
                     op.UseLoggerFactory(MyLoggerFactory);
-                })
-            .BuildServiceProvider();
+                });
 
         /// <summary>根据服务类型，获取相对应的服务
         /// </summary>
         /// <param name="serviceType">服务类型</param>
         /// <param name="sqlString"> 数据库连接字符串</param>
-        /// <returns>服务提供的容器</returns>
-        public IServiceProvider GetDbServiceProvider(EService serviceType, string sqlString) =>
+        /// <returns>服务</returns>
+        public IServiceCollection GetDbService(EService serviceType, string sqlString) =>
             (serviceType switch
             {
                 EService.AddTransient => GetTransientService(),
@@ -123,8 +122,7 @@ namespace Implementation
                 {
                     op.UseSqlServer(sqlString);
                     op.UseLoggerFactory(MyLoggerFactory);
-                })
-            .BuildServiceProvider();
+                });
 
     }
 
@@ -134,6 +132,21 @@ namespace Implementation
     public static class ServiceContainer
     {
         #region Get Services of MultiTables
+        /// <summary>
+        /// Create service,which can  add other services
+        /// </summary>
+        /// <param name="service">orginal sercive type</param>
+        /// <param name="sqlString">connection string of database[sqlserver] </param>
+        /// <typeparam name="TService"> service that class ,which contains all functions and models of data</typeparam>
+        /// <typeparam name="TDbContext"></typeparam>
+        /// <returns>IService</returns>
+        public static IServiceCollection GetService<TService, TDbContext>(EService service, string sqlString)
+            where TService : DBService<TDbContext>
+            where TDbContext : DbContext
+            => new DBServiceProvider<TService, TDbContext>().GetDbService(service, sqlString);
+        
+
+
 
         /// <summary>
         /// Get service,which built service of database and dealing with tables of database.
@@ -143,15 +156,15 @@ namespace Implementation
         /// <typeparam name="TService">Service ,which is class including functions of dealing with database</typeparam>
         /// <typeparam name="TDbContext">DbContext of service,which built the models of database</typeparam>
         /// <returns></returns>
-        public static TService GetService<TService, TDbContext>(EService service, string sqlString)
-            where TService : DBService<TDbContext>
-            where TDbContext : DbContext
-            => new DBServiceProvider<TService, TDbContext>().GetDbServiceProvider(service, sqlString).GetService<TService>();
+        public static TService GetServiceContext<TService, TDbContext>(EService service, string sqlString)
+        where TService : DBService<TDbContext>
+        where TDbContext : DbContext
+        => GetService<TService, TDbContext>(service,sqlString).BuildServiceProvider().GetService<TService>();
 
         #endregion
     }
 
-    #region sample
+    #region Sample
     /// <summary>
     /// 模型表
     /// </summary>
@@ -160,7 +173,7 @@ namespace Implementation
         async void s()
         {
 
-            var user = ServiceContainer.GetService<Implementation.Tables.MainViews.User.UserService, Implementation.Tables.MainViews.User.UserContext>(EService.AddScoped, "");
+            var user = ServiceContainer.GetServiceContext<Implementation.Tables.MainViews.User.UserService, Implementation.Tables.MainViews.User.UserContext>(EService.AddScoped, "");
             await user.CheckingLogin("", "");
         }
     }
