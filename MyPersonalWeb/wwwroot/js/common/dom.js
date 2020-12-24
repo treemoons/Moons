@@ -3,10 +3,32 @@
  * @param {string} text
  * @param {'infomation'|'warning'|'error'} warningtype
  * @param {'YesNoCancel'|'YesNo'|'Yes'} messageButton
- * @param {{yes:(args:any)=>void,no:(args:any)=>void,cancel:()=>void,args:string|number|{}|[]}} buttonsCallback
- * @param {number} timeout unit: ms
+ * @param {{yesText:'Yes'|'确定',noText:'No'|'拒绝'|'取消',cancelText:'Cancel'|'取消',yes:(args:any)=>void,no:(args:any)=>void,cancel:()=>void,timeout:number}} buttonsCallback
+ * @param {{
+        yesColor :string, yesBackground :string,
+        noColor :string, noBackground :string,
+        cancelColor :string, cancelBackground :string,
+        infoColor :string, infoBackground :string,
+        warningColor :string, warningBackground :string,
+        errorColor :string, errorBackground :string,
+        tittleBarForeColor :string, tittleBarBackground :string,
+        contentForeColor :string, contentBackground :string,
+        Color :string, backgroundColor:string}} 
+        COLOR OF MESSAGE BOX 
  */
-export async function messagebox(text, warningtype, messageButton, { yes = d => { }, no = d => { }, cancel = d => { }, args = undefined } = {}, timeout = undefined) {
+export async function messagebox(text, warningtype, messageButton,
+    {yesText='Yes',noText='No',cancelText='Cancel',  yes = d => { }, no = d => { }, cancel = d => { }, timeout = undefined } = {},
+    {
+        yesColor = 'white', yesBackground = '#26bd76',
+        noColor = 'white', noBackground = '#e65936',
+        cancelColor = 'gray', cancelBackground = '#efefef',
+        infoColor = 'white', infoBackground = '#26bd76',
+        warningColor = 'white', warningBackground = '#e65936',
+        errorColor = 'gray', errorBackground = '#efefef',
+        tittleBarForeColor = '', tittleBarBackground = '#b9b9ff',
+        contentForeColor = '', contentBackground = '',
+        Color = '', backgroundColor = '#ffffffbb'
+    } = {}) {
     //#region element
     debugger;
     if (!document.getElementById('tipBackground_of_messagebox')) {
@@ -26,19 +48,19 @@ export async function messagebox(text, warningtype, messageButton, { yes = d => 
         contentWindow.append(tittle, content, buttons);
         tittle.append(warningicon, warningtip);
         warningicon.innerText = '!';
-        btnyes.innerText = 'Yes';
+        btnyes.innerText = yesText;
         switch (messageButton) {
             case 'YesNoCancel':
                 btnno = document.createElement('button');
                 btncancel = document.createElement('button');
-                btnno.innerText = 'No'
-                btncancel.innerText = 'Cancel'
+                btnno.innerText = noText;
+                btncancel.innerText = cancelText;
                 buttons.append(btnyes, btnno, btncancel);
 
                 break;
             case 'YesNo':
                 btnno = document.createElement('button');
-                btnno.innerText = 'No'
+                btnno.innerText = noText;
                 buttons.append(btnyes, btnno);
                 break;
             case 'Yes':
@@ -77,7 +99,8 @@ export async function messagebox(text, warningtype, messageButton, { yes = d => 
         -moz-border-radius: 5px;
         -ms-border-radius: 5px;
         -o-border-radius: 5px;
-        background-color:#ffffffbb`;
+        background-color:${backgroundColor};
+        color: ${Color}`;
         contentWindow.style = ` 
        position: relative;
         left:0;
@@ -95,14 +118,15 @@ export async function messagebox(text, warningtype, messageButton, { yes = d => 
         -ms-transition: all linear 100ms;
         -o-transition: all linear 100ms;`;
         tittle.style = `
-        background-color: rgb(248, 211, 211);
-        padding: 5px 20px;
-        margin-block-start: 0;`;
+        padding: 10px 20px;
+        margin-block-start: 0;
+        background-color:${tittleBarBackground};
+        color: ${tittleBarForeColor}`;
         warningicon.style = `
+        font-size:16px;
         display: inline-block;
         text-align: center;
-        color: white;
-        width:25px;
+        width:20px;
         border-radius: 50%;
         -webkit-border-radius: 50%;
         -moz-border-radius: 50%;
@@ -112,7 +136,9 @@ export async function messagebox(text, warningtype, messageButton, { yes = d => 
         content.style = `
         text-align: center;
         width: 80%;
-        margin: 2% auto;`;
+        margin: 6% auto;
+        background-color:${contentForeColor};
+        color: ${contentBackground}`;
         buttons.style = `
         text-align: right;
         display: flex;
@@ -124,8 +150,9 @@ export async function messagebox(text, warningtype, messageButton, { yes = d => 
         color: white;
         border: none;
         /* box-shadow: 1px 2px 4px 0px hsl(0, 0%, 86%); */
-        background: #26bd76;
-        padding:5px 10px;`;
+        padding:5px 10px;
+        background-color:${yesBackground};
+        color: ${yesColor}`;
         btnyes.onmouseenter = e => btnyes.style.boxShadow = '1px 2px 4px 2px hsl(0, 0 %, 86 %)';
         btnyes.onmouseleave = e => btnyes.style.boxShadow = 'none';
         btnyes.onclick = yesClick;
@@ -134,10 +161,10 @@ export async function messagebox(text, warningtype, messageButton, { yes = d => 
             outline: none;
             min-width: 50px;
             border: none;
-            color: white;
             /* box-shadow: 1px 2px 4px 0px #f8f8f8; */
-            background: #e65936;
-            padding:5px 10px;`;
+            padding:5px 10px;
+            background-color:${noBackground};
+            color: ${noColor}`;
             btnno.onmouseenter = e => btnno.style.boxShadow = '1px 2px 4px 2px hsl(0, 0 %, 86 %)';
             btnno.onmouseleave = e => btnno.style.boxShadow = 'none';
             btnno.onclick = noClick;
@@ -147,10 +174,10 @@ export async function messagebox(text, warningtype, messageButton, { yes = d => 
             outline: none;
             min-width: 50px;
             border: none;
-            color: gary;
             /* box-shadow: 1px 2px 4px 0px #f8f8f8; */
-            background: #efefef;
-            padding:5px 10px;`;
+            padding:5px 10px;
+            background-color:${cancelBackground};
+            color: ${cancelColor}`;
             btncancel.onmouseenter = e => btncancel.style.boxShadow = '1px 2px 4px 2px hsl(0, 0 %, 86 %)';
             btncancel.onmouseleave = e => btncancel.style.boxShadow = 'none';
             btncancel.onclick = cancelClick;
@@ -160,16 +187,19 @@ export async function messagebox(text, warningtype, messageButton, { yes = d => 
         //#region warning style
         switch (warningtype) {
             case 'warning':
-                warningicon.style.backgroundColor = 'yellow';
+                warningicon.style.color = warningColor;
+                warningicon.style.backgroundColor = warningBackground;
                 warningtip.innerText = '警 告';
                 break;
             case 'error':
-                warningicon.style.backgroundColor = 'red';
+                warningicon.style.color = errorColor;
+                warningicon.style.backgroundColor = errorBackground;
                 warningtip.innerText = '错 误';
                 break;
             case 'infomation':
             default:
-                warningicon.style.backgroundColor = 'green';
+                warningicon.style.color = infoColor;
+                warningicon.style.backgroundColor = infoBackground;
                 warningtip.innerText = '提 示';
                 break;
         }
@@ -200,11 +230,11 @@ export async function messagebox(text, warningtype, messageButton, { yes = d => 
 
         //#region onclick 事件
         async function yesClick() {
-            yes(args);
+            yes();
             close();
         }
         async function noClick() {
-            no(args);
+            no();
             close();
         }
         async function cancelClick() {
@@ -276,8 +306,4 @@ export async function messagebox(text, warningtype, messageButton, { yes = d => 
         show();
 
     }
-}
-
-export function test() {
-    console.log('test')
 }

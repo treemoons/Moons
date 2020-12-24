@@ -1,6 +1,6 @@
 
 import * as common from './common.js';
-common.test();
+import { messagebox } from './common/dom.js';
 
 /**
  * 判断菜单显示
@@ -196,7 +196,7 @@ export async function signin() {
             `username=${loginform.username.value}&` +
             `password=${loginform.password.value}&` +
             `isremembered=${loginform.isremembered.checked}`,
-        success:async data => {
+        success: async data => {
             debugger;
             if (data == 'T') {
                 open(window.location.href, '_self')
@@ -244,7 +244,7 @@ export async function signout() {
 /**
  * 显示或这关闭menu
  */
-export  function showAndCloseMenu() {
+export function showAndCloseMenu() {
     try {
         if (!userOptions) throw 'userOption Element is undefined！';
         if (window.getComputedStyle(userOptions).display == 'block') {
@@ -367,17 +367,18 @@ export async function searchsubmit() {
  * @param {Number} date date of expires
  */
 export async function changeLanguageCookie(elelang, date = 100) {
-    setCookie('lang', elelang, date)
+    document.cookie = common.buildCookie('lang', elelang, { day:date });
+
 }
 /**
  * 加载上一次
  */
 export async function loadlang() {
-    let elelang = getCookie('lang');
+    let elelang = await common.getQueryString('lang', document.cookie, '&');
     if (!elelang) {
         elelang = 'en';
     }
-    setCookie('lang', elelang)
+    document.cookie = common.buildCookie('lang', elelang);
 }
 //#endregion
 //#region  select language options
@@ -497,3 +498,4 @@ top.showUserOptions = showAndCloseUserOptions;
 top.showLogin = showLogin;
 top.signout = signout;
 top.totop = common.totop;
+top.messagebox = messagebox;

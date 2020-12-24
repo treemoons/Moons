@@ -270,7 +270,7 @@ input[type="search"]::-webkit-search-cancel-button {
 
 /* footer partial */
 .footer-table {
-    padding: 0 10%;
+    padding: 0 5%;
     text-align: center;
     display: flex;
     justify-content: space-around;

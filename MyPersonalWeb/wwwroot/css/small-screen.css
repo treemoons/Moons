@@ -29,7 +29,7 @@ body{
 }
 .footer-table div {
     margin-top: 30px;
-    min-width: 54vw;
+    min-width: 200px;
 }
 /* login partial */
 .login {
