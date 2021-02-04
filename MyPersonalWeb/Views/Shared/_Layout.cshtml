@@ -146,7 +146,7 @@
 
             <div class="menu-option">
                 @for (int i = 0; i < languageMaster.MenuArray.Count; i++)
-            { 
+            {
                 <div>
                         <h5>@languageMaster.MenuArray[i].Title</h5>
                         <a
@@ -183,7 +183,9 @@
 
                 <footer>
                     <div class="footer-table">
-                        @for (int i = 0; i < languageMaster.FooterArray.Count; i++) { <div>
+                        @for (int i = 0; i < languageMaster.FooterArray.Count; i++)
+                        {
+                        <div>
                             <h5>@languageMaster.FooterArray[i].Title</h5>
                             <a
                                 href="/@ViewBag.lang@languageMaster.FooterArray[i].Option1[1]">@languageMaster.FooterArray[i].Option1[0]</a>
@@ -192,7 +194,7 @@
                             <a
                                 href="/@ViewBag.lang@languageMaster.FooterArray[i].Option3[1]">@languageMaster.FooterArray[i].Option3[0]</a>
                         </div>
-                    }
+                        }
                         <div>
                             <img src="/src/img/logo.png" width="120" alt="QRcode">
                             <a href="mailto:treemoons@outlook.com">@languageMaster.Contact</a>

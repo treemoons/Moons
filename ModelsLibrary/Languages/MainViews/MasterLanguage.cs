@@ -11,9 +11,9 @@ using CommonUtils;
 namespace ModelsLibrary.Languages.MainViews
 {
 
-    /// <summary>    
-    ///  | Author:TreeMoons <br/>
-    ///  | Date:May,6th,2020 <br/>
+    /// <summary>
+    ///  | Author:treemoons <br/>
+    ///  | Date:May6th,2020 <br/>
     ///  | work:store the temporary keywords by international language <br/>
     ///  | instructon:store struct by action name,which reflect keywords in the views <br/>
     /// </summary>
@@ -21,7 +21,7 @@ namespace ModelsLibrary.Languages.MainViews
     public partial class Language : ILanguage
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public Language() { }
         /// <summary>

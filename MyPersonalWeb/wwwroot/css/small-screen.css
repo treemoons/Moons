@@ -178,3 +178,19 @@ body{
 .menu-option a:active{
     font-size: large;
 }
+@media screen and (max-width: 360px) {
+    .search-icon {
+        width: 0;
+        display: none;
+    }
+.user-search-icon{
+    min-width: 140px;
+}
+    .search-icon i{
+        width: 0;
+        display: none;
+    }
+    *{
+        font-size: 10px;
+    }
+}

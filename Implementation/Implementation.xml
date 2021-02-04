@@ -55,18 +55,18 @@
             </summary>
             <returns>ILoggerFactory</returns>
         </member>
-        <member name="M:Implementation.DBServiceProvider`2.GetDbServiceProvider(Implementation.EService)">
+        <member name="M:Implementation.DBServiceProvider`2.GetDbService(Implementation.EService)">
             <summary>根据服务类型，获取相对应的服务
             </summary>
             <param name="serviceType">服务类型</param>
-            <returns>服务提供的容器</returns>
+            <returns>服务</returns>
         </member>
-        <member name="M:Implementation.DBServiceProvider`2.GetDbServiceProvider(Implementation.EService,System.String)">
+        <member name="M:Implementation.DBServiceProvider`2.GetDbService(Implementation.EService,System.String)">
             <summary>根据服务类型，获取相对应的服务
             </summary>
             <param name="serviceType">服务类型</param>
             <param name="sqlString"> 数据库连接字符串</param>
-            <returns>服务提供的容器</returns>
+            <returns>服务</returns>
         </member>
         <member name="T:Implementation.ServiceContainer">
             <summary>
@@ -74,6 +74,16 @@
             </summary>
         </member>
         <member name="M:Implementation.ServiceContainer.GetService``2(Implementation.EService,System.String)">
+            <summary>
+            Create service,which can  add other services
+            </summary>
+            <param name="service">orginal sercive type</param>
+            <param name="sqlString">connection string of database[sqlserver] </param>
+            <typeparam name="TService"> service that class ,which contains all functions and models of data</typeparam>
+            <typeparam name="TDbContext"></typeparam>
+            <returns>IService</returns>
+        </member>
+        <member name="M:Implementation.ServiceContainer.GetServiceContext``2(Implementation.EService,System.String)">
             <summary>
             Get service,which built service of database and dealing with tables of database.
             </summary>

@@ -10,7 +10,7 @@ namespace CommonUtils
 {
     static public class Utils
     {
-        
+
     }
 
 
@@ -35,9 +35,9 @@ namespace CommonUtils
         /// <returns></returns>
         static public string GetCookieRememberBase64 => Convert.ToBase64String(Encoding.ASCII.GetBytes("isremembered"));
     }
-/// <summary>
-///  Decrypt/Encrypt data via RSA 
-/// </summary>
+    /// <summary>
+    ///  Decrypt/Encrypt data via RSA 
+    /// </summary>
     public class RSAData
     {
         /// <summary> 
@@ -75,7 +75,6 @@ namespace CommonUtils
                 return System.Text.Encoding.ASCII.GetString(decryptdata);
             }
         }
-
     }
 
     /// <summary>
@@ -111,9 +110,9 @@ namespace CommonUtils
         /// <param name="text">要写入的文本</param>
         /// <param name="relationPath">要写入文件的文件夹路径(定位路径)</param>
         /// <param name="path">相对路径下中间加入"\log\"之后的路径（一般为Log日志的类型）</param>
-        public static void WriteLog(string text, string relationPath="", LogType path=LogType.ImplemnetationTrance)
+        public static void WriteLog(string text, string relationPath = "", LogType path = LogType.ImplemnetationTrance)
         {
-            if(relationPath=="")
+            if (relationPath == "")
                 relationPath = Environment.CurrentDirectory;
             string fullPath = relationPath + @"\log\" + path.ToString();
             lock (locks)
@@ -136,14 +135,18 @@ namespace CommonUtils
         /// <param name="LogName">日志的标题</param>
         /// <param name="LogContent">日志的内容</param>
         /// <returns>完整的整理好格式的字符串</returns>
-        public static string FormatLog(string LogName, string LogContent) => $"{LogName}({ DateTime.Now.ToString("yyyy年MM月dd日 HH时mm分ss秒")})：\n{LogContent}\n\r";
+        public static string FormatLog(string LogName, string LogContent) 
+            => $"{LogName}({ DateTime.Now.ToString("yyyy年MM月dd日 HH时mm分ss秒")})：\n{LogContent}\n\r";
+
+            
         /// <summary>
         /// 书写默认格式的日志
         /// </summary>
         /// <param name="title">标题</param>
         /// <param name="content">内容</param>
         /// <param name="type">类型（相对路径下中间加入"\log\"之后的路径）</param>
-        public static void WriteLogs(string title, string content, LogType type = LogType.ImplemnetationTrance) => WriteLog(FormatLog(title, content), Environment.CurrentDirectory, type);
+        public static void WriteLogs(string title, string content, LogType type = LogType.ImplemnetationTrance)
+            => WriteLog(FormatLog(title, content), Environment.CurrentDirectory, type);
 
     }
 

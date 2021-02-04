@@ -21,6 +21,24 @@
             </summary>
             <value></value>
         </member>
+        <member name="T:ModelsLibrary.Languages.ILanguagePage">
+            <summary>
+            页面语言
+            </summary>
+        </member>
+        <member name="P:ModelsLibrary.Languages.ILanguagePage.Keywords">
+            <summary>
+            Meta 标签中的关键词
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ModelsLibrary.Languages.ILanguagePage.Description">
+             <summary>
+             
+            Meta 中网站的描述
+             </summary>
+             <value></value>
+        </member>
         <member name="T:ModelsLibrary.Languages.MainViews.Language">
             <summary>    
              | Author:TreeMoons <br/>

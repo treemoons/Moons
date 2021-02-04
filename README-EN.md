@@ -10,7 +10,7 @@
  - Flex In Display(at latest grammar of CSS ,so it can't be support for IE or old technology and so on ）
 
 ### Main of Tech：
- - c#8.0 at latest
+ - C#8.0 at latest
 
  - JavaScript ES6 at latest
 

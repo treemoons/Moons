@@ -1,5 +1,5 @@
 ﻿export * from './common/dom.js';
-Date.prototype.formatDate = async function (fmt) {
+Date.prototype.formatDate =  function (fmt) {
     let o = {
         "M+": this.getMonth() + 1, //月份           
         "d+": this.getDate(), //日           

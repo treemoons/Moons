@@ -1,0 +1,30 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "name",
+    "description": "TEST",
+    "$id": "jjjd",
+    "properties": {
+        "obj": {
+            "description": "properties",
+            "type": "object",
+            "properties": {
+                "object": {
+                    "description": "obj.objectproperties",
+                    "type": "string",
+                    "enum": [
+                        "obj1",
+                        "obj2"
+                    ]
+                }
+            }
+        },
+        "NAME": {
+            "description": "name,isthisacomment?",
+            "type": "string",
+            "enum": [
+                "myname",
+                "testname"
+            ]
+        }
+    }
+}
