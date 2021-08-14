@@ -1,4 +1,4 @@
-# 个人网页开源项目 -->[Enlish](./README-EN.md)
+# 个人网页开源项目 -->[English](./README-EN.md)
 
 ### 主要框架内容包括一下：
  - 多国语言支持（json缓存在内存中）
